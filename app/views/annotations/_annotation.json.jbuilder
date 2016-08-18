@@ -1,0 +1,2 @@
+json.extract! annotation, :id, :document_id, :verbation, :user_id, :entity_id, :hypothesis_date, :hypothesis_annotation_id, :hypothesis_user, :created_at, :updated_at
+json.url annotation_url(annotation, format: :json)

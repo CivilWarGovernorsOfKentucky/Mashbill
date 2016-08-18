@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818132514) do
+ActiveRecord::Schema.define(version: 20160818133338) do
+
+  create_table "annotations", force: true do |t|
+    t.integer  "document_id"
+    t.string   "verbation"
+    t.integer  "user_id"
+    t.integer  "entity_id"
+    t.date     "hypothesis_date"
+    t.string   "hypothesis_annotation_id"
+    t.string   "hypothesis_user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "annotations", ["document_id"], name: "index_annotations_on_document_id", using: :btree
+  add_index "annotations", ["entity_id"], name: "index_annotations_on_entity_id", using: :btree
+  add_index "annotations", ["user_id"], name: "index_annotations_on_user_id", using: :btree
 
   create_table "documents", force: true do |t|
     t.string   "cwgk_id"

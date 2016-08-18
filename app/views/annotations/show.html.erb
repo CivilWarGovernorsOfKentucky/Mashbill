@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @annotation.document %>
+</p>
+
+<p>
+  <strong>Verbation:</strong>
+  <%= @annotation.verbation %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @annotation.user %>
+</p>
+
+<p>
+  <strong>Entity:</strong>
+  <%= @annotation.entity %>
+</p>
+
+<p>
+  <strong>Hypothesis date:</strong>
+  <%= @annotation.hypothesis_date %>
+</p>
+
+<p>
+  <strong>Hypothesis annotation:</strong>
+  <%= @annotation.hypothesis_annotation_id %>
+</p>
+
+<p>
+  <strong>Hypothesis user:</strong>
+  <%= @annotation.hypothesis_user %>
+</p>
+
+<%= link_to 'Edit', edit_annotation_path(@annotation) %> |
+<%= link_to 'Back', annotations_path %>

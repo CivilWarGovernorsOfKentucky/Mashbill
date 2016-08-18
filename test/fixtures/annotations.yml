@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_id: 
+  verbation: MyString
+  user_id: 
+  entity_id: 
+  hypothesis_date: 2016-08-18
+  hypothesis_annotation_id: MyString
+  hypothesis_user: MyString
+
+two:
+  document_id: 
+  verbation: MyString
+  user_id: 
+  entity_id: 
+  hypothesis_date: 2016-08-18
+  hypothesis_annotation_id: MyString
+  hypothesis_user: MyString
