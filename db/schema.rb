@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818133338) do
+ActiveRecord::Schema.define(version: 20160818133900) do
 
   create_table "annotations", force: true do |t|
     t.integer  "document_id"
@@ -51,6 +51,20 @@ ActiveRecord::Schema.define(version: 20160818133338) do
   end
 
   add_index "entities", ["user_id"], name: "index_entities_on_user_id", using: :btree
+
+  create_table "relationships", force: true do |t|
+    t.integer  "entity_1_id"
+    t.integer  "entity_2_id"
+    t.string   "relationship_type"
+    t.integer  "user_id"
+    t.text     "citation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relationships", ["entity_1_id"], name: "index_relationships_on_entity_1_id", using: :btree
+  add_index "relationships", ["entity_2_id"], name: "index_relationships_on_entity_2_id", using: :btree
+  add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "hypothesis_user"

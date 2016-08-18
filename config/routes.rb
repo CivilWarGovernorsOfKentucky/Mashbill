@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :relationships
+
   resources :annotations
 
   resources :documents
