@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :documents
+
   resources :entities
 
   resources :users
