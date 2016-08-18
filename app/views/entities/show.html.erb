@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entity.name %>
+</p>
+
+<p>
+  <strong>Entity type:</strong>
+  <%= @entity.entity_type %>
+</p>
+
+<p>
+  <strong>Birth date:</strong>
+  <%= @entity.birth_date %>
+</p>
+
+<p>
+  <strong>Birth location:</strong>
+  <%= @entity.birth_location %>
+</p>
+
+<p>
+  <strong>Death date:</strong>
+  <%= @entity.death_date %>
+</p>
+
+<p>
+  <strong>Death location:</strong>
+  <%= @entity.death_location %>
+</p>
+
+<p>
+  <strong>Biography:</strong>
+  <%= @entity.biography %>
+</p>
+
+<p>
+  <strong>Bibliography:</strong>
+  <%= @entity.bibliography %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @entity.user %>
+</p>
+
+<%= link_to 'Edit', edit_entity_path(@entity) %> |
+<%= link_to 'Back', entities_path %>

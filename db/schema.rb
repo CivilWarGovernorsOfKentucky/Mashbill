@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818123252) do
+ActiveRecord::Schema.define(version: 20160818132038) do
+
+  create_table "entities", force: true do |t|
+    t.string   "name"
+    t.string   "entity_type"
+    t.date     "birth_date"
+    t.string   "birth_location"
+    t.date     "death_date"
+    t.string   "death_location"
+    t.text     "biography"
+    t.text     "bibliography"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "entities", ["user_id"], name: "index_entities_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "hypothesis_user"

@@ -1,0 +1,53 @@
+<%= form_for(@entity) do |f| %>
+  <% if @entity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entity.errors.count, "error") %> prohibited this entity from being saved:</h2>
+
+      <ul>
+      <% @entity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :entity_type %><br>
+    <%= f.text_field :entity_type %>
+  </div>
+  <div class="field">
+    <%= f.label :birth_date %><br>
+    <%= f.date_select :birth_date %>
+  </div>
+  <div class="field">
+    <%= f.label :birth_location %><br>
+    <%= f.text_field :birth_location %>
+  </div>
+  <div class="field">
+    <%= f.label :death_date %><br>
+    <%= f.date_select :death_date %>
+  </div>
+  <div class="field">
+    <%= f.label :death_location %><br>
+    <%= f.text_field :death_location %>
+  </div>
+  <div class="field">
+    <%= f.label :biography %><br>
+    <%= f.text_area :biography %>
+  </div>
+  <div class="field">
+    <%= f.label :bibliography %><br>
+    <%= f.text_area :bibliography %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
