@@ -25,7 +25,7 @@ class EntitiesController < ApplicationController
   # POST /entities.json
   def create
     @entity = Entity.new(entity_params)
-
+    @entity.user = current_user
     respond_to do |format|
       if @entity.save
         format.html { redirect_to @entity, notice: 'Entity was successfully created.' }

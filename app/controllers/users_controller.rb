@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def dashboard
+    @user=current_user
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
