@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @user=current_user
+    @documents=Document.all
   end
 
   # GET /users/1

@@ -1,7 +1,17 @@
 <p id="notice"><%= notice %></p>
 <h1>Dashboard for  <%= @user.hypothesis_user %> </h1>
 <h2>My annotated document</h2>
-Document 1
+
+<table>
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= link_to document.cwgk_id, document %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <h2>My entities</h2>
 <table>
   <tbody>
