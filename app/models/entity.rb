@@ -5,5 +5,6 @@ class Entity < ActiveRecord::Base
   	PERSON = "person"
   	PLACE = "place"
   	THING = "thing"
+  	ALL_TYPES = [PERSON,PLACE,THING]
   end
 end

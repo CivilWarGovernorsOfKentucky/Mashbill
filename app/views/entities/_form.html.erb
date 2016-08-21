@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :entity_type %><br>
-    <%= f.text_field :entity_type %>
+    <%= f.select "entity_type", options_for_select(Entity::Type::ALL_TYPES) %>
   </div>
   <div class="field">
     <%= f.label :birth_date %><br>
