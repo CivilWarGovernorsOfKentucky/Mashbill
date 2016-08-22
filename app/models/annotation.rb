@@ -30,6 +30,9 @@ class Annotation < ActiveRecord::Base
       #document_id = hyp_annotation["target"].first["selector"].first["value"]
       document_title = hyp_annotation["document"]["title"].first
       new_doc = find_or_create_document(document_id, document_title)
+      annotation_record.document_id = new_doc.id
+      annotation_record.user_id = 1
+      annotation_record.save
     end
   	#  else done
   end

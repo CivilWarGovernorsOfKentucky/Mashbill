@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user=current_user
     Annotation.ingest_new_annotations
     @documents=Document.all
+    @annotations=Annotation.all
   end
 
   # GET /users/1

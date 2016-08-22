@@ -23,5 +23,16 @@
     <% end %>
   </tbody>
 </table>
+
+<h3>All annotations</h3>
+<table>
+  <tbody>
+    <% @annotations.each do |annotation| %>
+      <tr>
+        <td><%= link_to annotation.verbatim, annotation %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= link_to 'New Entity', new_entity_path %>
 </div>
