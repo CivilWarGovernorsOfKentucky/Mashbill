@@ -1,6 +1,7 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 <h1>Dashboard for  <%= @user.hypothesis_user %> </h1>
-<h2>My annotated document</h2>
+<h3>My annotated document</h3>
 
 <table>
   <tbody>
@@ -12,7 +13,7 @@
   </tbody>
 </table>
 
-<h2>My entities</h2>
+<h3>My entities</h3>
 <table>
   <tbody>
     <% @user.entities.each do |entity| %>
@@ -23,3 +24,4 @@
   </tbody>
 </table>
 <%= link_to 'New Entity', new_entity_path %>
+</div>

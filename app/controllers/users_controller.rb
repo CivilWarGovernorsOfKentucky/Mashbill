@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @user=current_user
+    Annotation.ingest_new_annotations
     @documents=Document.all
   end
 

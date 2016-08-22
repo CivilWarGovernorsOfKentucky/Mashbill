@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818133900) do
+ActiveRecord::Schema.define(version: 20160821015102) do
 
   create_table "annotations", force: true do |t|
     t.integer  "document_id"
-    t.string   "verbation"
+    t.string   "verbatim"
     t.integer  "user_id"
     t.integer  "entity_id"
     t.date     "hypothesis_date"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20160818133900) do
 
   create_table "documents", force: true do |t|
     t.string   "cwgk_id"
-    t.string   "xml_file"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "entities", force: true do |t|

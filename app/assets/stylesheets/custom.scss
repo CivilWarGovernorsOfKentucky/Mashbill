@@ -1,0 +1,135 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* universal */
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+html{
+    background-color:#17394E;
+  }
+  body {
+    font-family: "texgyreherosregular", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 23px;
+    word-wrap: break-word;
+    height: 100%;
+    color:#373737;
+    background-color:#F9F9F9;
+  }
+  a {
+    color:#1982D1;
+    text-decoration: none;
+    font-family:"texgyreherosbold", sans-serif;
+  }
+  a:link {
+    color:#1982D1;
+  }
+  a:visited {
+    color:#1982D1;
+  }
+  a:hover, a:active, a:focus{
+
+  }
+  strong {
+    font-family:"texgyreherosbold", sans-serif;
+  }
+  #skipnav {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  #skipnav:focus {
+    top: 0;
+    z-index: 9999;
+    clip: initial;
+    height: auto;
+    width: auto;
+    padding: .5em;
+    border: 1px blue dashed;
+  }
+
+  /* !---------- Headings ---------- */
+  h1 {
+  font-family: "Cinzel", serif;
+  text-align: left;
+font-size: 24px;
+line-height: 36px;
+text-transform: uppercase;
+border-top: 0;
+padding: 0.75em 0;
+margin: 0;
+color: #17394E;
+font-weight: 500;
+letter-spacing: .08em;
+  }
+
+  h2 {
+    font-family: "Cinzel", serif;
+    text-transform:uppercase;
+    font-size: 20px;
+    line-height: 30px;
+    color:#17394E;
+    letter-spacing:.08em;
+    font-weight:500;
+  }
+  h3 {
+    font-family: "Cinzel", serif;
+    text-transform:uppercase;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing:.08em;
+    color:#17394E;
+  }
+  h1 a, h2 a, h3 a, h4 a, nav.top a, .item-pagination a{
+    font-weight:500;
+    font-family: "Cinzel", serif;
+  }
+  h4 {
+    font-family: "Cinzel", serif;
+    text-transform:uppercase;
+    font-size: 18px;
+    line-height: 27px;
+  }
+  h5, h6 {
+    font-family: "Cinzel", serif;
+    text-transform:uppercase;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  p, ol, ul {
+    margin-bottom: 1.5em;
+  }
+  p:only-child, p:last-child, ol:only-child, ol:last-child, ul:only-child, ul:last-child {
+    margin-bottom: 0;
+  }
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+  }
+

@@ -40,3 +40,6 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'pry'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
