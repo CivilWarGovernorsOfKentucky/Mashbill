@@ -18,17 +18,29 @@ class Annotation < ActiveRecord::Base
       # set hypothesis_date
       annotation_record.hypothesis_date = hyp_annotation["updated"]
       # set user_id to current user
-      
+      annotation_record.user_id = @current_user
       # set verbatim
+      selector = hyp_annotation["target"].first["selector"]
+      exact_selection = selector.detect { |e| e["exact"] != nil }
+      annotation_record.verbatim = exact_selection["exact"]
+      # annotation_record.verbatim = hyp_annotation["target"].first["selector"].fourth["exact"]
       # set document_id to find or create the document from hash
+      exact_selection = selector.detect { |e| e["value"] != nil }
+      document_id = exact_selection["value"]
+      #document_id = hyp_annotation["target"].first["selector"].first["value"]
+      document_title = hyp_annotation["document"]["title"].first
+      new_doc = find_or_create_document(document_id, document_title)
     end
   	#  else done
   end
 
-  def self.find_or_create_document
-  	# kentucky_doc_id = parse kentucky document id from hypothesis target url
+  def self.find_or_create_document(document_id, document_title)
   	# search documents where cwgk_id = kentucky_doc_id
-  	# if null 
+    #Document.create_with(title: document_title).find_or_create_by(cwgk_id: document_id)
+    Document.find_or_create_by(cwgk_id: document_id) do |d|
+      d.title = document_title
+    end
+    # if null 
   	# create a blank document where cwgk_id = kentucky_doc_id
   	# return document 
   end
