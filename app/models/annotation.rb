@@ -23,11 +23,9 @@ class Annotation < ActiveRecord::Base
       selector = hyp_annotation["target"].first["selector"]
       exact_selection = selector.detect { |e| e["exact"] != nil }
       annotation_record.verbatim = exact_selection["exact"]
-      # annotation_record.verbatim = hyp_annotation["target"].first["selector"].fourth["exact"]
       # set document_id to find or create the document from hash
       exact_selection = selector.detect { |e| e["value"] != nil }
       document_id = exact_selection["value"]
-      #document_id = hyp_annotation["target"].first["selector"].first["value"]
       document_title = hyp_annotation["document"]["title"].first
       new_doc = find_or_create_document(document_id, document_title)
       annotation_record.document_id = new_doc.id
@@ -48,9 +46,6 @@ class Annotation < ActiveRecord::Base
   	# return document 
   end
 
-  def self.cwgk_id_from_url
-  end
-
   def self.get_recent_annotations_from_hypothesis
     # return an array of hashes that were created from json
     # the below is a single annotation being processed and turned into an array of annotations.  
@@ -58,13 +53,16 @@ class Annotation < ActiveRecord::Base
         # turn json into a ruby hash
     #  check date -- is it before or after most recently created annotation in our system
     recent_annotations = []
+    response = RestClient.get 'https://hypothes.is/api/search?group=zm91G8nX', {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'}
+    jason_hash = JSON.parse(response)
+    recent_annotations = jason_hash["rows"]  # this is an array of hashes
+    #binding.pry
     #  if more recent
-    json_string=File.read(File.join(Rails.root,"test_data","annotation_rhiz.json"))
-    json_hash = JSON.parse(json_string)
-    recent_annotations << json_hash
+    #json_string=File.read(File.join(Rails.root,"test_data","annotation_rhiz.json"))
+    #json_hash = JSON.parse(json_string)
+    #recent_annotations << json_hash
     # else done
-    logger.debug(json_hash)
-    recent_annotations
+    #logger.debug(json_hash)
   end
 
 end

@@ -1,7 +1,5 @@
 class Document < ActiveRecord::Base
 
-#  attr_accessor :title
-
 	def self.document_from_cwgk_id
 		#create document
 		#copy cwgk_id into document.cwgk_id
