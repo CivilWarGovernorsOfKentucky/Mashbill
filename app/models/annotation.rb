@@ -53,16 +53,18 @@ class Annotation < ActiveRecord::Base
         # turn json into a ruby hash
     #  check date -- is it before or after most recently created annotation in our system
     recent_annotations = []
+    all_annotations = []
     response = RestClient.get 'https://hypothes.is/api/search?group=zm91G8nX', {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'}
     jason_hash = JSON.parse(response)
-    recent_annotations = jason_hash["rows"]  # this is an array of hashes
-    #binding.pry
-    #  if more recent
-    #json_string=File.read(File.join(Rails.root,"test_data","annotation_rhiz.json"))
-    #json_hash = JSON.parse(json_string)
-    #recent_annotations << json_hash
-    # else done
-    #logger.debug(json_hash)
+    all_annotations = jason_hash["rows"]  # this is an array of hashes
+    # find most recent annotation create time in the system
+    last_updated_annotation = Annotation.order(:updated_at => :desc).first.updated_at
+    all_annotations.each do |hyp_annotation|
+      if Time.parse(hyp_annotation["updated"]).to_datetime > last_updated_annotation
+        recent_annotations << hyp_annotation
+      end
+    end
+    recent_annotations
   end
 
 end
