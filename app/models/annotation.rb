@@ -54,7 +54,13 @@ class Annotation < ActiveRecord::Base
     #  check date -- is it before or after most recently created annotation in our system
     recent_annotations = []
     all_annotations = []
-    response = RestClient.get 'https://hypothes.is/api/search?group=zm91G8nX', {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'}
+    begin
+      # response = RestClient.get 'https://hypothes.is/api/search?group=zm91G8nX', {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'}
+      response = RestClient::Request.execute(method: :get, url: 'https://hypothes.is/api/search?group=zm91G8nX',
+                            timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
+      rescue => e
+       #e.response
+    end
     jason_hash = JSON.parse(response)
     all_annotations = jason_hash["rows"]  # this is an array of hashes
     # find most recent annotation create time in the system

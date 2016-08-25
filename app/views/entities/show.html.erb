@@ -32,7 +32,7 @@
 
 <p>
   <strong>Biography:</strong>
-  <%= @entity.biography %>
+  <%= raw(@markdown.render(@entity.biography)) %>
 </p>
 
 <p>

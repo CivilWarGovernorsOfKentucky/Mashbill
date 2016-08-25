@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :relationship_type %><br>
-    <%= f.text_field :relationship_type %>
+    <%= f.select "relationship_type", options_for_select(Relationship::Type::ALL_TYPES) %>
   </div>
   <div class="field">
     <%= f.label :user_id %><br>

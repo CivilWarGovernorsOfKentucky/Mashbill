@@ -97,6 +97,7 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    redcarpet (3.3.4)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -151,6 +152,7 @@ DEPENDENCIES
   nokogiri (~> 1.6, >= 1.6.8)
   pry
   rails (= 4.1.1)
+  redcarpet
   rest-client
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

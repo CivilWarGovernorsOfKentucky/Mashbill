@@ -10,6 +10,8 @@ class EntitiesController < ApplicationController
   # GET /entities/1
   # GET /entities/1.json
   def show
+    renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
+    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
   end
 
   # GET /entities/new
