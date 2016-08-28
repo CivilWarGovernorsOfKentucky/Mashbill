@@ -63,8 +63,12 @@ class Annotation < ActiveRecord::Base
     end
     jason_hash = JSON.parse(response)
     all_annotations = jason_hash["rows"]  # this is an array of hashes
-    # find most recent annotation create time in the system
-    last_updated_annotation = Annotation.order(:updated_at => :desc).first.updated_at
+    if Annotation.count > 0
+      # find most recent annotation create time in the system
+      last_updated_annotation = Annotation.order(:updated_at => :desc).first.updated_at
+    else
+      last_updated_annotation = Time.new('1900-01-01')
+    end
     all_annotations.each do |hyp_annotation|
       if Time.parse(hyp_annotation["updated"]).to_datetime > last_updated_annotation
         recent_annotations << hyp_annotation
