@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base
-	has_many :annotations
-
+  has_many :annotations
+  
 	def self.document_from_cwgk_id
 		#create document
 		#copy cwgk_id into document.cwgk_id

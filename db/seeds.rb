@@ -5,4 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Document.create([{ cwgk_id: "KYR-0001-007-0315", xml_file: "KYR-0001-007-0315.xml"}, { cwgk_id: "KYR-0001-007-0316", xml_file: "KYR-0001-007-0316.xml"}])
+Document.create([{ cwgk_id: "KYR-0001-007-0315", title: "TBD 1"}, { cwgk_id: "KYR-0001-007-0316", title: "TBD 2"}])
