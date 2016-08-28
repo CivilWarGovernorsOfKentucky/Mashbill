@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825140541) do
+ActiveRecord::Schema.define(version: 20160825175106) do
 
   create_table "annotations", force: true do |t|
     t.integer  "document_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160825140541) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.boolean  "completed"
   end
 
   create_table "entities", force: true do |t|
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160825140541) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "RefId"
+    t.string   "ref_id"
   end
 
   add_index "entities", ["user_id"], name: "index_entities_on_user_id", using: :btree

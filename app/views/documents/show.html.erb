@@ -1,3 +1,4 @@
+<h4><%= @document.cwgk_id %>:  <%= @document.title %></h4>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -8,6 +9,14 @@
 <p>
   <strong>Cwgk:</strong>
   <%= @document.cwgk_id %>
+</p>
+
+<p><%= link_to 'Identify Entities', bycwgkid_path(@document.cwgk_id) %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @document.completed %>
 </p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |

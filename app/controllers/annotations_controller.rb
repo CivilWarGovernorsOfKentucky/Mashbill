@@ -12,6 +12,30 @@ class AnnotationsController < ApplicationController
   def show
   end
 
+  def bycwgkid
+    document = Document.where(:cwgk_id => params[:cwgk_id]).first
+    #binding.pry
+    @annotations = Annotation.where(:document_id => document.id)
+    #binding.pry
+    render :template => 'annotations/index' 
+  end
+
+  def identify_annotation
+    @annotation = Annotation.find(params[:annotation_id])
+    @verbatim_text = @annotation.verbatim
+    @entities = Entity.all
+    render :template => 'entities/identify_annotation'
+  end
+
+  def associate_entity_to_annotation
+      #binding.pry
+      @annotation = Annotation.find(params[:annotation_id])
+      @entity = Entity.find(params[:entity_id])
+      @annotation.entity = @entity
+      @annotation.save!
+      redirect_to bycwgkid_path(@annotation.cwgk_id)
+  end
+
   # GET /annotations/new
   def new
     @annotation = Annotation.new

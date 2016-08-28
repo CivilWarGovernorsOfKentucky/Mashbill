@@ -64,5 +64,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   get   '/dashboard' => 'users#dashboard', as: :dashboard
+  get   '/annotations/document/:cwgk_id', :to => 'annotations#bycwgkid', :as => :bycwgkid
+  get   '/identify_annotation/:annotation_id', :to => 'annotations#identify_annotation', :as => :identify_annotation
+  get   '/associate_entity_to_annotation/:entity_id/:annotation_id', :to => 'annotations#associate_entity_to_annotation', :as => :associate_entity_to_annotation
 
 end

@@ -1,10 +1,10 @@
-<h1>Listing documents</h1>
+<h2>My documents</h2>
 
 <table>
   <thead>
     <tr>
       <th>Cwgk</th>
-      <th>Xml file</th>
+      <th>Complete</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,7 +13,7 @@
     <% @documents.each do |document| %>
       <tr>
         <td><%= document.cwgk_id %></td>
-        <td><%= document.xml_file %></td>
+        <td><%= document.completed %></td>
         <td><%= link_to 'Show', document %></td>
         <td><%= link_to 'Edit', edit_document_path(document) %></td>
         <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>

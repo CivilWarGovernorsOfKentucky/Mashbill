@@ -2,7 +2,7 @@
 
 <p>
   <strong>Document:</strong>
-  <%= @annotation.document.id %>
+  <%= @annotation.document.title %>
 </p>
 
 <p>
@@ -26,8 +26,7 @@
 </p>
 
 <p>
-  <strong>Hypothesis annotation:</strong>
-  <%= @annotation.hypothesis_annotation_id %>
+  <%= link_to 'Hypothesis annotation', 'https://hyp.is/' + @annotation.hypothesis_annotation_id %>
 </p>
 
 <p>

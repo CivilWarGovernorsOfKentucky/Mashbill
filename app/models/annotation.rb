@@ -72,5 +72,7 @@ class Annotation < ActiveRecord::Base
     end
     recent_annotations
   end
-
+  def cwgk_id
+    document.cwgk_id
+  end
 end

@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Document</th>
-      <th>Verbation</th>
+      <th>Verbatim</th>
       <th>User</th>
       <th>Entity</th>
       <th>Hypothesis date</th>
@@ -17,13 +17,14 @@
   <tbody>
     <% @annotations.each do |annotation| %>
       <tr>
-        <td><%= annotation.document %></td>
-        <td><%= annotation.verbation %></td>
+        <td><%= annotation.document.title if annotation.document %></td>
+        <td><%= annotation.verbatim %></td>
         <td><%= annotation.user %></td>
-        <td><%= annotation.entity %></td>
+        <td><%= annotation.entity.name if annotation.entity %></td>
         <td><%= annotation.hypothesis_date %></td>
         <td><%= annotation.hypothesis_annotation_id %></td>
         <td><%= annotation.hypothesis_user %></td>
+        <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
         <td><%= link_to 'Show', annotation %></td>
         <td><%= link_to 'Edit', edit_annotation_path(annotation) %></td>
         <td><%= link_to 'Destroy', annotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
