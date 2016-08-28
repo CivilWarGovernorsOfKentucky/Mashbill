@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  hypothesis_user: MyString
+  hypothesis_user: saracarl@hypothes.is
 
 two:
-  hypothesis_user: MyString
+  hypothesis_user: benwbrum@hypothes.is

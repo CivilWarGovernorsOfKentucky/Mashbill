@@ -1,19 +1,65 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  document_id: 
-  verbation: MyString
-  user_id: 
-  entity_id: 
-  hypothesis_date: 2016-08-18
-  hypothesis_annotation_id: MyString
-  hypothesis_user: MyString
+  document: one
+  verbatim: Gov.
+  user: one
+  entity: governor_bramlette
+  hypothesis_date: 2016-08-22
+  hypothesis_annotation_id: QFtZbGiAEeaH5xeDr9Y7NQ
+  hypothesis_user: acct:saracarl@hypothes.is
+  created_at: 2016-08-28 12:46:56.000000000 Z
+  updated_at: 2016-08-28 12:46:56.000000000 Z
 
 two:
-  document_id: 
-  verbation: MyString
-  user_id: 
-  entity_id: 
-  hypothesis_date: 2016-08-18
-  hypothesis_annotation_id: MyString
-  hypothesis_user: MyString
+  document: one
+  verbatim: Wm. E. Baker
+  user: one
+  # entity to be created
+  hypothesis_date: 2016-08-22
+  hypothesis_annotation_id: OK7LhmiAEeaALXtpUeEUqA
+  hypothesis_user: acct:saracarl@hypothes.is
+  created_at: 2016-08-28 12:46:56.000000000 Z
+  updated_at: 2016-08-28 12:46:56.000000000 Z
+
+three:
+  document: one
+  verbatim: Northern County of the district (Shelby)
+  user: one
+  entity: shelby_county
+  hypothesis_date: 2016-08-22
+  hypothesis_annotation_id: Mko_AGiAEeaER4N5otT3rA
+  hypothesis_user: acct:saracarl@hypothes.is
+  created_at: 2016-08-28 12:46:56.000000000 Z
+  updated_at: 2016-08-28 12:46:56.000000000 Z
+
+four:
+  document: one
+  verbatim: Tyler Alexander
+  user: one
+  entity: tyler_alexander
+  hypothesis_date: 2016-08-22
+  hypothesis_annotation_id: CpLlomiAEea4DQ9zsBFEhA
+  hypothesis_user: acct:saracarl@hypothes.is
+  created_at: 2016-08-28 12:46:56.000000000 Z
+  updated_at: 2016-08-28 12:46:56.000000000 Z
+
+five:
+  document: one
+  verbatim: Tyler Alexander
+  user: one
+  # entity to be associated
+  hypothesis_date: 2016-08-22
+  hypothesis_annotation_id: Cl_ZWmiAEea4DHtVrph8dA
+  hypothesis_user: acct:saracarl@hypothes.is
+  created_at: 2016-08-28 12:46:56.000000000 Z
+  updated_at: 2016-08-28 12:46:56.000000000 Z
+
+six:
+  document: one
+  verbatim: Tyler Alexander
+  user: one
+  # entity to be associated
+  hypothesis_date: 2016-08-22
+  hypothesis_annotation_id: CjhHRmiAEeaERmPKGFOggA
+  hypothesis_user: acct:saracarl@hypothes.is
+  created_at: 2016-08-28 12:46:56.000000000 Z
+  updated_at: 2016-08-28 12:46:56.000000000 Z
