@@ -96,12 +96,17 @@ class RelationshipsController < ApplicationController
       #Relationship.where(:entity_2_id => @entities.first.id)
       @entities.each do |entity| 
           Relationship.where(:entity_1_id => entity.id).each do |relationship|
-            @relationships << relationship
+            #binding.pry
+            if (@entities.include?(relationship.entity_2)) then 
+              @relationships << relationship
+            end
           end
       end
       @entities.each do |entity| 
           Relationship.where(:entity_2_id => entity.id).each do |relationship|
-            @relationships << relationship
+            if (@entities.include?(relationship.entity_1)) then 
+              @relationships << relationship
+            end
           end
       end
       # something here to remove relationships where the entity2 isn't in our list of entities or smarter code above
