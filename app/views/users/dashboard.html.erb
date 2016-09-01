@@ -5,9 +5,9 @@
 
 <table>
   <tbody>
-    <% @documents.each do |document| %>
+    <% @documents.reverse.each do |document| %>
       <tr>
-        <td><%= link_to document.cwgk_id, document %></td>
+        <td><%= link_to document.cwgk_id, bycwgkid_path(document.cwgk_id) %></td>
       </tr>
     <% end %>
   </tbody>
