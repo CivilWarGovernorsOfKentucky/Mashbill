@@ -67,5 +67,7 @@ Rails.application.routes.draw do
   get   '/annotations/document/:cwgk_id', :to => 'annotations#bycwgkid', :as => :bycwgkid
   get   '/identify_annotation/:annotation_id', :to => 'annotations#identify_annotation', :as => :identify_annotation
   get   '/associate_entity_to_annotation/:entity_id/:annotation_id', :to => 'annotations#associate_entity_to_annotation', :as => :associate_entity_to_annotation
+  get   '/define_relationships/:cwgk_id', :to => 'relationships#define', :as => :define_relationships
+  get   '/add_to_relationship', :to => 'relationships#add', :as => :add_to_relationship
 
 end

@@ -14,9 +14,7 @@ class AnnotationsController < ApplicationController
 
   def bycwgkid
     document = Document.where(:cwgk_id => params[:cwgk_id]).first
-    #binding.pry
     @annotations = Annotation.where(:document_id => document.id)
-    #binding.pry
     render :template => 'annotations/index' 
   end
 

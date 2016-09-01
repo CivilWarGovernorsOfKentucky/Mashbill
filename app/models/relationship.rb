@@ -1,6 +1,6 @@
 class Relationship < ActiveRecord::Base
-  belongs_to :entity_1
-  belongs_to :entity_2
+  belongs_to :entity_1, :class_name => "Entity", :foreign_key => :entity_1_id
+  belongs_to :entity_2, :class_name => "Entity", :foreign_key => :entity_2_id
   belongs_to :user
 
   module Type

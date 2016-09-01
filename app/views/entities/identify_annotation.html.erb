@@ -1,16 +1,10 @@
-<h1>Listing entities</h1>
-
 <h3>Choose an entity for <%= @verbatim_text %></h3>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Entity type</th>
       <th>Birth date</th>
-      <th>Birth location</th>
-      <th>Death date</th>
-      <th>Death location</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,11 +13,7 @@
     <% @entities.each do |entity| %>
       <tr>
         <td><%= entity.name %></td>
-        <td><%= entity.entity_type %></td>
         <td><%= entity.birth_date %></td>
-        <td><%= entity.birth_location %></td>
-        <td><%= entity.death_date %></td>
-        <td><%= entity.death_location %></td>
         <td><%= link_to 'Choose', associate_entity_to_annotation_path(entity, @annotation) %></td>
       </tr>
     <% end %>

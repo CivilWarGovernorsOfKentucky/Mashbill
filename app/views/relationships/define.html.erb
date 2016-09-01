@@ -1,0 +1,52 @@
+<h1>Create the relationship</h1>
+
+<h4>People in this document</h4>
+
+<%= form_tag("/add_to_relationship", method: "get") do %>
+<h5> choose left side of relationship </h5>
+    <% @entities.each do |entity| %>
+    <%= check_box_tag(:left_entity, entity.id) %>
+    <%= label_tag(:left_entity, entity.name) %>
+    <% end %>
+<h5> choose right side of relationship</h5>
+    <% @entities.each do |entity| %>
+    <%= check_box_tag(:right_entity, entity.id) %>
+    <%= label_tag(:right_entity, entity.name) %>
+    <% end %>
+
+<h5>Type of relationship</h5>
+  <div class="field">
+    <%= label_tag(:relationship_type) %><br>
+    <%= select_tag(:relationship_type, options_for_select(Relationship::Type::ALL_TYPES)) %>
+  </div>
+
+<%= hidden_field_tag(:cwgk_id, @cwgk_id) %>
+<%= submit_tag 'Add checked people to the relationship' %>
+<% end %>
+
+<h4>Existing relationships for these entities</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Entity 1</th>
+      <th>Entity 2</th>
+      <th>Relationship type</th>
+      <th>User</th>
+      <th>Citation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @relationships.each do |relationship| %>
+      <tr>
+        <td><%= relationship.entity_1.name %></td>
+        <td><%= relationship.entity_2.name %></td>
+        <td><%= relationship.relationship_type %></td>
+        <td><%= relationship.user %></td>
+        <td><%= relationship.citation %></td>
+        <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
+        <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
