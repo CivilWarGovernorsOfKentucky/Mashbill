@@ -39,8 +39,8 @@
   <tbody>
     <% @relationships.each do |relationship| %>
       <tr>
-        <td><%= relationship.entity_1.name %></td>
-        <td><%= relationship.entity_2.name %></td>
+        <td><%= link_to relationship.entity_1.name, edit_entity_path(relationship.entity_1.id) %></td>
+        <td><%= link_to relationship.entity_2.name, edit_entity_path(relationship.entity_2.id) %></td>
         <td><%= relationship.relationship_type %></td>
         <td><%= relationship.user %></td>
         <td><%= relationship.citation %></td>
