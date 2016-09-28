@@ -76,7 +76,20 @@ class Annotation < ActiveRecord::Base
     end
     recent_annotations
   end
+  
   def cwgk_id
     document.cwgk_id
+  end
+  
+  def hypothesis_annotation
+    unless defined? @hypothesis_hash
+      response = RestClient::Request.execute( method: :get, 
+                                              url: "https://hypothes.is/api/annotations/#{self.hypothesis_annotation_id}",
+                                              timeout: 10, 
+                                              headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
+      @hypothesis_hash = JSON.parse(response)
+    end
+    
+    @hypothesis_hash
   end
 end
