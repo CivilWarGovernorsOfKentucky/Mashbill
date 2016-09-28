@@ -30,6 +30,12 @@ RSpec.describe TeiAnnotator, type: :model do
       @para.to_xml.should eq(marked_up)      
     end
 
+    def test_type_tag(type, tag)
+      @entity.entity_type = type
+      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
+      marked_up = "<p>Such was the case at <#{tag}>Dr Capes</#{tag}> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
+      @para.to_xml.should eq(marked_up)            
+    end
     it "should create persName tags" do
       test_type_tag(Entity::Type::PERSON, 'persName')
     end
@@ -47,13 +53,7 @@ RSpec.describe TeiAnnotator, type: :model do
       @para.to_xml.should eq(marked_up)      
     end
 
-    def test_type_tag(type, tag)
-      @entity.entity_type = type
-      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
-      marked_up = "<p>Such was the case at <#{tag}>Dr Capes</#{tag}> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-      @para.to_xml.should eq(marked_up)            
-    end
-
+    
   end
   
 end
