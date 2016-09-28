@@ -40,7 +40,6 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
-gem 'pry'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rest-client'
@@ -48,4 +47,8 @@ gem 'redcarpet'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem 'pry'
+  gem 'pry'
+  gem 'pry-byebug'
+
 end
