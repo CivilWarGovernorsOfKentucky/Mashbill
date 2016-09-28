@@ -1,4 +1,6 @@
 class TeiAnnotator
+
+
   def initialize(transporter)
     @text_transporter = transporter
   end
@@ -13,19 +15,30 @@ class TeiAnnotator
         # this node contains the verbatim string
         prefix = md[1]
         suffix = md[2]
-        
-        entity = Nokogiri::XML::Node.new("entity", doc)
-        entity.add_child(Nokogiri::XML::Text.new(verbatim, doc))
+
+        entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
+        entity_node['ref'] = entity.ref_id if entity.ref_id 
+        entity_node.add_child(Nokogiri::XML::Text.new(verbatim, doc))
         
         prefix_node = Nokogiri::XML::Text.new(prefix, doc)
         node.replace(prefix_node)
-        prefix_node.add_next_sibling(entity)
+        prefix_node.add_next_sibling(entity_node)
         suffix_node = Nokogiri::XML::Text.new(suffix, doc)
-        entity.add_next_sibling(suffix_node)
+        entity_node.add_next_sibling(suffix_node)
       end
     end
   end
   
+
+  TEI_TAGS = {
+    Entity::Type::PERSON => 'persName',
+    Entity::Type::PLACE => 'placeName',
+    Entity::Type::ORGANIZATION => 'orgName'
+  }
+
+  def tei_element(entity)
+    TEI_TAGS[entity.entity_type] || 'entity'    
+  end
   
   
 end

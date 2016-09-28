@@ -6,7 +6,8 @@ class Entity < ActiveRecord::Base
   module Type
   	PERSON = "person"
   	PLACE = "place"
-  	THING = "thing"
-  	ALL_TYPES = [PERSON,PLACE,THING]
+  	ORGANIZATION = "organization"
+  	ALL_TYPES = [PERSON,PLACE,ORGANIZATION]
   end
+  
 end
