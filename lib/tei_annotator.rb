@@ -5,6 +5,11 @@ class TeiAnnotator
     @text_transporter = transporter
   end
   
+
+  def apply_annotation(doc, annotation)
+    paragraph = target_paragraph(doc, annotation)
+    search_and_replace(doc, paragraph, annotation.verbatim, annotation.entity)
+  end
   
   
   def search_and_replace(doc, paragraph, verbatim, entity)
@@ -42,6 +47,7 @@ class TeiAnnotator
   
   def target_paragraph(doc, annotation)
     number = target_paragraph_number(annotation.start_container)    
+    doc.search('text/body/p')[number]
   end
   
   def target_paragraph_number(locator)
