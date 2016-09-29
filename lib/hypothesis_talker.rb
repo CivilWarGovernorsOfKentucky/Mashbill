@@ -1,0 +1,3 @@
+class HypothesisTalker
+  
+end
