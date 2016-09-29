@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825175106) do
+ActiveRecord::Schema.define(version: 20160929002639) do
 
   create_table "annotations", force: true do |t|
     t.integer  "document_id"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20160825175106) do
     t.string   "hypothesis_user"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "prefix"
+    t.string   "suffix"
+    t.string   "start_container"
   end
 
   add_index "annotations", ["document_id"], name: "index_annotations_on_document_id", using: :btree

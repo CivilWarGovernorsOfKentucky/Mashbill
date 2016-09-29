@@ -22,7 +22,11 @@ class Annotation < ActiveRecord::Base
       # set verbatim
       selector = hyp_annotation["target"].first["selector"]
       exact_selection = selector.detect { |e| e["exact"] != nil }
+      container_selection = selector.detect { |e| e["startContainer"] != nil }
       annotation_record.verbatim = exact_selection["exact"]
+      annotation_record.prefix = exact_selection["prefix"]
+      annotation_record.suffix = exact_selection["suffix"]
+      annotation_record.start_container = container_selection["startContainer"]
       # set document_id to find or create the document from hash
       exact_selection = selector.detect { |e| e["value"] != nil }
       document_id = exact_selection["value"]

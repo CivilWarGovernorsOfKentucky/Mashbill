@@ -40,5 +40,14 @@ class TeiAnnotator
     TEI_TAGS[entity.entity_type] || 'entity'    
   end
   
+  def target_paragraph(doc, annotation)
+    number = target_paragraph_number(annotation.start_container)    
+  end
+  
+  def target_paragraph_number(locator)
+    md = /.*\/p\[(\d+)\].*/.match(locator)
+    md.captures.first.to_i
+  end
+  
   
 end

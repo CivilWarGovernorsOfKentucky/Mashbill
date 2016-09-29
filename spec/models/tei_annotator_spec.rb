@@ -54,7 +54,13 @@ RSpec.describe TeiAnnotator, type: :model do
     end
 
     
+    it "should parse locators" do
+      @annotator.target_paragraph_number("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]").should eq(3)
+      @annotator.target_paragraph_number("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[1]").should eq(2)
+    end
   end
+
+
   
 end
 
