@@ -1,6 +1,6 @@
 
 KYR00010030072 = <<EOF
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0001-003-0072"> 
  <teiHeader>
   <fileDesc>

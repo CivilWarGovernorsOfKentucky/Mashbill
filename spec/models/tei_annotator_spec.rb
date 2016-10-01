@@ -7,17 +7,16 @@ RSpec.describe TeiAnnotator, type: :model do
   before(:each) do
     @text_transporter = double('TextTransporter')
     allow(@text_transporter).to receive(:fetch).and_return(KYR00010030072)
-    @doc = Nokogiri::XML(KYR00010030072)
+    @annotator = TeiAnnotator.new(@text_transporter)
   end
   
   it "should work with a mock" do
-    annotator = TeiAnnotator.new(@text_transporter)
     @text_transporter.fetch.should eq(KYR00010030072)    
   end
   
   context "easy entities" do
     before(:each) do
-      @annotator = TeiAnnotator.new(@text_transporter)
+      @doc = Nokogiri::XML(KYR00010030072)
       @para = @doc.search('text/body/p')[3]
 #      @entity = double('Entity')
       @entity = Entity.new
@@ -88,9 +87,31 @@ RSpec.describe TeiAnnotator, type: :model do
       @para.to_xml.should eq(marked_up)      
     end
     
+    
   end
 
+  PARA_3 = "<p>Such was the case at Dr Capes of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
+  PARA_3_MARKUP = "<p>Such was the case at <persName ref=\"capes_id\">Dr Capes</persName> of this <placeName ref=\"louisville_id\">City</placeName> Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
+  context "document record" do
+    before(:each) do
+      @document = Document.new(:cwgk_id => 'KYR0001-003-0072')
+      
+      annotation1 = Annotation.new(:verbatim => 'Dr Capes', :start_container => "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]")
+      annotation1.entity = Entity.new(:entity_type => Entity::Type::PERSON, :ref_id => 'capes_id')
+      @document.annotations << annotation1
+      
+      annotation2 = Annotation.new(:verbatim => 'City', :start_container => "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]")
+      annotation2.entity = Entity.new(:entity_type => Entity::Type::PLACE, :ref_id => 'louisville_id')
+      @document.annotations << annotation2      
+    end
 
+    it "should replace text" do
+      expect(@text_transporter).to receive(:save).with('KYR0001-003-0072', KYR00010030072.sub(PARA_3,PARA_3_MARKUP))
+      @annotator.apply_annotations(@document)     
+    end    
+    
+    
+  end
   
 end
 

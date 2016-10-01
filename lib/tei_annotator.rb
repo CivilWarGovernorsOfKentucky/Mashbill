@@ -4,7 +4,28 @@ class TeiAnnotator
   def initialize(transporter)
     @text_transporter = transporter
   end
+
+  def apply_annotations(document)
+    # grab the text of the doc
+    # create a DOM from the text
+    doc = load_document(document)
+    # loop through the annotations for the doc
+    document.applicable_annotations.each do |annotation|
+      apply_annotation(doc, annotation)
+    end
+    # store the modified doc 
+    save_document(document, doc)
+  end  
+
+  def load_document(document)
+    text = @text_transporter.fetch(document.cwgk_id)
+    Nokogiri::XML(text)
+  end
   
+  def save_document(document, doc)
+    text = doc.to_xml
+    @text_transporter.save(document.cwgk_id, text)
+  end
 
   def apply_annotation(doc, annotation)
     paragraph = target_paragraph(doc, annotation)
