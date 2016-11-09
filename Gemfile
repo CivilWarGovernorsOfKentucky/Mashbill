@@ -44,6 +44,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rest-client'
 gem 'redcarpet'
+gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
