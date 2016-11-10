@@ -14,11 +14,11 @@ class Annotation < ActiveRecord::Base
       annotation_record.hypothesis_annotation_id = hyp_annotation["id"]
       logger.debug("this is the annotation record ID" + annotation_record.hypothesis_annotation_id)
       # set hypothesis_user
-      annotation_record.hypothesis_user = hyp_annotation["user"]      
+      annotation_record.hypothesis_user = hyp_annotation["user"].gsub("acct:","")      
       # set hypothesis_date
       annotation_record.hypothesis_date = hyp_annotation["updated"]
       # set user_id to current user
-      annotation_record.user_id = @current_user
+      annotation_record.user_id = User.where(hypothesis_user = hyp_annotation["user"].gsub("acct:",""))
       # set verbatim
       selector = hyp_annotation["target"].first["selector"]
       exact_selection = selector.detect { |e| e["exact"] != nil }
@@ -69,7 +69,8 @@ class Annotation < ActiveRecord::Base
     all_annotations = jason_hash["rows"]  # this is an array of hashes
     if Annotation.count > 0
       # find most recent annotation create time in the system
-      last_updated_annotation = Annotation.order(:updated_at => :desc).first.updated_at
+      #last_updated_annotation = Annotation.order(:updated_at => :desc).first.updated_at
+      last_updated_annotation = Time.new('1900-01-01')
     else
       last_updated_annotation = Time.new('1900-01-01')
     end

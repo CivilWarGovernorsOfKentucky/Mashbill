@@ -9,5 +9,12 @@ class Entity < ActiveRecord::Base
   	ORGANIZATION = "organization"
   	ALL_TYPES = [PERSON,PLACE,ORGANIZATION]
   end
+
+  module Gender
+  	FEMALE = "female"
+  	MALE = "male"
+  	UNKNOWN = "unknown"
+  	ALL_TYPES = [FEMALE,MALE,UNKNOWN]
+  end
   
 end

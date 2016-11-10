@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def dashboard
     @user=current_user
     Annotation.ingest_new_annotations
-    @documents=Document.all
+    @documents = Document.joins(:annotations).where(:annotations => {:hypothesis_user => current_user.hypothesis_user}).uniq
     @annotations=Annotation.all
   end
 

@@ -20,6 +20,10 @@
     <%= f.select "entity_type", options_for_select(Entity::Type::ALL_TYPES) %>
   </div>
   <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.select "gender", options_for_select(Entity::Gender::ALL_TYPES) %>
+  </div>
+  <div class="field">
     <%= f.label :birth_date %><br>
     <%= f.date_select :birth_date %>
   </div>
@@ -38,6 +42,14 @@
   <div class="field">
     <%= f.label :biography %><br>
     <%= f.text_area :biography %>
+  </div>
+    <div class="field">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :lat %>
+  </div>
+    <div class="field">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :long %>
   </div>
   <div class="field">
     <%= f.label :bibliography %><br>

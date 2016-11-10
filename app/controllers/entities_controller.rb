@@ -71,6 +71,6 @@ class EntitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entity_params
-      params.require(:entity).permit(:name, :entity_type, :birth_date, :birth_location, :death_date, :death_location, :biography, :bibliography, :user_id)
+      params.require(:entity).permit(:name, :entity_type, :birth_date, :birth_location, :death_date, :death_location, :biography, :bibliography, :user_id, :gender, :lat, :long)
     end
 end
