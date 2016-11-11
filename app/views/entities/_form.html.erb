@@ -46,6 +46,7 @@
     <%= f.label :biography %><br>
     <%= f.text_area :biography %>
   </div>
+  <div id="place">
     <div class="field">
     <%= f.label :latitude %><br>
     <%= f.text_field :lat %>
@@ -53,6 +54,7 @@
     <div class="field">
     <%= f.label :longitude %><br>
     <%= f.text_field :long %>
+  </div>
   </div>
   <div class="field">
     <%= f.label :bibliography %><br>
@@ -65,8 +67,12 @@
 <% end %>
 
 <script>$(document).ready(function () {
-$('#entity_entity_type').change(function () { if ($('#entity_entity_type option:selected').val() == 'person') {  
-  $('#person').show(); } 
+$('#entity_entity_type').change(function () { 
+  if ($('#entity_entity_type option:selected').val() == 'person') {  
+    $('#person').show(); }
   else { $('#person').hide();}    
+  if ($('#entity_entity_type option:selected').val() == 'place') {  
+    $('#place').show(); }
+  else { $('#place').hide();}  
 });
 });</script>
