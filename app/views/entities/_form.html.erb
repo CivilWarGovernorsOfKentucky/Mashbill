@@ -19,6 +19,8 @@
     <%= f.label :entity_type %><br>
     <%= f.select "entity_type", options_for_select(Entity::Type::ALL_TYPES) %>
   </div>
+
+  <div id="person">
   <div class="field">
     <%= f.label :gender %><br>
     <%= f.select "gender", options_for_select(Entity::Gender::ALL_TYPES) %>
@@ -39,6 +41,7 @@
     <%= f.label :death_location %><br>
     <%= f.text_field :death_location %>
   </div>
+  </div>
   <div class="field">
     <%= f.label :biography %><br>
     <%= f.text_area :biography %>
@@ -58,4 +61,12 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
+
+<script>$(document).ready(function () {
+$('#entity_entity_type').change(function () { if ($('#entity_entity_type option:selected').val() == 'person') {  
+  $('#person').show(); } 
+  else { $('#person').hide();}    
+});
+});</script>
