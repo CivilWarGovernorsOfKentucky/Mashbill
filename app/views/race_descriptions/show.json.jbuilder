@@ -1,0 +1,1 @@
+json.partial! "race_descriptions/race_description", race_description: @race_description

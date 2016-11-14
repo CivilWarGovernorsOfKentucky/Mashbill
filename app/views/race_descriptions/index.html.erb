@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Race Descriptions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Race description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @race_descriptions.each do |race_description| %>
+      <tr>
+        <td><%= race_description.race_description %></td>
+        <td><%= link_to 'Show', race_description %></td>
+        <td><%= link_to 'Edit', edit_race_description_path(race_description) %></td>
+        <td><%= link_to 'Destroy', race_description, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Race description', new_race_description_path %>

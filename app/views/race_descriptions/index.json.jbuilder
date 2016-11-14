@@ -1,0 +1,1 @@
+json.array! @race_descriptions, partial: 'race_descriptions/race_description', as: :race_description

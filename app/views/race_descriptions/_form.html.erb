@@ -1,0 +1,21 @@
+<%= form_for(@race_description) do |f| %>
+  <% if @race_description.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@race_description.errors.count, "error") %> prohibited this race_description from being saved:</h2>
+
+      <ul>
+      <% @race_description.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :race_description %><br>
+    <%= f.text_field :race_description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
