@@ -11,10 +11,10 @@ class Entity < ActiveRecord::Base
   end
 
   module Gender
-  	FEMALE = "female"
   	MALE = "male"
+  	FEMALE = "female"
   	UNKNOWN = "unknown"
-  	ALL_TYPES = [FEMALE,MALE,UNKNOWN]
+  	ALL_TYPES = [MALE,FEMALE,UNKNOWN]
   end
 
 end

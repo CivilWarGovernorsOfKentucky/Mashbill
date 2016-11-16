@@ -26,7 +26,6 @@ class AnnotationsController < ApplicationController
   end
 
   def associate_entity_to_annotation
-      #binding.pry
       @annotation = Annotation.find(params[:annotation_id])
       @entity = Entity.find(params[:entity_id])
       @annotation.entity = @entity

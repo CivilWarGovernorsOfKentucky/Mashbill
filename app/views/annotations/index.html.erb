@@ -33,7 +33,7 @@
   <tbody>
     <% @annotations.each do |annotation| %>
       <tr>
-        <td><%= link_to annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank" %></td>
+        <td><%= annotation.prefix + " " %> <%= link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") %> <%= " " + annotation.suffix %> </td>
         <td><%= annotation.entity.name if annotation.entity %></td>
         <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
       </tr>

@@ -31,7 +31,7 @@
   </div>
   <div class="field">
     <%= f.label :birth_date %><br>
-    <%= f.date_select :birth_date %>
+    <%= f.date_select :birth_date, {:include_blank => true, :default => nil, :start_year => 1800, :end_year => 2000} %>
   </div>
   <div class="field">
     <%= f.label :birth_location %><br>
@@ -39,7 +39,7 @@
   </div>
   <div class="field">
     <%= f.label :death_date %><br>
-    <%= f.date_select :death_date %>
+    <%= f.date_select :death_date, {:include_blank => true, :default => nil, :start_year => 1800, :end_year => 2000} %>
   </div>
   <div class="field">
     <%= f.label :death_location %><br>
@@ -71,6 +71,12 @@
 <% end %>
 
 <script>$(document).ready(function () {
+  if ($('#entity_entity_type option:selected').val() == 'person') {  
+    $('#person').show(); }
+  else { $('#person').hide();}    
+  if ($('#entity_entity_type option:selected').val() == 'place') {  
+    $('#place').show(); }
+  else { $('#place').hide();}  
 $('#entity_entity_type').change(function () { 
   if ($('#entity_entity_type option:selected').val() == 'person') {  
     $('#person').show(); }
