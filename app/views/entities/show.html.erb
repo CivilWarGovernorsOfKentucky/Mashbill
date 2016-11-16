@@ -17,6 +17,11 @@
 </p>
 
 <p>
+  <strong>Race Description:</strong>
+  <%= render partial: "race_description", collection: @entity.race_descriptions %>
+</p>
+
+<p>
   <strong>Birth date:</strong>
   <%= @entity.birth_date %>
 </p>
@@ -36,6 +41,7 @@
   <%= @entity.death_location %>
 </p>
 
+<% if @entity.entity_type == 'place' then %>
 <p>
   <strong>Latitude:</strong>
   <%= @entity.lat %>
@@ -45,20 +51,12 @@
   <strong>Longitude:</strong>
   <%= @entity.long %>
 </p>
-
+<% end %>
 
 <p>
   <strong>Biography:</strong>
   <%= raw(@markdown.render(@entity.biography)) %>
 </p>
-
-<% end %>
-
-<% if @entity.entity_type == 'place' then %>
-
-<% end %>
-
-<% if @entity.entity_type == 'organization' then %>
 
 <% end %>
 

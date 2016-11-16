@@ -17,13 +17,17 @@
   </div>
   <div class="field">
     <%= f.label :entity_type %><br>
-    <%= f.select "entity_type", options_for_select(Entity::Type::ALL_TYPES) %>
+    <%= f.select "entity_type", options_for_select(Entity::Type::ALL_TYPES, @entity.entity_type) %>
   </div>
 
   <div id="person">
   <div class="field">
     <%= f.label :gender %><br>
-    <%= f.select "gender", options_for_select(Entity::Gender::ALL_TYPES) %>
+    <%= f.select "gender", options_for_select(Entity::Gender::ALL_TYPES, @entity.gender) %>
+  </div>
+  <div class="field">
+    <%= f.label :race_description %><br>
+    <%= f.collection_check_boxes(:race_description_ids, RaceDescription.all, :id, :race_description) %>
   </div>
   <div class="field">
     <%= f.label :birth_date %><br>

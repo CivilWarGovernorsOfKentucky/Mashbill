@@ -1,7 +1,7 @@
 class Entity < ActiveRecord::Base
   belongs_to :user
   has_many :annotations
-  has_many :entities
+  has_and_belongs_to_many :race_descriptions
 
   module Type
   	PERSON = "person"
@@ -16,5 +16,5 @@ class Entity < ActiveRecord::Base
   	UNKNOWN = "unknown"
   	ALL_TYPES = [FEMALE,MALE,UNKNOWN]
   end
-  
+
 end
