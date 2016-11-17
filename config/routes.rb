@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get   '/define_relationships/:cwgk_id', :to => 'relationships#define', :as => :define_relationships
   get   '/add_to_relationship', :to => 'relationships#add', :as => :add_to_relationship
   get   '/entities/show/:id', :to => 'entities#show',:as => :show_entity
+  post   '/documents/mark_complete/:id', :to => 'documents#mark_complete', :as => :mark_complete
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

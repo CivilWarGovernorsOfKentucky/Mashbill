@@ -1,26 +1,12 @@
-<h4><%= @annotations.first.document.cwgk_id %>:  <%= @annotations.first.document.title %></h4>
+<h4> <%= @annotations.first.document.title %></h4>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @annotations.first.document.title %>
-</p>
-
-<p>
-  <strong>Cwgk:</strong>
+  <strong>CWGK ID:</strong>
   <%= @annotations.first.document.cwgk_id %>
 </p>
 
-<p>
-  <strong>Completed?</strong>
-  <%= @annotations.first.document.completed %>
-</p>
-
-<p>
-<%= link_to 'Edit', edit_document_path(@annotations.first.document) %>
-</p>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Verbatim</th>
@@ -34,7 +20,7 @@
     <% @annotations.each do |annotation| %>
       <tr>
         <td><%= annotation.prefix + " " %> <%= link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") %> <%= " " + annotation.suffix %> </td>
-        <td><%= annotation.entity.name if annotation.entity %></td>
+        <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
         <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
       </tr>
     <% end %>
@@ -42,5 +28,9 @@
 </table>
 
 <br>
+
+<p>
+  <%= button_to "Mark Document Complete", mark_complete_path(@annotations.first.document) %>
+</p>
 
 <%= link_to 'Next --> Create Relationships', define_relationships_path %>

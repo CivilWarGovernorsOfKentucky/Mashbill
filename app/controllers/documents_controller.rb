@@ -61,6 +61,13 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def mark_complete
+    @document = Document.find(params[:id])
+    @document.completed = true
+    @document.save!
+    redirect_to dashboard_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
