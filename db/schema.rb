@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114195852) do
+ActiveRecord::Schema.define(version: 20161117201750) do
 
   create_table "annotations", force: :cascade do |t|
     t.integer  "document_id",              limit: 4
@@ -41,21 +41,20 @@ ActiveRecord::Schema.define(version: 20161114195852) do
   end
 
   create_table "entities", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.string   "entity_type",    limit: 255
+    t.string   "name",          limit: 255
+    t.string   "entity_type",   limit: 255
     t.date     "birth_date"
-    t.string   "birth_location", limit: 255
     t.date     "death_date"
-    t.string   "death_location", limit: 255
-    t.text     "biography",      limit: 65535
-    t.text     "bibliography",   limit: 65535
-    t.integer  "user_id",        limit: 4
+    t.text     "biography",     limit: 65535
+    t.text     "bibliography",  limit: 65535
+    t.integer  "user_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ref_id",         limit: 255
-    t.string   "gender",         limit: 255
-    t.decimal  "lat",                          precision: 10, scale: 6
-    t.decimal  "long",                         precision: 10, scale: 6
+    t.string   "ref_id",        limit: 255
+    t.string   "gender",        limit: 255
+    t.decimal  "lat",                         precision: 10, scale: 6
+    t.decimal  "long",                        precision: 10, scale: 6
+    t.string   "disambiguator", limit: 255
   end
 
   add_index "entities", ["user_id"], name: "index_entities_on_user_id", using: :btree

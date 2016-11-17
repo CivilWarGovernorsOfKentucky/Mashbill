@@ -15,11 +15,14 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+    <div class="field">
+    <%= f.label :disambiguator %><br>
+    <%= f.text_field :disambiguator %>
+  </div>
   <div class="field">
     <%= f.label :entity_type %><br>
     <%= f.select "entity_type", options_for_select(Entity::Type::ALL_TYPES, @entity.entity_type) %>
   </div>
-
   <div id="person">
   <div class="field">
     <%= f.label :gender %><br>
@@ -34,16 +37,8 @@
     <%= f.date_select :birth_date, {:include_blank => true, :default => nil, :start_year => 1800, :end_year => 2000} %>
   </div>
   <div class="field">
-    <%= f.label :birth_location %><br>
-    <%= f.text_field :birth_location %>
-  </div>
-  <div class="field">
     <%= f.label :death_date %><br>
     <%= f.date_select :death_date, {:include_blank => true, :default => nil, :start_year => 1800, :end_year => 2000} %>
-  </div>
-  <div class="field">
-    <%= f.label :death_location %><br>
-    <%= f.text_field :death_location %>
   </div>
   </div>
   <div class="field">

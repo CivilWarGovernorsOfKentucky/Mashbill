@@ -8,7 +8,8 @@ class Entity < ActiveRecord::Base
   	PERSON = "person"
   	PLACE = "place"
   	ORGANIZATION = "organization"
-  	ALL_TYPES = [PERSON,PLACE,ORGANIZATION]
+    GEO_FEATURE = "geographic feature"
+  	ALL_TYPES = [PERSON,PLACE,ORGANIZATION, GEO_FEATURE]
   end
 
   module Gender

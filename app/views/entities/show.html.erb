@@ -27,18 +27,8 @@
 </p>
 
 <p>
-  <strong>Birth location:</strong>
-  <%= @entity.birth_location %>
-</p>
-
-<p>
   <strong>Death date:</strong>
   <%= @entity.death_date %>
-</p>
-
-<p>
-  <strong>Death location:</strong>
-  <%= @entity.death_location %>
 </p>
 
 <% if @entity.entity_type == 'place' then %>
@@ -80,6 +70,7 @@
     <% end %>
   </tbody>
 </table>
+</p>
 
 <%= link_to 'Edit', edit_entity_path(@entity) %> |
 <%= link_to 'Back', entities_path %>
