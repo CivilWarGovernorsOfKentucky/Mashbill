@@ -2,6 +2,7 @@ class Entity < ActiveRecord::Base
   belongs_to :user
   has_many :annotations
   has_and_belongs_to_many :race_descriptions
+  has_many :documents, through: :annotations
 
   module Type
   	PERSON = "person"

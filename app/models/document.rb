@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   has_many :annotations
+  has_many :entities, through: :annotations
   
   def applicable_annotations
     annotations

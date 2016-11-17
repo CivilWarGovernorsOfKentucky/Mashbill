@@ -27,10 +27,21 @@
   </tbody>
 </table>
 
-<br>
+<h5>People, Places, and Organizations</h5>
+<table>
+  <tbody>
+    <% @annotations.first.document.entities.each do |entity| %>
+      <tr>
+        <td><%= link_to entity.name, entity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h5>Relationships</h5>
 
 <p>
   <%= button_to "Mark Document Complete", mark_complete_path(@annotations.first.document) %>
 </p>
-
 <%= link_to 'Next --> Create Relationships', define_relationships_path %>
+

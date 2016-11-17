@@ -1,5 +1,16 @@
 <div class="container">
 <h1>Dashboard for  <%= @current_user.email %> </h1>
+<%= form_tag({controller: "documents", action: "search"}, method: "get") do %>
+  <%= label_tag(:q, "Search for a document:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<%= form_tag({controller: "entities", action: "search"}, method: "get") do %>
+  <%= label_tag(:q, "Search for an entity:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
 <h3>My annotated documents</h3>
 
 <table>
@@ -15,7 +26,7 @@
 <h3>My entities</h3>
 <table>
   <tbody>
-    <% @user.entities.each do |entity| %>
+    <% @current_user.entities.each do |entity| %>
       <tr>
         <td><%= link_to entity.name, entity %></td>
       </tr>
