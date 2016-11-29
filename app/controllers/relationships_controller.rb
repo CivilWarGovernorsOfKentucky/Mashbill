@@ -38,7 +38,6 @@ class RelationshipsController < ApplicationController
   end
 
   def define
-    #binding.pry
     @entities = []
     @relationships = []
     #get document by the cwgkid
@@ -60,6 +59,8 @@ class RelationshipsController < ApplicationController
     @relationship.entity_1_id = params[:left_entity]
     @relationship.entity_2_id = params[:right_entity]
     @relationship.relationship_type = params[:relationship_type]
+    @relationship.user_id = current_user.id
+    @relationship.citation = params[:citation]
     @relationship.save!
     redirect_to define_relationships_path(params[:cwgk_id])
   end

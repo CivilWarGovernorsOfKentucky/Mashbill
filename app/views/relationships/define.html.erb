@@ -1,4 +1,4 @@
-<h1>Create the relationship</h1>
+<h1>Create Relationships</h1>
 
 <h4>People in this document</h4>
 
@@ -16,16 +16,20 @@
 
 <h5>Type of relationship</h5>
   <div class="field">
-    <%= label_tag(:relationship_type) %><br>
     <%= select_tag(:relationship_type, options_for_select(Relationship::Type::ALL_TYPES)) %>
   </div>
 
+ <h5>Citation</h5>
+  <div class="field">
+    <%= text_field_tag :citation %>
+  </div> 
+
 <%= hidden_field_tag(:cwgk_id, @cwgk_id) %>
-<%= submit_tag 'Add checked people to the relationship' %>
+<%= submit_tag 'create relationships' %>
 <% end %>
 
 <h4>Existing relationships for these entities</h4>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Entity 1</th>
@@ -42,7 +46,7 @@
         <td><%= link_to relationship.entity_1.name, edit_entity_path(relationship.entity_1.id) %></td>
         <td><%= link_to relationship.entity_2.name, edit_entity_path(relationship.entity_2.id) %></td>
         <td><%= relationship.relationship_type %></td>
-        <td><%= relationship.user %></td>
+        <td><%= relationship.user_id %></td>
         <td><%= relationship.citation %></td>
         <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
         <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td>

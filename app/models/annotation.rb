@@ -50,6 +50,21 @@ class Annotation < ActiveRecord::Base
   	# return document 
   end
 
+  def self.request_annotations(page)
+    url = 'https://hypothes.is/api/search?group=zm91G8nX&limit=200&offset=' + (page * 200).to_s
+    begin
+    # response = RestClient.get 'https://hypothes.is/api/search?group=zm91G8nX', {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'}
+    # response = RestClient::Request.execute(method: :get, url: 'https://hypothes.is/api/search?group=zm91G8nX&limit=200&offset=100&order=asc',
+    #                        timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
+    response = RestClient::Request.execute(method: :get, url: url,
+                            timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
+    rescue => e
+    #e.response
+    end
+    jason_hash = JSON.parse(response)
+    jason_hash["rows"]  # this is an array of hashes
+  end
+
   def self.get_recent_annotations_from_hypothesis
     # return an array of hashes that were created from json
     # the below is a single annotation being processed and turned into an array of annotations.  
@@ -58,28 +73,19 @@ class Annotation < ActiveRecord::Base
     #  check date -- is it before or after most recently created annotation in our system
     recent_annotations = []
     all_annotations = []
-    begin
-      # response = RestClient.get 'https://hypothes.is/api/search?group=zm91G8nX', {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'}
-      response = RestClient::Request.execute(method: :get, url: 'https://hypothes.is/api/search?group=zm91G8nX',
-                            timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
-      rescue => e
-       #e.response
-    end
-    jason_hash = JSON.parse(response)
-    all_annotations = jason_hash["rows"]  # this is an array of hashes
-    if Annotation.count > 0
-      # find most recent annotation create time in the system
-      #last_updated_annotation = Annotation.order(:updated_at => :desc).first.updated_at
-      last_updated_annotation = Time.new('1900-01-01')
-    else
-      last_updated_annotation = Time.new('1900-01-01')
-    end
-    all_annotations.each do |hyp_annotation|
-      if Time.parse(hyp_annotation["updated"]).to_datetime > last_updated_annotation
-        recent_annotations << hyp_annotation
+    page = 0
+    while true
+      all_annotations = request_annotations(page)
+      if all_annotations.empty? then return recent_annotations end
+      all_annotations.each do |hyp_annotation|
+        if Annotation.where(:hypothesis_annotation_id => hyp_annotation["id"]).exists? 
+          return recent_annotations
+        else
+          recent_annotations << hyp_annotation
+        end
       end
+      page = page + 1
     end
-    recent_annotations
   end
   
   def cwgk_id

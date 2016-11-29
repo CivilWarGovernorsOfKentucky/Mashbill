@@ -1,10 +1,16 @@
-<h4> <%= @annotations.first.document.title %></h4>
+<h4> <%= @annotations.first.document.title.chomp(" · Civil War Governors of Kentucky: Early Access") %></h4>
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>CWGK ID:</strong>
   <%= @annotations.first.document.cwgk_id %>
 </p>
+
+<% unidentified_annotations = @annotations.select { |annotation| annotation.entity.blank? } %>
+
+<% if unidentified_annotations.empty? %>
+All annotations identified
+<% else %>
 
 <table class="table">
   <thead>
@@ -17,7 +23,7 @@
 
 <h5>Annotations</h5>
   <tbody>
-    <% @annotations.each do |annotation| %>
+    <% unidentified_annotations.each do |annotation| %>
       <tr>
         <td><%= annotation.prefix + " " %> <%= link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") %> <%= " " + annotation.suffix %> </td>
         <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
@@ -26,6 +32,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 <h5>People, Places, and Organizations</h5>
 <table>

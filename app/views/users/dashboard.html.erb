@@ -7,7 +7,7 @@
 <% end %>
 <%= form_tag({controller: "entities", action: "search"}, method: "get") do %>
   <%= label_tag(:q, "Search for an entity:") %>
-  <%= text_field_tag(:q) %>
+  <%= text_field_tag(:q, "KYR-0001-002-0024") %>
   <%= submit_tag("Search") %>
 <% end %>
 
@@ -17,7 +17,7 @@
   <tbody>
     <% @documents.reverse.each do |document| %>
       <tr>
-        <td><%= link_to document.cwgk_id, bycwgkid_path(document.cwgk_id) %></td>
+        <td><%= link_to document.cwgk_id + " " + document.title.chomp(" · Civil War Governors of Kentucky: Early Access"), bycwgkid_path(document.cwgk_id) %></td>
       </tr>
     <% end %>
   </tbody>
