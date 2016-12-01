@@ -5,6 +5,11 @@
 </p>
 
 <p>
+  <strong>Disambiguator:</strong>
+  <%= @entity.disambiguator %>
+</p>
+
+<p>
   <strong>Entity type:</strong>
   <%= @entity.entity_type %>
 </p>
@@ -60,7 +65,12 @@
 
 </p>
 
+<%= link_to 'Edit', edit_entity_path(@entity) %> 
+
 <p><strong>Mentioned in Documents:</strong>
+<% if @entity.documents.blank? %>
+Not mentioned in any documents yet.
+<% else %>
 <table>
   <tbody>
     <% @entity.documents.reverse.each do |document| %>
@@ -70,7 +80,8 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 </p>
 
-<%= link_to 'Edit', edit_entity_path(@entity) %> |
-<%= link_to 'Back', entities_path %>
+<h4>Existing relationships for this entity</h4>
+<%= render "relationships/table" %>

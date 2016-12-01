@@ -12,6 +12,7 @@ class EntitiesController < ApplicationController
   def show
     renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
     @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+    @relationships = @entity.relationships
   end
 
   # GET /entities/new
@@ -30,6 +31,7 @@ class EntitiesController < ApplicationController
     @entity.user = current_user
     respond_to do |format|
       if @entity.save
+        #@annotation.entity = @entity
         format.html { redirect_to @entity, notice: 'Entity was successfully created.' }
         format.json { render :show, status: :created, location: @entity }
       else

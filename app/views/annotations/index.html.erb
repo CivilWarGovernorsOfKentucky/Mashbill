@@ -16,7 +16,6 @@ All annotations identified
   <thead>
     <tr>
       <th>Verbatim</th>
-      <th>Entity</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,7 +24,7 @@ All annotations identified
   <tbody>
     <% unidentified_annotations.each do |annotation| %>
       <tr>
-        <td><%= annotation.prefix + " " %> <%= link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") %> <%= " " + annotation.suffix %> </td>
+        <td><%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> </td>
         <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
         <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
       </tr>
@@ -34,6 +33,7 @@ All annotations identified
 </table>
 <% end %>
 
+<% unless @annotations.first.document.entities.blank? %>
 <h5>People, Places, and Organizations</h5>
 <table>
   <tbody>
@@ -44,11 +44,18 @@ All annotations identified
     <% end %>
   </tbody>
 </table>
+<% end %>
 
+<% unless @relationships.blank? %>
 <h5>Relationships</h5>
+<%= render "relationships/table" %>
+<% end %>
 
+<% unless @annotations.first.document.entities.blank? %>
+<%= link_to 'Next --> Create Relationships', define_relationships_path %>
 <p>
   <%= button_to "Mark Document Complete", mark_complete_path(@annotations.first.document) %>
 </p>
-<%= link_to 'Next --> Create Relationships', define_relationships_path %>
+<% end %>
+
 

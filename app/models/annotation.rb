@@ -53,10 +53,7 @@ class Annotation < ActiveRecord::Base
   def self.request_annotations(page)
     url = 'https://hypothes.is/api/search?group=zm91G8nX&limit=200&offset=' + (page * 200).to_s
     begin
-    # response = RestClient.get 'https://hypothes.is/api/search?group=zm91G8nX', {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'}
-    # response = RestClient::Request.execute(method: :get, url: 'https://hypothes.is/api/search?group=zm91G8nX&limit=200&offset=100&order=asc',
-    #                        timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
-    response = RestClient::Request.execute(method: :get, url: url,
+      response = RestClient::Request.execute(method: :get, url: url,
                             timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
     rescue => e
     #e.response
@@ -66,11 +63,6 @@ class Annotation < ActiveRecord::Base
   end
 
   def self.get_recent_annotations_from_hypothesis
-    # return an array of hashes that were created from json
-    # the below is a single annotation being processed and turned into an array of annotations.  
-    # we'll need to get the list of annotations and loop through them checking dates
-        # turn json into a ruby hash
-    #  check date -- is it before or after most recently created annotation in our system
     recent_annotations = []
     all_annotations = []
     page = 0
