@@ -7,6 +7,7 @@
 </p>
 
 <% unidentified_annotations = @annotations.select { |annotation| annotation.entity.blank? } %>
+<% identified_annotations = @annotations.select { |annotation| annotation.entity.present? } %>
 
 <% if unidentified_annotations.empty? %>
 All annotations identified
@@ -20,7 +21,7 @@ All annotations identified
     </tr>
   </thead>
 
-<h5>Annotations</h5>
+<h5>Unidentified Annotations</h5>
   <tbody>
     <% unidentified_annotations.each do |annotation| %>
       <tr>
@@ -32,6 +33,32 @@ All annotations identified
   </tbody>
 </table>
 <% end %>
+
+<% unless identified_annotations.empty? %>
+ <%= button_tag "Show identified annotations", :id => "showAnnotationsbutton" %>
+<% end %>
+
+<div id="identified_annotations">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Verbatim</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<h5>Identified Annotations</h5>
+  <tbody>
+    <% identified_annotations.each do |annotation| %>
+      <tr>
+        <td><%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> </td>
+        <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
+        <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 
 <% unless @annotations.first.document.entities.blank? %>
 <h5>People, Places, and Organizations</h5>
@@ -51,11 +78,32 @@ All annotations identified
 <%= render "relationships/table" %>
 <% end %>
 
+<br>
+<p>
 <% unless @annotations.first.document.entities.blank? %>
 <%= link_to 'Next --> Create Relationships', define_relationships_path %>
-<p>
-  <%= button_to "Mark Document Complete", mark_complete_path(@annotations.first.document) %>
+<%= button_to "Mark Document Complete", mark_complete_path(@annotations.first.document) %>
 </p>
 <% end %>
 
 
+<script>$(document).ready(function () {
+  $('#identified_annotations').toggle();
+  $('#showAnnotationsbutton').click(function() {
+    $('#identified_annotations').toggle();
+  });
+  if ($('#entity_entity_type option:selected').val() == 'person') {  
+    $('#person').show(); }
+  else { $('#person').hide();}    
+  if ($('#entity_entity_type option:selected').val() == 'place') {  
+    $('#place').show(); }
+  else { $('#place').hide();}  
+$('#entity_entity_type').change(function () { 
+  if ($('#entity_entity_type option:selected').val() == 'person') {  
+    $('#person').show(); }
+  else { $('#person').hide();}    
+  if ($('#entity_entity_type option:selected').val() == 'place') {  
+    $('#place').show(); }
+  else { $('#place').hide();}  
+});
+});</script>
