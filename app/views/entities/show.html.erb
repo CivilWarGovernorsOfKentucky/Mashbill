@@ -35,6 +35,7 @@
   <strong>Death date:</strong>
   <%= @entity.death_date %>
 </p>
+<% end %>
 
 <% if @entity.entity_type == 'place' then %>
 <p>
@@ -48,12 +49,22 @@
 </p>
 <% end %>
 
+<% if @entity.entity_type == 'organization' then %>
+<p>
+  <strong>Creation date:</strong>
+  <%= @entity.birth_date %>
+</p>
+
+<p>
+  <strong>Dissolution date:</strong>
+  <%= @entity.death_date %>
+</p>
+<% end %>
+
 <p>
   <strong>Biography:</strong>
   <%= raw(@markdown.render(@entity.biography)) %>
 </p>
-
-<% end %>
 
 <p>
   <strong>Bibliography:</strong>

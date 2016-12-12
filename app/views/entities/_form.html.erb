@@ -41,6 +41,16 @@
     <%= f.text_field :death_date %>
   </div>
   </div>
+  <div id="organization">
+   <div class="field">
+    <%= f.label :creation_date %><br>
+    <%= f.text_field :birth_date %>
+  </div>
+  <div class="field">
+    <%= f.label :dissolution_date %><br>
+    <%= f.text_field :death_date %>
+  </div>
+  </div>
   <div class="field">
     <%= f.label :biography %><br>
     <%= f.text_area :biography %>
@@ -71,13 +81,19 @@
   else { $('#person').hide();}    
   if ($('#entity_entity_type option:selected').val() == 'place') {  
     $('#place').show(); }
-  else { $('#place').hide();}  
+  else { $('#place').hide();}
+  if ($('#entity_entity_type option:selected').val() == 'organization') {  
+    $('#organization').show(); }
+  else { $('#organization').hide();}  
 $('#entity_entity_type').change(function () { 
   if ($('#entity_entity_type option:selected').val() == 'person') {  
     $('#person').show(); }
   else { $('#person').hide();}    
   if ($('#entity_entity_type option:selected').val() == 'place') {  
     $('#place').show(); }
-  else { $('#place').hide();}  
+  else { $('#place').hide();}
+  if ($('#entity_entity_type option:selected').val() == 'organization') {  
+    $('#organization').show(); }
+  else { $('#organization').hide();}  
 });
 });</script>
