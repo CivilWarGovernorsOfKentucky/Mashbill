@@ -11,21 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117201750) do
+ActiveRecord::Schema.define(version: 20161212152324) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "annotations", force: :cascade do |t|
-    t.integer  "document_id",              limit: 4
-    t.string   "verbatim",                 limit: 255
-    t.integer  "user_id",                  limit: 4
-    t.integer  "entity_id",                limit: 4
+    t.integer  "document_id"
+    t.string   "verbatim"
+    t.integer  "user_id"
+    t.integer  "entity_id"
     t.date     "hypothesis_date"
-    t.string   "hypothesis_annotation_id", limit: 255
-    t.string   "hypothesis_user",          limit: 255
+    t.string   "hypothesis_annotation_id"
+    t.string   "hypothesis_user"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "prefix",                   limit: 255
-    t.string   "suffix",                   limit: 255
-    t.string   "start_container",          limit: 255
+    t.string   "prefix"
+    t.string   "suffix"
+    t.string   "start_container"
   end
 
   add_index "annotations", ["document_id"], name: "index_annotations_on_document_id", using: :btree
@@ -33,52 +36,52 @@ ActiveRecord::Schema.define(version: 20161117201750) do
   add_index "annotations", ["user_id"], name: "index_annotations_on_user_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
-    t.string   "cwgk_id",    limit: 255
+    t.string   "cwgk_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title",      limit: 255
+    t.string   "title"
     t.boolean  "completed"
   end
 
   create_table "entities", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "entity_type",   limit: 255
-    t.date     "birth_date"
-    t.date     "death_date"
-    t.text     "biography",     limit: 65535
-    t.text     "bibliography",  limit: 65535
-    t.integer  "user_id",       limit: 4
+    t.string   "name"
+    t.string   "entity_type"
+    t.text     "biography"
+    t.text     "bibliography"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ref_id",        limit: 255
-    t.string   "gender",        limit: 255
-    t.decimal  "lat",                         precision: 10, scale: 6
-    t.decimal  "long",                        precision: 10, scale: 6
-    t.string   "disambiguator", limit: 255
+    t.string   "ref_id"
+    t.string   "gender"
+    t.decimal  "lat",           precision: 10, scale: 6
+    t.decimal  "long",          precision: 10, scale: 6
+    t.string   "disambiguator"
+    t.string   "birth_date"
+    t.string   "death_date"
   end
 
   add_index "entities", ["user_id"], name: "index_entities_on_user_id", using: :btree
 
   create_table "entities_race_descriptions", id: false, force: :cascade do |t|
-    t.integer "entity_id",           limit: 4, null: false
-    t.integer "race_description_id", limit: 4, null: false
+    t.integer "entity_id",           null: false
+    t.integer "race_description_id", null: false
   end
 
   add_index "entities_race_descriptions", ["entity_id", "race_description_id"], name: "entity_race_index", using: :btree
   add_index "entities_race_descriptions", ["race_description_id"], name: "index_entities_race_descriptions_on_race_description_id", using: :btree
 
   create_table "race_descriptions", force: :cascade do |t|
-    t.string   "race_description", limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "race_description"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer  "entity_1_id",       limit: 4
-    t.integer  "entity_2_id",       limit: 4
-    t.string   "relationship_type", limit: 255
-    t.integer  "user_id",           limit: 4
-    t.text     "citation",          limit: 65535
+    t.integer  "entity_1_id"
+    t.integer  "entity_2_id"
+    t.string   "relationship_type"
+    t.integer  "user_id"
+    t.text     "citation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,19 +91,19 @@ ActiveRecord::Schema.define(version: 20161117201750) do
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "hypothesis_user",        limit: 255
+    t.string   "hypothesis_user"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

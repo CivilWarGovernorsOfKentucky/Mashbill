@@ -16,10 +16,10 @@ class AnnotationsController < ApplicationController
     document = Document.where(:cwgk_id => params[:cwgk_id]).first
     @annotations = Annotation.where(:document_id => document.id)
     @relationships = []
-    document.entities.each do |entity|
-      binding.pry
-      @relationships + entity.relationships
-    end
+    #document.entities.each do |entity|
+      #binding.pry
+      #@relationships + entity.relationships
+    #end
     render :template => 'annotations/index' 
   end
 

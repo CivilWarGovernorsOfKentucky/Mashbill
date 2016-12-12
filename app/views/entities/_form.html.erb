@@ -34,11 +34,11 @@
   </div>
   <div class="field">
     <%= f.label :birth_date %><br>
-    <%= f.date_select :birth_date, {:include_blank => true, :default => nil, :start_year => 1800, :end_year => 2000} %>
+    <%= f.text_field :birth_date %>
   </div>
   <div class="field">
     <%= f.label :death_date %><br>
-    <%= f.date_select :death_date, {:include_blank => true, :default => nil, :start_year => 1800, :end_year => 2000} %>
+    <%= f.text_field :death_date %>
   </div>
   </div>
   <div class="field">
