@@ -30,8 +30,8 @@ class EntitiesController < ApplicationController
     @entity = Entity.new(entity_params)
     @entity.user = current_user
     respond_to do |format|
+      binding.pry
       if @entity.save
-        #@annotation.entity = @entity
         format.html { redirect_to @entity, notice: 'Entity was successfully created.' }
         format.json { render :show, status: :created, location: @entity }
       else

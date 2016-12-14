@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :entities
+
+	validates :hypothesis_user, format: { with: /@hypotes\.is/,
+    message: "must be in format user@hypothes.is" }, allow_blank: true
+
 end
