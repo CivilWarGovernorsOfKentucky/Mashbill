@@ -35,11 +35,11 @@
   </div>
   <div id="personandorg">
   <div class="field">
-    <%= f.label :birth_date %><br>
+    <span id="creationdate"><%= f.label :creation_date %></span><span id="birthdate"><%= f.label :birth_date %></span><br>
     <%= f.text_field :birth_date %>
   </div>
   <div class="field">
-    <%= f.label :death_date %><br>
+    <span id="deathdate"><%= f.label :death_date %></span><span id="dissolutiondate"><%= f.label :dissolution_date %></span><br>
     <%= f.text_field :death_date %>
   </div>
   </div>
@@ -69,8 +69,16 @@
 
 <script>$(document).ready(function () {
   if ($('#entity_entity_type option:selected').val() == 'person') {  
-    $('#person').show(); }
-  else { $('#person').hide();}    
+    $('#person').show();
+    $('#creationdate').hide();
+    $('#dissolutiondate').hide();
+    $('#birthdate').show();
+    $('#deathdate').show(); }
+  else { $('#person').hide();
+    $('#birthdate').hide();
+    $('#deathdate').hide(); 
+    $('#creationdate').show();
+    $('#dissolutiondate').show();}    
   if ($('#entity_entity_type option:selected').val() == 'place') {  
     $('#place').show(); }
   else { $('#place').hide();}
@@ -79,8 +87,16 @@
   else { $('#personandorg').hide();}  
 $('#entity_entity_type').change(function () { 
   if ($('#entity_entity_type option:selected').val() == 'person') {  
-    $('#person').show(); }
-  else { $('#person').hide();}    
+    $('#person').show(); 
+    $('#creationdate').hide();
+    $('#dissolutiondate').hide();
+    $('#birthdate').show();
+    $('#deathdate').show();}
+  else { $('#person').hide();
+    $('#birthdate').hide();
+    $('#deaththdate').hide();
+    $('#creationdate').show();
+    $('#dissolutiondate').show(); }    
   if ($('#entity_entity_type option:selected').val() == 'place') {  
     $('#place').show(); }
   else { $('#place').hide();}
