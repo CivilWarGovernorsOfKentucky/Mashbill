@@ -32,22 +32,14 @@
     <%= f.label :race_description %><br>
     <%= f.collection_check_boxes(:race_description_ids, RaceDescription.all, :id, :race_description) %>
   </div>
+  </div>
+  <div id="personandorg">
   <div class="field">
     <%= f.label :birth_date %><br>
     <%= f.text_field :birth_date %>
   </div>
   <div class="field">
     <%= f.label :death_date %><br>
-    <%= f.text_field :death_date %>
-  </div>
-  </div>
-  <div id="organization">
-   <div class="field">
-    <%= f.label :creation_date %><br>
-    <%= f.text_field :birth_date %>
-  </div>
-  <div class="field">
-    <%= f.label :dissolution_date %><br>
     <%= f.text_field :death_date %>
   </div>
   </div>
@@ -82,9 +74,9 @@
   if ($('#entity_entity_type option:selected').val() == 'place') {  
     $('#place').show(); }
   else { $('#place').hide();}
-  if ($('#entity_entity_type option:selected').val() == 'organization') {  
-    $('#organization').show(); }
-  else { $('#organization').hide();}  
+  if ($('#entity_entity_type option:selected').val() == 'organization' || $('#entity_entity_type option:selected').val() == 'person') {  
+    $('#personandorg').show(); }
+  else { $('#personandorg').hide();}  
 $('#entity_entity_type').change(function () { 
   if ($('#entity_entity_type option:selected').val() == 'person') {  
     $('#person').show(); }
@@ -92,8 +84,8 @@ $('#entity_entity_type').change(function () {
   if ($('#entity_entity_type option:selected').val() == 'place') {  
     $('#place').show(); }
   else { $('#place').hide();}
-  if ($('#entity_entity_type option:selected').val() == 'organization') {  
-    $('#organization').show(); }
-  else { $('#organization').hide();}  
+  if ($('#entity_entity_type option:selected').val() == 'organization' || $('#entity_entity_type option:selected').val() == 'person') {  
+    $('#personandorg').show(); }
+  else { $('#personandorg').hide();}  
 });
 });</script>
