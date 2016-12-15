@@ -63,7 +63,7 @@
 
 <p>
   <strong>Biography:</strong>
-  <%= raw(@markdown.render(@entity.biography)) %>
+  <%= if @entity.biography.present? then raw(@markdown.render(@entity.biography)) end %>
 </p>
 
 <p>
