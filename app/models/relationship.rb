@@ -9,7 +9,9 @@ class Relationship < ActiveRecord::Base
   	LEGAL = "legal"
   	ECONOMIC = "economic"
   	SOCIAL = "social"
-  	ALL_TYPES = [FAMILIAL, POLITICAL, LEGAL, ECONOMIC, SOCIAL]
+    MILITARY = "military"
+    SLAVERY = "slavery"
+  	ALL_TYPES = [FAMILIAL, POLITICAL, LEGAL, ECONOMIC, SOCIAL, MILITARY, SLAVERY]
   end
 
 end
