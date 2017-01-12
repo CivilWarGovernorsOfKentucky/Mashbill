@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212152324) do
+ActiveRecord::Schema.define(version: 20170112195733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,21 @@ ActiveRecord::Schema.define(version: 20161212152324) do
   add_index "annotations", ["document_id"], name: "index_annotations_on_document_id", using: :btree
   add_index "annotations", ["entity_id"], name: "index_annotations_on_entity_id", using: :btree
   add_index "annotations", ["user_id"], name: "index_annotations_on_user_id", using: :btree
+
+  create_table "deeds", force: :cascade do |t|
+    t.string   "deed_type"
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.integer  "entity_id"
+    t.integer  "relationship_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "deeds", ["document_id"], name: "index_deeds_on_document_id", using: :btree
+  add_index "deeds", ["entity_id"], name: "index_deeds_on_entity_id", using: :btree
+  add_index "deeds", ["relationship_id"], name: "index_deeds_on_relationship_id", using: :btree
+  add_index "deeds", ["user_id"], name: "index_deeds_on_user_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "cwgk_id"
@@ -109,4 +124,8 @@ ActiveRecord::Schema.define(version: 20161212152324) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "deeds", "documents"
+  add_foreign_key "deeds", "entities"
+  add_foreign_key "deeds", "relationships"
+  add_foreign_key "deeds", "users"
 end

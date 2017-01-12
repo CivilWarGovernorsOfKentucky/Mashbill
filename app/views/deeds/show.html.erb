@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Deed type:</strong>
+  <%= @deed.deed_type %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @deed.user %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @deed.document %>
+</p>
+
+<p>
+  <strong>Entity:</strong>
+  <%= @deed.entity %>
+</p>
+
+<p>
+  <strong>Relationship:</strong>
+  <%= @deed.relationship %>
+</p>
+
+<%= link_to 'Edit', edit_deed_path(@deed) %> |
+<%= link_to 'Back', deeds_path %>

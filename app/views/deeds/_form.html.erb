@@ -1,0 +1,37 @@
+<%= form_for(@deed) do |f| %>
+  <% if @deed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@deed.errors.count, "error") %> prohibited this deed from being saved:</h2>
+
+      <ul>
+      <% @deed.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :deed_type %><br>
+    <%= f.text_field :deed_type %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :document_id %><br>
+    <%= f.text_field :document_id %>
+  </div>
+  <div class="field">
+    <%= f.label :entity_id %><br>
+    <%= f.text_field :entity_id %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship_id %><br>
+    <%= f.text_field :relationship_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
