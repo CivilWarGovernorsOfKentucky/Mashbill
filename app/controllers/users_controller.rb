@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     Annotation.ingest_new_annotations
     @documents = Document.joins(:annotations).where(:annotations => {:hypothesis_user => current_user.hypothesis_user}).uniq
     @annotations=Annotation.all
+    @deeds=Deed.all
   end
 
   # GET /users/1

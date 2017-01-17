@@ -65,7 +65,16 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @document.completed = true
     @document.save!
+    record_deed
     redirect_to dashboard_path
+  end
+
+  def record_deed
+    deed = Deed.new
+    deed.document = @document
+    deed.deed_type = Deed::DOC_COMPLETED
+    deed.user = current_user
+    deed.save!
   end
 
   private

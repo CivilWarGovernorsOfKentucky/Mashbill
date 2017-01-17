@@ -31,6 +31,7 @@ class EntitiesController < ApplicationController
     @entity.user = current_user
     respond_to do |format|
       if @entity.save
+        record_deed(Deed::ENTITY_CREATE)
         format.html { redirect_to @entity, notice: 'Entity was successfully created.' }
         format.json { render :show, status: :created, location: @entity }
       else
@@ -45,6 +46,7 @@ class EntitiesController < ApplicationController
   def update
     respond_to do |format|
       if @entity.update(entity_params)
+        record_deed(Deed::ENTITY_EDIT)
         format.html { redirect_to @entity, notice: 'Entity was successfully updated.' }
         format.json { render :show, status: :ok, location: @entity }
       else
@@ -66,6 +68,14 @@ class EntitiesController < ApplicationController
 
   def search
 
+  end
+
+  def record_deed(deed_type)
+    deed = Deed.new
+    deed.entity = @entity
+    deed.deed_type = deed_type
+    deed.user = current_user
+    deed.save!
   end
 
   private

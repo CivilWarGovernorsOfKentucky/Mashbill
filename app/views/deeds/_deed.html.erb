@@ -1,0 +1,34 @@
+<% long_view = false if local_assigns[:long_view].nil?
+
+user_name = user_signed_in? && deed.user.id == current_user.id ? 'You' : deed.user.email
+
+#user = link_to user_name, { :controller => 'user', :action => 'profile', :user_id => deed.user.id }
+#page = deed.page.nil? ? '' : link_to(deed.page.title, { :controller => 'display', :action => 'display_page', :page_id => deed.page.id })
+#article = deed.article.nil? ? '' : link_to(deed.article.title, { :controller => 'article', :action => 'show', :article_id => deed.article.id })
+
+doc = deed.document.nil? ? '' : link_to(deed.document.cwgk_id + " " + deed.document.title.chomp(" · Civil War Governors of Kentucky: Early Access"), bycwgkid_path(deed.document.cwgk_id))
+entity = deed.entity.nil? ? '' : link_to(deed.entity.name, entity_path(deed.entity))
+entity_1 = deed.relationship.nil? ? '' :  link_to(deed.relationship.entity_1.name, entity_path(deed.relationship.entity_1))
+entity_2 = deed.relationship.nil? ? '' :  link_to(deed.relationship.entity_2.name, entity_path(deed.relationship.entity_2))
+
+output = "#{user_name} "
+
+case deed.deed_type
+when 'doc_completed'
+output += "completed #{doc}"
+
+when 'entity_edit'
+output += "edited #{entity}"
+
+when 'entity_create'
+output += "created #{entity}"
+
+when 'relationship_edit'
+output += "edited the relationship between #{entity_1} and #{entity_2}"
+
+when 'relationship_create'
+output += "created the relationship between #{entity_1} and #{entity_2}"
+
+end %>
+
+<%= output %>

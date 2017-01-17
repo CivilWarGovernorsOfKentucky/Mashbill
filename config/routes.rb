@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post   '/documents/mark_complete/:id', :to => 'documents#mark_complete', :as => :mark_complete
   get   '/documents/search', :to => 'documents#search'
   get   '/entities/search', :to => 'entities#search'
+  get   '/deeds/list', :to => 'deeds#list'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

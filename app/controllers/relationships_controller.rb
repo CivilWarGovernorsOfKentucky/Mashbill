@@ -62,6 +62,7 @@ class RelationshipsController < ApplicationController
     @relationship.user_id = current_user.id
     @relationship.citation = params[:citation]
     @relationship.save!
+    record_deed(Deed::RELATIONSHIP_CREATE)
     redirect_to define_relationships_path(params[:cwgk_id])
   end
 
@@ -70,6 +71,7 @@ class RelationshipsController < ApplicationController
   def update
     respond_to do |format|
       if @relationship.update(relationship_params)
+        record_deed(Deed::RELATIONSHIP_EDIT)
         format.html { redirect_to @relationship, notice: 'Relationship was successfully updated.' }
         format.json { render :show, status: :ok, location: @relationship }
       else
@@ -87,6 +89,14 @@ class RelationshipsController < ApplicationController
       format.html { redirect_to relationships_url, notice: 'Relationship was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def record_deed(deed_type)
+    deed = Deed.new
+    deed.relationship = @relationship
+    deed.deed_type = deed_type
+    deed.user = current_user
+    deed.save!
   end
 
   private

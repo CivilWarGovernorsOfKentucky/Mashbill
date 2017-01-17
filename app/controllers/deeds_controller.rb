@@ -1,5 +1,17 @@
 class DeedsController < ApplicationController
-  before_action :set_deed, only: [:show, :edit, :update, :destroy]
+#  before_action :set_deed, only: [:show, :edit, :update, :destroy]
+
+  PAGES_PER_SCREEN = 50
+
+  def list
+    condition = []
+
+    if @user
+      condition = ['user_id = ?', @user.id]
+    end
+    binding.pry
+    @deeds = Deed.where(condition).order('created_at DESC').paginate :per_page => PAGES_PER_SCREEN
+  end
 
   # GET /deeds
   # GET /deeds.json
@@ -24,6 +36,8 @@ class DeedsController < ApplicationController
   # POST /deeds
   # POST /deeds.json
   def create
+
+
     @deed = Deed.new(deed_params)
 
     respond_to do |format|

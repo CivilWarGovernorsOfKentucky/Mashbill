@@ -1,0 +1,13 @@
+<% deeds.each do |d| %>
+
+<%= render(:partial => 'deeds/deed', :locals => { :deed => d }) %><p>
+
+<% end %>
+
+<small class="legend">
+<%= link_to 'Show More',
+{ :controller => 'deeds',
+:action => 'list',
+:user_id => options[:user_id] },
+class: 'button outline round' %>
+</small>
