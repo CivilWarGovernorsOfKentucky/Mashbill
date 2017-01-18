@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :entities
 
-	validates :hypothesis_user, format: { with: /@hypotes\.is/,
+	validates :hypothesis_user, format: { with: /@hypothes\.is/,
     message: "must be in format user@hypothes.is" }, allow_blank: true
 
 end
