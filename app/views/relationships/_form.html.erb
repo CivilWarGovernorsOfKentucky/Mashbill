@@ -11,26 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :entity_1_id %><br>
-    <%= f.text_field :entity_1_id %>
-  </div>
-  <div class="field">
-    <%= f.label :entity_2_id %><br>
-    <%= f.text_field :entity_2_id %>
-  </div>
+  <p>
+  <strong>Entity 1:</strong>
+  <%= @relationship.entity_1.name %>
+</p>
+
+<p>
+  <strong>Entity 2:</strong>
+  <%= @relationship.entity_2.name %>
+</p>
+
   <div class="field">
     <%= f.label :relationship_type %><br>
     <%= f.select "relationship_type", options_for_select(Relationship::Type::ALL_TYPES) %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :citation %><br>
     <%= f.text_area :citation %>
   </div>
+  <p>
+  <strong>Created By User:</strong>
+  <%= @relationship.user.email %>
+</p>
   <div class="actions">
     <%= f.submit %>
   </div>

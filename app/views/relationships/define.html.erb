@@ -1,32 +1,7 @@
 <h1>Create Relationships</h1>
 
 <h4>People in this document</h4>
-
-<%= form_tag("/add_to_relationship", method: "get") do %>
-<h5> choose left side of relationship </h5>
-    <% @entities.each do |entity| %>
-    <%= check_box_tag(:left_entity, entity.id) %>
-    <%= label_tag(:left_entity, entity.name) %>
-    <% end %>
-<h5> choose right side of relationship</h5>
-    <% @entities.each do |entity| %>
-    <%= check_box_tag(:right_entity, entity.id) %>
-    <%= label_tag(:right_entity, entity.name) %>
-    <% end %>
-
-<h5>Type of relationship</h5>
-  <div class="field">
-    <%= select_tag(:relationship_type, options_for_select(Relationship::Type::ALL_TYPES)) %>
-  </div>
-
- <h5>Citation</h5>
-  <div class="field">
-    <%= text_field_tag :citation %>
-  </div> 
-
-<%= hidden_field_tag(:cwgk_id, @cwgk_id) %>
-<%= submit_tag 'create relationships' %>
-<% end %>
+<%= render 'relation' %>
 
 <h4>Existing relationships for these entities</h4>
 <table class="table">
