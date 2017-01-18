@@ -1,5 +1,5 @@
 <% deeds.each do |d| %>
-
+<%= "#{time_ago_in_words d.created_at} ago" %>
 <%= render(:partial => 'deeds/deed', :locals => { :deed => d }) %><p>
 
 <% end %>
