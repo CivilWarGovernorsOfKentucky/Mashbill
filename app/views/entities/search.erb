@@ -1,0 +1,18 @@
+<div class="container">
+<h3>entities</h3>
+<div class="row">
+<div class="col-md-8">
+<table>
+  <tbody>
+    <% @entities.each do |entity| %>
+      <tr>
+        <td><%= link_to entity.name, entity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p></p>
+<%= button_to "Create a new entity", new_entity_path, :class => "button", :method => :get %>
+</div>
+</div>
+</div>

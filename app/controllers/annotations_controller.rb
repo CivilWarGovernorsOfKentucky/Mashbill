@@ -26,7 +26,14 @@ class AnnotationsController < ApplicationController
   def identify_annotation
     @annotation = Annotation.find(params[:annotation_id])
     @verbatim_text = @annotation.verbatim
-    @entities = Entity.all
+    @entities = Entity.fuzzy_search(name: @verbatim_text)
+    render :template => 'entities/identify_annotation'
+  end
+
+  def search_identify_annotation
+    @annotation = Annotation.find(params[:annotation_id])
+    @verbatim_text = params[:q]
+    @entities = Entity.fuzzy_search(name: @verbatim_text)
     render :template => 'entities/identify_annotation'
   end
 

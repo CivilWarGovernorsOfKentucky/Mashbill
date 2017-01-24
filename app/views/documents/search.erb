@@ -1,0 +1,16 @@
+<div class="container">
+<h3>Documents</h3>
+<div class="row">
+<div class="col-md-8">
+<table>
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= link_to document.cwgk_id + " " + document.title.chomp(" · Civil War Governors of Kentucky: Early Access"), bycwgkid_path(document.cwgk_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>

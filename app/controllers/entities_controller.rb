@@ -67,7 +67,7 @@ class EntitiesController < ApplicationController
   end
 
   def search
-
+    @entities = Entity.fuzzy_search(name: params["q"])
   end
 
   def record_deed(deed_type)

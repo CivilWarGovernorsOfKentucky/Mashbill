@@ -46,6 +46,7 @@ gem 'autoprefixer-rails'
 gem 'rest-client'
 gem 'redcarpet'
 gem 'devise'
+gem 'textacular', '~> 3.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'

@@ -58,8 +58,12 @@ class Annotation < ActiveRecord::Base
     rescue => e
     #e.response
     end
-    jason_hash = JSON.parse(response)
-    jason_hash["rows"]  # this is an array of hashes
+    if response
+      jason_hash = JSON.parse(response)
+      jason_hash["rows"]  # this is an array of hashes
+    else 
+      jason_hash={}
+    end
   end
 
   def self.get_recent_annotations_from_hypothesis

@@ -4,13 +4,18 @@
 <div class="row">
 <div class="col-md-8">
 <%= form_tag({controller: "documents", action: "search"}, method: "get") do %>
-  <%= label_tag(:q, "Search for a document:") %>
+  <%= label_tag(:q, "Search document IDs:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<%= form_tag({controller: "documents", action: "search_by_name"}, method: "get") do %>
+  <%= label_tag(:q, "Search document titles:") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
 <%= form_tag({controller: "entities", action: "search"}, method: "get") do %>
   <%= label_tag(:q, "Search for an entity:") %>
-  <%= text_field_tag(:q, "KYR-0001-002-0024") %>
+  <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
 

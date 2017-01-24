@@ -5,12 +5,6 @@ Rails.application.routes.draw do
 
   resources :relationships
 
-  resources :annotations
-
-  resources :documents
-
-  resources :entities
-
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -28,9 +22,14 @@ Rails.application.routes.draw do
   get   '/entities/show/:id', :to => 'entities#show',:as => :show_entity
   post   '/documents/mark_complete/:id', :to => 'documents#mark_complete', :as => :mark_complete
   get   '/documents/search', :to => 'documents#search'
+  get   '/documents/search_by_name', :to => 'documents#search_by_name'
   get   '/entities/search', :to => 'entities#search'
   get   '/deeds/list', :to => 'deeds#list'
+  get   '/annotations/search_identify_annotation', :to => 'annotations#search_identify_annotation'
 
+  resources :entities   
+  resources :documents
+  resources :annotations
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
