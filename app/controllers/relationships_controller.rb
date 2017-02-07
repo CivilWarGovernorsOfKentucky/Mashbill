@@ -55,14 +55,18 @@ class RelationshipsController < ApplicationController
   end
 
   def add
-    @relationship = Relationship.new
-    @relationship.entity_1_id = params[:left_entity]
-    @relationship.entity_2_id = params[:right_entity]
-    @relationship.relationship_type = params[:relationship_type]
-    @relationship.user_id = current_user.id
-    @relationship.citation = params[:citation]
-    @relationship.save!
-    record_deed(Deed::RELATIONSHIP_CREATE)
+    params[:left_entity].each do |left|
+        params[:right_entity].each do |right|
+          @relationship = Relationship.new
+          @relationship.entity_1_id = left
+          @relationship.entity_2_id = right
+          @relationship.relationship_type = params[:relationship_type]
+          @relationship.user_id = current_user.id
+          @relationship.citation = params[:citation]
+          @relationship.save!
+          record_deed(Deed::RELATIONSHIP_CREATE)
+        end
+      end
     redirect_to define_relationships_path(params[:cwgk_id])
   end
 

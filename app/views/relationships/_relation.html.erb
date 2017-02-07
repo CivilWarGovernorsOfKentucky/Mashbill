@@ -3,12 +3,12 @@
 <%= form_tag("/add_to_relationship", method: "get") do %>
 <h5> choose left side of relationship </h5>
     <% @entities.each do |entity| %>
-    <%= check_box_tag(:left_entity, entity.id) %>
+    <%= check_box_tag("left_entity[]", entity.id) %>
     <%= label_tag(:left_entity, entity.name) %>
     <% end %>
 <h5> choose right side of relationship</h5>
     <% @entities.each do |entity| %>
-    <%= check_box_tag(:right_entity, entity.id) %>
+    <%= check_box_tag("right_entity[]", entity.id) %>
     <%= label_tag(:right_entity, entity.name) %>
     <% end %>
 
