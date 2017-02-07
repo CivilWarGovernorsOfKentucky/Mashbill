@@ -6,10 +6,10 @@ class Entity < ActiveRecord::Base
   has_many :left_relationships, :class_name => "Relationship", :foreign_key => :entity_1_id
   has_many :right_relationships, :class_name => "Relationship", :foreign_key => :entity_2_id
 
-  validates :birth_date, format: { with: /\A[cC]?(\d\d\d\d)(-\d\d)?(-\d\d)?\z/,
+  validates :birth_date, format: { with: /\bunknown\b|\A[cC]?(\d\d\d\d)(-\d\d)?(-\d\d)?\z/,
     message: "Bad date format.  Allowed:  2001, 2001-09, 2001-09-01" }, allow_blank: true
 
-  validates :death_date, format: { with: /\A[cC]?(\d\d\d\d)(-\d\d)?(-\d\d)?\z/,
+  validates :death_date, format: { with: /\bunknown\b|\A[cC]?(\d\d\d\d)(-\d\d)?(-\d\d)?\z/,
     message: "Bad date format.  Allowed:  2001, 2001-09, 2001-09-01" }, allow_blank: true
 
   module Type
