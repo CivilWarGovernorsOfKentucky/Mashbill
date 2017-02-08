@@ -3,7 +3,7 @@
 
 <p>
   <strong>CWGK ID:</strong>
-  <%= @annotations.first.document.cwgk_id %>
+  <%= link_to(@annotations.first.document.cwgk_id, "http://discovery.civilwargovernors.org/document/" + @annotations.first.document.cwgk_id, :target => "_blank") %>
 </p>
 
 <% unidentified_annotations = @annotations.select { |annotation| annotation.entity.blank? } %>
