@@ -18,6 +18,10 @@ class EntitiesController < ApplicationController
   # GET /entities/new
   def new
     @entity = Entity.new
+    @annotation = nil
+    if params[:annotation_id]
+      @annotation=Annotation.find(params[:annotation_id])
+    end
   end
 
   # GET /entities/1/edit
@@ -31,8 +35,11 @@ class EntitiesController < ApplicationController
     @entity.user = current_user
     respond_to do |format|
       if @entity.save
+        annotation = Annotation.find(params["annotation_id"])
+        annotation.entity_id=@entity.id
+        annotation.save
         record_deed(Deed::ENTITY_CREATE)
-        format.html { redirect_to @entity, notice: 'Entity was successfully created.' }
+        format.html { redirect_to(bycwgkid_path(annotation.document.cwgk_id), notice: 'Entity was successfully created.') } 
         format.json { render :show, status: :created, location: @entity }
       else
         format.html { render :new }

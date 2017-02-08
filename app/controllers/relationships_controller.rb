@@ -96,6 +96,7 @@ class RelationshipsController < ApplicationController
   end
 
   def record_deed(deed_type)
+    binding.pry
     deed = Deed.new
     deed.relationship = @relationship
     deed.deed_type = deed_type

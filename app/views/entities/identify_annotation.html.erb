@@ -34,4 +34,4 @@
 <% end %>
 
 Can't find a matching entity?  
-Please <%= link_to 'Create one.', new_entity_path %>
+Please <%= link_to 'Create one.', new_entity_path(:annotation_id => @annotation.id) %>

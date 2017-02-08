@@ -67,6 +67,10 @@
     <%= f.submit %>
   </div>
 
+  <% if @annotation %>
+  <%= hidden_field_tag(:annotation_id, @annotation.id) %>
+  <% end %>
+
 <% end %>
 
 <script>$(document).ready(function () {
