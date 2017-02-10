@@ -20,8 +20,12 @@ No relationships yet.
         <td><%= relationship.relationship_type %></td>
         <td><%= relationship.user.email %></td>
         <td><%= relationship.citation %></td>
-        <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
-        <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to edit_relationship_path(relationship), class: "button" do %>
+          <i class="glyphicon glyphicon-pencil"></i>
+        <% end %></td>
+        <td><%= link_to relationship, method: :delete, data: { confirm: 'Are you sure?' }, class: "button" do %>
+          <i class="glyphicon glyphicon-trash"></i>
+        <% end %></td>
       </tr>
     <% end %>
   </tbody>

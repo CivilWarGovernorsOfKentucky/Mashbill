@@ -1,8 +1,10 @@
+<div class="container-fluid">
+<h3><%= @entity.name %></h3>
 
-<p>
-  <strong>Name:</strong>
-  <%= @entity.name %>
-</p>
+<div class="row">
+<div class="col-md-4">
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Attributes</h4></div>
 
 <p>
   <strong>Disambiguator:</strong>
@@ -62,24 +64,38 @@
 <% end %>
 
 <p>
-  <strong>Biography:</strong>
-  <%= if @entity.biography.present? then raw(@markdown.render(@entity.biography)) end %>
-</p>
-
-<p>
   <strong>Bibliography:</strong>
   <%= @entity.bibliography %>
 </p>
 
-<p>
-  <strong>Relationships:</strong>
-
-</p>
-
+<div class="panel-footer clearfix">
+<div class="pull-right">
 <%= link_to 'Edit', edit_entity_path(@entity) %> 
-<br>
- 
-<p><strong>Mentioned in Documents:</strong>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class="panel panel-default">
+<div class="panel-heading"><h4>Biography</h4></div>
+<p>
+  <%= if @entity.biography.present? then raw(@markdown.render(@entity.biography)) end %>
+</p>
+<div class="panel-footer clearfix">
+<div class="pull-right">
+<%= link_to 'Edit', edit_entity_bio_path(@entity) %> 
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4>Mentioned in Documents</h4></div>
 <% if @entity.documents.blank? %>
 Not mentioned in any documents yet.
 <% else %>
@@ -94,6 +110,14 @@ Not mentioned in any documents yet.
 </table>
 <% end %>
 </p>
+</div>
+</div>
+</div>
 
-<h4>Existing relationships for this entity</h4>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h5>Existing relationships for this entity</h5>
+</div>
 <%= render "relationships/table" %>
+</div>
+</div>

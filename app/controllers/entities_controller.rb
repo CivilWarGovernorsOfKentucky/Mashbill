@@ -64,6 +64,10 @@ class EntitiesController < ApplicationController
     end
   end
 
+  def edit_bio
+    @entity=Entity.find(params[:id])
+  end
+
   # DELETE /entities/1
   # DELETE /entities/1.json
   def destroy
