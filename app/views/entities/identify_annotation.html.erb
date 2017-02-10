@@ -19,12 +19,12 @@
   </thead>
 
   <tbody>
-    <% @entities.each do |entity| %>
+    <% @entities.each_with_index do |entity, i| %>
       <tr>
         <td colspan="3"><%= entity.name %></td>
         <td colspan="3"><%= entity.birth_date %></td>
         <td colspan="3"><%= entity.disambiguator %></td>
-        <td colspan="3"><%= link_to 'Choose', associate_entity_to_annotation_path(entity, @annotation) %></td>
+        <td colspan="3"><%= link_to 'Choose', associate_entity_to_annotation_path(entity, @annotation), :tabindex => i+1 %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 <% end %>
 
 Can't find a matching entity?  
-Please <%= link_to 'Create one.', new_entity_path(:annotation_id => @annotation.id) %>
+Please <%= link_to 'Create one.', new_entity_path(:annotation_id => @annotation.id, :verbatim => @verbatim_text), :tabindex => (@entities.size+2) %>
