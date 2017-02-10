@@ -21,6 +21,7 @@ class Annotation < ActiveRecord::Base
       annotation_record.user_id = User.where(hypothesis_user = hyp_annotation["user"].gsub("acct:",""))
       # set verbatim
       selector = hyp_annotation["target"].first["selector"]
+      next unless selector
       exact_selection = selector.detect { |e| e["exact"] != nil }
       container_selection = selector.detect { |e| e["startContainer"] != nil }
       annotation_record.verbatim = exact_selection["exact"]

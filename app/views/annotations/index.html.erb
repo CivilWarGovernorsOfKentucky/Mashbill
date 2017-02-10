@@ -23,11 +23,11 @@ All annotations identified
 
 <h5>Unidentified Annotations</h5>
   <tbody>
-    <% unidentified_annotations.each do |annotation| %>
+    <% unidentified_annotations.each_with_index do |annotation, index| %>
       <tr>
         <td><%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> </td>
         <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
-        <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
+        <td><%= link_to 'Identify', identify_annotation_path(annotation), :tabindex => index+1 %></td>
       </tr>
     <% end %>
   </tbody>

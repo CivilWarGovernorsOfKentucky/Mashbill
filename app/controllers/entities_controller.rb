@@ -22,6 +22,7 @@ class EntitiesController < ApplicationController
     if params[:annotation_id]
       @annotation=Annotation.find(params[:annotation_id])
     end
+    @entity.name = params[:verbatim]
   end
 
   # GET /entities/1/edit

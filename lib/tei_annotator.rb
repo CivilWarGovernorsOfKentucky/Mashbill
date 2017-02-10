@@ -59,7 +59,8 @@ class TeiAnnotator
   TEI_TAGS = {
     Entity::Type::PERSON => 'persName',
     Entity::Type::PLACE => 'placeName',
-    Entity::Type::ORGANIZATION => 'orgName'
+    Entity::Type::ORGANIZATION => 'orgName',
+    Entity::Type::GEO_FEATURE => 'geogName'
   }
 
   def tei_element(entity)
@@ -67,8 +68,8 @@ class TeiAnnotator
   end
   
   def target_paragraph(doc, annotation)
-    number = target_paragraph_number(annotation.start_container)    
-    doc.search('text/body/p')[number]
+    index = target_paragraph_number(annotation.start_container) - 1 # selectors start with 1    
+    doc.search('text/body/p')[index]
   end
   
   def target_paragraph_number(locator)

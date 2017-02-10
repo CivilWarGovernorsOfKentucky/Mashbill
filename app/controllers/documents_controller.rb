@@ -1,3 +1,5 @@
+require 'tei_annotator'
+require 'text_transporter'
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
@@ -66,6 +68,7 @@ class DocumentsController < ApplicationController
     @document.completed = true
     @document.save!
     record_deed
+    update_tei
     redirect_to dashboard_path
   end
 
@@ -96,4 +99,10 @@ class DocumentsController < ApplicationController
     def document_params
       params.require(:document).permit(:cwgk_id, :title, :completed)
     end
+    
+    def update_tei
+      annotator = TeiAnnotator.new(TextTransporter.new)
+      annotator.apply_annotations(@document)
+    end
+
 end

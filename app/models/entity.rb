@@ -18,7 +18,16 @@ class Entity < ActiveRecord::Base
   	ORGANIZATION = "organization"
     GEO_FEATURE = "geographic feature"
   	ALL_TYPES = [PERSON,PLACE,ORGANIZATION, GEO_FEATURE]
+  	
+  	REF_PREFIX = {
+  	  PERSON => 'N',
+  	  PLACE => 'P',
+  	  ORGANIZATION => 'O',
+  	  GEO_FEATURE => 'G'
+  	}
   end
+
+
 
   module Gender
   	MALE = "male"
@@ -30,5 +39,10 @@ class Entity < ActiveRecord::Base
   def relationships
     left_relationships + right_relationships
   end
+
+  def ref_id
+    self[:ref_id] || Type::REF_PREFIX[entity_type] + id.to_s.rjust(8,'0')
+  end
+  
 
 end
