@@ -3,7 +3,7 @@ class Document < ActiveRecord::Base
   has_many :entities, through: :annotations
   
   def applicable_annotations
-    annotations
+    annotations.where.not(:entity_id => nil)
   end
   
   # TODO: is this still applicable?
