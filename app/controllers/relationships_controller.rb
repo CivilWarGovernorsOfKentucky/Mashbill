@@ -96,7 +96,6 @@ class RelationshipsController < ApplicationController
   end
 
   def record_deed(deed_type)
-    binding.pry
     deed = Deed.new
     deed.relationship = @relationship
     deed.deed_type = deed_type
@@ -112,7 +111,6 @@ class RelationshipsController < ApplicationController
       #Relationship.where(:entity_2_id => @entities.first.id)
       @entities.each do |entity| 
           Relationship.where(:entity_1_id => entity.id).each do |relationship|
-            #binding.pry
             if (@entities.include?(relationship.entity_2)) then 
               @relationships << relationship
             end

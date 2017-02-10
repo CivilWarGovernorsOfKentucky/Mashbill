@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get   '/define_relationships/:cwgk_id', :to => 'relationships#define', :as => :define_relationships
   get   '/add_to_relationship', :to => 'relationships#add', :as => :add_to_relationship
   get   '/entities/show/:id', :to => 'entities#show',:as => :show_entity
+  get   '/entities/edit_bio/:id', :to => 'entities#edit_bio', :as => :edit_entity_bio
   post   '/documents/mark_complete/:id', :to => 'documents#mark_complete', :as => :mark_complete
   get   '/documents/search', :to => 'documents#search'
   get   '/documents/search_by_name', :to => 'documents#search_by_name'
