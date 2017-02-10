@@ -68,7 +68,7 @@ class DocumentsController < ApplicationController
     @document.completed = true
     @document.save!
     record_deed
-    update_tei
+    update_tei if TextTransporter.enabled?
     redirect_to dashboard_path
   end
 

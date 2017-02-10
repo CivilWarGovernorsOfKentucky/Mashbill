@@ -10,11 +10,15 @@ class TextTransporter
 
 
   def document_path(document_id)
-    File.join(document_root, 'document_xml', document_id+".xml")
+    File.join(TextTransporter.document_root, 'document_xml', document_id+".xml")
   end
 
-  def document_root
+  def self.document_root
     Rails.application.config.document_root ||  File.join(Rails.root, '..', 'TestDocuments')
+  end
+
+  def self.enabled?
+    document_root && Dir.exists?(document_root)
   end
   
 end
