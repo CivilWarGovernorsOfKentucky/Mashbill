@@ -1,11 +1,14 @@
+require 'git_talker'
 class TextTransporter
   
   def fetch(document_id)
+    GitTalker.new.refresh_repository(Rails.application.config.document_root)
     IO.read(document_path(document_id))
   end 
   
-  def save(document_id, text)
+  def save(document_id, text, user)
     File.write(document_path(document_id), text)
+    GitTalker.new.commit_and_push_file(document_path(document_id), user)
   end
 
 

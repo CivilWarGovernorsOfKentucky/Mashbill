@@ -102,7 +102,7 @@ class DocumentsController < ApplicationController
     
     def update_tei
       annotator = TeiAnnotator.new(TextTransporter.new)
-      annotator.apply_annotations(@document)
+      annotator.apply_annotations(@document, current_user)
     end
 
 end

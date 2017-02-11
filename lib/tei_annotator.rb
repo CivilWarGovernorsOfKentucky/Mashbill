@@ -5,7 +5,7 @@ class TeiAnnotator
     @text_transporter = transporter
   end
 
-  def apply_annotations(document)
+  def apply_annotations(document, user)
     # grab the text of the doc
     # create a DOM from the text
     doc = load_document(document)
@@ -14,7 +14,7 @@ class TeiAnnotator
       apply_annotation(doc, annotation)
     end
     # store the modified doc 
-    save_document(document, doc)
+    save_document(document, doc, user)
   end  
 
   def load_document(document)
@@ -22,9 +22,9 @@ class TeiAnnotator
     Nokogiri::XML(text)
   end
   
-  def save_document(document, doc)
+  def save_document(document, doc, user)
     text = doc.to_xml
-    @text_transporter.save(document.cwgk_id, text)
+    @text_transporter.save(document.cwgk_id, text, user)
   end
 
   def apply_annotation(doc, annotation)

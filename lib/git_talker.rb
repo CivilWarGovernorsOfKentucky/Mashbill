@@ -1,15 +1,14 @@
 class GitTalker
-  def refresh_repository
-    
+  def refresh_repository(directory)
+    system("cd #{directory}; git pull")
   end
   
-  def commit_and_push(document)
-    # find filename
-    # commit_and_push_file(filename)
-  end
   
-  def commit_and_push_file(filename)
-    
+  def commit_and_push_file(filename, user)
+    tt = TextTransporter.new
+    username =  user.email.sub(/@.*/, '')
+    system("cd #{Rails.application.config.document_root}; git add #{filename}; git commit -m 'changes by Mashbill user #{username}'; git push")
+    raise StandardError.new("Git command failed") if $? != 0
   end
   
   # called by webhook to update the encoding on any UTF-16LE files
