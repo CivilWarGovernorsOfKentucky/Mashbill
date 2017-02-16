@@ -21,15 +21,19 @@ class Annotation < ActiveRecord::Base
       annotation_record.user_id = User.where(hypothesis_user = hyp_annotation["user"].gsub("acct:",""))
       # set verbatim
       selector = hyp_annotation["target"].first["selector"]
+      #binding.pry if selector.nil?
       next unless selector
       exact_selection = selector.detect { |e| e["exact"] != nil }
       container_selection = selector.detect { |e| e["startContainer"] != nil }
+      #binding.pry if exact_selection.nil?
+      next unless exact_selection
       annotation_record.verbatim = exact_selection["exact"]
       annotation_record.prefix = exact_selection["prefix"]
       annotation_record.suffix = exact_selection["suffix"]
       annotation_record.start_container = container_selection["startContainer"]
       # set document_id to find or create the document from hash
       exact_selection = selector.detect { |e| e["value"] != nil }
+      next unless exact_selection
       document_id = exact_selection["value"]
       document_title = hyp_annotation["document"]["title"].first
       new_doc = find_or_create_document(document_id, document_title)
@@ -57,6 +61,7 @@ class Annotation < ActiveRecord::Base
       response = RestClient::Request.execute(method: :get, url: url,
                             timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
     rescue => e
+      binding.pry
     #e.response
     end
     if response
