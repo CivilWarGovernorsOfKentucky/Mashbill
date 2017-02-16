@@ -82,7 +82,11 @@ All annotations identified
 <p>
 <% unless @annotations.first.document.entities.blank? %>
 <%= link_to 'Next --> Create Relationships', define_relationships_path %>
+<% unless @annotations.first.document.completed? %>
 <%= button_to "Mark Document Complete", mark_complete_path(@annotations.first.document) %>
+<% else %>
+<%= button_to "Update Document", mark_complete_path(@annotations.first.document) %>
+<% end %>
 </p>
 <% end %>
 
