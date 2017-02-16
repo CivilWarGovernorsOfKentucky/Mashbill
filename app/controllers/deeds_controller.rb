@@ -9,7 +9,7 @@ class DeedsController < ApplicationController
     if @user
       condition = ['user_id = ?', @user.id]
     end
-    @deeds = Deed.where(condition).order('created_at DESC').paginate :per_page => PAGES_PER_SCREEN
+    @deeds = Deed.where(condition).order('created_at DESC').paginate :page => params[:page], :per_page => PAGES_PER_SCREEN
   end
 
   # GET /deeds

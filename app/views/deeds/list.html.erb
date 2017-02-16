@@ -1,27 +1,19 @@
-<% content_for :page_title do
- %><%= ::Temple::Utils.escape_html(("Activity Stream")) %>
 
-<% if @user
- %><%= ::Temple::Utils.escape_html((" - #{@user.display_name}")) %>
+<% content_for :page_title do %>
+<%=h ("Activity Stream") %>
+<% end %>
+
+<% if @user %>
+<%=h (" - #{@user.display_name}") %>
+<% end %>
+
+<h1>Activity Stream</h1>
+<% if @user %><h3><%=h ("User: #{@user.display_name}") %>
+
+</h3><% end %>
+
+<% @deeds.each do |d| %>
+<%= "#{time_ago_in_words d.created_at} ago" %>
+<%= render(:partial => 'deeds/deed', :locals => { :deed => d }) %><p>
 
 <% end %>
-<h1>Activity Stream</h1>
-<% if @user %><h3><%= ::Temple::Utils.escape_html(("User: #{@user.display_name}")) %>
-
-</h3><% end %><table class="datagrid striped">
-<% @deeds.each do |d|
- %><tr>
-<td>
-<% _slim_controls1 = link_to({ :controller => 'user', :action => 'profile', :user_id => d.user.id }, class: 'userpic userpic-small') do
- %><%= ::Temple::Utils.escape_html((gravatar_image_tag d.user.email, :alt => d.user.display_name)) %>
-<% end %><%= ::Temple::Utils.escape_html((_slim_controls1)) %></td><td class="w100 toleft">
-<%= ::Temple::Utils.escape_html((render(:partial => 'deed/deed.html', :locals => { :deed => d, :long_view => true }))) %>
-</td><td>
-<small class="label deed-type-<%= ::Temple::Utils.escape_html((d.deed_type)) %>"><%= ::Temple::Utils.escape_html((d.deed_type_name)) %>
-</small></td><td class="nowrap">
-<% _slim_controls2 = time_tag(d.created_at, class: 'small fglight') do
- %><%= ::Temple::Utils.escape_html(("#{time_ago_in_words d.created_at} ago")) %>
-<% end %><%= ::Temple::Utils.escape_html((_slim_controls2)) %></td></tr><% end %></table><br />
-<small class="legend">
-<%= ::Temple::Utils.escape_html((will_paginate @deeds, { :class => 'deed-pager', :page_links => false, :previous_label => 'Newer Activity', :next_label => 'Older Activity' })) %>
-</small><br />

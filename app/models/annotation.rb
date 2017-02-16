@@ -61,7 +61,6 @@ class Annotation < ActiveRecord::Base
       response = RestClient::Request.execute(method: :get, url: url,
                             timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
     rescue => e
-      binding.pry
     #e.response
     end
     if response

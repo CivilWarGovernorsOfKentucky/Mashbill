@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :deeds
   resources :race_descriptions
   devise_for :users, :controllers => { registrations: 'registrations' }
 
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
   resources :entities   
   resources :documents
   resources :annotations
+  resources :deeds
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
