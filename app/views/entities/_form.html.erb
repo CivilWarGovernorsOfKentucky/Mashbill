@@ -47,7 +47,8 @@
   </div>
   <div class="field">
     <%= f.label :biography %><br>
-    <%= f.text_area :biography %>
+    <%= f.text_area(:biography, size: "80x20") %>
+    <p>The biography field support markdown syntax.  You can learn more about markdown at <%= link_to "The Programming Historian", "http://programminghistorian.org/lessons/getting-started-with-markdown" , target: :_blank %>.</p>
   </div>
   <div id="place">
     <div class="field">
@@ -61,7 +62,7 @@
   </div>
   <div class="field">
     <%= f.label :bibliography %><br>
-    <%= f.text_area :bibliography %>
+    <%= f.text_area(:bibliography, size: "80x1") %>
   </div>
   <div class="actions">
     <%= f.submit %>
