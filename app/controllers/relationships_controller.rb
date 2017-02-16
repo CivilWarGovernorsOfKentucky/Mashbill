@@ -57,6 +57,7 @@ class RelationshipsController < ApplicationController
   def add
     params[:left_entity].each do |left|
         params[:right_entity].each do |right|
+          next if left == right
           @relationship = Relationship.new
           @relationship.entity_1_id = left
           @relationship.entity_2_id = right
