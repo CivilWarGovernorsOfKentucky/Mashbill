@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+  
   <div class="col-md-4">
   <div class="field">
     <%= f.label :name %><br>
@@ -56,6 +56,10 @@
     <%= f.text_field :long %>
   </div>
   </div>
+      <div class="field">
+  <label>Reference ID:</label>
+  <%= @entity.ref_id %>
+</div>
   </div>
   <div class="col-md-8">
   <div class="field">

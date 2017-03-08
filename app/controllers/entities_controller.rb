@@ -71,6 +71,11 @@ class EntitiesController < ApplicationController
   # DELETE /entities/1
   # DELETE /entities/1.json
   def destroy
+    #binding.pry
+    deeds = Deed.find_by(entity: @entity)
+    deeds.each do |d|
+      d.destroy
+    end
     @entity.destroy
     respond_to do |format|
       format.html { redirect_to entities_url, notice: 'Entity was successfully destroyed.' }
