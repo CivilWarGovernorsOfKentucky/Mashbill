@@ -71,8 +71,7 @@ class EntitiesController < ApplicationController
   # DELETE /entities/1
   # DELETE /entities/1.json
   def destroy
-    #binding.pry
-    deeds = Deed.find_by(entity: @entity)
+    deeds = Deed.where(entity: @entity)
     deeds.each do |d|
       d.destroy
     end
