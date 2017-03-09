@@ -24,4 +24,14 @@ class TextTransporter
     document_root && Dir.exists?(document_root)
   end
   
+  def bio_path(ref_id)
+    File.join(TextTransporter.document_root, 'biography_xml', ref_id+".xml")    
+  end
+  
+  def save_entity(ref_id, text, user)
+    File.write(bio_path(ref_id), text)
+    GitTalker.new.commit_and_push_file(bio_path(ref_id), user)
+    
+  end
+  
 end

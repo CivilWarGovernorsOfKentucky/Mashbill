@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="O001006">
+    <teiHeader>
+      <% render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
+        <profileDesc>
+            <textClass>
+                <keywords>
+                    <term type="type">Organization</term>
+                </keywords>
+            </textClass>
+            <particDesc>
+                <org xml:id="<%= entity.xml_id%>">
+                    <orgName><%= entity.name %></orgName>
+                    <% if entity.birth_date %>
+                      <event type="begun" when="<%= entity.birth_date %>">Begun <% format_date(entity.birth_date) %></event>
+                    <% end %>
+                    <% if entity.death_date %>
+                      <event type="begun" when="<%= entity.death_date %>"><% format_date(entity.death_date) %></devent>
+                    <% end %>
+
+                </org>
+            </particDesc>
+        </profileDesc>
+    </teiHeader>
+    <%= render :partial => 'entities/tei_text', :locals => { :entity => entity } %>
+</TEI>

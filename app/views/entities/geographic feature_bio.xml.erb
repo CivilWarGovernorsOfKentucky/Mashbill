@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="G001825">
+    <teiHeader>
+      <% render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
+        <profileDesc>
+            <textClass>
+                <keywords>
+                    <term type="type">Geographical Feature</term>
+                </keywords>
+            </textClass>
+            <particDesc>
+                <place xml:id="<%= entity.xml_id%>">
+                    <geogName><% entity.xml_id %></geogName>
+                </place>
+            </particDesc>
+        </profileDesc>
+    </teiHeader>
+    <text>
+        <body><p>Formed by the convergence of the <geogName ref="G000001">Allegheny</geogName> and <geogName ref="G000002">Monogahela Rivers</geogName> at <placeName ref="P001033">Pittsburgh, Pennsylvania</placeName>. Flows into the <geogName ref="G000003">Mississippi River</geogName> near <placeName ref="P001034">Cairo, Illinois</placeName>, and <placeName ref="P001035">Ballard County, Kentucky</placeName>. Flows through <placeName ref="P001006">Pennsylvania</placeName>, <placeName ref="P001036">Ohio</placeName>, <placeName ref="P001037">Virginia</placeName>, <placeName ref="P001038">West Virgninia</placeName>, Kentucky, <placeName ref="P001818">Indiana</placeName>, and <placeName ref="P001039">Illinois</placeName>.</p></body>
+    <back>
+        <ab><bibl><hi rend="italic">The Kentucky Encyclopedia</hi>, ed. John E. Kleber (Lexington, 1992), s.v. “Ohio River” (by Charles E. Parrish), 690-92. </bibl></ab>
+    </back>
+    </text>
+</TEI>
