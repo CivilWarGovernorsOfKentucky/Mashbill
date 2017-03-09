@@ -61,7 +61,7 @@ class Annotation < ActiveRecord::Base
       response = RestClient::Request.execute(method: :get, url: url,
                             timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
     rescue => e
-    #e.response
+      logger.error "ERROR executed hypothesis api query " + url + " and received the following exception: " + e.response
     end
     if response
       jason_hash = JSON.parse(response)
@@ -95,10 +95,14 @@ class Annotation < ActiveRecord::Base
   
   def hypothesis_annotation
     unless defined? @hypothesis_hash
-      response = RestClient::Request.execute( method: :get, 
-                                              url: "https://hypothes.is/api/annotations/#{self.hypothesis_annotation_id}",
-                                              timeout: 10, 
-                                              headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
+      begin
+        response = RestClient::Request.execute( method: :get, 
+                                               url: "https://hypothes.is/api/annotations/#{self.hypothesis_annotation_id}",
+                                                timeout: 10, 
+                                                headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
+      rescue => e
+        logger.error "ERROR executed hypothesis api query " + "https://hypothes.is/api/annotations/#{self.hypothesis_annotation_id}" + " and received the following exception: " + e.response
+      end 
       @hypothesis_hash = JSON.parse(response)
     end
     
