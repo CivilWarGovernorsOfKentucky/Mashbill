@@ -1,3 +1,4 @@
+require 'text_transporter'
 class EntitiesController < ApplicationController
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
 
@@ -40,6 +41,7 @@ class EntitiesController < ApplicationController
         annotation.entity_id=@entity.id
         annotation.save
         record_deed(Deed::ENTITY_CREATE)
+        update_tei
         format.html { redirect_to(bycwgkid_path(annotation.document.cwgk_id), notice: 'Entity was successfully created.') } 
         format.json { render :show, status: :created, location: @entity }
       else
@@ -55,6 +57,7 @@ class EntitiesController < ApplicationController
     respond_to do |format|
       if @entity.update(entity_params)
         record_deed(Deed::ENTITY_EDIT)
+        update_tei
         format.html { redirect_to @entity, notice: 'Entity was successfully updated.' }
         format.json { render :show, status: :ok, location: @entity }
       else
@@ -93,6 +96,14 @@ class EntitiesController < ApplicationController
     deed.user = current_user
     deed.save!
   end
+
+  def update_tei
+    return unless TextTransporter.enabled?
+    tei_xml = @entity.build_tei
+    transporter = TextTransporter.new
+    transporter.save_entity(@entity.ref_id, tei_xml, current_user)
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

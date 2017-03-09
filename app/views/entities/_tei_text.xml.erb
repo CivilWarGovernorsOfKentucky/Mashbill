@@ -1,0 +1,12 @@
+<text>
+  <% if entity.biography %>
+    <body>
+        <%= raw(format_biography(entity.biography)) %>
+    </body>
+  <% end %>
+  <% if entity.bibliography%>
+    <back>
+        <ab><bibl><%= raw(format_bibliography(entity.bibliography)) %></bibl></ab>
+    </back>
+  <% end %>
+</text>
