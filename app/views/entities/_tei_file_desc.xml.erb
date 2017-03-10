@@ -1,0 +1,28 @@
+<fileDesc>
+    <titleStmt>
+        <title level="a" type="main"><%= entity.name %></title>
+        <% entity.deeds.each do |deed| %>
+          <respStmt>
+              <% if deed.deed_type = Deed::ENTITY_CREATE %>
+                <resp n="created">Created by:</resp>
+              <% else %>
+                <resp n="created">Edited by:</resp>
+              <% end %>
+              <name><%= deed.user.email %></name>
+            </respStmt>
+          <% end %>
+    </titleStmt>
+    <publicationStmt>
+        <publisher>Kentucky Historical Society</publisher>
+        <pubPlace>Frankfort, Kentucky</pubPlace>
+        <availability><p>All research and writing of Civil War Governors of Kentucky Digital Documentary Edition annotations was undertaken by project staff, volunteers, and interns. Each record contains citations to relevant primary and secondary source material. All annotations are copyright Kentucky Historical Society, and should be referenced as such in any published work.</p></availability>
+    </publicationStmt>
+    <seriesStmt>
+        <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+        <respStmt>
+            <resp>Project Director</resp>
+            <name>Patrick A. Lewis</name>
+        </respStmt>
+    </seriesStmt>
+    <sourceDesc><ab>Born Digital</ab></sourceDesc>
+</fileDesc>

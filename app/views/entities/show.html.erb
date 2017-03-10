@@ -68,6 +68,11 @@
   <%= @entity.bibliography %>
 </p>
 
+<p>
+  <strong>Reference ID:</strong>
+  <%= @entity.ref_id %>
+</p>
+
 <div class="panel-footer clearfix">
 <div class="pull-right">
 <%= link_to 'Edit', edit_entity_path(@entity) %> 
@@ -120,4 +125,5 @@ Not mentioned in any documents yet.
 </div>
 <%= render "relationships/table" %>
 </div>
+<%= link_to 'Destroy Entity', @entity, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>

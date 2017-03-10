@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="N001000">
+    <teiHeader>
+      <% render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
+        <profileDesc>
+            <textClass>
+            <keywords>
+                <term type="type">Person</term>
+            </keywords>
+        </textClass>
+        <particDesc>
+                <person xml:id="<%= entity.xml_id%>">
+                    <persName>
+                      <%= entity.name %>
+                      <% if entity.disambiguator %>
+                        (<%= entity.disambiguator %>)
+                      <% end %>
+                    </persName>
+                    <% if entity.birth_date %>
+                      <birth when="<%= entity.birth_date %>"><% format_date(entity.birth_date) %></birth>
+                    <% end %>
+                    <% if entity.death_date %>
+                      <death when="<%= entity.death_date %>"><% format_date(entity.death_date) %></death>
+                    <% end %>
+                </person> 
+        </particDesc>    
+        </profileDesc>
+    </teiHeader>
+    <%= render :partial => 'entities/tei_text', :locals => { :entity => entity } %>
+</TEI>
