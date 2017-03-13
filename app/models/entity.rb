@@ -44,7 +44,9 @@ class Entity < ActiveRecord::Base
   end
 
   def ref_id
-    self[:ref_id] || Type::REF_PREFIX[entity_type] + id.to_s.rjust(8,'0')
+    if id != nil 
+      self[:ref_id] || Type::REF_PREFIX[entity_type] + id.to_s.rjust(8,'0')
+    end
   end
 
   def xml_id

@@ -1,7 +1,9 @@
 module EntitiesHelper
   
   def format_date(date)
-    Date.parse(date).to_s
+    unless date.blank?
+      Date.parse(date).to_s
+    end
   end
   
   def render_markdown(source)
