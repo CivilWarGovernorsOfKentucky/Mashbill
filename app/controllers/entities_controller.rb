@@ -20,9 +20,7 @@ class EntitiesController < ApplicationController
   def new
     @entity = Entity.new
     @annotation = nil
-    if params[:annotation_id]
-      @annotation=Annotation.find(params[:annotation_id])
-    end
+    @annotation=Annotation.find(params[:annotation_id])
     @entity.name = params[:verbatim]
   end
 
@@ -37,12 +35,18 @@ class EntitiesController < ApplicationController
     @entity.user = current_user
     respond_to do |format|
       if @entity.save
-        annotation = Annotation.find(params["annotation_id"])
-        annotation.entity_id=@entity.id
-        annotation.save
+        if params["annotation_id"]
+          annotation = Annotation.find(params["annotation_id"])
+          annotation.entity_id=@entity.id
+          annotation.save
+        end
         record_deed(Deed::ENTITY_CREATE)
         update_tei
-        format.html { redirect_to(bycwgkid_path(annotation.document.cwgk_id), notice: 'Entity was successfully created.') } 
+        if annotation 
+          format.html { redirect_to(bycwgkid_path(annotation.document.cwgk_id), notice: 'Entity was successfully created.') }
+        else
+          format.html { redirect_to(dashboard_url, notice: 'Entity was successfully created.') }
+        end 
         format.json { render :show, status: :created, location: @entity }
       else
         format.html { render :new }

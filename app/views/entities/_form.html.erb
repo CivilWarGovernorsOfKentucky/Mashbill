@@ -56,10 +56,10 @@
     <%= f.text_field :long %>
   </div>
   </div>
-      <div class="field">
-  <label>Reference ID:</label>
-  <%= @entity.ref_id %>
-</div>
+    <div class="field">
+      <label>Reference ID:</label>
+      <%= @entity.ref_id %>
+    </div>
   </div>
   <div class="col-md-8">
   <div class="field">
@@ -111,7 +111,7 @@ $('#entity_entity_type').change(function () {
     $('#deathdate').show();}
   else { $('#person').hide();
     $('#birthdate').hide();
-    $('#deaththdate').hide();
+    $('#deathdate').hide();
     $('#creationdate').show();
     $('#dissolutiondate').show(); }    
   if ($('#entity_entity_type option:selected').val() == 'place') {  
@@ -119,6 +119,6 @@ $('#entity_entity_type').change(function () {
   else { $('#place').hide();}
   if ($('#entity_entity_type option:selected').val() == 'organization' || $('#entity_entity_type option:selected').val() == 'person') {  
     $('#personandorg').show(); }
-  else { $('#personandorg').hide();}  
+  else { $('#personandorg').hide();} 
 });
 });</script>
