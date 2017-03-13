@@ -20,7 +20,9 @@ class EntitiesController < ApplicationController
   def new
     @entity = Entity.new
     @annotation = nil
-    @annotation=Annotation.find(params[:annotation_id])
+    if params["annotation_id"]
+      @annotation=Annotation.find(params[:annotation_id])
+    end
     @entity.name = params[:verbatim]
   end
 
