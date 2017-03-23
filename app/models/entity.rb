@@ -14,6 +14,7 @@ class Entity < ActiveRecord::Base
     message: "Bad date format.  Allowed:  2001, 2001-09, 2001-09-01" }, allow_blank: true
     
   after_save :update_tei
+  before_destroy :cleanup_entity
 
   module Type
   	PERSON = "person"
@@ -56,6 +57,14 @@ class Entity < ActiveRecord::Base
   def update_tei
     # build_tei_from_template
     # save tei file
+  end
+
+  def cleanup_entity
+    relationships = self.left_relationships.to_a + self.right_relationships.to_a
+    relationships.each do |r| 
+        Deed.where(:relationship_id => r.id).delete_all && r.destroy!
+    end
+    Deed.where(:entity => self).delete_all
   end
   
   def build_tei

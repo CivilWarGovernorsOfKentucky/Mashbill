@@ -8,8 +8,13 @@ user_name = user_signed_in? && deed.user.id == current_user.id ? 'you' : deed.us
 
 doc = deed.document.nil? ? '' : link_to(deed.document.cwgk_id + " " + deed.document.title.chomp(" · Civil War Governors of Kentucky: Early Access"), bycwgkid_path(deed.document.cwgk_id))
 entity = deed.entity.nil? ? '' : link_to(deed.entity.name, entity_path(deed.entity))
-entity_1 = deed.relationship.nil? ? '' :  link_to(deed.relationship.entity_1.name, entity_path(deed.relationship.entity_1))
-entity_2 = deed.relationship.nil? ? '' :  link_to(deed.relationship.entity_2.name, entity_path(deed.relationship.entity_2))
+if deed.relationship
+	entity_1 = deed.relationship.entity_1.nil? ? '' :  link_to(deed.relationship.entity_1.name, entity_path(deed.relationship.entity_1))
+	entity_2 = deed.relationship.entity_2.nil? ? '' :  link_to(deed.relationship.entity_2.name, entity_path(deed.relationship.entity_2))
+else
+	entity_1 = ""
+	entity_2 = ""
+end
 
 output = "#{user_name} "
 
