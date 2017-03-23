@@ -22,6 +22,12 @@ case deed.deed_type
 when 'doc_completed'
 output += "completed #{doc}"
 
+when 'needs_review'
+output += "marked #{doc} for review"
+
+when 'reviewed'
+output += "reviewed #{doc}"
+
 when 'entity_edit'
 output += "edited #{entity}"
 

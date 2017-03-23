@@ -42,6 +42,18 @@
     <% end %>
   </tbody>
 </table>
+
+<h3>Documents Needing Review</h3>
+
+<table>
+  <tbody>
+    <% @review_documents.reverse.each do |document| %>
+      <tr>
+        <td><%= link_to document.cwgk_id + " " + document.title.chomp(" · Civil War Governors of Kentucky: Early Access"), bycwgkid_path(document.cwgk_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
 
 <div class="col-md-4"><small>

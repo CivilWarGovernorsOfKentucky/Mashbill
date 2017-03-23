@@ -89,6 +89,10 @@ class RelationshipsController < ApplicationController
   # DELETE /relationships/1
   # DELETE /relationships/1.json
   def destroy
+    deeds = Deed.where(relationship: @relationship)
+    deeds.each do |d|
+      d.destroy
+    end
     @relationship.destroy
     respond_to do |format|
       format.html { redirect_to relationships_url, notice: 'Relationship was successfully destroyed.' }

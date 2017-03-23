@@ -11,8 +11,20 @@ class UsersController < ApplicationController
     @user=current_user
     Annotation.ingest_new_annotations
     @documents = Document.joins(:annotations).where(:annotations => {:hypothesis_user => current_user.hypothesis_user}).uniq
+    @review_documents = Document.where(:needs_review => true)
     @annotations=Annotation.all
     @deeds=Deed.order(created_at: :desc)
+  end
+
+  def statistics
+    @user=current_user
+    @review_documents = Document.where(:needs_review => true)
+    @annotations_count=Annotation.count
+    @deed_count=Deed.count
+    @completed_documents_count=Document.where(:completed => true).count
+    @needs_review_documents_count=Document.where(:needs_review => true).count
+    @entity_count=Entity.count
+    @relationship_count=Relationship.count
   end
 
   # GET /users/1
