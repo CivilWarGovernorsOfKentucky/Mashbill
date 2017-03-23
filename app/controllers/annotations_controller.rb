@@ -89,7 +89,7 @@ class AnnotationsController < ApplicationController
   def destroy
     @annotation.destroy
     respond_to do |format|
-      format.html { redirect_to annotations_url, notice: 'Annotation was successfully destroyed.' }
+      format.html { redirect_to bycwgkid_path(@annotation.cwgk_id), notice: 'Annotation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
