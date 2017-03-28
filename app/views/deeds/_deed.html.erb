@@ -22,6 +22,12 @@ case deed.deed_type
 when 'doc_completed'
 output += "completed #{doc}"
 
+when 'needs_review'
+output += "marked #{doc} for review"
+
+when 'reviewed'
+output += "reviewed #{doc}"
+
 when 'entity_edit'
 output += "edited #{entity}"
 
@@ -32,7 +38,7 @@ when 'relationship_edit'
 output += "edited the relationship between #{entity_1} and #{entity_2}"
 
 when 'relationship_create'
-output += "created the relationship between #{entity_1} and #{entity_2}"
+output += "created the relationship between #{entity_1} and #{entity_2} on #{doc}"
 
 end %>
 

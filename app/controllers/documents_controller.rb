@@ -67,15 +67,39 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @document.completed = true
     @document.save!
-    record_deed
+    record_deed("mark_complete")
     update_tei if TextTransporter.enabled?
     redirect_to dashboard_path
   end
 
-  def record_deed
+  def needs_review
+    @document = Document.find(params[:id])
+    @document.needs_review = true
+    @document.save!
+    record_deed("needs_review")
+    #update_tei if TextTransporter.enabled?
+    redirect_to dashboard_path
+  end
+
+  def reviewed
+    @document = Document.find(params[:id])
+    @document.needs_review = false
+    @document.save!
+    record_deed("reviewed")
+    #update_tei if TextTransporter.enabled?
+    redirect_to dashboard_path
+  end
+
+  def record_deed(deed_type)
     deed = Deed.new
     deed.document = @document
-    deed.deed_type = Deed::DOC_COMPLETED
+    if deed_type=="mark_complete"
+      deed.deed_type = Deed::DOC_COMPLETED
+    elsif deed_type=="needs_review"
+      deed.deed_type = Deed::NEEDS_REVIEW
+    elsif deed_type=="reviewed"
+      deed.deed_type = Deed::REVIEWED
+    end
     deed.user = current_user
     deed.save!
   end
