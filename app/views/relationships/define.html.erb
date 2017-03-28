@@ -9,6 +9,7 @@
       <th>Entity 1</th>
       <th>Entity 2</th>
       <th>Relationship type</th>
+      <th>Document</th>
       <th>User</th>
       <th>Citation</th>
       <th colspan="3"></th>
@@ -20,6 +21,7 @@
         <td><%= link_to relationship.entity_1.name, edit_entity_path(relationship.entity_1.id) %></td>
         <td><%= link_to relationship.entity_2.name, edit_entity_path(relationship.entity_2.id) %></td>
         <td><%= relationship.relationship_type %></td>
+        <td><%= relationship.document_id.nil? ? '' : Document.find(relationship.document_id).cwgk_id %></td>
         <td><%= relationship.user.email %></td>
         <td><%= relationship.citation %></td>
         <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>

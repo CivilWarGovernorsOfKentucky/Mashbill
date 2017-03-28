@@ -55,6 +55,7 @@ class RelationshipsController < ApplicationController
   end
 
   def add
+    document = Document.find_by cwgk_id: params[:cwgk_id]
     params[:left_entity].each do |left|
         params[:right_entity].each do |right|
           next if left == right
@@ -64,8 +65,9 @@ class RelationshipsController < ApplicationController
           @relationship.relationship_type = params[:relationship_type]
           @relationship.user_id = current_user.id
           @relationship.citation = params[:citation]
+          @relationship.document_id = document.id
           @relationship.save!
-          record_deed(Deed::RELATIONSHIP_CREATE)
+          record_deed(Deed::RELATIONSHIP_CREATE, document)
         end
       end
     redirect_to define_relationships_path(params[:cwgk_id])
@@ -100,11 +102,12 @@ class RelationshipsController < ApplicationController
     end
   end
 
-  def record_deed(deed_type)
+  def record_deed(deed_type, document)
     deed = Deed.new
     deed.relationship = @relationship
     deed.deed_type = deed_type
     deed.user = current_user
+    deed.document_id = document.id
     deed.save!
   end
 

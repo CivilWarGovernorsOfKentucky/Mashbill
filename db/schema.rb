@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119201524) do
+ActiveRecord::Schema.define(version: 20170328171905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170119201524) do
     t.datetime "updated_at"
     t.string   "title"
     t.boolean  "completed"
+    t.boolean  "needs_review"
   end
 
   create_table "entities", force: :cascade do |t|
@@ -100,8 +101,10 @@ ActiveRecord::Schema.define(version: 20170119201524) do
     t.text     "citation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "document_id"
   end
 
+  add_index "relationships", ["document_id"], name: "index_relationships_on_document_id", using: :btree
   add_index "relationships", ["entity_1_id"], name: "index_relationships_on_entity_1_id", using: :btree
   add_index "relationships", ["entity_2_id"], name: "index_relationships_on_entity_2_id", using: :btree
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
@@ -129,4 +132,5 @@ ActiveRecord::Schema.define(version: 20170119201524) do
   add_foreign_key "deeds", "entities"
   add_foreign_key "deeds", "relationships"
   add_foreign_key "deeds", "users"
+  add_foreign_key "relationships", "documents"
 end

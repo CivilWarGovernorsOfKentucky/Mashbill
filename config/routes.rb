@@ -21,11 +21,14 @@ Rails.application.routes.draw do
   get   '/entities/show/:id', :to => 'entities#show',:as => :show_entity
   get   '/entities/edit_bio/:id', :to => 'entities#edit_bio', :as => :edit_entity_bio
   post   '/documents/mark_complete/:id', :to => 'documents#mark_complete', :as => :mark_complete
+  post   '/documents/needs_review/:id', :to => 'documents#needs_review', :as => :needs_review
+  post   '/documents/reviewed/:id', :to => 'documents#reviewed', :as => :reviewed
   get   '/documents/search', :to => 'documents#search'
   get   '/documents/search_by_name', :to => 'documents#search_by_name'
   get   '/entities/search', :to => 'entities#search'
   get   '/deeds/list', :to => 'deeds#list'
   get   '/annotations/search_identify_annotation', :to => 'annotations#search_identify_annotation'
+  get   '/statistics', :to => 'users#statistics', :as => :statistics
 
   resources :entities   
   resources :documents
