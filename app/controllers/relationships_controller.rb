@@ -47,8 +47,7 @@ class RelationshipsController < ApplicationController
       #get the entities for the annotations for the doc
       @entities << annotation.entity unless annotation.entity.nil?
     end
-    # clear out the nil entities
-    @relationships=get_relationships_for_entities
+    @relationships = Relationship.where document_id: document.id
     #pass to the view to show the entities with a checkbox next to them
     @entities
     @cwgk_id = params[:cwgk_id]

@@ -16,7 +16,8 @@
     </tr>
   </thead>
   <tbody>
-    <% @relationships.each do |relationship| %>
+    <% unless @relationships.nil?
+        @relationships.each do |relationship| %>
       <tr>
         <td><%= link_to relationship.entity_1.name, edit_entity_path(relationship.entity_1.id) %></td>
         <td><%= link_to relationship.entity_2.name, edit_entity_path(relationship.entity_2.id) %></td>
@@ -27,6 +28,7 @@
         <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
         <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <% end
+        end %>
   </tbody>
 </table>
