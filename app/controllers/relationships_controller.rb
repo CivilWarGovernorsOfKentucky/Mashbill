@@ -91,14 +91,24 @@ class RelationshipsController < ApplicationController
   # DELETE /relationships/1
   # DELETE /relationships/1.json
   def destroy
+    if @relationship.document_id
+      document = Document.find(@relationship.document_id).cwgk_id
+    else
+      document = nil
+    end
     deeds = Deed.where(relationship: @relationship)
     deeds.each do |d|
       d.destroy
     end
     @relationship.destroy
     respond_to do |format|
-      format.html { redirect_to relationships_url, notice: 'Relationship was successfully destroyed.' }
-      format.json { head :no_content }
+      if !document.nil?
+        format.html { redirect_to define_relationships_path(document) }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to relationships_url, notice: 'Relationship was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -114,9 +124,6 @@ class RelationshipsController < ApplicationController
   private
     def get_relationships_for_entities
       @relationships = []
-      #@relationships << entity.entity_1_id
-      #Relationship.where(:entity_1_id => @entities.first.id)
-      #Relationship.where(:entity_2_id => @entities.first.id)
       @entities.each do |entity| 
           Relationship.where(:entity_1_id => entity.id).each do |relationship|
             if (@entities.include?(relationship.entity_2)) then 
