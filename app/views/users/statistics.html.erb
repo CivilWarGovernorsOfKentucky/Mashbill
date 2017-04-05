@@ -39,8 +39,22 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to "Edit Race Descriptions.", race_descriptions_path %>
 
+<div>
+<%= link_to "Edit Race Descriptions.", race_descriptions_path %>
+</div>
+
+<h3>Documents Marked Completed</h3>
+
+<table>
+  <tbody>
+    <% @complete_documents.reverse.each do |document| %>
+      <tr>
+        <td><%= link_to document.cwgk_id + " " + document.title.chomp(" · Civil War Governors of Kentucky: Early Access"), bycwgkid_path(document.cwgk_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 </div>
 

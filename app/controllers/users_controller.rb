@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def statistics
     @user=current_user
     @review_documents = Document.where(:needs_review => true)
+    @complete_documents = Document.where(:completed => true)
     @annotations_count=Annotation.count
     @deed_count=Deed.count
     @completed_documents_count=Document.where(:completed => true).count
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    binding.pry
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -60,6 +62,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -89,6 +92,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:hypothesis_user)
+      params.require(:user).permit(:hypothesis_user, :name)
     end
 end
