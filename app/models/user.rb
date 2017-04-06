@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
 	validates :hypothesis_user, format: { with: /@hypothes\.is/,
     message: "must be in format user@hypothes.is" }, allow_blank: true
 
+    #validates :name, :presence => true
+
 end

@@ -44,8 +44,8 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+  # this never gets called, see registration controller
   def create
-    binding.pry
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -61,8 +61,8 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
+  # this never gets called, see registration controller
   def update
-    binding.pry
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
