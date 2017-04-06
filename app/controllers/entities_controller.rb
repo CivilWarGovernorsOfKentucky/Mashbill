@@ -77,6 +77,14 @@ class EntitiesController < ApplicationController
     @entity=Entity.find(params[:id])
   end
 
+  def show_bio
+    @entity=Entity.find(params[:id])
+    renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
+    @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+    @relationships = @entity.relationships
+    render :layout => false
+  end
+
   # DELETE /entities/1
   # DELETE /entities/1.json
   def destroy

@@ -12,6 +12,8 @@ class Entity < ActiveRecord::Base
 
   validates :death_date, format: { with: /\bunknown\b|\A[cC]?(\d\d\d\d)(-\d\d)?(-\d\d)?\z/,
     message: "Bad date format.  Allowed:  2001, 2001-09, 2001-09-01" }, allow_blank: true
+
+  validates :name, :presence => true
     
   after_save :update_tei
   before_destroy :cleanup_entity

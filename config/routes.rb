@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get   '/add_to_relationship', :to => 'relationships#add', :as => :add_to_relationship
   get   '/entities/show/:id', :to => 'entities#show',:as => :show_entity
   get   '/entities/edit_bio/:id', :to => 'entities#edit_bio', :as => :edit_entity_bio
+  get   '/entities/show_bio/:id', :to => 'entities#show_bio', :as => :show_entity_bio
   post   '/documents/mark_complete/:id', :to => 'documents#mark_complete', :as => :mark_complete
   post   '/documents/needs_review/:id', :to => 'documents#needs_review', :as => :needs_review
   post   '/documents/reviewed/:id', :to => 'documents#reviewed', :as => :reviewed

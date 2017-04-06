@@ -78,7 +78,7 @@ class DocumentsController < ApplicationController
     @document.save!
     record_deed("needs_review")
     #update_tei if TextTransporter.enabled?
-    redirect_to dashboard_path
+    redirect_to bycwgkid_path(@document.cwgk_id)
   end
 
   def reviewed
@@ -87,7 +87,7 @@ class DocumentsController < ApplicationController
     @document.save!
     record_deed("reviewed")
     #update_tei if TextTransporter.enabled?
-    redirect_to dashboard_path
+    redirect_to bycwgkid_path(@document.cwgk_id)
   end
 
   def record_deed(deed_type)

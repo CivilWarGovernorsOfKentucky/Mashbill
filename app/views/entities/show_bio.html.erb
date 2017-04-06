@@ -1,0 +1,87 @@
+
+<h1><%=@entity.name%></h1>
+
+<p>
+  <strong>Entity type:</strong>
+  <%= @entity.entity_type %>
+</p>
+
+<% if @entity.entity_type == 'person' then %>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @entity.gender %>
+</p>
+
+<p>
+  <strong>Race Description:</strong>
+  <%= render partial: "race_description", collection: @entity.race_descriptions %>
+</p>
+
+<p>
+  <strong>Birth date:</strong>
+  <%= @entity.birth_date %>
+</p>
+
+<p>
+  <strong>Death date:</strong>
+  <%= @entity.death_date %>
+</p>
+<% end %>
+
+<% if @entity.entity_type == 'place' then %>
+<p>
+  <strong>Latitude:</strong>
+  <%= @entity.lat %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @entity.long %>
+</p>
+<% end %>
+
+<% if @entity.entity_type == 'organization' then %>
+<p>
+  <strong>Creation date:</strong>
+  <%= @entity.birth_date %>
+</p>
+
+<p>
+  <strong>Dissolution date:</strong>
+  <%= @entity.death_date %>
+</p>
+<% end %>
+
+<p>
+  <strong>Bibliography:</strong>
+  <%= @entity.bibliography %>
+</p>
+
+<p>
+  <strong>Reference ID:</strong>
+  <%= @entity.ref_id %>
+</p>
+
+
+<p>
+  <%= if @entity.biography.present? then raw(@markdown.render(@entity.biography)) end %>
+</p>
+
+
+<h4>Mentioned in Documents</h4>
+<% if @entity.documents.blank? %>
+Not mentioned in any documents yet.
+<% else %>
+<table>
+  <tbody>
+    <% @entity.documents.reverse.each do |document| %>
+      <tr>
+        <td><%= link_to document.cwgk_id, bycwgkid_path(document.cwgk_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+</p>
+

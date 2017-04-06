@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def statistics
     @user=current_user
     @review_documents = Document.where(:needs_review => true)
+    @complete_documents = Document.where(:completed => true)
     @annotations_count=Annotation.count
     @deed_count=Deed.count
     @completed_documents_count=Document.where(:completed => true).count
@@ -43,6 +44,7 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+  # this never gets called, see registration controller
   def create
     @user = User.new(user_params)
 
@@ -59,6 +61,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
+  # this never gets called, see registration controller
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -89,6 +92,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:hypothesis_user)
+      params.require(:user).permit(:hypothesis_user, :name)
     end
 end
