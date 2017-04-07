@@ -81,7 +81,11 @@ class EntitiesController < ApplicationController
     @entity=Entity.find(params[:id])
     renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
     @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
-    @relationships = @entity.relationships
+    render :layout => false
+  end
+
+  def show_metadata
+    @entity=Entity.find(params[:id])
     render :layout => false
   end
 
