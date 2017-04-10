@@ -14,7 +14,7 @@ class EntitiesController < ApplicationController
     renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
     @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
     @relationships = @entity.relationships
-    @entity_docs = @entity.documents.page params[:page]
+    @documents = @entity.documents.page params[:page]
   end
 
   # GET /entities/new

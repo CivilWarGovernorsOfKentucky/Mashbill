@@ -1,6 +1,6 @@
 <table>
   <tbody>
-    <% @entity_docs.each do |document| %>
+    <% @documents.each do |document| %>
       <tr>
         <td><%= link_to document.cwgk_id, bycwgkid_path(document.cwgk_id) %></td>
       </tr>
