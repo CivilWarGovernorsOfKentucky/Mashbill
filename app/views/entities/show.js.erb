@@ -1,0 +1,2 @@
++$('#entitydocs').html('<%= escape_javascript render("documents/list") %>');
++$('#paginator').html('<%= escape_javascript(paginate(@entity_docs, :remote => true).to_s) %>');

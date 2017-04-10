@@ -3,7 +3,7 @@ class Entity < ActiveRecord::Base
   has_many :annotations
   has_and_belongs_to_many :race_descriptions
   has_many :deeds
-  has_many :documents, through: :annotations
+  has_many :documents, -> { order "id DESC" }, through: :annotations
   has_many :left_relationships, :class_name => "Relationship", :foreign_key => :entity_1_id
   has_many :right_relationships, :class_name => "Relationship", :foreign_key => :entity_2_id
 

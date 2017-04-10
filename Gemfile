@@ -47,7 +47,7 @@ gem 'rest-client'
 gem 'redcarpet'
 gem 'devise'
 gem 'textacular', '~> 3.0'
-gem 'will_paginate'
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
