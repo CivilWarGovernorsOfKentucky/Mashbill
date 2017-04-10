@@ -1,4 +1,6 @@
 class Deed < ActiveRecord::Base
+  default_scope { order('created_at DESC') }
+
 # constants
   DOC_COMPLETED = 'doc_completed'
   NEEDS_REVIEW = 'needs_review'

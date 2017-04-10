@@ -9,7 +9,7 @@ class DeedsController < ApplicationController
     if @user
       condition = ['user_id = ?', @user.id]
     end
-    @deeds = Deed.where(condition).order('created_at DESC').paginate :page => params[:page], :per_page => PAGES_PER_SCREEN
+    @deeds = Deed.where(condition).page params[:page]
   end
 
   # GET /deeds
@@ -82,6 +82,6 @@ class DeedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def deed_params
-      params.require(:deed).permit(:deed_type, :user_id, :document_id, :entity_id, :relationship_id)
+      params.require(:deed).permit(:page, :deed_type, :user_id, :document_id, :entity_id, :relationship_id)
     end
 end
