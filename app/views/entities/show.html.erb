@@ -104,15 +104,12 @@
 <% if @entity.documents.blank? %>
 Not mentioned in any documents yet.
 <% else %>
-<table>
-  <tbody>
-    <% @entity.documents.reverse.each do |document| %>
-      <tr>
-        <td><%= link_to document.cwgk_id, bycwgkid_path(document.cwgk_id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="entitydocs">
+<%= render "documents/list" %>
+</div>
+<div id="paginator">
+<%= paginate @documents, remote: true %>
+</div>
 <% end %>
 </p>
 </div>

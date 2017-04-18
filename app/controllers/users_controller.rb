@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @documents = Document.joins(:annotations).where(:annotations => {:hypothesis_user => current_user.hypothesis_user}).uniq
     @review_documents = Document.where(:needs_review => true)
     @annotations=Annotation.all
-    @deeds=Deed.order(created_at: :desc)
+    @deeds=Deed.all.page params[:page]
   end
 
   def statistics

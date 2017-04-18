@@ -14,6 +14,7 @@ class EntitiesController < ApplicationController
     renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
     @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
     @relationships = @entity.relationships
+    @documents = @entity.documents.page params[:page]
   end
 
   # GET /entities/new
@@ -81,7 +82,11 @@ class EntitiesController < ApplicationController
     @entity=Entity.find(params[:id])
     renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
     @markdown = Redcarpet::Markdown.new(renderer, extensions = {})
-    @relationships = @entity.relationships
+    render :layout => false
+  end
+
+  def show_metadata
+    @entity=Entity.find(params[:id])
     render :layout => false
   end
 
@@ -128,6 +133,6 @@ class EntitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def entity_params
       params.require(:entity).permit(:name, :entity_type, :birth_date, :death_date, :biography, :bibliography, :user_id, :gender, :lat, :long, 
-        :disambiguator, :race_description, race_description_ids:[])
+        :disambiguator, :race_description, :page, race_description_ids:[])
     end
 end
