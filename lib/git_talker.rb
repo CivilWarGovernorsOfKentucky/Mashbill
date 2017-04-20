@@ -7,7 +7,8 @@ class GitTalker
   def commit_and_push_file(filename, user)
     tt = TextTransporter.new
     username =  user.email.sub(/@.*/, '')
-    system("cd #{Rails.application.config.document_root}; git add #{filename}; git commit -m 'changes by Mashbill user #{username}'; git push")
+    command = "cd #{Rails.application.config.document_root}; git pull; git add #{filename}; git commit -m 'changes by Mashbill user #{username}'; git push"
+    system(command)
     raise StandardError.new("Git command failed") if $? != 0
   end
   
