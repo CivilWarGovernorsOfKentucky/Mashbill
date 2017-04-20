@@ -40,6 +40,15 @@ class Entity < ActiveRecord::Base
   	FEMALE = "female"
   	UNKNOWN = "unknown"
   	ALL_TYPES = [MALE,FEMALE,UNKNOWN]
+  	
+  	TEI_TYPE_MAP = {
+  	  MALE => 'M',
+  	  FEMALE => 'F',
+  	  UNKNOWN => 'U'
+  	}
+  	def self.tei_type(gender)
+  	  TEI_TYPE_MAP[gender]
+  	end
   end
 
   def relationships
