@@ -3,12 +3,12 @@
         <title level="a" type="main"><%= entity.name %></title>
         <% entity.deeds.each do |deed| %>
           <respStmt>
-              <% if deed.deed_type = Deed::ENTITY_CREATE %>
+              <% if deed.deed_type == Deed::ENTITY_CREATE %>
                 <resp n="created">Created by:</resp>
               <% else %>
-                <resp n="created">Edited by:</resp>
+                <resp n="edited">Edited by:</resp>
               <% end %>
-              <name><%= deed.user.email %></name>
+              <name><%= deed.user.name %></name>
             </respStmt>
           <% end %>
     </titleStmt>
