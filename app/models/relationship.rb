@@ -3,6 +3,7 @@ class Relationship < ActiveRecord::Base
   belongs_to :entity_2, :class_name => "Entity", :foreign_key => :entity_2_id
   belongs_to :user, :class_name => "User", :foreign_key => :user_id
   has_many :deeds
+  belongs_to :document
 
   module Type
   	FAMILIAL = "familial"
