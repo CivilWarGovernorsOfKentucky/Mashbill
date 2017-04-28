@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="N001000">
     <teiHeader>
-      <% render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
+      <%= render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
         <profileDesc>
             <textClass>
             <keywords>
@@ -16,11 +16,19 @@
                         (<%= entity.disambiguator %>)
                       <% end %>
                     </persName>
-                    <% if entity.birth_date %>
+                    <% unless entity.birth_date.blank? %>
                       <birth when="<%= entity.birth_date %>"><% format_date(entity.birth_date) %></birth>
                     <% end %>
-                    <% if entity.death_date %>
+                    <% unless entity.death_date.blank? %>
                       <death when="<%= entity.death_date %>"><% format_date(entity.death_date) %></death>
+                    <% end %>
+                    <% if entity.race_descriptions.present? %>
+                      <% entity.race_descriptions.each do |race_description| %>
+                        <trait type="race" subtype="<%= race_description.race_description %>"/>
+                      <% end %>
+                    <% end %>
+                    <% unless entity.gender.blank? %>
+                      <trait type="gender" subtype="<%= Entity::Gender.tei_type(entity.gender) %>">
                     <% end %>
                 </person> 
         </particDesc>    

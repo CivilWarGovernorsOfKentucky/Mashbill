@@ -90,6 +90,37 @@ class EntitiesController < ApplicationController
     render :layout => false
   end
 
+  def show_viz
+    @entity=Entity.find(params[:id])
+    render :layout => false
+  end
+
+  def data
+    @entity=Entity.find(params[:id])
+    data = {"nodes" => [], "links" => []}
+    documents = []
+    partners = []
+    links = []
+    data["nodes"] << {"id" => @entity.name, "group" => 1}
+    @entity.relationships.each do |relationship|
+      if relationship.entity_1 != @entity 
+        partner = relationship.entity_1 
+      else partner = relationship.entity_2 
+      end
+      unless relationship.document == nil 
+        document_title = relationship.document.title.chomp(" · Civil War Governors of Kentucky: Early Access")
+      else document_title = "undefined document" 
+      end
+      data["nodes"] << {"id" => partner.name, "group" => 1}
+      data["nodes"] << {"id" => document_title, "group" => 2}
+      # need to figure out value -- or overwrite later based on multiple occurence?
+      data["links"] << {"source" => @entity.name, "target" => document_title, "value" => 1}
+      data["links"] << {"source" => document_title, "target" => partner.name, "value" => 1}
+    end
+    data["nodes"] = data["nodes"].uniq
+    render :json => data
+  end
+
   # DELETE /entities/1
   # DELETE /entities/1.json
   def destroy

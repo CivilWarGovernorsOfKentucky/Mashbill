@@ -121,6 +121,7 @@ Not mentioned in any documents yet.
 <h5>Existing relationships for this entity</h5>
 </div>
 <%= render "relationships/table" %>
-</div>
+</div><%= link_to 'See Visualization', show_entity_viz_path(@entity), method: :get %></p>
+<p> 
 <%= link_to 'Destroy Entity', @entity, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
