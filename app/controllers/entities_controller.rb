@@ -101,7 +101,7 @@ class EntitiesController < ApplicationController
     documents = []
     partners = []
     links = []
-    data["nodes"] << {"id" => @entity.name, "group" => 1}
+    data["nodes"] << {"id" => @entity.name, "group" => 0, "legend_type" => "central node", "link" => show_entity_url(@entity), "bio" => @entity.biography}
     @entity.relationships.each do |relationship|
       if relationship.entity_1 != @entity 
         partner = relationship.entity_1 
@@ -109,13 +109,38 @@ class EntitiesController < ApplicationController
       end
       unless relationship.document == nil 
         document_title = relationship.document.title.chomp(" · Civil War Governors of Kentucky: Early Access")
+        link = "http://discovery.civilwargovernors.org/document/" + relationship.document.cwgk_id
       else document_title = "undefined document" 
       end
-      data["nodes"] << {"id" => partner.name, "group" => 1}
-      data["nodes"] << {"id" => document_title, "group" => 2}
+      case partner.entity_type
+      when "person" 
+        group=1
+      when "place"
+        group=2
+      when "organization"
+        group=3
+      end
+      data["nodes"] << {"id" => partner.name, "group" => group, "legend_type" => partner.entity_type, "link" => show_entity_url(partner), "bio" => partner.biography}
+      data["nodes"] << {"id" => document_title, "group" => 4, "legend_type" => "document", "link" => link, "bio" => "document"}
+      case relationship.relationship_type
+      when "familial"
+        linkgroup=5
+      when "political"
+        linkgroup=6
+      when "legal"
+        linkgroup=7
+      when "economic"
+        linkgroup=8
+      when "social"
+        linkgroup=9
+      when "military"
+        linkgroup=10
+      when "slavery"
+        linkgroup=11
+      end
       # need to figure out value -- or overwrite later based on multiple occurence?
-      data["links"] << {"source" => @entity.name, "target" => document_title, "value" => 1}
-      data["links"] << {"source" => document_title, "target" => partner.name, "value" => 1}
+      data["links"] << {"source" => @entity.name, "target" => document_title, "value" => 1, "group" => linkgroup, "legend_type" => relationship.relationship_type}
+      data["links"] << {"source" => document_title, "target" => partner.name, "value" => 1, "group" => linkgroup, "legend_type" => relationship.relationship_type}
     end
     data["nodes"] = data["nodes"].uniq
     render :json => data
