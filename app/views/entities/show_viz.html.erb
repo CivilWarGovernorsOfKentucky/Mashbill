@@ -51,7 +51,7 @@ d3.json("<%=url_for :action=>"data",:id=>@entity.id%>", function(error, graph) {
   if (error) throw error;
 
   var link = svg.append("g")
-      .attr("class", "links")
+    .attr("class", "links")
     .selectAll("line")
     .data(graph.links)
     .enter().append("line")
@@ -59,7 +59,7 @@ d3.json("<%=url_for :action=>"data",:id=>@entity.id%>", function(error, graph) {
       .attr("stroke", function(d) { return color(d.group); });
 
   var node = svg.append("g")
-      .attr("class", "nodes")
+    .attr("class", "nodes")
     .selectAll("circle")
     .data(graph.nodes)
     .enter().append("circle")
@@ -73,11 +73,15 @@ d3.json("<%=url_for :action=>"data",:id=>@entity.id%>", function(error, graph) {
           )
        .on("mouseover", function(d) {
        div.transition()
-         .duration(200)
          .style("opacity", .9);
        div.html("<a href=\"" + d.link + "\">" + d.id + "<\a><br>" + d.bio)
          .style("left", (d3.event.pageX) + "px")
          .style("top", (d3.event.pageY - 28) + "px");
+       })
+       .on("mouseout", function(d) {
+        div.transition()
+        .duration(4000)
+        .style("opacity", 0); 
        });
 
   simulation
