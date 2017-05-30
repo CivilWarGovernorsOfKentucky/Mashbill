@@ -29,6 +29,7 @@
 <svg width="960" height="600"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
 <script>
 
 var div = d3.select("body").append("div")
@@ -39,7 +40,7 @@ var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
-var color = d3.scaleOrdinal(d3.schemeCategory20).domain([0,11]);
+var color = d3.scaleOrdinal(d3.schemeCategory20).domain(["central node", "document", "person", "place", "organization", "familial", "political", "legal", "economic", "social", "military", "slavery"]);
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
@@ -50,7 +51,7 @@ d3.json("<%=url_for :action=>"data",:id=>@entity.id%>", function(error, graph) {
   if (error) throw error;
 
   var link = svg.append("g")
-      .attr("class", "links")
+    .attr("class", "links")
     .selectAll("line")
     .data(graph.links)
     .enter().append("line")
@@ -58,13 +59,12 @@ d3.json("<%=url_for :action=>"data",:id=>@entity.id%>", function(error, graph) {
       .attr("stroke", function(d) { return color(d.group); });
 
   var node = svg.append("g")
-      .attr("class", "nodes")
+    .attr("class", "nodes")
     .selectAll("circle")
     .data(graph.nodes)
     .enter().append("circle")
       .attr("r", 5)
       .attr("fill", function(d) { return color(d.group); })
-      .attr("data-legend",function(d) { return d.legend_type})
       .on("dblclick", dblclick)
       .call(d3.drag()
           .on("start", dragstarted)
@@ -73,11 +73,15 @@ d3.json("<%=url_for :action=>"data",:id=>@entity.id%>", function(error, graph) {
           )
        .on("mouseover", function(d) {
        div.transition()
-         .duration(200)
          .style("opacity", .9);
        div.html("<a href=\"" + d.link + "\">" + d.id + "<\a><br>" + d.bio)
          .style("left", (d3.event.pageX) + "px")
          .style("top", (d3.event.pageY - 28) + "px");
+       })
+       .on("mouseout", function(d) {
+        div.transition()
+        .duration(4000)
+        .style("opacity", 0); 
        });
 
   simulation
@@ -87,11 +91,22 @@ d3.json("<%=url_for :action=>"data",:id=>@entity.id%>", function(error, graph) {
   simulation.force("link")
       .links(graph.links);
 
-  legend = svg.append("g")
-    .attr("class","legend")
-    .attr("transform","translate(50,30)")
-    .style("font-size","12px")
-    .call(d3.legend)
+svg.append("g")
+  .attr("class", "legendOrdinal")
+  .attr("transform", "translate(20,20)");
+
+var legendOrdinal = d3.legendColor()
+  //d3 symbol creates a path-string, for example
+  //"M0,-8.059274488676564L9.306048591020996,
+  //8.059274488676564 -9.306048591020996,8.059274488676564Z"
+  //.shape("path", d3.symbol().type(d3.symbolTriangle).size(150)())
+  //.shapePadding(10)
+  //use cellFilter to hide the "e" cell
+  .cellFilter(function(d){ return d.label !== "e" })
+  .scale(color);
+
+svg.select(".legendOrdinal")
+  .call(legendOrdinal);
 
   function ticked() {
     link
