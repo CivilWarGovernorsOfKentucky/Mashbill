@@ -30,6 +30,14 @@ RSpec.describe TeiAnnotator, type: :model do
       @para.to_xml.should eq(marked_up)      
     end
 
+    it "should not double-replace" do
+      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
+      marked_up = "<p>Such was the case at <entity>Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
+      @para.to_xml.should eq(marked_up)      
+      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
+      @para.to_xml.should eq(marked_up)      
+    end
+
     def test_type_tag(type, tag)
       @entity.entity_type = type
       @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
@@ -53,6 +61,8 @@ RSpec.describe TeiAnnotator, type: :model do
       marked_up = "<p>Such was the case at <entity ref=\"DEADBEEF\">Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
       @para.to_xml.should eq(marked_up)      
     end
+
+    
 
     it "should parse locators" do
       @annotator.target_paragraph_number("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]").should eq(3)
