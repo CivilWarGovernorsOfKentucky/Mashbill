@@ -2,7 +2,13 @@
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="N001000">
     <teiHeader>
       <%= render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
-        <profileDesc>
+      <encodingDesc>
+        <listPrefixDef xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="inc_global_prefixDef">
+          <prefixDef ident="cwgk" matchPattern="(.+)" replacementPattern="../biography_xml/$1.xml">
+          </prefixDef>
+         </listPrefixDef>
+      </encodingDesc>
+      <profileDesc>
             <textClass>
             <keywords>
                 <term type="type">Person</term>
