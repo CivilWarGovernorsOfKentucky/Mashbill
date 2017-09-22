@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @deed_count=Deed.count
     @completed_documents_count=Document.where(:completed => true).count
     @needs_review_documents_count=Document.where(:needs_review => true).count
+    @reviewed_documents_count=Document.where(:needs_review => false).count
     @entity_count=Entity.count
     @relationship_count=Relationship.count
   end
