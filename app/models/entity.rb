@@ -57,12 +57,12 @@ class Entity < ActiveRecord::Base
 
   def ref_id
     if id != nil 
-      self[:ref_id] || Type::REF_PREFIX[entity_type] + id.to_s.rjust(8,'0')
+      raw_ref_id = self[:ref_id] || Type::REF_PREFIX[entity_type] + id.to_s.rjust(8,'0')
     end
   end
 
   def xml_id
-    self.ref_id
+    "cwgk:" + self.ref_id
   end
 
   def update_tei

@@ -36,14 +36,15 @@ class TeiAnnotator
   def search_and_replace(doc, paragraph, verbatim, entity)
     entity_children = []    
     paragraph.children.each do |node|
+ 
       md = /(.*)#{verbatim}(.*)/.match node.text
-      if md
-        # this node contains the verbatim string
+      if md && node.name != 'entity'
+        # this node contains the verbatim string but has not already been marked up as an entity
         prefix = md[1]
         suffix = md[2]
 
         entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
-        entity_node['ref'] = entity.ref_id if entity.ref_id 
+        entity_node['ref'] = entity.xml_id if entity.ref_id 
         entity_node.add_child(Nokogiri::XML::Text.new(verbatim, doc))
         
         prefix_node = Nokogiri::XML::Text.new(prefix, doc)
