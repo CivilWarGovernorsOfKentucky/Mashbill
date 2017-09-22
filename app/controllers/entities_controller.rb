@@ -1,5 +1,6 @@
 require 'text_transporter'
 class EntitiesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:set_entity, :show_viz, :data]
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
 
   # GET /entities
