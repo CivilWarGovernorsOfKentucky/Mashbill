@@ -34,7 +34,7 @@
                       <% end %>
                     <% end %>
                     <% unless entity.gender.blank? %>
-                      <trait type="gender" subtype="<%= Entity::Gender.tei_type(entity.gender) %>">
+                      <trait type="gender" subtype="<%= Entity::Gender.tei_type(entity.gender) %>"/>
                     <% end %>
                 </person> 
         </particDesc>    
