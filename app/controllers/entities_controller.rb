@@ -97,7 +97,9 @@ class EntitiesController < ApplicationController
   end
 
   def data
-    @entity=Entity.find(params[:id])
+    @entity=Entity.where(:id => params[:id]).first
+    @entity=Entity.find_by_ref_id(params[:id])
+
     data = {"nodes" => [], "links" => []}
     documents = []
     partners = []

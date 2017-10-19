@@ -61,6 +61,16 @@ class Entity < ActiveRecord::Base
     end
   end
 
+  def self.find_by_ref_id(cwgk_id)
+    e = Entity.where(:ref_id => cwgk_id).first
+    unless e
+      # back-form the ID from the ref_id
+      id = cwgk_id.gsub(/[A-Z]/, '0').to_i
+      e = Entity.where(:id => id).first
+    end
+    e
+  end
+
   def xml_id
     "cwgk:" + self.ref_id
   end
