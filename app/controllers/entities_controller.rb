@@ -121,6 +121,13 @@ class EntitiesController < ApplicationController
       data["links"] << {"source" => document_title, "target" => partner.name, "value" => 1, "group" => relationship.relationship_type}
     end
     data["nodes"] = data["nodes"].uniq
+
+    # CORS    
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+
     render :json => data
   end
 
