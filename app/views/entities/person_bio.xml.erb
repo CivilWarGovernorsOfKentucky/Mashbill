@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="N001000">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="D<%= entity.ref_id%>">
     <teiHeader>
       <%= render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
       <encodingDesc>
@@ -15,7 +15,7 @@
             </keywords>
         </textClass>
         <particDesc>
-                <person xml:id="<%= entity.xml_id%>">
+                <person xml:id="<%= entity.ref_id%>">
                     <persName>
                       <%= entity.name %>
                       <% if entity.disambiguator %>
@@ -34,7 +34,7 @@
                       <% end %>
                     <% end %>
                     <% unless entity.gender.blank? %>
-                      <trait type="gender" subtype="<%= Entity::Gender.tei_type(entity.gender) %>">
+                      <trait type="gender" subtype="<%= Entity::Gender.tei_type(entity.gender) %>"/>
                     <% end %>
                 </person> 
         </particDesc>    

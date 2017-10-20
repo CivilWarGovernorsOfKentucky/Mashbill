@@ -1,4 +1,5 @@
 require 'csv'
+require 'text_transporter'
 
 namespace :relator do
   desc "adds types to seed data entities"
@@ -33,4 +34,33 @@ namespace :relator do
   		new_entity.save
   	end
   end
+  
+  desc "flushes entities from the database to TEI and checks them into Github"
+  task :flush_entities => :environment do
+    Entity.where(:entity_type => 'person').order(:entity_type, :ref_id, :id).each do |entity|
+      raise Error.new("Text Transporter Disabled") unless TextTransporter.enabled?
+      begin
+        tei_xml = entity.build_tei
+      rescue => ex
+        binding.pry
+      end
+      transporter = TextTransporter.new
+      transporter.save_entity(entity.ref_id, tei_xml, User.first)
+    end  
+  end
+
+  desc "flushes reviewed documents from the database to TEI and checks them into Github"
+  task :flush_reviewed_documents => :environment do
+    require 'tei_annotator'
+    Document.where(:needs_review => false).order(:cwgk_id).each do |document|
+      begin
+        annotator = TeiAnnotator.new(TextTransporter.new)
+        annotator.apply_annotations(document, User.first)
+      rescue => ex
+#        binding.pry
+        print "ERROR in #{document.cwgk_id}: #{ex.message}\n"
+      end
+    end
+  end      
+
 end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="O001006">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="D<%= entity.ref_id%>">
     <teiHeader>
       <%= render :partial => 'entities/tei_file_desc', :locals => { :entity => entity} %>
         <encodingDesc>
@@ -15,13 +15,13 @@
                 </keywords>
             </textClass>
             <particDesc>
-                <org xml:id="<%= entity.xml_id%>">
+                <org xml:id="<%= entity.ref_id%>">
                     <orgName><%= entity.name %></orgName>
                     <% if entity.birth_date %>
                       <event type="begun" when="<%= entity.birth_date %>">Begun <% format_date(entity.birth_date) %></event>
                     <% end %>
                     <% if entity.death_date %>
-                      <event type="begun" when="<%= entity.death_date %>"><% format_date(entity.death_date) %></devent>
+                      <event type="begun" when="<%= entity.death_date %>"><% format_date(entity.death_date) %></event>
                     <% end %>
 
                 </org>
