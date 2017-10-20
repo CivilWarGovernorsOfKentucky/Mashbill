@@ -37,15 +37,14 @@ namespace :relator do
   
   desc "flushes entities from the database to TEI and checks them into Github"
   task :flush_entities => :environment do
-    Entity.where(:entity_type => 'person').order(:entity_type, :ref_id, :id).each do |entity|
+    # Entity.where(:entity_type => 'person').order(:entity_type, :ref_id, :id).each do |entity|
+    Entity.where(:entity_type => 'organization').order(:entity_type, :ref_id, :id).each do |entity|
       raise Error.new("Text Transporter Disabled") unless TextTransporter.enabled?
-      begin
+      if entity.can_be_published?
         tei_xml = entity.build_tei
-      rescue => ex
-        binding.pry
+        transporter = TextTransporter.new
+        transporter.save_entity(entity.ref_id, tei_xml, User.first)
       end
-      transporter = TextTransporter.new
-      transporter.save_entity(entity.ref_id, tei_xml, User.first)
     end  
   end
 
