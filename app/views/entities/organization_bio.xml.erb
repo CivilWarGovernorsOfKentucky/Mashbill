@@ -17,13 +17,12 @@
             <particDesc>
                 <org xml:id="<%= entity.ref_id%>">
                     <orgName><%= entity.name %></orgName>
-                    <% if entity.birth_date %>
-                      <event type="begun" when="<%= entity.birth_date %>">Begun <% format_date(entity.birth_date) %></event>
+                    <% unless entity.birth_date.blank? %>
+                      <event type="begun" when="<%= entity.birth_date %>"><%= format_date(entity.birth_date) %></event>
                     <% end %>
-                    <% if entity.death_date %>
-                      <event type="begun" when="<%= entity.death_date %>"><% format_date(entity.death_date) %></event>
+                    <% unless entity.death_date.blank? %>
+                      <event type="ended" when="<%= entity.death_date %>"><%= format_date(entity.death_date) %></event>
                     <% end %>
-
                 </org>
             </particDesc>
         </profileDesc>
