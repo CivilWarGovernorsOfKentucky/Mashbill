@@ -65,8 +65,8 @@ RSpec.describe TeiAnnotator, type: :model do
     
 
     it "should parse locators" do
-      @annotator.target_paragraph_number("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]").should eq(3)
-      @annotator.target_paragraph_number("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[1]").should eq(2)
+      @annotator.target_element_and_index("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]")[1].should eq(2)
+      @annotator.target_element_and_index("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[1]")[1].should eq(1)
     end
     
     it "should fetch appropriate paragraphs" do
@@ -75,10 +75,10 @@ RSpec.describe TeiAnnotator, type: :model do
       annotation = double(Annotation)
 
       allow(annotation).to receive(:start_container).and_return("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]")
-      @annotator.target_paragraph(@doc, annotation).should eq(third_p)
+      @annotator.target_element(@doc, annotation).should eq(third_p)
 
       allow(annotation).to receive(:start_container).and_return("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[1]")
-      @annotator.target_paragraph(@doc, annotation).should eq(second_p)      
+      @annotator.target_element(@doc, annotation).should eq(second_p)      
     end
     
     it "should replace from an annotation or two" do
@@ -130,8 +130,8 @@ RSpec.describe TeiAnnotator, type: :model do
       @annotator.apply_annotations(@document, @user)     
     end    
     
-    
   end
+
   
 end
 
