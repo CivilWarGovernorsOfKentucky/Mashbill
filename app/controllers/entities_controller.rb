@@ -1,6 +1,6 @@
 require 'text_transporter'
 class EntitiesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:set_entity, :show_viz, :data]
+  skip_before_action :authenticate_user!, only: [:set_entity, :show_viz, :data, :show_documents]
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
 
   # GET /entities
@@ -94,6 +94,12 @@ class EntitiesController < ApplicationController
   def show_viz
     @entity=Entity.find(params[:id])
     render :layout => false
+  end
+
+  def show_documents
+    @entity=Entity.find(params[:id])
+    #documents = @entity.documents.where(:completed => true, :needs_review => false)
+    render :json => @entity.documents.where(:completed => true, :needs_review => false)
   end
 
   def data

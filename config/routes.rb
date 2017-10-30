@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get   '/entities/show/:id', :to => 'entities#show',:as => :show_entity
   get   '/entities/edit_bio/:id', :to => 'entities#edit_bio', :as => :edit_entity_bio
   get   '/entities/show_bio/:id', :to => 'entities#show_bio', :as => :show_entity_bio
+  get   '/entities/show_documents/:id', :to => 'entities#show_documents', :as => :show_entity_documents
   get   '/entities/show_metadata/:id', :to => 'entities#show_metadata', :as => :show_entity_metadata  
   get   '/entities/show_viz/:id', :to => 'entities#show_viz', :as => :show_entity_viz  
   get   '/entities/data/:id', :to => 'entities#data', :as => :show_entity_data  
