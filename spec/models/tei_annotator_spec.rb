@@ -58,15 +58,15 @@ RSpec.describe TeiAnnotator, type: :model do
       @entity.id = 123
       @entity.ref_id = 'DEADBEEF'
       @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
-      marked_up = "<p>Such was the case at <entity ref=\"DEADBEEF\">Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
+      marked_up = "<p>Such was the case at <entity ref=\"cwgk:DEADBEEF\">Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
       @para.to_xml.should eq(marked_up)      
     end
 
     
 
     it "should parse locators" do
-      @annotator.target_paragraph_number("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]").should eq(3)
-      @annotator.target_paragraph_number("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[1]").should eq(2)
+      @annotator.target_element_and_index("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]")[1].should eq(2)
+      @annotator.target_element_and_index("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[1]")[1].should eq(1)
     end
     
     it "should fetch appropriate paragraphs" do
@@ -75,10 +75,10 @@ RSpec.describe TeiAnnotator, type: :model do
       annotation = double(Annotation)
 
       allow(annotation).to receive(:start_container).and_return("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]")
-      @annotator.target_paragraph(@doc, annotation).should eq(third_p)
+      @annotator.target_element(@doc, annotation).should eq(third_p)
 
       allow(annotation).to receive(:start_container).and_return("/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[1]")
-      @annotator.target_paragraph(@doc, annotation).should eq(second_p)      
+      @annotator.target_element(@doc, annotation).should eq(second_p)      
     end
     
     it "should replace from an annotation or two" do
@@ -103,7 +103,7 @@ RSpec.describe TeiAnnotator, type: :model do
   end
 
   PARA_3 = "<p>Such was the case at Dr Capes of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-  PARA_3_MARKUP = "<p>Such was the case at <persName ref=\"capes_id\">Dr Capes</persName> of this <placeName ref=\"louisville_id\">City</placeName> Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
+  PARA_3_MARKUP = "<p>Such was the case at <persName ref=\"cwgk:capes_id\">Dr Capes</persName> of this <placeName ref=\"cwgk:louisville_id\">City</placeName> Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
   context "document record" do
     before(:each) do
       @document = Document.new(:cwgk_id => 'KYR0001-003-0072')
@@ -130,8 +130,8 @@ RSpec.describe TeiAnnotator, type: :model do
       @annotator.apply_annotations(@document, @user)     
     end    
     
-    
   end
+
   
 end
 

@@ -27,9 +27,17 @@ class TeiAnnotator
     @text_transporter.save(document.cwgk_id, text, user)
   end
 
+  ERRORFILE = "/tmp/mashbill_tei_errors.log"
   def apply_annotation(doc, annotation)
-    paragraph = target_paragraph(doc, annotation)
-    search_and_replace(doc, paragraph, annotation.verbatim, annotation.entity)
+    element = target_element(doc, annotation)
+    unless element
+      msg = "Could not find selector\t#{annotation.start_container}\t#{annotation.verbatim}\t#{annotation.document.cwgk_id}\n"
+      File.open(ERRORFILE, "a") do |f|
+        f << msg
+      end
+      raise Exception.new(msg)
+    end
+    search_and_replace(doc, element, annotation.verbatim, annotation.entity)
   end
   
   
@@ -68,14 +76,16 @@ class TeiAnnotator
     TEI_TAGS[entity.entity_type] || 'entity'    
   end
   
-  def target_paragraph(doc, annotation)
-    index = target_paragraph_number(annotation.start_container) - 1 # selectors start with 1    
-    doc.search('text/body/p')[index]
+  def target_element(doc, annotation)
+    element_type,index = target_element_and_index(annotation.start_container) # selectors start with 1    
+    doc.search("text/body/#{element_type}")[index]
   end
   
-  def target_paragraph_number(locator)
-    md = /.*\/p\[(\d+)\].*/.match(locator)
-    md.captures.first.to_i
+  def target_element_and_index(locator)
+    md = /.*text...\/(\w*)\[(\d+)\].*/.match(locator)
+    element = md.captures.first
+    index = md.captures.second.to_i - 1
+    [element, index]
   end
   
   
