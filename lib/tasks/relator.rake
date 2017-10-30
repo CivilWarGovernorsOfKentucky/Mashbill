@@ -37,15 +37,14 @@ namespace :relator do
   
   desc "flushes entities from the database to TEI and checks them into Github"
   task :flush_entities => :environment do
-    Entity.where(:entity_type => 'person').order(:entity_type, :ref_id, :id).each do |entity|
+    # Entity.where(:entity_type => 'person').order(:entity_type, :ref_id, :id).each do |entity|
+    Entity.order(:entity_type, :ref_id, :id).each do |entity|
       raise Error.new("Text Transporter Disabled") unless TextTransporter.enabled?
-      begin
+      if entity.can_be_published?
         tei_xml = entity.build_tei
-      rescue => ex
-        binding.pry
+        transporter = TextTransporter.new
+        transporter.save_entity(entity.ref_id, tei_xml, User.first)
       end
-      transporter = TextTransporter.new
-      transporter.save_entity(entity.ref_id, tei_xml, User.first)
     end  
   end
 
@@ -56,11 +55,20 @@ namespace :relator do
       begin
         annotator = TeiAnnotator.new(TextTransporter.new)
         annotator.apply_annotations(document, User.first)
-      rescue => ex
-#        binding.pry
+      rescue Exception => ex
         print "ERROR in #{document.cwgk_id}: #{ex.message}\n"
       end
     end
+  end      
+
+  desc "annotate document from the database to TEI and checks them into Github"
+  task :annotate_document => :environment do
+    require 'tei_annotator'
+    if ARGV[1].nil? then puts "Please pass a CWGK ID file on the command line" end
+    cwgk_id = ARGV[1] 
+    document = Document.where(:cwgk_id => cwgk_id).first
+    annotator = TeiAnnotator.new(TextTransporter.new)
+    annotator.apply_annotations(document, User.first)
   end      
 
 end

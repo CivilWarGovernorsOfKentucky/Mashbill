@@ -75,6 +75,10 @@ class Entity < ActiveRecord::Base
     "cwgk:" + self.ref_id
   end
 
+  def can_be_published?
+    self.documents.where(:completed => true, :needs_review => false).present?
+  end
+
   def update_tei
     # build_tei_from_template
     # save tei file
