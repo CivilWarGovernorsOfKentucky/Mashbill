@@ -97,17 +97,15 @@ class EntitiesController < ApplicationController
   end
 
   def show_documents
-    @entity=Entity.find(params[:id])
+    @entity=Entity.find_by_ref_id(params[:id])
     #documents = @entity.documents.where(:completed => true, :needs_review => false)
     render :json => @entity.documents.where(:completed => true, :needs_review => false)
   end
 
   def data
-    @entity=Entity.where(:id => params[:id]).first
     @entity=Entity.find_by_ref_id(params[:id])
 
     data = {"nodes" => [], "links" => []}
-    documents = []
     partners = []
     links = []
     data["nodes"] << {"id" => @entity.name, "group" => "central node", "link" => show_entity_url(@entity), "bio" => @entity.biography, "cwgk_id" => @entity.ref_id}
