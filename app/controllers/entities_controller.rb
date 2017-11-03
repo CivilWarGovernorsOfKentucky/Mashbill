@@ -1,6 +1,6 @@
 require 'text_transporter'
 class EntitiesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:set_entity, :show_viz, :data]
+  skip_before_action :authenticate_user!, only: [:set_entity, :show_viz, :data, :show_documents]
   before_action :set_entity, only: [:show, :edit, :update, :destroy]
 
   # GET /entities
@@ -96,27 +96,33 @@ class EntitiesController < ApplicationController
     render :layout => false
   end
 
+  def show_documents
+    @entity=Entity.find_by_ref_id(params[:id])
+    #documents = @entity.documents.where(:completed => true, :needs_review => false)
+    render :json => @entity.documents.where(:completed => true, :needs_review => false)
+  end
+
   def data
-    @entity=Entity.where(:id => params[:id]).first
     @entity=Entity.find_by_ref_id(params[:id])
 
     data = {"nodes" => [], "links" => []}
-    documents = []
     partners = []
     links = []
-    data["nodes"] << {"id" => @entity.name, "group" => "central node", "link" => show_entity_url(@entity), "bio" => @entity.biography}
+    data["nodes"] << {"id" => @entity.name, "group" => "central node", "link" => show_entity_url(@entity), "bio" => @entity.biography, "cwgk_id" => @entity.ref_id}
     @entity.relationships.each do |relationship|
       if relationship.entity_1 != @entity 
         partner = relationship.entity_1 
       else partner = relationship.entity_2 
       end
+      document_cwgk_id = nil 
       unless relationship.document == nil 
         document_title = relationship.document.title.chomp(" · Civil War Governors of Kentucky: Early Access")
         link = "http://discovery.civilwargovernors.org/document/" + relationship.document.cwgk_id
+        document_cwgk_id = relationship.document.cwgk_id
       else document_title = "undefined document" 
       end
-      data["nodes"] << {"id" => partner.name, "group" => partner.entity_type, "link" => show_entity_url(partner), "bio" => partner.biography}
-      data["nodes"] << {"id" => document_title, "group" => "document", "link" => link, "bio" => "document"}
+      data["nodes"] << {"id" => partner.name, "group" => partner.entity_type, "link" => show_entity_url(partner), "bio" => partner.biography, "cwgk_id" => partner.ref_id}
+      data["nodes"] << {"id" => document_title, "group" => "document", "link" => link, "bio" => "document", "document_id" => document_cwgk_id}
       data["links"] << {"source" => @entity.name, "target" => document_title, "value" => 1, "group" => relationship.relationship_type}
       data["links"] << {"source" => document_title, "target" => partner.name, "value" => 1, "group" => relationship.relationship_type}
     end
