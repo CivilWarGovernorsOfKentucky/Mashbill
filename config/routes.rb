@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get   '/deeds/list', :to => 'deeds#list'
   get   '/annotations/search_identify_annotation', :to => 'annotations#search_identify_annotation'
   get   '/statistics', :to => 'users#statistics', :as => :statistics
+  get   '/error_file', :to => 'users#error_file', :as => :error_file
 
   resources :entities   
   resources :documents
