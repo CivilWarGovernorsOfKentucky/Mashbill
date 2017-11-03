@@ -53,6 +53,13 @@
 <%= paginate @deeds, remote: true %>
 </div>
 
+<div><small>
+<h5>Error Log</h5>
+<div id="error_log">
+<%= link_to "Download CSV", error_file_path %>
+</div>
+
+
 </small>
 </div>
 </div>

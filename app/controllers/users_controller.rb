@@ -1,3 +1,4 @@
+require 'tei_annotator'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -14,6 +15,10 @@ class UsersController < ApplicationController
     @review_documents = Document.where(:needs_review => true)
     @annotations=Annotation.all
     @deeds=Deed.all.page params[:page]
+  end
+
+  def error_file
+    render file: TeiAnnotator::ERRORFILE, layout: false, content_type: 'application/csv'
   end
 
   def statistics

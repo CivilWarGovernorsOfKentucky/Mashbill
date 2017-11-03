@@ -27,26 +27,35 @@ class TeiAnnotator
     @text_transporter.save(document.cwgk_id, text, user)
   end
 
-  ERRORFILE = "/tmp/mashbill_tei_errors.log"
   def apply_annotation(doc, annotation)
     element = target_element(doc, annotation)
     unless element
-      msg = "Could not find selector\t#{annotation.start_container}\t#{annotation.verbatim}\t#{annotation.document.cwgk_id}\n"
-      File.open(ERRORFILE, "a") do |f|
-        f << msg
-      end
-      raise Exception.new(msg)
+      log_error("Could not find element at selector", annotation)
     end
+
+    old_doc = doc.dup
     search_and_replace(doc, element, annotation.verbatim, annotation.entity)
+    if old_doc.text.gsub(/\s/,"") != doc.text.gsub(/\s/,"")
+      log_error("Annotation corrupts TEI document", annotation)
+      doc = old_doc        
+    end
+  end
+
+  ERRORFILE = File.join(Rails.root, "tmp/mashbill_tei_errors.csv")
+  def log_error(problem, annotation)
+    msg = "#{problem}\t#{Time.now.to_s}\t#{annotation.start_container}\t#{annotation.verbatim}\t#{annotation.document.cwgk_id}\thttps://hyp.is/#{annotation.hypothesis_annotation_id}\n"
+    File.open(ERRORFILE, "a") do |f|
+      f << msg
+    end    
   end
   
   
   def search_and_replace(doc, paragraph, verbatim, entity)
     entity_children = []    
     paragraph.children.each do |node|
- 
+#      binding.pry if  verbatim=="Clarke County"
       md = /(.*)#{verbatim}(.*)/.match node.text
-      if md && node.name != 'entity'
+      if md && !TEI_TAGS.values.push('entity').include?(node.name)
         # this node contains the verbatim string but has not already been marked up as an entity
         prefix = md[1]
         suffix = md[2]
