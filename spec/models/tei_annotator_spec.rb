@@ -129,6 +129,13 @@ RSpec.describe TeiAnnotator, type: :model do
       expect(@text_transporter).to receive(:save).with('KYR0001-003-0072', KYR00010030072.sub(PARA_3,PARA_3_MARKUP), @user)
       @annotator.apply_annotations(@document, @user)     
     end    
+
+    it "should not replace text twice" do
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010030072.sub(PARA_3,PARA_3_MARKUP))
+      expect(@text_transporter).to receive(:save).with('KYR0001-003-0072', KYR00010030072.sub(PARA_3,PARA_3_MARKUP), @user)
+      @annotator.apply_annotations(@document, @user)     
+    end
+
     
   end
 
