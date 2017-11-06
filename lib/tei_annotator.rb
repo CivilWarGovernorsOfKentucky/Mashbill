@@ -31,6 +31,7 @@ class TeiAnnotator
     element = target_element(doc, annotation)
     unless element
       log_error("Could not find element at selector", annotation)
+      return
     end
 
     old_doc = doc.dup
