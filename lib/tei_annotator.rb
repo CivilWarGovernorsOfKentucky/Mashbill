@@ -30,8 +30,12 @@ class TeiAnnotator
   def apply_annotation(doc, annotation)
     element = target_element(doc, annotation)
     unless element
-      log_error("Could not find element at selector", annotation)
-      return
+      log_error("Could not find element at selector; attempting fallback", annotation)
+      element = fallback_element(doc, annotation)
+      unless element
+        log_error("Cound not find fallback element in document", annotation)
+        return
+      end
     end
 
     old_doc = doc.dup
@@ -84,6 +88,10 @@ class TeiAnnotator
 
   def tei_element(entity)
     TEI_TAGS[entity.entity_type] || 'entity'    
+  end
+
+  def fallback_element(doc, annotation)
+    doc.search("text/body").children.detect { |e| e.text.match(annotation.verbatim) }
   end
   
   def target_element(doc, annotation)
