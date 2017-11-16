@@ -20,6 +20,8 @@ class AnnotationsController < ApplicationController
       #binding.pry
       #@relationships + entity.relationships
     #end
+    @deeds=document.deeds
+
     render :template => 'annotations/index' 
   end
 
