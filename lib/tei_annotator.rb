@@ -13,9 +13,47 @@ class TeiAnnotator
     document.applicable_annotations.each do |annotation|
       apply_annotation(doc, annotation)
     end
+    update_responsibility(document, doc)
     # store the modified doc 
     save_document(document, doc, user)
   end  
+
+  
+  ANNOTATED_TEXT = "Annotated by"
+  FACT_CHECKED_TEXT = "Fact checked by"
+  def update_responsibility(document, doc)
+    fact_check = document.deeds.where(:deed_type => Deed::REVIEWED).last
+    annotated = document.deeds.where(:deed_type => Deed::NEEDS_REVIEW).last
+    
+    respStmts = doc.search("titleStmt/respStmt")
+    
+    if annotated && !respStmts.text.match(ANNOTATED_TEXT)
+      respStmts.last.add_next_sibling(Nokogiri::XML::Text.new("\n", doc))
+      respStmts.last.add_next_sibling(create_resp_stmt(annotated, ANNOTATED_TEXT, doc))
+    end
+    
+    if fact_check && !respStmts.text.match(FACT_CHECKED_TEXT)
+      respStmts.last.add_next_sibling(Nokogiri::XML::Text.new("\n", doc))
+      respStmts.last.add_next_sibling(create_resp_stmt(fact_check, FACT_CHECKED_TEXT, doc))
+    end
+  end
+
+  def create_resp_stmt(deed, text, doc)
+    respStmt = Nokogiri::XML::Node.new("respStmt", doc)
+    respStmt.add_child(Nokogiri::XML::Text.new("\n", doc))
+    resp = Nokogiri::XML::Node.new("resp", doc)
+    resp['n'] = deed.deed_type
+    resp.add_child(Nokogiri::XML::Text.new(text, doc))
+    name = Nokogiri::XML::Node.new("name", doc)
+    name.add_child(Nokogiri::XML::Text.new(deed.user.name, doc))
+    
+    respStmt.add_child(resp)
+    respStmt.add_child(Nokogiri::XML::Text.new("\n", doc))
+    respStmt.add_child(name)
+    respStmt.add_child(Nokogiri::XML::Text.new("\n", doc))
+
+    respStmt
+  end
 
   def load_document(document)
     text = @text_transporter.fetch(document.cwgk_id)
@@ -30,8 +68,12 @@ class TeiAnnotator
   def apply_annotation(doc, annotation)
     element = target_element(doc, annotation)
     unless element
-      log_error("Could not find element at selector", annotation)
-      return
+      log_error("Could not find element at selector; attempting fallback", annotation)
+      element = fallback_element(doc, annotation)
+      unless element
+        log_error("Cound not find fallback element in document", annotation)
+        return
+      end
     end
 
     old_doc = doc.dup
@@ -84,6 +126,10 @@ class TeiAnnotator
 
   def tei_element(entity)
     TEI_TAGS[entity.entity_type] || 'entity'    
+  end
+
+  def fallback_element(doc, annotation)
+    doc.search("text/body").children.detect { |e| e.text.match(annotation.verbatim) }
   end
   
   def target_element(doc, annotation)

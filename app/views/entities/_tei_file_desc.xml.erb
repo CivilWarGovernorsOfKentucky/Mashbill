@@ -1,16 +1,20 @@
 <fileDesc>
     <titleStmt>
         <title level="a" type="main"><%= entity.name %></title>
-        <% entity.deeds.each do |deed| %>
+        <% create_deed = entity.deeds.where(:deed_type => Deed::ENTITY_CREATE).first %>
+        <% if create_deed %>
           <respStmt>
-              <% if deed.deed_type == Deed::ENTITY_CREATE %>
-                <resp n="created">Created by:</resp>
-              <% else %>
-                <resp n="edited">Edited by:</resp>
-              <% end %>
-              <name><%= deed.user.name %></name>
-            </respStmt>
-          <% end %>
+            <resp n="created">Created by:</resp>
+            <name><%= create_deed.user.name %></name>
+          </respStmt>        
+        <% end %>
+        <% editors = entity.deeds.where.not(:deed_type => Deed::ENTITY_CREATE).map { |d| d.user.name }.uniq %>
+        <% editors.each do |editor| %>
+          <respStmt>
+            <resp n="edited">Edited by:</resp>
+            <name><%= editor %></name>
+          </respStmt>
+        <% end %>
     </titleStmt>
     <publicationStmt>
         <publisher>Kentucky Historical Society</publisher>
