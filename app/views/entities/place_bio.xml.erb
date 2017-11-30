@@ -4,7 +4,7 @@
       <%= render :partial => 'entities/tei_file_desc', :locals => { :entity => entity } %>
         <encodingDesc>
             <listPrefixDef xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="inc_global_prefixDef">
-                <prefixDef ident="cwgk" matchPattern="(.+)" replacementPattern="../biography_xml/$1.xml">
+                <prefixDef ident="cwgk" matchPattern="(.+)" replacementPattern="$1.xml">
                 </prefixDef>
             </listPrefixDef>
         </encodingDesc>
