@@ -13,7 +13,7 @@ class TextTransporter
 
 
   def document_path(document_id)
-    File.join(TextTransporter.document_root, 'document_xml', document_id+".xml")
+    File.join(TextTransporter.document_root, 'xml', document_id+".xml")
   end
 
   def self.document_root
@@ -25,7 +25,7 @@ class TextTransporter
   end
   
   def bio_path(ref_id)
-    File.join(TextTransporter.document_root, 'biography_xml', ref_id+".xml")    
+    File.join(TextTransporter.document_root, 'xml', ref_id+".xml")    
   end
   
   def save_entity(ref_id, text, user)
