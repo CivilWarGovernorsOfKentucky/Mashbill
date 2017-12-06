@@ -18,10 +18,18 @@
                 <org xml:id="<%= entity.ref_id%>">
                     <orgName><%= entity.name %></orgName>
                     <% unless entity.birth_date.blank? %>
-                      <event type="begun" when="<%= entity.birth_date %>"><%= format_date(entity.birth_date) %></event>
+                        <% if entity.birth_date == "unknown" %>
+                           <event type="begun"><ab><%= format_date(entity.birth_date) %></ab></event>                   
+                        <% else %>
+                          <event type="begun" when="<%= entity.birth_date %>"><ab><%= format_date(entity.birth_date) %></ab></event>
+                        <% end %>
                     <% end %>
                     <% unless entity.death_date.blank? %>
-                      <event type="ended" when="<%= entity.death_date %>"><%= format_date(entity.death_date) %></event>
+                      <% if entity.death_date == "unknown" %>
+                          <event type="ended"><ab><%= format_date(entity.death_date) %></ab></event>
+                      <% else %>
+                        <event type="ended" when="<%= entity.death_date %>"><ab><%= format_date(entity.death_date) %></ab></event>
+                      <% end %>
                     <% end %>
                 </org>
             </particDesc>
