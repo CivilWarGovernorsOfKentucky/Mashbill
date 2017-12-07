@@ -1,8 +1,20 @@
 module EntitiesHelper
-  
-  def format_date(date)
-    date
+
+  def certainty_clause(date)
+    if date.match(/[cC]/)
+      ' certainty="medium"'.html_safe
+    else
+      ''
+    end
   end
+
+  def when_clause(date)
+    if date == 'unknown'
+      ''
+    else
+      " when=\"#{date.gsub(/[cC]/, '')}\"".html_safe      
+    end    
+  end  
   
   def render_markdown(source)
     renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)

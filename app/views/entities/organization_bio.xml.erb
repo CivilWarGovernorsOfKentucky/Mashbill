@@ -17,19 +17,11 @@
             <particDesc>
                 <org xml:id="<%= entity.ref_id%>">
                     <orgName><%= entity.name %></orgName>
-                    <% unless entity.birth_date.blank? %>
-                        <% if entity.birth_date == "unknown" %>
-                           <event type="begun"><ab><%= format_date(entity.birth_date) %></ab></event>                   
-                        <% else %>
-                          <event type="begun" when="<%= entity.birth_date %>"><ab><%= format_date(entity.birth_date) %></ab></event>
-                        <% end %>
+                    <% unless entity.birth_date.blank? || entity.birth_date == "unknown"%>
+                        <event type="begun" <%= when_clause(entity.birth_date) %> <%= certainty_clause(entity.birth_date) %> ><ab><%= entity.birth_date %></ab></event>
                     <% end %>
-                    <% unless entity.death_date.blank? %>
-                      <% if entity.death_date == "unknown" %>
-                          <event type="ended"><ab><%= format_date(entity.death_date) %></ab></event>
-                      <% else %>
-                        <event type="ended" when="<%= entity.death_date %>"><ab><%= format_date(entity.death_date) %></ab></event>
-                      <% end %>
+                    <% unless entity.death_date.blank? || entity.death_date == "unknown"%>
+                        <event type="ended" <%= when_clause(entity.death_date) %> <%= certainty_clause(entity.death_date) %> ><ab><%= entity.death_date %></ab></event>
                     <% end %>
                 </org>
             </particDesc>
