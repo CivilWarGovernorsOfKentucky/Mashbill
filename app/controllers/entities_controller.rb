@@ -99,6 +99,12 @@ class EntitiesController < ApplicationController
   def show_documents
     @entity=Entity.find_by_ref_id(params[:id])
     #documents = @entity.documents.where(:completed => true, :needs_review => false)
+    # CORS    
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+
     render :json => @entity.documents.where(:completed => true, :needs_review => false)
   end
 
