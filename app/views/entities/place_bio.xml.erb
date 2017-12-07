@@ -14,7 +14,7 @@
                     <term type="type">Place</term>
                 </keywords>
             </textClass>
-            <particDesc>
+            <settingDesc>
                 <place xml:id="<%= entity.ref_id%>">
                     <placeName>
                         <location>
@@ -25,7 +25,7 @@
                         </location>
                     </placeName>
                 </place> 
-            </particDesc>    
+            </settingDesc>    
         </profileDesc>
     </teiHeader>
     <%= render :partial => 'entities/tei_text', :locals => { :entity => entity } %>

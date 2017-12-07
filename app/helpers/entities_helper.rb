@@ -11,10 +11,18 @@ module EntitiesHelper
   end
   
   def format_biography(markdown)
-    render_markdown(markdown)
+    text = render_markdown(markdown)
+    text.gsub!("<em>","<hi rend=\”italic\”>")
+    text.gsub!("</em>","</hi>") 
+    text 
   end
 
   def format_bibliography(markdown)
-    render_markdown(markdown)
+    text = render_markdown(markdown)
+    text.gsub!("<p>","")
+    text.gsub!("</p>","")
+    text.gsub!("<em>","<hi rend=\”italic\”>")
+    text.gsub!("</em>","</hi>")    
+    text
   end
 end

@@ -14,11 +14,11 @@
                     <term type="type">Geographical Feature</term>
                 </keywords>
             </textClass>
-            <particDesc>
+            <settingDesc>
                 <place xml:id="<%= entity.ref_id%>">
                     <geogName><%= entity.name %></geogName>
                 </place>
-            </particDesc>
+            </settingDesc>
         </profileDesc>
     </teiHeader>
      <%= render :partial => 'entities/tei_text', :locals => { :entity => entity } %>

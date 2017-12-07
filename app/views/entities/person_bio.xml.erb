@@ -22,11 +22,19 @@
                         (<%= entity.disambiguator %>)
                       <% end %>
                     </persName>
-                    <% unless entity.birth_date.blank? %>
-                      <birth when="<%= entity.birth_date %>"><% format_date(entity.birth_date) %></birth>
+                      <% unless entity.birth_date.blank? %>
+                        <% if entity.birth_date == "unknown" %>
+                           <birth><ab><%= format_date(entity.birth_date) %></ab></birth>                   
+                        <% else %>
+                          <birth when="<%= entity.birth_date %>"><ab><%= format_date(entity.birth_date) %></ab></birth>
+                        <% end %>
                     <% end %>
                     <% unless entity.death_date.blank? %>
-                      <death when="<%= entity.death_date %>"><% format_date(entity.death_date) %></death>
+                      <% if entity.death_date == "unknown" %>
+                          <death><ab><%= format_date(entity.death_date) %></ab></death>
+                      <% else %>
+                        <death when="<%= entity.death_date %>"><ab><%= format_date(entity.death_date) %></ab></death>
+                      <% end %>
                     <% end %>
                     <% if entity.race_descriptions.present? %>
                       <% entity.race_descriptions.each do |race_description| %>
