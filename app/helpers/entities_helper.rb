@@ -21,7 +21,7 @@ module EntitiesHelper
     text = render_markdown(markdown)
     text.gsub!("<p>","")
     text.gsub!("</p>","")
-    text.gsub!("<em>","<hi rend=\”italic\”>")
+    text.gsub!("<em>","<hi rend=\"italic\">")
     text.gsub!("</em>","</hi>")    
     text
   end
