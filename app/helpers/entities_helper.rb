@@ -12,7 +12,8 @@ module EntitiesHelper
     if date == 'unknown'
       ''
     else
-      " when=\"#{date.gsub(/[cC]/, '')}\"".html_safe      
+      date = date.gsub(/[cC]/, '')
+      " when=\"#{date}\"".html_safe      
     end    
   end  
   
