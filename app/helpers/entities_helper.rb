@@ -2,7 +2,7 @@ module EntitiesHelper
 
   def certainty_clause(date)
     if date.match(/[cC]/)
-      ' certainty="medium"'.html_safe
+      ' cert="medium"'.html_safe
     else
       ''
     end
@@ -24,8 +24,9 @@ module EntitiesHelper
   
   def format_biography(markdown)
     text = render_markdown(markdown)
-    text.gsub!("<em>","<hi rend=\”italic\”>")
+    text.gsub!("<em>","<hi rend=\"italic\">")
     text.gsub!("</em>","</hi>") 
+    text.gsub!("<br>","<lb/>")
     text 
   end
 
@@ -35,6 +36,7 @@ module EntitiesHelper
     text.gsub!("</p>","")
     text.gsub!("<em>","<hi rend=\"italic\">")
     text.gsub!("</em>","</hi>")    
+    text.gsub!("<br/>","<lb/>")
     text
   end
 end
