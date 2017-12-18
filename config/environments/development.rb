@@ -37,5 +37,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
-  config.document_root = File.join(Rails.root, '..', 'TestDocuments')
+  config.document_root = File.join(Rails.root, '..', 'Documents')
 end
