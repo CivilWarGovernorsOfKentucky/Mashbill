@@ -1,10 +1,10 @@
 <text>
-  <% if entity.biography %>
+  <% unless entity.biography.blank? %>
     <body>
         <%= raw(format_biography(entity.biography)) %>
     </body>
   <% end %>
-  <% if entity.bibliography%>
+  <% unless entity.bibliography.blank? %>
     <back>
         <ab><bibl><%= raw(format_bibliography(entity.bibliography)) %></bibl></ab>
     </back>

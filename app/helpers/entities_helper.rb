@@ -28,6 +28,7 @@ module EntitiesHelper
     text.gsub!("<em>","<hi rend=\"italic\">")
     text.gsub!("</em>","</hi>") 
     text.gsub!("<br>","<lb/>")
+    text.gsub!("<br/>","<lb/>")
     text 
   end
 
@@ -37,6 +38,7 @@ module EntitiesHelper
     text.gsub!("</p>","")
     text.gsub!("<em>","<hi rend=\"italic\">")
     text.gsub!("</em>","</hi>")    
+    text.gsub!("<br>","<lb/>")
     text.gsub!("<br/>","<lb/>")
     text
   end
