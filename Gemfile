@@ -6,7 +6,7 @@ gem 'rails', '4.2.7'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 #gem 'mysql2'
-gem 'pg'
+gem 'pg', '=0.19'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -39,8 +39,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri', '~> 1.8.1'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rest-client'
