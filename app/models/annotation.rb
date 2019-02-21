@@ -56,7 +56,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def self.request_annotations(page)
-    url = 'https://hypothes.is/api/search?group=zm91G8nX&limit=200&offset=' + (page * 200).to_s
+    url = 'https://hypothes.is/api/search?group=v2oPAZgK&limit=200&offset=' + (page * 200).to_s
     begin
       response = RestClient::Request.execute(method: :get, url: url,
                             timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
