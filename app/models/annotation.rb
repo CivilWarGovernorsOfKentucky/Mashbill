@@ -18,7 +18,7 @@ class Annotation < ActiveRecord::Base
       # set hypothesis_date
       annotation_record.hypothesis_date = hyp_annotation["updated"]
       # set user_id to current user
-      annotation_record.user_id = User.where(hypothesis_user = hyp_annotation["user"].gsub("acct:",""))
+      #annotation_record.user_id = User.where(hypothesis_user => hyp_annotation["user"].gsub("acct:",""))
       # set verbatim
       selector = hyp_annotation["target"].first["selector"]
       #binding.pry if selector.nil?
@@ -31,10 +31,17 @@ class Annotation < ActiveRecord::Base
       annotation_record.prefix = exact_selection["prefix"]
       annotation_record.suffix = exact_selection["suffix"]
       annotation_record.start_container = container_selection["startContainer"]
+
       # set document_id to find or create the document from hash
-      exact_selection = selector.detect { |e| e["value"] != nil }
-      next unless exact_selection
-      document_id = exact_selection["value"]
+      
+      old_selection = selector.detect { |e| e["value"] != nil }
+      if old_selection
+        document_id = old_selection["value"]
+      else
+        new_selection = hyp_annotation["target"].first["source"]
+        document_id = new_selection.sub(/.*\//,'') # get rid of everything in front of the slashq
+      end
+
       document_title = hyp_annotation["document"]["title"].first
       new_doc = find_or_create_document(document_id, document_title)
       annotation_record.document_id = new_doc.id
