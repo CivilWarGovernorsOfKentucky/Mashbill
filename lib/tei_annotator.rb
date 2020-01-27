@@ -129,7 +129,8 @@ class TeiAnnotator
   end
 
   def fallback_element(doc, annotation)
-    doc.search("text/body").children.detect { |e| e.text.match(annotation.verbatim) }
+    clean_text = annotation.verbatim.strip
+    doc.search("//*[text()[contains(., '#{clean_text}')]]").first
   end
   
   def target_element(doc, annotation)
