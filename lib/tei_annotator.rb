@@ -120,45 +120,97 @@ class TeiAnnotator
       end
     end
 
-    # unless xml_success 
-    #   # do this the long way
-    #   md = /(.*)#{verbatim}(.*)/.match paragraph.text
-    #   if md
-    #     prefix = md[1]
-    #     suffix = md[2]
-    #     # create a replacement element
-    #     replacement = Nokogiri::XML::Node.new(paragraph.name, doc)
+    unless xml_success 
+      # do this the long way
+      md = /(.*)#{verbatim}(.*)/.match paragraph.text
+      if md
+        prefix = md[1]
+        suffix = md[2]
+        # create a replacement element
+        replacement = Nokogiri::XML::Node.new(paragraph.name, doc)
 
-    #     state = :prefix
+        state = :prefix
 
-    #     paragraph.children.each do |node|
-    #       if state == :prefix
-    #         if prefix == node.text
-    #           # the prefix is the node
-    #           replacement.add_child(node)
-    #           prefix = nil
-    #           state = :element
-    #         elsif prefix.match /^node.text/
-    #           # the prefix contains the entire node
-    #           # add the node to the replacement element
-    #           replacement.add_child(node)
-    #           # adjust the prefix
-    #           prefix.sub("^#{node.text}", '')
-    #           # we remain in the prefix state
-    #         elsif node.text.match /^prefix/
+        entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
+        entity_node['ref'] = entity.xml_id if entity.ref_id 
 
-    #       elsif state == :element
+        # TODO what if there is no prefix?  No suffix?
+        paragraph.children.each do |node|
+          if state == :prefix
+            if prefix == node.text
+              # the prefix is the node
+              replacement.add_child(node)
+              prefix = nil
+              state = :element
+            elsif prefix.match /^node.text/
+              # the prefix contains the entire node
+              # add the node to the replacement element
+              replacement.add_child(node)
+              # adjust the prefix
+              prefix.sub("^#{node.text}", '')
+              # we remain in the prefix state
+            elsif node.text.match /^prefix/
+              # this node must be split into the prefix and the remainder
+              md = /(#{prefix})(.*)/.match node.text
+              node_prefix = md[1]
+              node_remainder = md[2]
 
-    #       else # state == :suffix
+              # does the node contain all of the verbatim, or just a portion? 
+              md = /#{verbatim}(.*)/.match node_remainder
+              if md
+                # the node contains all the verbatim
+                # add the entity tag
 
-    #       end
+                # does the node contain the verbatim and the suffix as well
+                node_suffix = md[1]
+                if node_suffix.has_value?
+                  # there is a suffix in the remainder
 
-    #     end
-    #     paragraph.replace(replacement)
+                  state = :suffix
+                  # modify the suffix
+                  suffix.sub("^#{node_suffix}", '')
+                end
+              else
+                # the node only contains the first part of the verbatim
+                # add the entity tag
+                # add the node remainder to the entity tag
+                # change the state to consume the entity
+                state = :element
+              end
+            end
+          elsif state == :element
+            # does the node contain all of the verbatim, or just a portion? 
+            md = /#{verbatim}(.*)/.match node_remainder
+            if md
+              # the node contains all the verbatim
+              # add the entity tag
 
-    #   end
+              # does the node contain the verbatim and the suffix as well
+              node_suffix = md[1]
+              if node_suffix.has_value?
+                # there is a suffix in the remainder
 
-    # end
+                state = :suffix
+                # modify the suffix
+                suffix.sub("^#{node_suffix}", '')
+              end
+            else
+              # the node only contains the first part of the verbatim
+              # add the entity tag
+              # add the node remainder to the entity tag
+            end
+
+          else # state == :suffix
+            # just add this node to the end and keep going
+            replacement.add_child(node)
+          end
+
+        end
+        paragraph.replace(replacement)
+
+      end
+
+    end
   end
   
 
