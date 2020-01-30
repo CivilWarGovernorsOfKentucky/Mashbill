@@ -72,7 +72,11 @@ class TeiAnnotator
       element = fallback_element(doc, annotation)
       unless element
         log_error("Cound not find fallback element in document", annotation)
-        return
+        element = last_fallback_element(doc, annotation)
+        unless element
+          log_error("Cound not find last fallback element in document", annotation)
+          return
+        end
       end
     end
 
@@ -94,9 +98,9 @@ class TeiAnnotator
   
   
   def search_and_replace(doc, paragraph, verbatim, entity)
-    entity_children = []    
+    entity_children = []
+    xml_success = false
     paragraph.children.each do |node|
-#      binding.pry if  verbatim=="Clarke County"
       md = /(.*)#{verbatim}(.*)/.match node.text
       if md && !TEI_TAGS.values.push('entity').include?(node.name)
         # this node contains the verbatim string but has not already been marked up as an entity
@@ -112,8 +116,49 @@ class TeiAnnotator
         prefix_node.add_next_sibling(entity_node)
         suffix_node = Nokogiri::XML::Text.new(suffix, doc)
         entity_node.add_next_sibling(suffix_node)
+        xml_success = true
       end
     end
+
+    # unless xml_success 
+    #   # do this the long way
+    #   md = /(.*)#{verbatim}(.*)/.match paragraph.text
+    #   if md
+    #     prefix = md[1]
+    #     suffix = md[2]
+    #     # create a replacement element
+    #     replacement = Nokogiri::XML::Node.new(paragraph.name, doc)
+
+    #     state = :prefix
+
+    #     paragraph.children.each do |node|
+    #       if state == :prefix
+    #         if prefix == node.text
+    #           # the prefix is the node
+    #           replacement.add_child(node)
+    #           prefix = nil
+    #           state = :element
+    #         elsif prefix.match /^node.text/
+    #           # the prefix contains the entire node
+    #           # add the node to the replacement element
+    #           replacement.add_child(node)
+    #           # adjust the prefix
+    #           prefix.sub("^#{node.text}", '')
+    #           # we remain in the prefix state
+    #         elsif node.text.match /^prefix/
+
+    #       elsif state == :element
+
+    #       else # state == :suffix
+
+    #       end
+
+    #     end
+    #     paragraph.replace(replacement)
+
+    #   end
+
+    # end
   end
   
 
@@ -128,6 +173,11 @@ class TeiAnnotator
     TEI_TAGS[entity.entity_type] || 'entity'    
   end
 
+  def last_fallback_element(doc, annotation)
+    clean_text = annotation.verbatim.strip
+    doc.search("//*[contains(., '#{clean_text}')]").last
+  end
+  
   def fallback_element(doc, annotation)
     clean_text = annotation.verbatim.strip
     doc.search("//*[text()[contains(., '#{clean_text}')]]").first

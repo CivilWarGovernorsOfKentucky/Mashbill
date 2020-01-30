@@ -139,6 +139,69 @@ RSpec.describe TeiAnnotator, type: :model do
     
   end
 
+  context "nested tags" do
+    # The first paragraph element begins with
+    # U. S. Com<hi rend="underline"><hi rend="sup">s</hi></hi> office at Paducah
+    # We want to attempt to mark up "Coms", which contains a tag on the last letter
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010030072)
+      @para = @doc.search('text/body/p')[0]
+      @entity = Entity.new
+    end
+    
+    it "should do simple replace with prefix" do
+      verbatim = "Coms"
+      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      marked_up = '<p>U. S. <entity>Com<hi rend="underline"><hi rend="sup">s</hi></hi></entity> office at Paducah'
+      @para.to_xml.should match /^#{marked_up}/      
+    end
+
+    it "should do simple replace with node alone" do
+      verbatim = "s"
+      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      marked_up = '<p>U. S. Com<entity><hi rend="underline"><hi rend="sup">s</hi></hi></entity> office at Paducah'
+      @para.to_xml.should match /^#{marked_up}/      
+    end
+
+    it "should do simple replace with suffix" do
+      verbatim = "s office"
+      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      marked_up = '<p>U. S. Com<entity><hi rend="underline"><hi rend="sup">s</hi></hi> office</entity> at Paducah'
+      @para.to_xml.should match /^#{marked_up}/      
+    end
+
+    it "should do simple replace with prefix and suffix" do
+      verbatim = "Coms office"
+      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      marked_up = '<p>U. S. <entity>Com<hi rend="underline"><hi rend="sup">s</hi></hi> office</entity> at Paducah'
+      @para.to_xml.should match /^#{marked_up}/      
+    end
+
+    it "should do simple replace with prefix and suffix" do
+      verbatim = "Coms office"
+      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      marked_up = '<p>U. S. <entity>Com<hi rend="underline"><hi rend="sup">s</hi></hi> office</entity> at Paducah'
+      @para.to_xml.should match /^#{marked_up}/      
+    end
+
+    it "should replace within nested tags" do
+      verbatim = "armed"
+      @para = @doc.search('text/body/p')[2]
+      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      marked_up = '<p>When <hi rend="underline"><entity>armed</entity> negroes</hi> are permited to go with impunity'
+      @para.to_xml.should match /^#{marked_up}/      
+    end
+
+    it "should not delete elements in a failed match" do
+      verbatim = "not a match"
+      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      marked_up = '<p>U. S. Com<hi rend="underline"><hi rend="sup">s</hi></hi> office at Paducah'
+      @para.to_xml.should match /^#{marked_up}/      
+    end
+
+  end
+
   
 end
 
