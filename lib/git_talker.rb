@@ -1,6 +1,6 @@
 class GitTalker
   def refresh_repository(directory)
-    system("cd #{directory}; git pull")
+#    system("cd #{directory}; git pull")
   end
   
   
@@ -8,7 +8,9 @@ class GitTalker
     tt = TextTransporter.new
     username =  user.email.sub(/@.*/, '')
     command = "cd #{Rails.application.config.document_root}; git pull; git add #{filename}; git commit -m 'changes by Mashbill user #{username}'; git push"
-    system(command)
+    # system(command)
+    system("echo foo")
+#    binding.pry
     raise StandardError.new("Git command failed") if $? != 0
   end
   

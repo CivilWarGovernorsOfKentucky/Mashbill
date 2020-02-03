@@ -95,27 +95,47 @@ class TeiAnnotator
       f << msg
     end    
   end
+
+  def new_node(node, text, doc)
+    if node.text?
+      dup_node = Nokogiri::XML::Text.new(text, doc)
+    else
+      dup_node = node
+      # Nokogiri::XML::Node.new(node.name, doc)
+      # # how do we add a non-text node?
+      # node.children.each do |child_node|
+      #   dup_node.add_child(child_node)
+      # end
+    end
+
+    dup_node
+  end
+
   
   
   def search_and_replace(doc, paragraph, verbatim, entity)
     entity_children = []
+
+    # attempt 
     xml_success = false
     paragraph.children.each do |node|
       md = /(.*)#{verbatim}(.*)/.match node.text
-      if md && !TEI_TAGS.values.push('entity').include?(node.name)
-        # this node contains the verbatim string but has not already been marked up as an entity
-        prefix = md[1]
-        suffix = md[2]
+      if md 
+        unless TEI_TAGS.values.push('entity').include?(node.name)
+          # this node contains the verbatim string but has not already been marked up as an entity
+          prefix = md[1]
+          suffix = md[2]
 
-        entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
-        entity_node['ref'] = entity.xml_id if entity.ref_id 
-        entity_node.add_child(Nokogiri::XML::Text.new(verbatim, doc))
-        
-        prefix_node = Nokogiri::XML::Text.new(prefix, doc)
-        node.replace(prefix_node)
-        prefix_node.add_next_sibling(entity_node)
-        suffix_node = Nokogiri::XML::Text.new(suffix, doc)
-        entity_node.add_next_sibling(suffix_node)
+          entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
+          entity_node['ref'] = entity.xml_id if entity.ref_id 
+          entity_node.add_child(Nokogiri::XML::Text.new(verbatim, doc))
+          
+          prefix_node = Nokogiri::XML::Text.new(prefix, doc)
+          node.replace(prefix_node)
+          prefix_node.add_next_sibling(entity_node)
+          suffix_node = Nokogiri::XML::Text.new(suffix, doc)
+          entity_node.add_next_sibling(suffix_node)
+        end
         xml_success = true
       end
     end
@@ -136,24 +156,29 @@ class TeiAnnotator
 
         # TODO what if there is no prefix?  No suffix?
         paragraph.children.each do |node|
+          binding.pry
           if state == :prefix
             if prefix == node.text
               # the prefix is the node
               replacement.add_child(node)
               prefix = nil
               state = :element
-            elsif prefix.match /^node.text/
+            elsif prefix.match /^#{node.text}/
               # the prefix contains the entire node
               # add the node to the replacement element
               replacement.add_child(node)
               # adjust the prefix
               prefix.sub("^#{node.text}", '')
               # we remain in the prefix state
-            elsif node.text.match /^prefix/
+            elsif node.text.match /^#{prefix}/
               # this node must be split into the prefix and the remainder
               md = /(#{prefix})(.*)/.match node.text
               node_prefix = md[1]
               node_remainder = md[2]
+              binding.pry
+              prefix_node = new_node(node, node_prefix, doc)
+
+              replacement.add_child(prefix_node)
 
               # does the node contain all of the verbatim, or just a portion? 
               md = /#{verbatim}(.*)/.match node_remainder
@@ -173,17 +198,25 @@ class TeiAnnotator
               else
                 # the node only contains the first part of the verbatim
                 # add the entity tag
+                replacement.add_child(entity_node)
                 # add the node remainder to the entity tag
+                remainder_node = new_node(node, node_remainder, doc)
+                entity_node.add_child(remainder_node)
                 # change the state to consume the entity
+                verbatim.sub("^#{node_remainder}", '')
+
                 state = :element
               end
             end
           elsif state == :element
             # does the node contain all of the verbatim, or just a portion? 
-            md = /#{verbatim}(.*)/.match node_remainder
+            md = /#{verbatim}(.*)/.match node.text
             if md
               # the node contains all the verbatim
+              dup_node = new_node(node, node.text, doc)
+
               # add the entity tag
+              entity_node.add_child(dup_node)
 
               # does the node contain the verbatim and the suffix as well
               node_suffix = md[1]
@@ -194,10 +227,12 @@ class TeiAnnotator
                 # modify the suffix
                 suffix.sub("^#{node_suffix}", '')
               end
-            else
+            elsif
               # the node only contains the first part of the verbatim
               # add the entity tag
               # add the node remainder to the entity tag
+              dup_node = new_node(node, node.text, doc)
+              entity_node.add_child(dup_node)
             end
 
           else # state == :suffix
