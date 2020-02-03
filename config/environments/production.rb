@@ -81,6 +81,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  config.document_root = File.join(Rails.root, '..', 'TestDocuments')
+  config.document_root = File.join(Rails.root, '..', 'Documents')
 
 end
