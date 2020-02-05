@@ -291,6 +291,9 @@ class TeiAnnotator
   
   def target_element_and_index(locator)
     md = /.*text...\/(\w*)\[(\d+)\].*/.match(locator)
+    if md.nil? 
+      return ['use_fallback',0]
+    end
     element = md.captures.first
     index = md.captures.second.to_i - 1
     [element, index]

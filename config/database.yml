@@ -48,6 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  database: relator_production
+  database: mashbill_production
   username: rails
   password: rails
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
