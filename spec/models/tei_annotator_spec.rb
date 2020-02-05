@@ -18,32 +18,35 @@ RSpec.describe TeiAnnotator, type: :model do
   context "easy entities" do
     before(:each) do
       @doc = Nokogiri::XML(KYR00010030072)
-      @para = @doc.search('text/body/p')[3]
 #      @entity = double('Entity')
       @entity = Entity.new
       @verbatim = "Dr Capes"
     end
-    
+    def para(index=3, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
     it "should do simple replace" do
-      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
+      @annotator.search_and_replace(@doc, para, @verbatim, @entity)    
       marked_up = "<p>Such was the case at <entity>Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-      @para.to_xml.should eq(marked_up)      
+      para.to_xml.should eq(marked_up)      
     end
 
     it "should not double-replace" do
-      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
+      @annotator.search_and_replace(@doc, para, @verbatim, @entity)    
       marked_up = "<p>Such was the case at <entity>Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-      @para.to_xml.should eq(marked_up)      
-      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
-      @para.to_xml.should eq(marked_up)      
+      para.to_xml.should eq(marked_up)      
+      @annotator.search_and_replace(@doc, para, @verbatim, @entity)    
+      para.to_xml.should eq(marked_up)      
     end
 
     def test_type_tag(type, tag)
       @entity.entity_type = type
-      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
+      @annotator.search_and_replace(@doc, para, @verbatim, @entity)    
       marked_up = "<p>Such was the case at <#{tag}>Dr Capes</#{tag}> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-      @para.to_xml.should eq(marked_up)            
+      para.to_xml.should eq(marked_up)    
     end
+
     it "should create persName tags" do
       test_type_tag(Entity::Type::PERSON, 'persName')
     end
@@ -57,9 +60,9 @@ RSpec.describe TeiAnnotator, type: :model do
     it "should add entity ref IDs" do
       @entity.id = 123
       @entity.ref_id = 'DEADBEEF'
-      @annotator.search_and_replace(@doc, @para, @verbatim, @entity)    
+      @annotator.search_and_replace(@doc, para, @verbatim, @entity)    
       marked_up = "<p>Such was the case at <entity ref=\"cwgk:DEADBEEF\">Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-      @para.to_xml.should eq(marked_up)      
+      para.to_xml.should eq(marked_up)      
     end
 
     
@@ -90,13 +93,13 @@ RSpec.describe TeiAnnotator, type: :model do
       @annotator.apply_annotation(@doc, annotation)
       
       marked_up = "<p>Such was the case at <entity>Dr Capes</entity> of this City Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-      @para.to_xml.should eq(marked_up)      
+      para.to_xml.should eq(marked_up)      
       
       annotation.verbatim = "City"
       @annotator.apply_annotation(@doc, annotation)
       
       marked_up = "<p>Such was the case at <entity>Dr Capes</entity> of this <entity>City</entity> Yesterday morning and there is not a more <hi rend=\"underline\">Loyal true Patriot</hi> than D<hi rend=\"sup\">r</hi> Cope on the american continent</p>"
-      @para.to_xml.should eq(marked_up)      
+      para.to_xml.should eq(marked_up)      
     end
     
     
@@ -146,58 +149,53 @@ RSpec.describe TeiAnnotator, type: :model do
 
     before(:each) do
       @doc = Nokogiri::XML(KYR00010030072)
-      @para = @doc.search('text/body/p')[0]
       @entity = Entity.new
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
     end
     
     it "should do simple replace with prefix" do
       verbatim = "Coms"
-      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      @annotator.search_and_replace(@doc, para, verbatim, @entity)
       marked_up = '<p>U. S. <entity>Com<hi rend="underline"><hi rend="sup">s</hi></hi></entity> office at Paducah'
-      @para.to_xml.should match /^#{marked_up}/      
+      para.to_xml.should match /^#{marked_up}/      
     end
 
     it "should do simple replace with node alone" do
       verbatim = "s"
-      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      @annotator.search_and_replace(@doc, para, verbatim, @entity)
       marked_up = '<p>U. S. Com<entity><hi rend="underline"><hi rend="sup">s</hi></hi></entity> office at Paducah'
-      @para.to_xml.should match /^#{marked_up}/      
+      para.to_xml.should match /^#{marked_up}/      
     end
 
     it "should do simple replace with suffix" do
       verbatim = "s office"
-      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      @annotator.search_and_replace(@doc, para, verbatim, @entity)
       marked_up = '<p>U. S. Com<entity><hi rend="underline"><hi rend="sup">s</hi></hi> office</entity> at Paducah'
-      @para.to_xml.should match /^#{marked_up}/      
+      para.to_xml.should match /^#{marked_up}/      
     end
 
     it "should do simple replace with prefix and suffix" do
       verbatim = "Coms office"
-      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      @annotator.search_and_replace(@doc, para, verbatim, @entity)
       marked_up = '<p>U. S. <entity>Com<hi rend="underline"><hi rend="sup">s</hi></hi> office</entity> at Paducah'
-      @para.to_xml.should match /^#{marked_up}/      
-    end
-
-    it "should do simple replace with prefix and suffix" do
-      verbatim = "Coms office"
-      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
-      marked_up = '<p>U. S. <entity>Com<hi rend="underline"><hi rend="sup">s</hi></hi> office</entity> at Paducah'
-      @para.to_xml.should match /^#{marked_up}/      
+      para.to_xml.should match /^#{marked_up}/      
     end
 
     it "should replace within nested tags" do
       verbatim = "armed"
-      @para = @doc.search('text/body/p')[2]
-      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
-      marked_up = '<p>When <hi rend="underline"><entity>armed</entity> negroes</hi> are permited to go with impunity'
-      @para.to_xml.should match /^#{marked_up}/      
+      @annotator.search_and_replace(@doc, para(2), verbatim, @entity)
+      marked_up = '<p>When <entity><hi rend="underline">armed</hi></entity><hi rend="underline"> negroes</hi> are permited to go with impunity'
+      para(2).to_xml.should match /^#{marked_up}/      
     end
 
     it "should not delete elements in a failed match" do
       verbatim = "not a match"
-      @annotator.search_and_replace(@doc, @para, verbatim, @entity)
+      @annotator.search_and_replace(@doc, para, verbatim, @entity)
       marked_up = '<p>U. S. Com<hi rend="underline"><hi rend="sup">s</hi></hi> office at Paducah'
-      @para.to_xml.should match /^#{marked_up}/      
+      para.to_xml.should match /^#{marked_up}/      
     end
 
   end

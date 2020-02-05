@@ -96,6 +96,33 @@ class TeiAnnotator
     end    
   end
 
+  def modify_text(node, text, doc, remove)
+    if node.text?
+      if remove
+        node.content = node.text.sub(text, '')
+      else
+        node.content = text
+      end
+    else
+      node.children.each do |child|
+        modify_text(child, text, doc, remove)
+      end
+    end
+  end
+
+
+  def split_node(node, text, doc)
+    copy_1 = node.dup
+    copy_2 = node.dup
+
+    # modify copy 1 to have the text
+    modify_text(copy_1, text, doc, false)
+
+    # modify copy 2 to have the remainder
+    modify_text(copy_2, text, doc, true)
+    [copy_1, copy_2]
+  end
+
   def new_node(node, text, doc)
     if node.text?
       dup_node = Nokogiri::XML::Text.new(text, doc)
@@ -114,33 +141,8 @@ class TeiAnnotator
   
   
   def search_and_replace(doc, paragraph, verbatim, entity)
-    entity_children = []
-
-    # attempt 
-    xml_success = false
-    paragraph.children.each do |node|
-      md = /(.*)#{verbatim}(.*)/.match node.text
-      if md 
-        unless TEI_TAGS.values.push('entity').include?(node.name)
-          # this node contains the verbatim string but has not already been marked up as an entity
-          prefix = md[1]
-          suffix = md[2]
-
-          entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
-          entity_node['ref'] = entity.xml_id if entity.ref_id 
-          entity_node.add_child(Nokogiri::XML::Text.new(verbatim, doc))
-          
-          prefix_node = Nokogiri::XML::Text.new(prefix, doc)
-          node.replace(prefix_node)
-          prefix_node.add_next_sibling(entity_node)
-          suffix_node = Nokogiri::XML::Text.new(suffix, doc)
-          entity_node.add_next_sibling(suffix_node)
-        end
-        xml_success = true
-      end
-    end
-
-    unless xml_success 
+    # only search-replace if there isn't already an entity tag containing the verbatim text
+    unless TEI_TAGS.values.push('entity').detect {|name| paragraph.search(name).text == verbatim }
       # do this the long way
       md = /(.*)#{verbatim}(.*)/.match paragraph.text
       if md
@@ -154,9 +156,8 @@ class TeiAnnotator
         entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
         entity_node['ref'] = entity.xml_id if entity.ref_id 
 
-        # TODO what if there is no prefix?  No suffix?
         paragraph.children.each do |node|
-          binding.pry
+
           if state == :prefix
             if prefix == node.text
               # the prefix is the node
@@ -168,32 +169,40 @@ class TeiAnnotator
               # add the node to the replacement element
               replacement.add_child(node)
               # adjust the prefix
-              prefix.sub("^#{node.text}", '')
+              prefix.sub!(/^#{node.text}/, '')
               # we remain in the prefix state
             elsif node.text.match /^#{prefix}/
               # this node must be split into the prefix and the remainder
               md = /(#{prefix})(.*)/.match node.text
               node_prefix = md[1]
               node_remainder = md[2]
-              binding.pry
               prefix_node = new_node(node, node_prefix, doc)
 
               replacement.add_child(prefix_node)
+              if node.text?
+                node.content=node.text.sub(node_prefix,'')
+              end
 
               # does the node contain all of the verbatim, or just a portion? 
               md = /#{verbatim}(.*)/.match node_remainder
               if md
                 # the node contains all the verbatim
-                # add the entity tag
+                # add to the entity tag
+                replacement.add_child(entity_node)
+ 
+                lhs, rhs = split_node(node, verbatim, doc)
+ 
+                entity_node.add_child(lhs)
 
                 # does the node contain the verbatim and the suffix as well
                 node_suffix = md[1]
-                if node_suffix.has_value?
+                if !node_suffix.blank?
                   # there is a suffix in the remainder
+                  replacement.add_child(rhs)
 
                   state = :suffix
                   # modify the suffix
-                  suffix.sub("^#{node_suffix}", '')
+                  suffix.sub!(/^#{node_suffix}/, '')
                 end
               else
                 # the node only contains the first part of the verbatim
@@ -203,7 +212,7 @@ class TeiAnnotator
                 remainder_node = new_node(node, node_remainder, doc)
                 entity_node.add_child(remainder_node)
                 # change the state to consume the entity
-                verbatim.sub("^#{node_remainder}", '')
+                verbatim.sub!(/^#{node_remainder}/, '')
 
                 state = :element
               end
@@ -213,19 +222,22 @@ class TeiAnnotator
             md = /#{verbatim}(.*)/.match node.text
             if md
               # the node contains all the verbatim
-              dup_node = new_node(node, node.text, doc)
+              lhs, rhs = split_node(node, verbatim, doc)
+              # dup_node = new_node(node, verbatim, doc)
 
               # add the entity tag
-              entity_node.add_child(dup_node)
+              entity_node.add_child(lhs)
+              replacement.add_child(entity_node) unless entity_node.parent
 
+              state = :suffix
+              verbatim = nil
               # does the node contain the verbatim and the suffix as well
               node_suffix = md[1]
-              if node_suffix.has_value?
-                # there is a suffix in the remainder
+              if !node_suffix.blank?
+                replacement.add_child(rhs)
 
-                state = :suffix
                 # modify the suffix
-                suffix.sub("^#{node_suffix}", '')
+                suffix.sub!(/^#{node_suffix}/, '')
               end
             elsif
               # the node only contains the first part of the verbatim
@@ -233,6 +245,8 @@ class TeiAnnotator
               # add the node remainder to the entity tag
               dup_node = new_node(node, node.text, doc)
               entity_node.add_child(dup_node)
+              replacement.add_child(entity_node) unless entity_node.parent
+              verbatim.sub!(/^#{node.text}/, '')
             end
 
           else # state == :suffix
