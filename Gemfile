@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '~> 1.10.4'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rest-client'
