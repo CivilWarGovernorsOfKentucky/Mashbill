@@ -8,9 +8,7 @@ class GitTalker
     tt = TextTransporter.new
     username =  user.email.sub(/@.*/, '')
     command = "cd #{Rails.application.config.document_root}; git pull; git add #{filename}; git commit -m 'changes by Mashbill user #{username}'; git push"
-    # system(command)
-    system("echo foo")
-#    binding.pry
+    system(command)
     raise StandardError.new("Git command failed") if $? != 0
   end
   
