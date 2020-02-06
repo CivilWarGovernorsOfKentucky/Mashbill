@@ -1,6 +1,6 @@
 class GitTalker
   def refresh_repository(directory)
-#    system("cd #{directory}; git pull")
+    system("cd #{directory}; git pull")
   end
   
   
