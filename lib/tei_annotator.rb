@@ -67,6 +67,7 @@ class TeiAnnotator
 
   def apply_annotation(doc, annotation)
     element = target_element(doc, annotation)
+    binding.pry
     unless element
       log_error("Could not find element at selector; attempting fallback", annotation)
       element = fallback_element(doc, annotation)
@@ -157,6 +158,7 @@ class TeiAnnotator
         entity_node['ref'] = entity.xml_id if entity.ref_id 
 
         paragraph.children.each do |node|
+          # binding.pry
 
           if state == :prefix
             if prefix == node.text

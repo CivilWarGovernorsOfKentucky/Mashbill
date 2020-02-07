@@ -197,9 +197,28 @@ RSpec.describe TeiAnnotator, type: :model do
       marked_up = '<p>U. S. Com<hi rend="underline"><hi rend="sup">s</hi></hi> office at Paducah'
       para.to_xml.should match /^#{marked_up}/      
     end
-
   end
 
+  context "real world" do
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010030072)
+      @document = Document.new(:cwgk_id => 'KYR0004-101-0014')
+      @annotations = KYR00041010014_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each do |annotation|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+  end
   
 end
 
