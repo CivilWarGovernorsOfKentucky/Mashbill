@@ -199,7 +199,7 @@ RSpec.describe TeiAnnotator, type: :model do
     end
   end
 
-  context "real world" do
+  context "real world KYR-0004-101-0014" do
 
     before(:each) do
       @doc = Nokogiri::XML(KYR00041010014)
@@ -329,6 +329,51 @@ RSpec.describe TeiAnnotator, type: :model do
         @annotator.search_and_replace(@doc, para, verbatim, @entity)
         marked_up = "<p>Headquarters Kentucky Volunteers,\n<lb/>Adjutant=General\'s Office,\n<lb/>Frankfort, <date when=\"1865-04-05\">April 5<hi rend=\"sup\">:</hi> 1865</date>.\n<lb/>General Orders\n<lb/>N<hi rend=\"sup\">o.</hi> 9.</p>"
         marked_up.should eq para.to_xml      
+      end
+    end
+
+  end
+
+
+  context "real world KYR-0001-006-0066" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010060066)
+      @document = Document.new(:cwgk_id => 'KYR0001-006-0066')
+      KYR00010060066_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00010060066_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010060066)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        after_xml = @doc.to_xml
+        after_xml.should_not eq(before_xml)
       end
     end
 

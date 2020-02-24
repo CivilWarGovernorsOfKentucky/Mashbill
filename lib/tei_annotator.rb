@@ -65,23 +65,41 @@ class TeiAnnotator
     @text_transporter.save(document.cwgk_id, text, user)
   end
 
+  def annotate_element(doc, element, annotation)
+    before_xml = element.to_xml
+
+    already_tagged = search_and_replace(doc, element, annotation.verbatim, annotation.entity)
+
+    # return true if the XML was modified
+    already_tagged || element.to_xml != before_xml
+  end
+
+
   def apply_annotation(doc, annotation)
+    old_doc = doc.dup
+
+    # attempt based on selector
     element = target_element(doc, annotation)
-    unless element
+    if element && annotate_element(doc,element,annotation)
+      # the element was modified!
+    else
       log_error("Could not find element at selector; attempting fallback", annotation)
       element = fallback_element(doc, annotation)
-      unless element
+
+      if element && annotate_element(doc,element,annotation)
+        # the element was modified!
+      else
         log_error("Cound not find fallback element in document", annotation)
         element = last_fallback_element(doc, annotation)
-        unless element
+        if element && annotate_element(doc,element,annotation)
+          # the element was modified!
+        else
           log_error("Cound not find last fallback element in document", annotation)
           return
         end
       end
     end
 
-    old_doc = doc.dup
-    search_and_replace(doc, element, annotation.verbatim, annotation.entity)
     if old_doc.text.gsub(/\s/,"") != doc.text.gsub(/\s/,"")
       log_error("Annotation corrupts TEI document", annotation)
       doc = old_doc        
@@ -172,7 +190,9 @@ class TeiAnnotator
   
   def search_and_replace(doc, paragraph, verbatim, entity)
     # only search-replace if there isn't already an entity tag containing the verbatim text
-    unless TEI_TAGS.values.push('entity').detect {|name| paragraph.search(name).text == verbatim }
+    if TEI_TAGS.values.push('entity').detect {|name| paragraph.search(name).text == verbatim }
+      return true
+    else
       # do this the long way
       md = /(.*?)#{verbatim}(.*)/m.match paragraph.text
       if md
@@ -187,6 +207,7 @@ class TeiAnnotator
         entity_node['ref'] = entity.xml_id if entity.ref_id 
 
         paragraph.children.each do |node|
+
 
           if state == :prefix
             if prefix == node.text
@@ -298,7 +319,7 @@ class TeiAnnotator
         paragraph.replace(replacement)
 
       end
-
+      return false
     end
   end
   
@@ -321,7 +342,7 @@ class TeiAnnotator
   
   def fallback_element(doc, annotation)
     clean_text = annotation.verbatim.strip
-    doc.search("//*[text()[contains(., '#{clean_text}')]]").first
+    doc.search("//body//*[text()[contains(., '#{clean_text}')]]").first
   end
   
   def target_element(doc, annotation)
