@@ -815,3 +815,460 @@ KYR00010060066_ENTITIES = [{"id"=>2,
    "Nashville, Davidson County, Tennessee, attorney and politician ",
   "birth_date"=>"1830-10-01",
   "death_date"=>"1904-11-12"}]
+
+
+
+KYR00022220021 = <<EOF
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0002-222-0021"> 
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title level="a" type="main">James F. Robinson, Jr., Receipt to Hannah Hays</title>
+    <title level="a" type="parallel">CWG13710</title>
+    <respStmt>
+     <resp n="transcriber">Transcribed by:</resp>
+     <name>Elizabeth J Van Allen</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_1">Single Proof by:</resp>
+     <name>Whitney R Smith</name>
+    </respStmt>
+    <respStmt>
+     <resp n="encoding">Markup by:</resp>
+     <name>Anthony P Curtis</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_2">Double Proof by:</resp>
+     <name>CWGK Staff</name>
+    </respStmt>
+   </titleStmt>
+   <publicationStmt>
+    <publisher>Kentucky Historical Society</publisher>
+    <pubPlace>Frankfort, Kentucky</pubPlace>
+    <availability>
+     <p>This image and transcription is publicly accessible. The image appears courtesy of the repository named in the Source Description. The transcription and annotation were undertaken by Kentucky Historical Society staff, volunteers, and interns. If referencing this document title, accession number, and permanent URL.</p>
+    </availability>
+   </publicationStmt>
+   <seriesStmt>
+    <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+    <respStmt>
+     <resp>Project Director</resp>
+     <name>Patrick A. Lewis</name>
+    </respStmt>
+   </seriesStmt>
+   <sourceDesc>
+    <msDesc>
+    <msIdentifier>
+      <country>UNITED STATES</country>
+      <region>KY</region>
+      <settlement>Frankfort</settlement>
+      <repository>Kentucky Department of Military Affairs</repository>
+      <collection>Misc. QM Expenditures, 1863-1865</collection>
+      <idno>QMG Box 10; 1863 Office Expenses - Telegraph, Stationary - Transportation - Ordinance Stores; Bundle 3</idno>
+     </msIdentifier>
+    </msDesc>
+   </sourceDesc>
+  </fileDesc>
+  <profileDesc>
+   <creation>
+    <placeName>Frankfort, Franklin County, Kentucky</placeName>
+    <date when="1863-03-02">2 March 1863</date>
+   </creation>
+   <textClass>
+    <keywords>
+     <term type="genre">Legal/Financial</term>
+    </keywords>
+   </textClass>
+  </profileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p>No. 22.<figure type="hr"/>
+<lb/>The <hi rend="str">United States,</hi> State of Kentucky
+<lb/>To Hannah Hays Dr.</p>
+<p><table rend="rules">
+<row>
+  <cell><date when="1861">1861</date></cell>
+  <cell/>
+  <cell>DOLLARS.</cell>
+  <cell>CTS.</cell>
+</row>
+<row>
+  <cell><date when="1861-11-14">Nov 14</date></cell>
+  <cell>To 4 Barels Flour-- &#36;5<hi rend="sup">00</hi></cell>
+  <cell>20</cell>
+  <cell>00</cell>
+</row>
+<row>
+  <cell/>
+  <cell/>
+  <cell>&#36;20</cell>
+  <cell>00</cell>
+</row>
+</table></p>
+<p>196
+<lb/><hi rend="underline">4</hi>
+<lb/>784</p>
+<p>Approved
+<lb/>By order of the Governor
+<lb/>Jno W Finnell
+<lb/>Adjt Genl Ky Vols</p>
+<p>I certify that the above account is correct and just: that the services were rendered as stated; and that they were necessary for the public service</p>
+<p>B. F. Wilson
+<lb/>Quartermaster-of Home Guards -- Under Coln<hi rend="underline"><hi rend="sup">l</hi></hi> Pope -- </p>
+<p>Received at Frankfort Ky the <date when="1863-03-02">2<hi rend="sup">d</hi> of March 1863</date>, of James F Robinson Jr. Quartermaster <hi rend="str">U.S. Army,</hi> Ky Vols the sum of Twenty Dollars, and <gap/> cents, in full of the above account.</p>
+<p>Hannah, Hays,</p>
+<p>(DUPLICATES.)<pb/></p>
+<p>No. 22.<figure type="hr"/>
+<lb/>No. 106 ABSTRACT B "D" QR. 186<gap/><figure type="hr"/></p>
+<p>Hannah Hays
+<lb/>Dollars 20 <hi rend="sup">x</hi>/<hi rend="sub">100</hi>
+<lb/>Paid <date when="1863-03-02">2<hi rend="sup">nd</hi> of <hi rend="str">Feb</hi>Mch 1863</date>
+<lb/>Home Gd
+<lb/>11</p>
+<p>N A Rapier
+<lb/>J198</p>
+<p> -- Rapier -- Larue</p>
+  </body>
+ </text>
+</TEI>
+EOF
+
+
+KYR00022220021_ANNOTATIONS_ATTRIBUTES = [{"id"=>20826,
+  "document_id"=>1532,
+  "verbatim"=>"State of Kentucky",
+  "user_id"=>1,
+  "entity_id"=>83,
+  "hypothesis_annotation_id"=>"P1rfIArBEemZd1-pvq8w6Q",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"\n\n\n\n  No. 22.The United States, ",
+  "suffix"=>"\nTo Hannah Hays Dr.1861DOLLARS.C",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
+ {"id"=>20824,
+  "document_id"=>1532,
+  "verbatim"=>"Governor",
+  "user_id"=>1,
+  "entity_id"=>98,
+  "hypothesis_annotation_id"=>"ULlewgrBEemzV6veY2omzw",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"96\n4784Approved\nBy order of the ",
+  "suffix"=>"\nJno W Finnell\nAdjt Genl Ky Vols",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
+ {"id"=>20823,
+  "document_id"=>1532,
+  "verbatim"=>"Jno W Finnell",
+  "user_id"=>1,
+  "entity_id"=>228,
+  "hypothesis_annotation_id"=>"VLvBmgrBEemZeLPO1fyoyA",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"proved\nBy order of the Governor\n",
+  "suffix"=>"\nAdjt Genl Ky VolsI certify that",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
+ {"id"=>20822,
+  "document_id"=>1532,
+  "verbatim"=>"Ky Vols",
+  "user_id"=>1,
+  "entity_id"=>870,
+  "hypothesis_annotation_id"=>"WEL5jArBEemCpp8-SPkMDQ",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"overnor\nJno W Finnell\nAdjt Genl ",
+  "suffix"=>"I certify that the above account",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
+ {"id"=>20820,
+  "document_id"=>1532,
+  "verbatim"=>"Home Guards",
+  "user_id"=>1,
+  "entity_id"=>902,
+  "hypothesis_annotation_id"=>"YU_0YgrBEemN91fT3QLdLA",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"ceB. F. Wilson\nQuartermaster-of ",
+  "suffix"=>" — Under Colnl Pope — Received a",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[8]"},
+ {"id"=>20818,
+  "document_id"=>1532,
+  "verbatim"=>"Frankfort",
+  "user_id"=>1,
+  "entity_id"=>308,
+  "hypothesis_annotation_id"=>"lH7vCgrBEemCZq-JwkHi9g",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>" Under Colnl Pope — Received at ",
+  "suffix"=>" Ky the 2d of March 1863, of Jam",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[9]"},
+ {"id"=>20817,
+  "document_id"=>1532,
+  "verbatim"=>"ames F Robinson Jr",
+  "user_id"=>1,
+  "entity_id"=>234,
+  "hypothesis_annotation_id"=>"mUwP1grBEemWC6sSzn8ZwQ",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"rt Ky the 2d of March 1863, of J",
+  "suffix"=>". Quartermaster U.S. Army, Ky Vo",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[9]"},
+ {"id"=>20825,
+  "document_id"=>1532,
+  "verbatim"=>"Hannah Hays",
+  "user_id"=>1,
+  "entity_id"=>10457,
+  "hypothesis_annotation_id"=>"RC2xgArBEemuLP8PYMzZmg",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"ed States, State of Kentucky\nTo ",
+  "suffix"=>" Dr.1861DOLLARS.CTS.Nov 14To 4 B",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
+ {"id"=>20821,
+  "document_id"=>1532,
+  "verbatim"=>"B. F. Wilson",
+  "user_id"=>1,
+  "entity_id"=>10458,
+  "hypothesis_annotation_id"=>"XUdt-grBEemLrJPgycxiIQ",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"necessary for the public service",
+  "suffix"=>"\nQuartermaster-of Home Guards — ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[8]"},
+ {"id"=>20816,
+  "document_id"=>1532,
+  "verbatim"=>"N A Rapier",
+  "user_id"=>1,
+  "entity_id"=>10459,
+  "hypothesis_annotation_id"=>"onWxDArBEemWjP_P-CTT0g",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"aid 2nd of FebMch 1863Home Gd\n11",
+  "suffix"=>"\nJ198 — Rapier — LarueCivil War ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[15]"},
+ {"id"=>20819,
+  "document_id"=>1532,
+  "verbatim"=>"Pope",
+  "user_id"=>1,
+  "entity_id"=>5692,
+  "hypothesis_annotation_id"=>"jcNBKgrBEemLreMpZNr7eg",
+  "hypothesis_user"=>"BKirk@hypothes.is",
+  "prefix"=>"er-of Home Guards — Under Colnl ",
+  "suffix"=>" — Received at Frankfort Ky the ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[8]"},
+ {"id"=>22341,
+  "document_id"=>1532,
+  "verbatim"=>"Adjt Genl ",
+  "user_id"=>1,
+  "entity_id"=>388,
+  "hypothesis_annotation_id"=>"C06eloF9EemWdwc5E4SKXw",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"r of the Governor\nJno W Finnell\n",
+  "suffix"=>"Ky VolsI certify that the above ",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
+ {"id"=>22335,
+  "document_id"=>1532,
+  "verbatim"=>"Quartermaster U.S. Army, Ky Vols ",
+  "user_id"=>1,
+  "entity_id"=>389,
+  "hypothesis_annotation_id"=>"I8YiZIF9EemFpPNah59h9w",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"h 1863, of James F Robinson Jr. ",
+  "suffix"=>"the sum of Twenty Dollars, and [",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[9]"},
+ {"id"=>24794,
+  "document_id"=>1532,
+  "verbatim"=>"Larue",
+  "user_id"=>1,
+  "entity_id"=>1718,
+  "hypothesis_annotation_id"=>"_OTxVAVkEeql2V-llmsdSg",
+  "hypothesis_user"=>"JMBKHS@hypothes.is",
+  "prefix"=>"Gd\n11N A Rapier\nJ198 — Rapier — ",
+  "suffix"=>"Civil War Governors of Kentucky ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[16]"}]
+
+
+KYR00022220021_ENTITIES = [{"id"=>83,
+  "name"=>"Commonwealth of Kentucky",
+  "entity_type"=>"organization",
+  "biography"=>
+   "Administrative body of the state of Kentucky. Capital at Frankfort, Kentucky. Governor(s): Beriah Magoffin (1859-1862), James F. Robinson (1862-1863), and Thomas E. Bramlette (1863-1867).",
+  "bibliography"=>
+   "Paul Blanchard, \"Office of Governor\" in _The Kentucky Encyclopedia_, John E. Kleber, ed. (Lexington: University Press of Kentucky, 1992), 380; Malcolm E. Jewell, \"General Assembly\" in _The Kentucky Encyclopedia_, John E. Kleber, ed. (Lexington: University Press of Kentucky, 1992), 366; Paul J. Weber, \"Court System\" in _The Kentucky Encyclopedia_, John E. Kleber, ed. (Lexington: University Press of Kentucky, 1992), 233.",
+  "user_id"=>1,
+  "ref_id"=>"O001025",
+  "gender"=>"male",
+  "disambiguator"=>"state government org",
+  "birth_date"=>"1792",
+  "death_date"=>""},
+ {"id"=>98,
+  "name"=>"James Fisher Robinson",
+  "entity_type"=>"person",
+  "biography"=>
+   "Twenty-second governor of the Commonwealth of Kentucky from August 18, 1862 to September 1, 1863. Son of Jonathan Robinson and Jane Black Robinson. Married Susan D. Mansell Robinson on December 26, 1821. Father of Emilie Jane Robinson and James F. Robinson, Jr. Married Willina S. Herndon Robinson on May 30, 1842. Father of Scott Herndon Robinson, John McCracken Robinson, George Sidney Robinson, Madison Johnson Robinson, Stephen Gano Robinson, Willa Ewing Robinson, Philip Eldon Robinson, and Stephen Gano Robinson. Educated at Forest Hill Academy and Transylvania University in Lexington, Kentucky. Owned thirty five enslaved persons in 1860. Trustee of Georgetown College. President of the Farmers' Bank of Georgetown. Represented Fayette and Scott counties in the Senate of the Commonwealth of Kentucky from 1851 to 1855. Represented Fayette and Scott counties in the Senate of the Commonwealth of Kentucky from 1861 until he became governor on August 18, 1862. Speaker of the Senate of the Commonwealth of Kentucky from September 3 to September 5, 1861. Speaker of the Senate of the Commonwealth of Kentucky from August 16 to August 18, 1862. Returned to practicing law and farming on retiring from politics in 1863.",
+  "bibliography"=>
+   "John David Smith, “James F. Robinson (1862-1863)” in Lowell H. Harrison, Ed., _Kentucky’s Governors_ (Lexington: University Press of Kentucky, 2004), 89-92. \r\n\r\nWilliam Henry Engle, _Pennsylvania Genealogies: Scotch-Irish and German_ (Harrisburg: Lane S. Hart, 1886), 553, 556-7. \r\n\r\n_Eighth Manuscript Census of the United States_ (1860), Slave Schedules, Kentucky, Scott County, District No 1, p. 216B, 230, . \r\n\r\n_Eighth Manuscript Census of the United States_ (1860), Slave Schedules, Kentucky, Scott County, District No 2, pp. 235, 236, 252.\r\n\r\n_Eighth Manuscript Census of the United States_ (1860), Slave Schedules, Kentucky, Jefferson County, Louisville Ward 4, p. 266.",
+  "user_id"=>1,
+  "ref_id"=>"N001004",
+  "gender"=>"male",
+  "disambiguator"=>
+   "governor, state senator, businessman, attorney, and farmer",
+  "birth_date"=>"1800-10-04",
+  "death_date"=>"1882-10-31"},
+ {"id"=>228,
+  "name"=>"John William Finnell",
+  "entity_type"=>"person",
+  "biography"=>
+   "Covington, Kentucky, attorney, politician, editor, and soldier. Winchester, Kentucky, native. Son of Nimrod L. Finnell. Married to Elizabeth Wall Finnell in Harrison County, Kentucky, on September 7, 1841. Married to Elizabeth S. Tureman Finnell in Nicholas County, Kentucky, on February 6, 1844. Father of Virginia Finnell, Ida Finnell, Joseph Finnell, and Nelly Finnell. Graduated from Transylvania University in Lexington, Kentucky, in 1838. Editor at the Lexington _Daily Intelligencer_ in Lexington in 1840. Read law with Richard H. Menefee. Graduated from law school at Transylvania University in 1841. Practiced law in Carlisle, Kentucky. Successful Whig candidate for the House of Representatives of the Commonwealth of Kentucky from Nicholas County, Kentucky, in 1843. Editor of the Frankfort _Commonwealth_ in Frankfort, Kentucky, from 1844 to 1848. Appointed secretary of state of the Commonwealth of Kentucky by John J. Crittenden in 1848. Appointed secretary of state of the Commonwealth of Kentucky by John LaRue Helm in 1850. Practiced law in Covington from 1852 to 1861. Represented Archibald Gaines in the fugitive slave case of Margaret Garner in Cincinnati, Ohio, in 1856. Delegate to the Constitutional Union Party national convention in Baltimore in 1860. Owned two enslaved people in Covington in 1860. Member of the House of Representatives of the Commonwealth of Kentucky from Kenton County, Kentucky, from 1861 to 1863. Adjutant general of the Commonwealth of Kentucky from October 12, 1861 to September 1863.",
+  "bibliography"=>
+   "_Kentucky Marriage Records_, Madison County Courthouse, Richmond, Kentucky, Harrison County Marriages, Film #001690281, p. 28 of microfilm.\r\n\r\n_Kentucky Marriage Records_, Madison County Courthouse, Richmond, Kentucky, Nicholas County Marriages, Film #000252392, p. 74 of microfilm.\r\n\r\n_Eighth Manuscript Census of the United States_ (1860), Population Schedules, Kentucky, Kenton County, Covington Ward 4, p. 699\r\n\r\n_Eighth Manuscript Census of the United States_ (1860), Slave Schedules, Kentucky, Kenton County, City of Covington, p. 2\r\n\r\nLewis Collins and Richard H. Collins, _Collins' Historical Sketches of Kentucky_, vol. 2. Covington, KY: Collins & Co., 1874, 421, 437-38 \r\n\r\nMark Reinhardt, _Who Speaks for Margaret Garner?_ Minneapolis and London: University of Minnesota Press, 2010\r\n\r\n_Find A Grave_, \"John William Finnell (1821-1888),\" Memorial #13775594, https://www.findagrave.com/memorial/13775594 (accessed November 20, 2017).",
+  "user_id"=>2,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"TAG, Kenton Co. State Rep",
+  "birth_date"=>"1821-12-24",
+  "death_date"=>"1888-01-25"},
+ {"id"=>234,
+  "name"=>"James Fisher Robinson, Jr.",
+  "entity_type"=>"person",
+  "biography"=>
+   "Lexington, Kentucky, resident and Quartermaster General of Kentucky. Georgetown, Kentucky, native. Son of James Fisher Robinson and Susan D. Mansell Robinson. Married to Mary Wheeler Robinson in 1859. Graduated from Georgetown College in Georgetown in 1853. Merchant in Louisville in 1860. Quartermaster General of Kentucky from 1862 to 1863.",
+  "bibliography"=>
+   "_Eighth Manuscript Census of the United States_ (1860), Population Schedules, Kentucky, Jefferson County, 4th Ward City of Louisville, p. 14. William Henry Perrin, ed., *History of Fayette County, Kentucky, with an Outline Sketch of the Blue Grass Region by Robert Peter, M. D., Professor of Chemistry in the Agricultural and Mechanical College, Chemist to the State Geological Society, Etc.* (Chicago, IL: O. L. Baskin and Company, 1882), p. 691. “Robinson, James Fisher, Jr., 1832-” *Social Networks and Archival Context*, http://socialarchive.iath.virginia.edu/ark:/99166/w6v1241s (accessed January 3, 2017).  *Find A Grave*, “James F. Robinson (November 25, 1832-1892),” Memorial #98031371, http://findagrave.com/memorial/98031371 (accessed February 23, 2018). ",
+  "user_id"=>2,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"QMG of KY, Gov's son",
+  "birth_date"=>"1832-11-25",
+  "death_date"=>"1892"},
+ {"id"=>308,
+  "name"=>"Frankfort, Kentucky",
+  "entity_type"=>"place",
+  "biography"=>
+   "Capital of Kentucky. Seat of Franklin County, Kentucky. Located on the Kentucky River.\r\n",
+  "bibliography"=>
+   "Robert M. Rennick, _Kentucky Place Names_ (Lexington: University of Kentucky Press, 1987), 108. \r\n\r\n_USGS: Earth Explorer_, \"Frankfort, Kentucky,\" https://earthexplorer.usgs.gov/ (accessed on July 16, 2019).",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Capital of KY, seat of Franklin County",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>388,
+  "name"=>"Office of the Adjutant General of Kentucky",
+  "entity_type"=>"organization",
+  "biography"=>
+   "The office of the chief military officer and advisor to the Governor of the Commonwealth of Kentucky. Resides in the Executive Branch of the Commonwealth of Kentucky. Civil War-era Adjutant Generals: Scott Brown (1859-1861); John W. Finnell (1861-1863); John Boyle (1863-1864); Daniel W. Lindsey (1864-1867).",
+  "bibliography"=>
+   "Report of the Adjutant General of the State of Kentucky, vol. 1 (Frankfort: John H. Harney, Public Printer, 1866), VII.",
+  "user_id"=>7,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Kentucky AGO",
+  "birth_date"=>"1793",
+  "death_date"=>""},
+ {"id"=>389,
+  "name"=>"Office of the Quartermaster General of Kentucky",
+  "entity_type"=>"organization",
+  "biography"=>
+   "Chief supply officer of the Commonwealth of Kentucky. Civil War-era quartermaster generals: W. A. Dudley (October 3,1861-October 30, 1862), James F. Robinson, Jr. (December 2, 1862-August 31, 1863), Samuel G. Suddarth (September 1, 1863-January 13, 1866).  ",
+  "bibliography"=>
+   "_Report of the Adjutant General of the State of Kentucky, vol. 1_ (Frankfort: John H. Harney, Public Printer, 1866), VII.",
+  "user_id"=>7,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Kentucky",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>870,
+  "name"=>"Kentucky Volunteers",
+  "entity_type"=>"organization",
+  "biography"=>
+   "The official organization of Kentucky military forces under the command of the Adjutant General of Kentucky. Organized into infantry, cavalry, and artillery regiments. Civil War-era Adjutant Generals: Scott Brown (1859-1861); John W. Finnell (1861-1863); John Boyle (1863-1864); Daniel W. Lindsey (1864-1867).",
+  "bibliography"=>
+   "_Report of the Adjutant General of the State of Kentucky_, vol. 1 (Frankfort: John H. Harney, Public Printer, 1866); _Report of the Adjutant General of the State of Kentucky_, vol. 2 (Frankfort: John H. Harney, Public Printer, 1866).",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"organization",
+  "birth_date"=>"1861",
+  "death_date"=>"1865"},
+ {"id"=>902,
+  "name"=>"Kentucky Home Guard",
+  "entity_type"=>"organization",
+  "biography"=>
+   "County level military organization primarily comprised of Union soldiers. Created in 1861 to counter the southern aligned Kentucky State Guard.",
+  "bibliography"=>
+   "Nicky Hughes, “Home Guard,” _The Kentucky Encyclopedia_, ed. John E. Kleber (Lexington: University Press of Kentucky, 1992), 438.",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>
+   "Military organization of Union soldiers at the county level",
+  "birth_date"=>"1861",
+  "death_date"=>"1865"},
+ {"id"=>1718,
+  "name"=>"LaRue County, Kentucky",
+  "entity_type"=>"place",
+  "biography"=>"Seat at Hodgenville, Kentucky.",
+  "bibliography"=>
+   "Robert M. Rennick, *Kentucky Place Names* (Lexington: University of Kentucky Press, 1987), 166.",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"place",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>5692,
+  "name"=>"Curran Pope",
+  "entity_type"=>"person",
+  "biography"=>
+   "Louisville, Kentucky, soldier. Louisville native. Son of Worden Pope and Elizabeth Taylor Thruston Pope. Married Matilda Prather Jacob Pope. Father of John J. Pope, Patrick H. Pope, and Mary Tyler Pope. Graduate of the United States Military Academy at West Point in 1834. Second lieutenant in the United States Artillery in 1834. Assistant engineer on the Kentucky River and Cumberland River in 1835. Clerk of the Jefferson County Court in Jefferson County for seventeen years. Colonel of the Fifth Kentucky Volunteer Infantry Regiment (U.S.A.) until November 5, 1862.",
+  "bibliography"=>
+   "_The Biographical Encyclopædia of Kentucky of the Dead and Living Men of the Nineteenth Century_, vol. 1 (Cincinnati: J. M. Armstrong & Company, 1878), 115-116. \r\n\r\n_Find A Grave_, \"Col. Curran Pope (July 30, 1813-November 5, 1862),\" Memorial #57357318, http://www.findagrave.com/memorial/57357318 (accessed May 12, 2017).",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Colonel of the 5th Kentucky Infantry",
+  "birth_date"=>"1813-07-30",
+  "death_date"=>"1862-11-05"},
+ {"id"=>10457,
+  "name"=>"Hannah Hays",
+  "entity_type"=>"person",
+  "biography"=>
+   "Nelson County, Kentucky, merchant. Native of Prussia. Mother of Emilia Hays, Paulina Hays, Frances Hays, and Josephine Hays. Merchant in Nelson County in 1860. Employed Julius Hays in Nelson County in 1860. ",
+  "bibliography"=>
+   "_Eighth Manuscript Census of the United States_ (1860), Population Schedules, Kentucky, Nelson County, District 2, p. 29.\r\n\r\nKYR-0002-222-0021",
+  "user_id"=>24,
+  "ref_id"=>nil,
+  "gender"=>"female",
+  "disambiguator"=>"Nelson County, Kentucky, merchant",
+  "birth_date"=>"c1821",
+  "death_date"=>""},
+ {"id"=>10458,
+  "name"=>"B. F. Wilson",
+  "entity_type"=>"person",
+  "biography"=>
+   "Mentioned as quartermaster of Kentucky Home Guards in receipt of payment to Hannah Hays on November 14, 1861.",
+  "bibliography"=>"KYR-0002-222-0021",
+  "user_id"=>24,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Kentucky, resident",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>10459,
+  "name"=>"Nicholas A. Rapier",
+  "entity_type"=>"person",
+  "biography"=>
+   "Larue County, Kentucky, farmer. Kentucky native. Married to Charlotte M. Boon Rapier in Larue County on April 26, 1844. Father of Charles H. Rapier, Silvester Rapier, F. B. Rapier, James E. Rapier, A. E. Rapier, and Monterey Rapier. Owned four enslaved persons in Larue County in 1850. Farmer in Larue County in 1850.  Owned four enslaved persons in Larue County in 1860. Farmer in Larue County in 1860.",
+  "bibliography"=>
+   "_Seventh Manuscript Census of the United States_ (1850), Population Schedules, Kentucky, Larue County, Hamiltons, p. 442A.\r\n\r\n_Seventh Manuscript Census of the United States_ (1850), Slave Schedules, Kentucky, Larue County, Hamiltons, p. 150\r\n\r\n_Eighth Manuscript Census of the United States_ (1860), Population Schedules, Kentucky, Larue County, p. 308.\r\n\r\n_Eighth Manuscript Census of the United States_ (1860), Slave Schedules, Kentucky, Larue County, p. 325B\r\n\r\n_Kentucky Marriage Records_, Madison County Courthouse, Richmond, Kentucky, Larue County Marriages, Film #000409559.\r\n\r\n_Find A Grave_, \"Nicholas A. Rapier (April 2, 1821-October 6, 1890),\" Memorial #6034487, http://www.findagrave.com/memorial/6034487 (accessed March 11, 2019).\r\n",
+  "user_id"=>24,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Larue County, Kentucky, farmer",
+  "birth_date"=>"1821-04-02",
+  "death_date"=>"1890-10-06"}]

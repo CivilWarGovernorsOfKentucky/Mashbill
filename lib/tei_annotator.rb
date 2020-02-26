@@ -152,9 +152,9 @@ class TeiAnnotator
 
   def split_node(node, text, doc)
     if node.text?
-      left_string, right_string = node.text.split /#{text}/m
-      left_string = "" unless left_string
-      right_string = "" unless right_string
+      md = node.text.match(/(.*?)#{text}(.*)/m)
+      left_string = md[1]
+      right_string = md[2]
       left_node =  Nokogiri::XML::Text.new(left_string + text, doc)
       right_node =  Nokogiri::XML::Text.new(right_string, doc)
     else
