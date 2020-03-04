@@ -231,6 +231,14 @@ RSpec.describe TeiAnnotator, type: :model do
       end
     end
 
+    it "should not strip attributes" do
+      @annotations.each_with_index do |annotation,i|
+        @annotator.apply_annotation(@doc, annotation)
+        para(3).to_xml.split("\n").first.should match(/underline/m)
+      end
+
+    end
+
     context "Frankfort" do
       before(:each) do
         @annotator.apply_annotation(@doc, @annotations[0])
@@ -414,12 +422,29 @@ RSpec.describe TeiAnnotator, type: :model do
 
     it "should actually change the mark-up" do
       @annotations.each_with_index do |annotation,i|
-        before_xml = @doc.to_xml
+        before_xml = @doc.search('body').first.to_xml
         @annotator.apply_annotation(@doc, annotation)
-        after_xml = @doc.to_xml
+        after_xml = @doc.search('body').first.to_xml
         after_xml.should_not eq(before_xml)
       end
     end
+
+    context "Ky Vols" do
+      before(:each) do
+        0.upto(2) { |i| @annotator.apply_annotation(@doc, @annotations[i])}
+        @annotation= @annotations[3]
+        @entity = @annotation.entity
+      end
+
+      it "should replace the correct element" do
+        doc_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, @annotation)
+        marked_up = "<p>Approved\n<lb/>By order of the <persName ref=\"cwgk:N001004\">Governor</persName>\n<lb/><persName ref=\"cwgk:N00000228\">Jno W Finnell</persName>\n<lb/>Adjt Genl <orgName ref=\"cwgk:O00000870\">Ky Vols</orgName></p>"
+        @doc.to_xml.should match marked_up
+      end
+    end
+
+
 
   end
 

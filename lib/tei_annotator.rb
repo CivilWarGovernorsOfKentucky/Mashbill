@@ -80,18 +80,18 @@ class TeiAnnotator
 
     # attempt based on selector
     element = target_element(doc, annotation)
-    if element && annotate_element(doc,element,annotation)
+    if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
       # the element was modified!
     else
       log_error("Could not find element at selector; attempting fallback", annotation)
       element = fallback_element(doc, annotation)
 
-      if element && annotate_element(doc,element,annotation)
+      if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
         # the element was modified!
       else
         log_error("Cound not find fallback element in document", annotation)
         element = last_fallback_element(doc, annotation)
-        if element && annotate_element(doc,element,annotation)
+        if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
           # the element was modified!
         else
           log_error("Cound not find last fallback element in document", annotation)
@@ -105,6 +105,58 @@ class TeiAnnotator
       doc = old_doc        
     end
   end
+
+  def element_contains_context?(element, annotation)
+    md = /(.*?)#{annotation.verbatim}(.*)/m.match element.text
+    if md
+      # this element contains the annotation's target text
+      # but does it contain the correct context?
+      element_prefix = md[1].gsub(/\W/m, '').gsub(/\s+/m, '')
+      element_suffix = md[2].gsub(/\W/m, '').gsub(/\s+/m, '')
+
+      # the verbatim could have started the element
+      if !element_prefix.blank? && annotation.prefix
+        annotation_prefix = annotation.prefix.gsub(/\W/m, '').gsub(/\s+/m, '')
+        # annotation prefixes span multiple elements, so the most likely case is
+        # that of an annotation prefix that contains the element prefix only
+        if element_prefix.length < annotation_prefix.length
+          if !annotation_prefix.match(/#{Regexp.escape(element_prefix)}$/m)
+            # the element prefix was not at the end of the annotation prefix
+            return false
+          end
+        else
+          # the annotation prefix was shorter than the element prefix -- this must 
+          # be a long paragraph!
+          if !element_prefix.match(/#{Regexp.escape(annotation_prefix)}$/m)
+            # the element prefix does not end with the annotation prefix
+            return false
+          end
+        end
+      end
+
+      # the verbatim could have ended the element
+      if !element_suffix.blank? && annotation.suffix
+        annotation_suffix = annotation.suffix.gsub(/\W/m, '').gsub(/\s+/m, '')
+        if element_suffix.length < annotation_suffix.length
+          if !annotation_suffix.match(/^#{Regexp.escape(element_suffix)}/m)
+            return false
+          end
+        else
+          if !element_suffix.match(/^#{Regexp.escape(annotation_suffix)}/m)
+            # the element prefix does not end with the annotation prefix
+            return false
+          end
+        end
+      end
+    else
+      # this element doesn't even have the annotation text
+      return false 
+    end
+
+    # the element contains as much of the context as possible to verify
+    return true
+  end
+
 
   ERRORFILE = File.join(Rails.root, "tmp/mashbill_tei_errors.csv")
   def log_error(problem, annotation)
@@ -207,7 +259,6 @@ class TeiAnnotator
         entity_node['ref'] = entity.xml_id if entity.ref_id 
 
         paragraph.children.each do |node|
-
 
           if state == :prefix
             if prefix == node.text
@@ -337,7 +388,14 @@ class TeiAnnotator
 
   def last_fallback_element(doc, annotation)
     clean_text = annotation.verbatim.strip
-    doc.search("//*[contains(., '#{clean_text}')]").last
+    doc.search("//*[contains(., '#{clean_text}')]").detect do |element|
+      # Nokogiri's search returns parent nodes as well as leaf nodes, so we do not want to 
+      # return top-level elements TEI, text, or body.  We also don't want any node that is
+      # a part of the teiHeader
+      (!element.ancestors.detect { |ancestor| ancestor.name == 'teiHeader' } &&
+      (!['TEI','text','body'].include?(element.name)) && 
+      element_contains_context?(element, annotation))
+    end
   end
   
   def fallback_element(doc, annotation)
