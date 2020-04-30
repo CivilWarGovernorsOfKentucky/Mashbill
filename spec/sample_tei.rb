@@ -1272,3 +1272,360 @@ KYR00022220021_ENTITIES = [{"id"=>83,
   "disambiguator"=>"Larue County, Kentucky, farmer",
   "birth_date"=>"1821-04-02",
   "death_date"=>"1890-10-06"}]
+
+
+
+KYR00022220042 = <<EOF
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0002-222-0042"> 
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title level="a" type="main">John W. Finnell, Receipt to Louisville &amp; Nashville Railroad Company</title>
+    <title level="a" type="parallel">CWG13731</title>
+    <respStmt>
+     <resp n="transcriber">Transcribed by:</resp>
+     <name>Elizabeth J Van Allen</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_1">Single Proof by:</resp>
+     <name>Whitney R Smith</name>
+    </respStmt>
+    <respStmt>
+     <resp n="encoding">Markup by:</resp>
+     <name>Anthony P Curtis</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_2">Double Proof by:</resp>
+     <name>CWGK Staff</name>
+    </respStmt>
+   </titleStmt>
+   <publicationStmt>
+    <publisher>Kentucky Historical Society</publisher>
+    <pubPlace>Frankfort, Kentucky</pubPlace>
+    <availability>
+     <p>This image and transcription is publicly accessible. The image appears courtesy of the repository named in the Source Description. The transcription and annotation were undertaken by Kentucky Historical Society staff, volunteers, and interns. If referencing this document title, accession number, and permanent URL.</p>
+    </availability>
+   </publicationStmt>
+   <seriesStmt>
+    <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+    <respStmt>
+     <resp>Project Director</resp>
+     <name>Patrick A. Lewis</name>
+    </respStmt>
+   </seriesStmt>
+   <sourceDesc>
+    <msDesc>
+    <msIdentifier>
+      <country>UNITED STATES</country>
+      <region>KY</region>
+      <settlement>Frankfort</settlement>
+      <repository>Kentucky Department of Military Affairs</repository>
+      <collection>Misc. QM Expenditures, 1863-1865</collection>
+      <idno>QMG Box 10; 1863 Office Expenses - Telegraph, Stationary - Transportation - Ordinance Stores; Bundle 5</idno>
+     </msIdentifier>
+    </msDesc>
+   </sourceDesc>
+  </fileDesc>
+  <profileDesc>
+   <creation>
+    <placeName>Frankfort, Franklin County, Kentucky</placeName>
+    <date when="1863-04-18">18 April 1863</date>
+   </creation>
+   <textClass>
+    <keywords>
+     <term type="genre">Legal/Financial</term>
+    </keywords>
+   </textClass>
+  </profileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p>NO. 12.<figure type="hr"/>
+<lb/><unclear>The</unclear> State of Kentucky,
+<lb/>To Louisville. &amp;. Nashville R R Co Dr.</p>
+<p><table rend="rules">
+<row>
+  <cell><date when="1862">1862</date>.</cell>
+  <cell/>
+  <cell>DOLLARS.</cell>
+  <cell>CENTS.</cell>
+</row>
+<row>
+  <cell><date when="1862-11">November</date></cell>
+  <cell>For Transportation as follows Viz -- Miles</cell>
+  <cell/>
+  <cell/>
+</row>
+<row>
+  <cell><date when="1862-11">"</date></cell>
+  <cell>2 Men 33<hi rend="underline"><hi rend="sup">d</hi></hi> Ky Vols. From Louisville To Munfordville 72.9 @ 2&#162;</cell>
+  <cell>2</cell>
+  <cell>91<hi rend="underline"><hi rend="sup">6</hi></hi></cell>
+</row>
+<row>
+  <cell><date when="1862-11">"</date></cell>
+  <cell>3 " " " Munfordville " Louisville " " "</cell>
+  <cell>4</cell>
+  <cell>37<hi rend="underline"><hi rend="sup">4</hi></hi></cell>
+</row>
+<row>
+  <cell><date when="1862-11">"</date></cell>
+  <cell>2 " " " Elizabethtown " Munfordville 30<hi rend="sup">1</hi>/<hi rend="sub">2</hi> " "</cell>
+  <cell><hi rend="underline">1</hi></cell>
+  <cell><hi rend="underline">22</hi></cell>
+</row>
+<row>
+  <cell/>
+  <cell>Add United States tax on Passenger Transp<hi rend="sup">n</hi></cell>
+  <cell><hi rend="underline">&#36;8</hi></cell>
+  <cell><hi rend="underline">51</hi></cell>
+</row>
+<row>
+  <cell/>
+  <cell>P<hi rend="sup">r</hi> circular Q. M. Gen<hi rend="sup">l</hi>, dated <date when="1862-11-14">Nov<hi rend="sup">r</hi> 14/62</date> 8<hi rend="underline"><hi rend="sup">51</hi></hi> @ 3 &#162;</cell>
+  <cell/>
+  <cell><hi rend="underline">25</hi></cell>
+</row>
+<row>
+  <cell/>
+  <cell/>
+  <cell><hi rend="underline">&#36;8</hi></cell>
+  <cell><hi rend="underline">76</hi></cell>
+</row>
+</table></p>
+<p>I Certify that the Transportation as above charged was on Bussiness Connected with the recruiting Service -- Under the Orders of the Govenor of the State of Kentucky</p>
+<p>John W. Finnell
+<lb/><hi rend="underline">Adj</hi><hi rend="underline"><hi rend="sup">t</hi></hi><hi rend="underline"> Gen</hi><hi rend="underline"><hi rend="sup">l</hi></hi><hi rend="underline"> Ken, Vols.</hi></p>
+<p>I certify that the above account is correct and just; that the services were rendered as stated; and that they were necessary for the public service.</p>
+<p><gap/></p>
+<p>Received at Frankfort Ky, the <date when="1863-04-18">18 of April, 1863.</date> of Jn<hi rend="sup">o</hi> W Finnell Adj<hi rend="sup">t</hi> Gen<hi rend="sup">l</hi>, <hi rend="str">Quarter-master</hi> Kentucky Volunteers, the sum of Eight Dollars and seventy six Cents in full of the above account.
+<lb/>(DUPLICATE.)</p>
+<p><hi rend="underline">Cha</hi><hi rend="underline"><hi rend="sup">s</hi></hi><hi rend="underline"> R Griffith</hi>
+<lb/>Treas<hi rend="sup">r</hi><pb/></p>
+<p>NO. 12.<figure type="hr"/>
+<lb/>No. 162 ABSTRACT B P QR. 186
+<lb/>Lou &amp; Nash R R co
+<lb/>Dollars &#36;8.<hi rend="sup">76</hi>/<hi rend="sub">100</hi>
+<lb/>Paid <date when="1863-04-18">April 18<hi rend="sup">th</hi> 1863</date></p>
+  </body>
+ </text>
+</TEI>
+EOF
+
+
+KYR00022220042_ENTITIES = 
+[{"id"=>83,
+  "name"=>"Commonwealth of Kentucky",
+  "entity_type"=>"organization",
+  "user_id"=>1,
+  "ref_id"=>"O001025",
+  "gender"=>"male",
+  "disambiguator"=>"state government org",
+  "birth_date"=>"1792",
+  "death_date"=>""},
+ {"id"=>2377,
+  "name"=>"Louisville & Nashville Railroad",
+  "entity_type"=>"organization",
+  "user_id"=>8,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Railroad ",
+  "birth_date"=>"1850-03-05",
+  "death_date"=>"1982-12-31"},
+ {"id"=>337,
+  "name"=>"Louisville, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Seat of Jefferson County, Kentucky",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>55,
+  "name"=>"Munfordville, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>1,
+  "ref_id"=>"P001823",
+  "gender"=>"male",
+  "disambiguator"=>"place",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>9912,
+  "name"=>"33rd Kentucky Volunteer Infantry Regiment (U.S.A.)",
+  "entity_type"=>"organization",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"military unit",
+  "birth_date"=>"1862-09-13",
+  "death_date"=>"1864-04-01"},
+ {"id"=>2906,
+  "name"=>"Elizabethtown, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"County seat of Hardin County, Kentucky",
+  "birth_date"=>"",
+  "death_date"=>""},
+{"id"=>234,
+  "name"=>"James Fisher Robinson, Jr.",
+  "entity_type"=>"person",
+  "user_id"=>2,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"QMG of KY, Gov's son",
+  "birth_date"=>"1832-11-25",
+  "death_date"=>"1892"},
+ {"id"=>98,
+  "name"=>"James Fisher Robinson",
+  "entity_type"=>"person",
+  "user_id"=>1,
+  "ref_id"=>"N001004",
+  "gender"=>"male",
+  "disambiguator"=>"governor, state senator, businessman, attorney, and farmer",
+  "birth_date"=>"1800-10-04",
+  "death_date"=>"1882-10-31"},
+ {"id"=>228,
+  "name"=>"John William Finnell",
+  "entity_type"=>"person",
+  "user_id"=>2,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"TAG, Kenton Co. State Rep",
+  "birth_date"=>"1821-12-24",
+  "death_date"=>"1888-01-25"},
+ {"id"=>388,
+  "name"=>"Office of the Adjutant General of Kentucky",
+  "entity_type"=>"organization",
+  "user_id"=>7,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Kentucky AGO",
+  "birth_date"=>"1793",
+  "death_date"=>""},
+ {"id"=>308,
+  "name"=>"Frankfort, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Capital of KY, seat of Franklin County",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>10757,
+  "name"=>"Charles R. Griffith",
+  "entity_type"=>"person",
+  "user_id"=>27,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Louisville, Jefferson County, Kentucky, clerk and treasurer ",
+  "birth_date"=>"c1811",
+  "death_date"=>"1873-06-27"}]
+
+
+
+KYR00022220042_ANNOTATIONS_ATTRIBUTES =
+ [{"id"=>22789,
+    "document_id"=>1655,
+    "verbatim"=>" State of Kentucky,\n",
+    "user_id"=>1,
+    "entity_id"=>83,
+    "hypothesis_annotation_id"=>"4uP-9pMaEemlyn9UG84YAw",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>"   \n    \n    \n\n\n\n\n  NO. 12.[The]",
+    "suffix"=>"To Louisville. &. Nashville R R ",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
+   {"id"=>22788,
+    "document_id"=>1655,
+    "verbatim"=>"Louisville. &. Nashville R R Co",
+    "user_id"=>1,
+    "entity_id"=>2377,
+    "hypothesis_annotation_id"=>"5ncNLpMaEemxWcPHgdHLPA",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>" 12.[The] State of Kentucky,\nTo ",
+    "suffix"=>" Dr.1862.DOLLARS.CENTS.NovemberF",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
+   {"id"=>22787,
+    "document_id"=>1655,
+    "verbatim"=>"Louisville ",
+    "user_id"=>1,
+    "entity_id"=>337,
+    "hypothesis_annotation_id"=>"6nlsFJMaEemzzovjRvmyyA",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>"- Miles\"2 Men 33d Ky Vols. From ",
+    "suffix"=>"To Munfordville 72.9 @ 2¢2916\"3 ",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[3]/td[2]"},
+   {"id"=>22786,
+    "document_id"=>1655,
+    "verbatim"=>"Munfordville",
+    "user_id"=>1,
+    "entity_id"=>55,
+    "hypothesis_annotation_id"=>"7fBxxpMaEemyKN_9E6CGew",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>"33d Ky Vols. From Louisville To ",
+    "suffix"=>" 72.9 @ 2¢2916\"3 \" \" \" Munfordvi",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[3]/td[2]"},
+   {"id"=>22785,
+    "document_id"=>1655,
+    "verbatim"=>"33d Ky Vols",
+    "user_id"=>1,
+    "entity_id"=>9912,
+    "hypothesis_annotation_id"=>"8UfltpMaEemcXa8PalB3iA",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>"n as follows Viz -- Miles\"2 Men ",
+    "suffix"=>". From Louisville To Munfordvill",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[3]/td[2]"},
+   {"id"=>22784,
+    "document_id"=>1655,
+    "verbatim"=>"Elizabethtown",
+    "user_id"=>1,
+    "entity_id"=>2906,
+    "hypothesis_annotation_id"=>"9P1y8pMaEeml3rsWE0xv_w",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>" \" Louisville \" \" \"4374\"2 \" \" \" ",
+    "suffix"=>" \" Munfordville 301/2 \" \"122Add ",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[5]/td[2]"},
+   {"id"=>22783,
+    "document_id"=>1655,
+    "verbatim"=>" Q. M. Genl, ",
+    "user_id"=>1,
+    "entity_id"=>234,
+    "hypothesis_annotation_id"=>"-FEgUpMaEemxWz_D8XJGrQ",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>"Passenger Transpn$851Pr circular",
+    "suffix"=>"dated Novr 14/62 851 @ 3 ¢25$876",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[7]/td[2]"},
+   {"id"=>22782, "document_id"=>1655, "verbatim"=>"Govenor ", "user_id"=>1, "entity_id"=>98, "hypothesis_annotation_id"=>"_WfWxpMaEemxXcuT8NJ16w", "hypothesis_user"=>"mdevelvis@hypothes.is", "prefix"=>"rvice — Under the Orders of the ", "suffix"=>"of the State of KentuckyJohn W. ", "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[5]"},
+   {"id"=>22781,
+    "document_id"=>1655,
+    "verbatim"=>"John W. Finnell\n",
+    "user_id"=>1,
+    "entity_id"=>228,
+    "hypothesis_annotation_id"=>"AFCZ4JMbEemzz1u3V4XVRw",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>"Govenor of the State of Kentucky",
+    "suffix"=>"Adjt Genl Ken, Vols.I certify th",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
+   {"id"=>22780,
+    "document_id"=>1655,
+    "verbatim"=>"Adjt Genl Ken",
+    "user_id"=>1,
+    "entity_id"=>388,
+    "hypothesis_annotation_id"=>"B2ydRpMbEemz0DOBXTjw-w",
+    "hypothesis_user"=>"mdevelvis@hypothes.is",
+    "prefix"=>"tate of KentuckyJohn W. Finnell\n",
+    "suffix"=>", Vols.I certify that the above ",
+    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]/span[1]"},
+   {"id"=>22779, "document_id"=>1655, "verbatim"=>"Frankfort Ky", "user_id"=>1, "entity_id"=>308, "hypothesis_annotation_id"=>"DC-l7pMbEemnJ-tY-owzzw", "hypothesis_user"=>"mdevelvis@hypothes.is", "prefix"=>"e public service.[ ]Received at ", "suffix"=>", the 18 of April, 1863. of Jno ", "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[9]"},
+    {"id"=>22778,
+  "document_id"=>1655,
+  "verbatim"=>"Chas R Griffith",
+  "user_id"=>1,
+  "entity_id"=>10757,
+  "hypothesis_annotation_id"=>"ED8KCJMbEemcX2vJLtHajA",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>" the above account.\n(DUPLICATE.)",
+  "suffix"=>"Treasr NO. 12.No. 162 ABSTRACT B",
+  "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[10]/span[1]"}]

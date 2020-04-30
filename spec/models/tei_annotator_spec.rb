@@ -342,6 +342,52 @@ RSpec.describe TeiAnnotator, type: :model do
 
   end
 
+  context "real world KYR-0002-222-0042" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00022220042)
+      @document = Document.new(:cwgk_id => 'KYR0002-222-0042')
+      KYR00022220042_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00022220042_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00022220042)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        pp annotation.attributes
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        after_xml = @doc.to_xml
+        after_xml.should_not eq(before_xml)
+      end
+    end
+
+  end
+
+
 
   context "real world KYR-0001-006-0066" do
 

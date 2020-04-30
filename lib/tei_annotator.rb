@@ -77,7 +77,6 @@ class TeiAnnotator
 
   def apply_annotation(doc, annotation)
     old_doc = doc.dup
-
     # attempt based on selector
     element = target_element(doc, annotation)
     if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
@@ -388,7 +387,7 @@ class TeiAnnotator
 
   def last_fallback_element(doc, annotation)
     clean_text = annotation.verbatim.strip
-    doc.search("//*[contains(., '#{clean_text}')]").detect do |element|
+    doc.search("//*[contains(., '#{clean_text}')]").sort{|a,b| b.path.length <=> a.path.length}.detect do |element|
       # Nokogiri's search returns parent nodes as well as leaf nodes, so we do not want to 
       # return top-level elements TEI, text, or body.  We also don't want any node that is
       # a part of the teiHeader
