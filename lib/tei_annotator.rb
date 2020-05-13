@@ -241,7 +241,7 @@ class TeiAnnotator
   
   def search_and_replace(doc, paragraph, verbatim, entity)
     # only search-replace if there isn't already an entity tag containing the verbatim text
-    if TEI_TAGS.values.push('entity').detect {|name| paragraph.search(name).text == verbatim }
+    if TEI_TAGS.values.push('entity').detect {|name| paragraph.search(name).detect { |match| match.text == verbatim } || (paragraph.name == name && paragraph.text == verbatim) }
       return true
     else
       # do this the long way
