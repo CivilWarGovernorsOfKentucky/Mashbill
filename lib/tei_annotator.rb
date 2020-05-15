@@ -110,12 +110,12 @@ class TeiAnnotator
     if md
       # this element contains the annotation's target text
       # but does it contain the correct context?
-      element_prefix = md[1].gsub(/\W/m, '').gsub(/\s+/m, '')
-      element_suffix = md[2].gsub(/\W/m, '').gsub(/\s+/m, '')
+      element_prefix = md[1].gsub(/\W/m, '').gsub(/\s+/m, '').downcase
+      element_suffix = md[2].gsub(/\W/m, '').gsub(/\s+/m, '').downcase
 
       # the verbatim could have started the element
       if !element_prefix.blank? && annotation.prefix
-        annotation_prefix = annotation.prefix.gsub(/\W/m, '').gsub(/\s+/m, '')
+        annotation_prefix = annotation.prefix.gsub(/\W/m, '').gsub(/\s+/m, '').downcase
         # annotation prefixes span multiple elements, so the most likely case is
         # that of an annotation prefix that contains the element prefix only
         if element_prefix.length < annotation_prefix.length
@@ -135,7 +135,7 @@ class TeiAnnotator
 
       # the verbatim could have ended the element
       if !element_suffix.blank? && annotation.suffix
-        annotation_suffix = annotation.suffix.gsub(/\W/m, '').gsub(/\s+/m, '')
+        annotation_suffix = annotation.suffix.gsub(/\W/m, '').gsub(/\s+/m, '').downcase
         if element_suffix.length < annotation_suffix.length
           if !annotation_suffix.match(/^#{Regexp.escape(element_suffix)}/m)
             return false

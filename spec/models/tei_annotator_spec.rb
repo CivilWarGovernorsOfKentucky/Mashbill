@@ -546,5 +546,40 @@ RSpec.describe TeiAnnotator, type: :model do
     end
   end
 
+
+  context "real world KYR-0001-004-0079" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010040079)
+      @document = Document.new(:cwgk_id => 'KYR0001-004-0079')
+      KYR00010040079_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00010040079_ANNOTATIONS.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010040310)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+  end
+
+
 end
 

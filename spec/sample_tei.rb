@@ -15,6 +15,455 @@
 
 
 
+KYR00010040079 = <<EOF
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0001-004-0079"> 
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title level="a" type="main">Greenberry Tingle, Jr. to Thomas E. Bramlette</title>
+    <title level="a" type="parallel">CWG4198</title>
+    <respStmt>
+     <resp n="transcriber">Transcribed by:</resp>
+     <name>Anthony P Curtis</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_1">Single Proof by:</resp>
+     <name>Whitney R Smith</name>
+    </respStmt>
+    <respStmt>
+     <resp n="encoding">Markup by:</resp>
+     <name>Matthew C Hulbert</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_2">Double Proof by:</resp>
+     <name>CWGK Staff</name>
+    </respStmt>
+   </titleStmt>
+   <publicationStmt>
+    <publisher>Kentucky Historical Society</publisher>
+    <pubPlace>Frankfort, Kentucky</pubPlace>
+    <availability>
+     <p>This image and transcription is publicly accessible. The image appears courtesy of the repository named in the Source Description. The transcription and annotation were undertaken by Kentucky Historical Society staff, volunteers, and interns. If referencing this document title, accession number, and permanent URL.</p>
+    </availability>
+   </publicationStmt>
+   <seriesStmt>
+    <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+    <respStmt>
+     <resp>Project Director</resp>
+     <name>Patrick A. Lewis</name>
+    </respStmt>
+   </seriesStmt>
+   <sourceDesc>
+    <msDesc>
+    <msIdentifier>
+      <country>UNITED STATES</country>
+      <region>KY</region>
+      <settlement>Frankfort</settlement>
+      <repository>Kentucky Department for Libraries and Archives</repository>
+      <collection>Office of the Governor, Thomas E. Bramlette: Governor's official correspondence file, petitions for pardons, remissions, and respites 1863-1867</collection>
+      <idno>BR8-116 to BR8-117</idno>
+     </msIdentifier>
+    </msDesc>
+   </sourceDesc>
+  </fileDesc>
+  <profileDesc>
+   <creation>
+    <placeName>Henry County, Kentucky</placeName>
+    <date when="1863-09-08">8 September 1863</date>
+   </creation>
+   <textClass>
+    <keywords>
+     <term type="genre">Petition</term>
+    </keywords>
+   </textClass>
+  </profileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p>To his Excellency the Governor of Kentucky.</p>
+<p>Your petitioner Greenberry Tingle Jr states that he was indicted in the Henry Circuit Court for stabbing and wounding Turner, a slave of James Boyer, in sudden heat and passion, without malice and not in self defense. And at the September Term <date when="1863">1863</date> with the permission of the attorney for the Com'th, he plead guilty and the jury assessed his fine at &#36;50 -- Peititioner was induced to take this course because he was aware that he had committed a technical violation of law, though, he acted under the circumstances, just as the majority of men would have done.</p>
+<p>The facts in his case were these -- This slave stole petitioner's horse and <hi rend="str">an</hi> Endeavorrd to make way with it- Petitioner after missing his horse found it &amp; became thoroughly satisfied that the negro had stolen it &amp; his bridle. Petitioner &amp; his father tried to get the owner of the negro to correct him for his conduct but he failed to do So, and petitioner seeing the negro one day accosted him &amp; demanded the bridle which<pb/>
+<lb/>he had stolen- Some words occurred between them the negro used imprudent langugae <hi rend="str">between</hi> towards petitioner ^was generally known to be a very bad negro^ and threatened peition with his master when petitioner, in the excitement of the moment, cut him with his knife- the wound was not serious has not damaged the negro, and deft regrets that he ever used the <hi rend="str">negro</hi> knife on the negro -- </p>
+<p>Petitioner is a poor young man <hi rend="str">of</hi> 19 years of age, and can sustain &amp; prove a good character as a peaceable quiet boy who never had a difficulty before <hi rend="str">l</hi> in his life, &amp; never interferes with other people's business</p>
+<p>Petitioner promising ^not^ to get into a like difficulty again respectfully asks your Excellency to remit so much of the fine against him as the law will permit to be done.</p>
+<p>G ^his X mark^ Tingle Jr
+<lb/>attest John M Harlan</p>
+<p>Sworn to before me by G. Tingle Jr this <date when="1863-09-08">8<hi rend="sup">th</hi> day of September 1863</date></p>
+<p>Jno. C. Monfort P J H c c</p>
+<p>The undesigned knows G. Tingle Jr &amp; the slave Turner wounded by him- Tingle is a quiet, peaceable, inoffensive young man, of excellent habits and <hi rend="str">of</hi> industrious and law abiding generally. And the <unclear><hi rend="str">ne</hi></unclear> negro<pb/>
+<lb/>is a bad dangerous slave who in one or two instances recently has acted in an outrageous manner. We ask that Tingle's fine be remitted.</p>
+<p>H C Gardner
+<lb/>Augustus Elston</p>
+<p>The undersigned testify to the general good character &amp; peaceable desposition of G. Tingle Jr- We are citizens of Henry County, and ask respectfully that his fine be remitted.</p>
+<p>Samuel Jones
+<lb/>Berry Ellis
+<lb/>John Mahoney
+<lb/>David Fitzgerald
+<lb/>James Pearce Sr</p>
+<p>We unite in the prayer of the petitioner</p>
+<p>Tho. Rodman</p>
+<p>The recommendation of Saml Jones, whom I well know, induces me to sign petition</p>
+<p><hi rend="underline">Jno, C. Monfort</hi> P J H c c<pb/></p>
+<p>Henry Cir Ct
+<lb/>vs</p>
+<p><date when="1863-09-21">Sept 21<hi rend="sup">st</hi>/63</date>
+<lb/>Remit all except costs and attys fees
+<lb/>Tho Bramlette</p>
+<p>G. Tingle Jr
+<lb/>&#36;50 -- </p>
+  </body>
+ </text>
+</TEI>
+EOF
+
+KYR00010040079_ANNOTATIONS =
+[{"id"=>13548,
+  "document_id"=>1073,
+  "verbatim"=>"Henry Circuit Court",
+  "user_id"=>1,
+  "entity_id"=>400,
+  "hypothesis_annotation_id"=>"BVjONkMIEeeskF8baY8mtQ",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"tes that he was indicted in the ",
+  "suffix"=>" for stabbing and wounding Turne",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>13545,
+  "document_id"=>1073,
+  "verbatim"=>"John M Harlan",
+  "user_id"=>1,
+  "entity_id"=>2635,
+  "hypothesis_annotation_id"=>"MeP96kMIEeeskWcdthwizg",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"G ^his x mark^ Tingle Jr\nattest ",
+  "suffix"=>"Sworn to before me by G Tingle J",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
+ {"id"=>13544,
+  "document_id"=>1073,
+  "verbatim"=>"Jno. A. Monfort",
+  "user_id"=>1,
+  "entity_id"=>4943,
+  "hypothesis_annotation_id"=>"NlcUmEMIEeeQ0OcqgO6v1A",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"r this 8th day of September 1863",
+  "suffix"=>" P H H C CThe undesigned knows G",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[8]"},
+ {"id"=>13541,
+  "document_id"=>1073,
+  "verbatim"=>"Henry County",
+  "user_id"=>1,
+  "entity_id"=>758,
+  "hypothesis_annotation_id"=>"T5I6vkMIEeeak1Po2a8RPw",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>". Tingle Jr. We are citizens of ",
+  "suffix"=>", and ask respectfully that his ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[12]"},
+ {"id"=>13536,
+  "document_id"=>1073,
+  "verbatim"=>"Tho. Rodman",
+  "user_id"=>1,
+  "entity_id"=>4733,
+  "hypothesis_annotation_id"=>"XXCrAkMIEeeJxwd3423C7A",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>" in the prayer of the petitioner",
+  "suffix"=>"The recommendation of Saml Jones",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[15]"},
+ {"id"=>13535,
+  "document_id"=>1073,
+  "verbatim"=>"Tho Bramlette\n",
+  "user_id"=>1,
+  "entity_id"=>94,
+  "hypothesis_annotation_id"=>"czzIikMIEeealDuJYkaTdA",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"all except costs and attys fees\n",
+  "suffix"=>"\n               \n               ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[19]"},
+ {"id"=>13547,
+  "document_id"=>1073,
+  "verbatim"=>"Turner",
+  "user_id"=>1,
+  "entity_id"=>6612,
+  "hypothesis_annotation_id"=>"CLvXTkMIEee6lbemMo1HTg",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"Court for stabbing and wounding ",
+  "suffix"=>", a slave of James Boyer, in sud",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>13546,
+  "document_id"=>1073,
+  "verbatim"=>"James Boyer",
+  "user_id"=>1,
+  "entity_id"=>6613,
+  "hypothesis_annotation_id"=>"DJ2T_EMIEeeYAedLo4GhPg",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"and wounding Turner, a slave of ",
+  "suffix"=>", in sudden heat and passion, wi",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>13549,
+  "document_id"=>1073,
+  "verbatim"=>"Greenberry Tingle Jr",
+  "user_id"=>1,
+  "entity_id"=>6614,
+  "hypothesis_annotation_id"=>"AFJW3EMIEeeHK2cLddsxrQ",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"nor of Kentucky.Your petitioner ",
+  "suffix"=>" states that he was indicted in ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>13543,
+  "document_id"=>1073,
+  "verbatim"=>"H C Gardner\n",
+  "user_id"=>1,
+  "entity_id"=>6615,
+  "hypothesis_annotation_id"=>"SQiRjkMIEee__VOZ8LCXzA",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>" that Tingle's fine be remitted.",
+  "suffix"=>"Augustus ElstonThe undersigned t",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[11]"},
+ {"id"=>13542,
+  "document_id"=>1073,
+  "verbatim"=>"Augustus Elston",
+  "user_id"=>1,
+  "entity_id"=>6616,
+  "hypothesis_annotation_id"=>"SsruXkMIEeeNDRdnw3RKgw",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"'s fine be remitted.H C Gardner\n",
+  "suffix"=>"The undersigned testify to the g",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[11]"},
+ {"id"=>13540,
+  "document_id"=>1073,
+  "verbatim"=>"Berry Ellis\n",
+  "user_id"=>1,
+  "entity_id"=>6617,
+  "hypothesis_annotation_id"=>"VEQFukMIEeemqr9ZySAaMA",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"s fine be remitted.Samuel Jones\n",
+  "suffix"=>"John Muhoney\nDavid Fitzgerald\nJa",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[13]"},
+ {"id"=>13539,
+  "document_id"=>1073,
+  "verbatim"=>"John Muhoney\n",
+  "user_id"=>1,
+  "entity_id"=>6618,
+  "hypothesis_annotation_id"=>"VrSVHEMIEeeaDgN2Ih1ezw",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"mitted.Samuel Jones\nBerry Ellis\n",
+  "suffix"=>"David Fitzgerald\nJames Pearce Sr",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[13]"},
+ {"id"=>13538,
+  "document_id"=>1073,
+  "verbatim"=>"David Fitzgerald\n",
+  "user_id"=>1,
+  "entity_id"=>6619,
+  "hypothesis_annotation_id"=>"WDXSokMIEeeHaE_vo-_t1w",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>" Jones\nBerry Ellis\nJohn Muhoney\n",
+  "suffix"=>"James Pearce SrWe unite in the p",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[13]"},
+ {"id"=>13537,
+  "document_id"=>1073,
+  "verbatim"=>"James Pearce Sr",
+  "user_id"=>1,
+  "entity_id"=>6620,
+  "hypothesis_annotation_id"=>"Wl406EMIEeeYAuNwedkOkw",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"s\nJohn Muhoney\nDavid Fitzgerald\n",
+  "suffix"=>"We unite in the prayer of the pe",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[13]"},
+ {"id"=>13550,
+  "document_id"=>1073,
+  "verbatim"=>"Samuel Jones\n",
+  "user_id"=>1,
+  "entity_id"=>6621,
+  "hypothesis_annotation_id"=>"ySqOtkMxEeePdBuD-PVwxw",
+  "hypothesis_user"=>"jnasta@hypothes.is",
+  "prefix"=>"fully that his fine be remitted.",
+  "suffix"=>"Berry Ellis\nJohn Muhoney\nDavid F",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[13]"},
+ {"id"=>27113,
+  "document_id"=>1073,
+  "verbatim"=>"Kentucky",
+  "user_id"=>1,
+  "entity_id"=>83,
+  "hypothesis_annotation_id"=>"67nCwl-7EeqXfQfIuIFWiA",
+  "hypothesis_user"=>"dthompsonKHS@hypothes.is",
+  "prefix"=>" his Excellency the Governor of ",
+  "suffix"=>".Your petitioner Greenberry Ting",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"}]
+
+
+KYR00010040079_ENTITIES =
+[{"id"=>400,
+  "name"=>"Henry Circuit Court",
+  "entity_type"=>"organization",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"court in 8th Judicial District",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>2635,
+  "name"=>"John Marshall Harlan ",
+  "entity_type"=>"person",
+  "user_id"=>11,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Kentucky politician, soldier, and attorney",
+  "birth_date"=>"1833-06-01",
+  "death_date"=>"1911-10-14"},
+ {"id"=>4943,
+  "name"=>"John C. Monfort",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, KY, judge and attorney",
+  "birth_date"=>"c1805",
+  "death_date"=>""},
+ {"id"=>758,
+  "name"=>"Henry County, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"place - County in northern Kentucky",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>4733,
+  "name"=>"Thomas Rodman",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, KY, merchant",
+  "birth_date"=>"1823-08-10",
+  "death_date"=>"1900-12-21"},
+ {"id"=>94,
+  "name"=>"Thomas Elliott Bramlette",
+  "entity_type"=>"person",
+  "user_id"=>1,
+  "ref_id"=>"N001000",
+  "gender"=>"male",
+  "disambiguator"=>"Kentucky governor",
+  "birth_date"=>"1817-01-03",
+  "death_date"=>"1875-01-12"},
+ {"id"=>6612,
+  "name"=>"Turner",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry Co, KY, slave of James Boyer",
+  "birth_date"=>"c1845",
+  "death_date"=>""},
+ {"id"=>6613,
+  "name"=>"James Boyer",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, Kentucky, farmer",
+  "birth_date"=>"1824-09-01",
+  "death_date"=>"1905-02-08"},
+ {"id"=>6614,
+  "name"=>"Green Berry Tingle, Jr.",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, Kentucky, resident",
+  "birth_date"=>"1843-03-30",
+  "death_date"=>"1913-07-28"},
+ {"id"=>6615,
+  "name"=>"Harvey Carlile Gardner",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, KY, farm laborer",
+  "birth_date"=>"c1832",
+  "death_date"=>""},
+ {"id"=>6616,
+  "name"=>"Augustus Elston",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, Kentucky, resident",
+  "birth_date"=>"1844-12-27",
+  "death_date"=>"1922-03-25"},
+ {"id"=>6617,
+  "name"=>"Berry Ellis",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, Kentucky, farmer",
+  "birth_date"=>"1804-04-19",
+  "death_date"=>"1878-11-06"},
+ {"id"=>6618,
+  "name"=>"John Mahoney",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, Kentucky, farmer",
+  "birth_date"=>"c1810",
+  "death_date"=>""},
+ {"id"=>6619,
+  "name"=>"David Fitzgerald",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, Kentucky, merchant",
+  "birth_date"=>"1813-03-04",
+  "death_date"=>"c1870"},
+ {"id"=>6620,
+  "name"=>"James Pearce, Sr.",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, KY, tailor",
+  "birth_date"=>"c1800",
+  "death_date"=>""},
+ {"id"=>6621,
+  "name"=>"Samuel Jones",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Henry County, Kentucky, resident",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>83,
+  "name"=>"Commonwealth of Kentucky",
+  "entity_type"=>"organization",
+  "user_id"=>1,
+  "ref_id"=>"O001025",
+  "gender"=>"male",
+  "disambiguator"=>"state government org",
+  "birth_date"=>"1792",
+  "death_date"=>""}]
+
+
+
 
 
 KYR00010030072 = <<EOF
