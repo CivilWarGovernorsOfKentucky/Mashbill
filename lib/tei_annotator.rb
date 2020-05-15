@@ -259,7 +259,6 @@ class TeiAnnotator
 
 
         paragraph.children.each do |node|
-#          binding.pry if entity.id = 12189
           if state == :prefix
             if prefix == node.text
               # the prefix is the node
@@ -315,7 +314,7 @@ class TeiAnnotator
                   replacement.add_child(rhs)
 
                   # modify the suffix
-                  suffix.sub!(/^#{node_suffix}/m, '')
+                  suffix.sub!(/^#{Regexp.escape(node_suffix)}/m, '')
                 end
               else
                 # the node only contains the first part of the verbatim
@@ -325,7 +324,7 @@ class TeiAnnotator
                 remainder_node = new_node(node, node_remainder, doc)
                 entity_node.add_child(remainder_node)
                 # change the state to consume the entity
-                verbatim.sub!(/^#{node_remainder}/m, '')
+                verbatim.sub!(/^#{Regexp.escape(node_remainder)}/m, '')
 
                 state = :element
               end
