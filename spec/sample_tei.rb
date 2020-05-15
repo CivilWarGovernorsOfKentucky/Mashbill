@@ -1,4 +1,22 @@
 
+# Generating these:
+# TEI from files
+# From console
+# raw_attributes = document.entities.map { |e| e.attributes }
+# raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
+# raw_attributes
+## Cut and paste this into entities constant
+# raw_attributes = document.entities.map { |e| e.attributes }
+# raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
+# raw_attributes = document.applicable_annotations.map { |e| e.attributes }
+# raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
+# raw_attributes
+## Cut and paste this into annotations constant
+
+
+
+
+
 KYR00010030072 = <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0001-003-0072"> 
@@ -1275,17 +1293,394 @@ KYR00022220021_ENTITIES = [{"id"=>83,
 
 
 
-KYR00022220042 = <<EOF
+
+KYR00010290565_ANNOTATIONS_ATTRIBUTES =
+ [{"id"=>9680,
+  "document_id"=>764,
+  "verbatim"=>"O, C, Egbert",
+  "user_id"=>1,
+  "entity_id"=>3489,
+  "hypothesis_annotation_id"=>"vof6LDNiEeefNfexO-NCvQ",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"Tho. M. Freeman\nJ C Betterworth\n",
+  "suffix"=>"\nE. Yeates\nJohn Mcmichael\nT D Ra",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9669,
+  "document_id"=>764,
+  "verbatim"=>"J. S. Littlepage Jr",
+  "user_id"=>1,
+  "entity_id"=>3487,
+  "hypothesis_annotation_id"=>"_mCTjjNiEeeSFWetKUqY6g",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"tion mentionedNames of the Jury ",
+  "suffix"=>"\nLawrenceburg\nKy\n               ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[3]"},
+ {"id"=>9679,
+  "document_id"=>764,
+  "verbatim"=>"E. Yeates",
+  "user_id"=>1,
+  "entity_id"=>5240,
+  "hypothesis_annotation_id"=>"xeMgxjNiEeePhD8dC5391w",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"an\nJ C Betterworth\nO, C, Egbert\n",
+  "suffix"=>"\nJohn Mcmichael\nT D Rake\nJ J Car",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9678,
+  "document_id"=>764,
+  "verbatim"=>"John Mcmichael",
+  "user_id"=>1,
+  "entity_id"=>5243,
+  "hypothesis_annotation_id"=>"yQpoSjNiEeeCxe8EO31aOg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"terworth\nO, C, Egbert\nE. Yeates\n",
+  "suffix"=>"\nT D Rake\nJ J Carter\nGeorge Sear",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9677,
+  "document_id"=>764,
+  "verbatim"=>"T D Rake",
+  "user_id"=>1,
+  "entity_id"=>5248,
+  "hypothesis_annotation_id"=>"zLyYljNiEeeMcEP9Ey2xBA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"Egbert\nE. Yeates\nJohn Mcmichael\n",
+  "suffix"=>"\nJ J Carter\nGeorge Searcy\nE. N. ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9676,
+  "document_id"=>764,
+  "verbatim"=>"J J Carter",
+  "user_id"=>1,
+  "entity_id"=>5249,
+  "hypothesis_annotation_id"=>"0wRY4jNiEeeA2QOVBqX7NQ",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>" Yeates\nJohn Mcmichael\nT D Rake\n",
+  "suffix"=>"\nGeorge Searcy\nE. N. Berryman\nWm",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9675,
+  "document_id"=>764,
+  "verbatim"=>"George Searcy",
+  "user_id"=>1,
+  "entity_id"=>5253,
+  "hypothesis_annotation_id"=>"4K_DgjNiEeeFXgPoTJB6Xg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"n Mcmichael\nT D Rake\nJ J Carter\n",
+  "suffix"=>"\nE. N. Berryman\nWm M. Neal\nP. A.",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9674,
+  "document_id"=>764,
+  "verbatim"=>"E. N. Berryman",
+  "user_id"=>1,
+  "entity_id"=>5254,
+  "hypothesis_annotation_id"=>"5GFrejNiEeetMNtYWHaTTg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"D Rake\nJ J Carter\nGeorge Searcy\n",
+  "suffix"=>"\nWm M. Neal\nP. A. Spear\nB. Roach",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9673,
+  "document_id"=>764,
+  "verbatim"=>"Wm M. Neal",
+  "user_id"=>1,
+  "entity_id"=>5256,
+  "hypothesis_annotation_id"=>"6B-s6jNiEeeMcVcW59x8Sg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"er\nGeorge Searcy\nE. N. Berryman\n",
+  "suffix"=>"\nP. A. Spear\nB. RoachI certify t",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9672,
+  "document_id"=>764,
+  "verbatim"=>"P. A. Spear",
+  "user_id"=>1,
+  "entity_id"=>5260,
+  "hypothesis_annotation_id"=>"7FIb1jNiEeetMSe4LfF0wA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"earcy\nE. N. Berryman\nWm M. Neal\n",
+  "suffix"=>"\nB. RoachI certify that the abov",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9671,
+  "document_id"=>764,
+  "verbatim"=>"B. Roach",
+  "user_id"=>1,
+  "entity_id"=>5261,
+  "hypothesis_annotation_id"=>"79PgUDNiEeepLzMHQqmabg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"Berryman\nWm M. Neal\nP. A. Spear\n",
+  "suffix"=>"I certify that the above names a",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9686,
+  "document_id"=>764,
+  "verbatim"=>"Ky",
+  "user_id"=>1,
+  "entity_id"=>83,
+  "hypothesis_annotation_id"=>"m9FRVDNiEeeEcMM09UHmHw",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"\n\n\n\n\n\n\n\n\n\n\n  To the Governor of ",
+  "suffix"=>" James F. Robinson, At the July ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>9685,
+  "document_id"=>764,
+  "verbatim"=>"James F. Robinson",
+  "user_id"=>1,
+  "entity_id"=>98,
+  "hypothesis_annotation_id"=>"oBTAUjNiEeeAhOPun4wXLA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"\n\n\n\n\n\n\n\n  To the Governor of Ky ",
+  "suffix"=>", At the July term of the Anders",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>9684,
+  "document_id"=>764,
+  "verbatim"=>"Anderson Circuit Court",
+  "user_id"=>1,
+  "entity_id"=>341,
+  "hypothesis_annotation_id"=>"pxQe8jNiEeetd8cuxHgy3g",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"binson, At the July term of the ",
+  "suffix"=>" held in 1863your petitioner Hen",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]/date[1]"},
+ {"id"=>9683,
+  "document_id"=>764,
+  "verbatim"=>"Henry Gee",
+  "user_id"=>1,
+  "entity_id"=>5202,
+  "hypothesis_annotation_id"=>"q7vdADNiEeeAhX-M1QbJUQ",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"urt held in 1863your petitioner ",
+  "suffix"=>" was fined the sum of fifty doll",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>9682,
+  "document_id"=>764,
+  "verbatim"=>"Tho. M. Freeman",
+  "user_id"=>1,
+  "entity_id"=>5206,
+  "hypothesis_annotation_id"=>"ttv2XDNiEee-6RcO17-jlg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>" and the fine be remited. Jury.\n",
+  "suffix"=>"\nJ C Betterworth\nO, C, Egbert\nE.",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>9681,
+  "document_id"=>764,
+  "verbatim"=>"J C Betterworth",
+  "user_id"=>1,
+  "entity_id"=>5239,
+  "hypothesis_annotation_id"=>"uo84SjNiEee2fiO4l8rz9A",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>" remited. Jury.\nTho. M. Freeman\n",
+  "suffix"=>"\nO, C, Egbert\nE. Yeates\nJohn Mcm",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>28139,
+  "document_id"=>764,
+  "verbatim"=>"C H Fenwick",
+  "user_id"=>1,
+  "entity_id"=>12585,
+  "hypothesis_annotation_id"=>"D6pxdpAKEeqiYj99CFlA8w",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"e case in the petition mentioned",
+  "suffix"=>" c a c c\nNames of the Jury J. S.",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>28138,
+  "document_id"=>764,
+  "verbatim"=>"Ky",
+  "user_id"=>1,
+  "entity_id"=>44,
+  "hypothesis_annotation_id"=>"JjTf5JAKEeqbxTvFrBqFiw",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>" J. S. Littlepage JrLawrenceburg",
+  "suffix"=>"Civil War Governors of Kentucky ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"}
+  ]
+
+
+KYR00010290565_ENTITIES = [{"id"=>1867,
+  "name"=>"Lawrenceburg, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"place - Seat of Anderson County, KY",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>3489,
+  "name"=>"Oliver C. Egbert",
+  "entity_type"=>"person",
+  "user_id"=>11,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, officer",
+  "birth_date"=>"c1808",
+  "death_date"=>""},
+ {"id"=>3487,
+  "name"=>"James S. Littlepage, Jr.",
+  "entity_type"=>"person",
+  "user_id"=>11,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, attorney",
+  "birth_date"=>"c1828",
+  "death_date"=>"1864-10"},
+ {"id"=>5240,
+  "name"=>"Enoch Yeates",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer",
+  "birth_date"=>"1812-11-15",
+  "death_date"=>"1878-02-27"},
+ {"id"=>5243,
+  "name"=>"John McMichael",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer",
+  "birth_date"=>"c1813",
+  "death_date"=>""},
+ {"id"=>5248,
+  "name"=>"John D. Rake",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Franklin County and Anderson County, Kentucky, cabinet maker.",
+  "birth_date"=>"c1799",
+  "death_date"=>""},
+ {"id"=>5249,
+  "name"=>"Joseph J. Carter",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer",
+  "birth_date"=>"c1820",
+  "death_date"=>""},
+ {"id"=>5253,
+  "name"=>"George W. Searcy",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer",
+  "birth_date"=>"1827-03-03",
+  "death_date"=>"1896-05-17"},
+ {"id"=>5254,
+  "name"=>"E. N. Berryman",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, merchant",
+  "birth_date"=>"c1828",
+  "death_date"=>""},
+ {"id"=>5256,
+  "name"=>"William M. Neal",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer",
+  "birth_date"=>"c1818",
+  "death_date"=>""},
+ {"id"=>5260,
+  "name"=>"Peyton A. Spears",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer",
+  "birth_date"=>"c1812",
+  "death_date"=>""},
+ {"id"=>5261,
+  "name"=>"Bailey Roach",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, merchant",
+  "birth_date"=>"1835-01-10",
+  "death_date"=>"1902-03-01"},
+{"id"=>83,
+  "name"=>"Commonwealth of Kentucky",
+  "entity_type"=>"organization",
+  "user_id"=>1,
+  "ref_id"=>"O001025",
+  "gender"=>"male",
+  "disambiguator"=>"state government org",
+  "birth_date"=>"1792",
+  "death_date"=>""},
+ {"id"=>98,
+  "name"=>"James Fisher Robinson",
+  "entity_type"=>"person",
+  "user_id"=>1,
+  "ref_id"=>"N001004",
+  "gender"=>"male",
+  "disambiguator"=>"governor, state senator, businessman, attorney, and farmer",
+  "birth_date"=>"1800-10-04",
+  "death_date"=>"1882-10-31"},
+ {"id"=>341,
+  "name"=>"Anderson Circuit Court",
+  "entity_type"=>"organization",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Court in Anderson County, KY",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>5202,
+  "name"=>"Henry Gee",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farm laborer",
+  "birth_date"=>"c1839",
+  "death_date"=>""},
+ {"id"=>5206,
+  "name"=>"Thomas M. Freeman",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer",
+  "birth_date"=>"c1809",
+  "death_date"=>"1886-04-21"},
+ {"id"=>5239,
+  "name"=>"John C. Betterworth",
+  "entity_type"=>"person",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, farmer and hatter",
+  "birth_date"=>"c1825",
+  "death_date"=>""},
+{"id"=>12585,
+  "name"=>"Cabel Harrison Fenwick",
+  "entity_type"=>"person",
+  "user_id"=>29,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Anderson County, Kentucky, attorney and court clerk",
+  "birth_date"=>"c1805",
+  "death_date"=>""},
+ {"id"=>44,
+  "name"=>"Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>1,
+  "ref_id"=>"P001800",
+  "gender"=>"male",
+  "disambiguator"=>"Place. State with capital at Frankfort",
+  "birth_date"=>"",
+  "death_date"=>""}]
+
+
+  KYR00010040310 = <<EOF
 ﻿<?xml version="1.0" encoding="UTF-8"?> 
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0002-222-0042"> 
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0001-004-0310"> 
  <teiHeader>
   <fileDesc>
    <titleStmt>
-    <title level="a" type="main">John W. Finnell, Receipt to Louisville &amp; Nashville Railroad Company</title>
-    <title level="a" type="parallel">CWG13731</title>
+    <title level="a" type="main">L. A. Wood to Thomas E. Bramlette</title>
+    <title level="a" type="parallel">CWG4429</title>
     <respStmt>
      <resp n="transcriber">Transcribed by:</resp>
-     <name>Elizabeth J Van Allen</name>
+     <name>Anthony P Curtis</name>
     </respStmt>
     <respStmt>
      <resp n="proof_1">Single Proof by:</resp>
@@ -1293,7 +1688,7 @@ KYR00022220042 = <<EOF
     </respStmt>
     <respStmt>
      <resp n="encoding">Markup by:</resp>
-     <name>Anthony P Curtis</name>
+     <name>Matthew C Hulbert</name>
     </respStmt>
     <respStmt>
      <resp n="proof_2">Double Proof by:</resp>
@@ -1320,119 +1715,150 @@ KYR00022220042 = <<EOF
       <country>UNITED STATES</country>
       <region>KY</region>
       <settlement>Frankfort</settlement>
-      <repository>Kentucky Department of Military Affairs</repository>
-      <collection>Misc. QM Expenditures, 1863-1865</collection>
-      <idno>QMG Box 10; 1863 Office Expenses - Telegraph, Stationary - Transportation - Ordinance Stores; Bundle 5</idno>
+      <repository>Kentucky Department for Libraries and Archives</repository>
+      <collection>Office of the Governor, Thomas E. Bramlette: Governor's official correspondence file, petitions for pardons, remissions, and respites 1863-1867</collection>
+      <idno>BR8-487</idno>
      </msIdentifier>
     </msDesc>
    </sourceDesc>
   </fileDesc>
   <profileDesc>
    <creation>
-    <placeName>Frankfort, Franklin County, Kentucky</placeName>
-    <date when="1863-04-18">18 April 1863</date>
+    <placeName>Louisville, Jefferson County, Kentucky</placeName>
+    <date when="1865-02-23">23 February 1865</date>
    </creation>
    <textClass>
     <keywords>
-     <term type="genre">Legal/Financial</term>
+     <term type="genre">Correspondence</term>
     </keywords>
    </textClass>
   </profileDesc>
  </teiHeader>
  <text>
   <body>
-   <p>NO. 12.<figure type="hr"/>
-<lb/><unclear>The</unclear> State of Kentucky,
-<lb/>To Louisville. &amp;. Nashville R R Co Dr.</p>
-<p><table rend="rules">
-<row>
-  <cell><date when="1862">1862</date>.</cell>
-  <cell/>
-  <cell>DOLLARS.</cell>
-  <cell>CENTS.</cell>
-</row>
-<row>
-  <cell><date when="1862-11">November</date></cell>
-  <cell>For Transportation as follows Viz -- Miles</cell>
-  <cell/>
-  <cell/>
-</row>
-<row>
-  <cell><date when="1862-11">"</date></cell>
-  <cell>2 Men 33<hi rend="underline"><hi rend="sup">d</hi></hi> Ky Vols. From Louisville To Munfordville 72.9 @ 2&#162;</cell>
-  <cell>2</cell>
-  <cell>91<hi rend="underline"><hi rend="sup">6</hi></hi></cell>
-</row>
-<row>
-  <cell><date when="1862-11">"</date></cell>
-  <cell>3 " " " Munfordville " Louisville " " "</cell>
-  <cell>4</cell>
-  <cell>37<hi rend="underline"><hi rend="sup">4</hi></hi></cell>
-</row>
-<row>
-  <cell><date when="1862-11">"</date></cell>
-  <cell>2 " " " Elizabethtown " Munfordville 30<hi rend="sup">1</hi>/<hi rend="sub">2</hi> " "</cell>
-  <cell><hi rend="underline">1</hi></cell>
-  <cell><hi rend="underline">22</hi></cell>
-</row>
-<row>
-  <cell/>
-  <cell>Add United States tax on Passenger Transp<hi rend="sup">n</hi></cell>
-  <cell><hi rend="underline">&#36;8</hi></cell>
-  <cell><hi rend="underline">51</hi></cell>
-</row>
-<row>
-  <cell/>
-  <cell>P<hi rend="sup">r</hi> circular Q. M. Gen<hi rend="sup">l</hi>, dated <date when="1862-11-14">Nov<hi rend="sup">r</hi> 14/62</date> 8<hi rend="underline"><hi rend="sup">51</hi></hi> @ 3 &#162;</cell>
-  <cell/>
-  <cell><hi rend="underline">25</hi></cell>
-</row>
-<row>
-  <cell/>
-  <cell/>
-  <cell><hi rend="underline">&#36;8</hi></cell>
-  <cell><hi rend="underline">76</hi></cell>
-</row>
-</table></p>
-<p>I Certify that the Transportation as above charged was on Bussiness Connected with the recruiting Service -- Under the Orders of the Govenor of the State of Kentucky</p>
-<p>John W. Finnell
-<lb/><hi rend="underline">Adj</hi><hi rend="underline"><hi rend="sup">t</hi></hi><hi rend="underline"> Gen</hi><hi rend="underline"><hi rend="sup">l</hi></hi><hi rend="underline"> Ken, Vols.</hi></p>
-<p>I certify that the above account is correct and just; that the services were rendered as stated; and that they were necessary for the public service.</p>
-<p><gap/></p>
-<p>Received at Frankfort Ky, the <date when="1863-04-18">18 of April, 1863.</date> of Jn<hi rend="sup">o</hi> W Finnell Adj<hi rend="sup">t</hi> Gen<hi rend="sup">l</hi>, <hi rend="str">Quarter-master</hi> Kentucky Volunteers, the sum of Eight Dollars and seventy six Cents in full of the above account.
-<lb/>(DUPLICATE.)</p>
-<p><hi rend="underline">Cha</hi><hi rend="underline"><hi rend="sup">s</hi></hi><hi rend="underline"> R Griffith</hi>
-<lb/>Treas<hi rend="sup">r</hi><pb/></p>
-<p>NO. 12.<figure type="hr"/>
-<lb/>No. 162 ABSTRACT B P QR. 186
-<lb/>Lou &amp; Nash R R co
-<lb/>Dollars &#36;8.<hi rend="sup">76</hi>/<hi rend="sub">100</hi>
-<lb/>Paid <date when="1863-04-18">April 18<hi rend="sup">th</hi> 1863</date></p>
+   <p>L. A. WOOD
+<lb/>ATTORNEY AT LAW,
+<lb/>LOUISVILLE, KY.</p>
+<p>OFFICE NO. 15 COURT PLACE.<figure type="hr"/>
+<lb/>Louisville, Ky <date when="1865-02-23">Feby 23<hi rend="sup">d</hi> 1865</date>
+<lb/>His Excellency Gov. Thos. E. Bramlette
+<lb/>Frankfort Ky
+<lb/>Dear Sir:</p>
+<p>As. I. was conizant of all the facts and circumstances in the case of Wm Schofield from his arrest up to his conviction, I deem it proper, to State <hi rend="str">that</hi> without going into a detailed account of the facts &amp; circumStances, that they were wholy inSufficient in my opinion to establish his guilt. I was his counsel up until he told me that he was going to plead guilty- He Still told me that he was not guilty; but Said he had rather plead guilty and get, (as he hoped by pleading guilty he would) only one year, than to lie in Jail until the next term of the court.</p>
+<p>I talked with his witness Some time before the trial, and if they could have been got there. I think <hi rend="str">y</hi>beyond a doubt that there testimony would have inSured an acquittal. But they had, Some of them left the State and others of them we did not know where they were; and he Said rather than lie in jail to the next court he would plead guilty. I then refused to defend him; and did not defend him on the trial. I have no contingent fee in this case; nor am I to be benefitted a farthing by his being pardoned. But I never did believe he Stole<pb/>
+<lb/>the money; and I do not believe that the public weal requires that he Should be retained in Prison. And as it would So rejoice the hearts of his distressed mother and the whole family I do hope you will pardon him</p>
+<p>Yours Truly
+<lb/>L,, A. Wood</p>
   </body>
  </text>
 </TEI>
 EOF
 
 
-KYR00022220042_ENTITIES = 
-[{"id"=>83,
-  "name"=>"Commonwealth of Kentucky",
-  "entity_type"=>"organization",
+  KYR00010040310_ANNOTATIONS = [{"id"=>27143,
+  "document_id"=>1860,
+  "verbatim"=>"L. A. WOOD",
   "user_id"=>1,
-  "ref_id"=>"O001025",
-  "gender"=>"male",
-  "disambiguator"=>"state government org",
-  "birth_date"=>"1792",
-  "death_date"=>""},
- {"id"=>2377,
-  "name"=>"Louisville & Nashville Railroad",
-  "entity_type"=>"organization",
-  "user_id"=>8,
+  "entity_id"=>975,
+  "hypothesis_annotation_id"=>"gcJ1eGCuEeqGTcst6tvkJQ",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>"load XML\n      \n    \n    \n\n\n\n\n  ",
+  "suffix"=>"\nATTORNEY AT LAW,\nLOUISVILLE, KY",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>27142,
+  "document_id"=>1860,
+  "verbatim"=>"LOUISVILLE",
+  "user_id"=>1,
+  "entity_id"=>337,
+  "hypothesis_annotation_id"=>"jCP3imCuEeqCFbNdQfmPVw",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>"\n\n  L. A. WOOD\nATTORNEY AT LAW,\n",
+  "suffix"=>", KY.OFFICE NO. 15 COURT PLACE.L",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>27141,
+  "document_id"=>1860,
+  "verbatim"=>"Thos. E. Bramlette",
+  "user_id"=>1,
+  "entity_id"=>94,
+  "hypothesis_annotation_id"=>"lOVRUmCuEeqxfYtDYebtmg",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>"eby 23d 1865His Excellency Gov. ",
+  "suffix"=>"\nFrankfort Ky\nDear Sir:As. I. wa",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
+ {"id"=>27140,
+  "document_id"=>1860,
+  "verbatim"=>"Frankfort",
+  "user_id"=>1,
+  "entity_id"=>308,
+  "hypothesis_annotation_id"=>"nnQDHGCuEeqPC2uqJQY5Cw",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>"ellency Gov. Thos. E. Bramlette\n",
+  "suffix"=>" Ky\nDear Sir:As. I. was conizant",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
+ {"id"=>27139,
+  "document_id"=>1860,
+  "verbatim"=>"Wm Schofield ",
+  "user_id"=>1,
+  "entity_id"=>12252,
+  "hypothesis_annotation_id"=>"rCyrYmCuEeq8i7OOvQs8ew",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>"nd circumstances in the case of ",
+  "suffix"=>"from his arrest up to his convic",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[4]"},
+ {"id"=>27137,
+  "document_id"=>1860,
+  "verbatim"=>"mother ",
+  "user_id"=>1,
+  "entity_id"=>12324,
+  "hypothesis_annotation_id"=>"1VfSAGCuEeq6fkcrQm7cYg",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>"ce the hearts of his distressed ",
+  "suffix"=>"and the whole family I do hope y",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[5]"},
+ {"id"=>27351,
+  "document_id"=>1860,
+  "verbatim"=>"Jail",
+  "user_id"=>1,
+  "entity_id"=>1161,
+  "hypothesis_annotation_id"=>"9ONZRmlkEeqY56P2B1w71A",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>") only one year, than to lie in ",
+  "suffix"=>" until the next term of the cour",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[4]"},
+ {"id"=>27350,
+  "document_id"=>1860,
+  "verbatim"=>"court",
+  "user_id"=>1,
+  "entity_id"=>59,
+  "hypothesis_annotation_id"=>"_YX1XmlkEeqVTEd-3mbnzw",
+  "hypothesis_user"=>"KBailey27@hypothes.is",
+  "prefix"=>"Jail until the next term of the ",
+  "suffix"=>".I talked with his witness Some ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[4]"},
+ {"id"=>27498,
+  "document_id"=>1860,
+  "verbatim"=>"KY",
+  "user_id"=>1,
+  "entity_id"=>44,
+  "hypothesis_annotation_id"=>"TSRTWnNeEeqGvTOWtQxPqw",
+  "hypothesis_user"=>"GRA1@hypothes.is",
+  "prefix"=>"OD\nATTORNEY AT LAW,\nLOUISVILLE, ",
+  "suffix"=>".OFFICE NO. 15 COURT PLACE.Louis",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"}]
+
+
+
+
+
+  KYR00010040310_ENTITIES = [{"id"=>975,
+  "name"=>"Logan Adams Wood",
+  "entity_type"=>"person",
+  "user_id"=>5,
   "ref_id"=>nil,
   "gender"=>"male",
-  "disambiguator"=>"Railroad ",
-  "birth_date"=>"1850-03-05",
-  "death_date"=>"1982-12-31"},
+  "disambiguator"=>"Louisville, Kentucky, attorney",
+  "birth_date"=>"1829-11-04",
+  "death_date"=>"1904-01-18"},
  {"id"=>337,
   "name"=>"Louisville, Kentucky",
   "entity_type"=>"place",
@@ -1442,69 +1868,15 @@ KYR00022220042_ENTITIES =
   "disambiguator"=>"Seat of Jefferson County, Kentucky",
   "birth_date"=>"",
   "death_date"=>""},
- {"id"=>55,
-  "name"=>"Munfordville, Kentucky",
-  "entity_type"=>"place",
-  "user_id"=>1,
-  "ref_id"=>"P001823",
-  "gender"=>"male",
-  "disambiguator"=>"place",
-  "birth_date"=>"",
-  "death_date"=>""},
- {"id"=>9912,
-  "name"=>"33rd Kentucky Volunteer Infantry Regiment (U.S.A.)",
-  "entity_type"=>"organization",
-  "user_id"=>20,
-  "ref_id"=>nil,
-  "gender"=>"male",
-  "disambiguator"=>"military unit",
-  "birth_date"=>"1862-09-13",
-  "death_date"=>"1864-04-01"},
- {"id"=>2906,
-  "name"=>"Elizabethtown, Kentucky",
-  "entity_type"=>"place",
-  "user_id"=>4,
-  "ref_id"=>nil,
-  "gender"=>"male",
-  "disambiguator"=>"County seat of Hardin County, Kentucky",
-  "birth_date"=>"",
-  "death_date"=>""},
-{"id"=>234,
-  "name"=>"James Fisher Robinson, Jr.",
-  "entity_type"=>"person",
-  "user_id"=>2,
-  "ref_id"=>nil,
-  "gender"=>"male",
-  "disambiguator"=>"QMG of KY, Gov's son",
-  "birth_date"=>"1832-11-25",
-  "death_date"=>"1892"},
- {"id"=>98,
-  "name"=>"James Fisher Robinson",
+ {"id"=>94,
+  "name"=>"Thomas Elliott Bramlette",
   "entity_type"=>"person",
   "user_id"=>1,
-  "ref_id"=>"N001004",
+  "ref_id"=>"N001000",
   "gender"=>"male",
-  "disambiguator"=>"governor, state senator, businessman, attorney, and farmer",
-  "birth_date"=>"1800-10-04",
-  "death_date"=>"1882-10-31"},
- {"id"=>228,
-  "name"=>"John William Finnell",
-  "entity_type"=>"person",
-  "user_id"=>2,
-  "ref_id"=>nil,
-  "gender"=>"male",
-  "disambiguator"=>"TAG, Kenton Co. State Rep",
-  "birth_date"=>"1821-12-24",
-  "death_date"=>"1888-01-25"},
- {"id"=>388,
-  "name"=>"Office of the Adjutant General of Kentucky",
-  "entity_type"=>"organization",
-  "user_id"=>7,
-  "ref_id"=>nil,
-  "gender"=>"male",
-  "disambiguator"=>"Kentucky AGO",
-  "birth_date"=>"1793",
-  "death_date"=>""},
+  "disambiguator"=>"Kentucky governor",
+  "birth_date"=>"1817-01-03",
+  "death_date"=>"1875-01-12"},
  {"id"=>308,
   "name"=>"Frankfort, Kentucky",
   "entity_type"=>"place",
@@ -1514,118 +1886,810 @@ KYR00022220042_ENTITIES =
   "disambiguator"=>"Capital of KY, seat of Franklin County",
   "birth_date"=>"",
   "death_date"=>""},
- {"id"=>10757,
-  "name"=>"Charles R. Griffith",
+ {"id"=>12252,
+  "name"=>"William Schofield (Bennett) ",
   "entity_type"=>"person",
-  "user_id"=>27,
+  "user_id"=>33,
   "ref_id"=>nil,
   "gender"=>"male",
-  "disambiguator"=>"Louisville, Jefferson County, Kentucky, clerk and treasurer ",
-  "birth_date"=>"c1811",
-  "death_date"=>"1873-06-27"}]
-
-
-
-KYR00022220042_ANNOTATIONS_ATTRIBUTES =
- [{"id"=>22789,
-    "document_id"=>1655,
-    "verbatim"=>" State of Kentucky,\n",
-    "user_id"=>1,
-    "entity_id"=>83,
-    "hypothesis_annotation_id"=>"4uP-9pMaEemlyn9UG84YAw",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>"   \n    \n    \n\n\n\n\n  NO. 12.[The]",
-    "suffix"=>"To Louisville. &. Nashville R R ",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
-   {"id"=>22788,
-    "document_id"=>1655,
-    "verbatim"=>"Louisville. &. Nashville R R Co",
-    "user_id"=>1,
-    "entity_id"=>2377,
-    "hypothesis_annotation_id"=>"5ncNLpMaEemxWcPHgdHLPA",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>" 12.[The] State of Kentucky,\nTo ",
-    "suffix"=>" Dr.1862.DOLLARS.CENTS.NovemberF",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]"},
-   {"id"=>22787,
-    "document_id"=>1655,
-    "verbatim"=>"Louisville ",
-    "user_id"=>1,
-    "entity_id"=>337,
-    "hypothesis_annotation_id"=>"6nlsFJMaEemzzovjRvmyyA",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>"- Miles\"2 Men 33d Ky Vols. From ",
-    "suffix"=>"To Munfordville 72.9 @ 2¢2916\"3 ",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[3]/td[2]"},
-   {"id"=>22786,
-    "document_id"=>1655,
-    "verbatim"=>"Munfordville",
-    "user_id"=>1,
-    "entity_id"=>55,
-    "hypothesis_annotation_id"=>"7fBxxpMaEemyKN_9E6CGew",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>"33d Ky Vols. From Louisville To ",
-    "suffix"=>" 72.9 @ 2¢2916\"3 \" \" \" Munfordvi",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[3]/td[2]"},
-   {"id"=>22785,
-    "document_id"=>1655,
-    "verbatim"=>"33d Ky Vols",
-    "user_id"=>1,
-    "entity_id"=>9912,
-    "hypothesis_annotation_id"=>"8UfltpMaEemcXa8PalB3iA",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>"n as follows Viz -- Miles\"2 Men ",
-    "suffix"=>". From Louisville To Munfordvill",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[3]/td[2]"},
-   {"id"=>22784,
-    "document_id"=>1655,
-    "verbatim"=>"Elizabethtown",
-    "user_id"=>1,
-    "entity_id"=>2906,
-    "hypothesis_annotation_id"=>"9P1y8pMaEeml3rsWE0xv_w",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>" \" Louisville \" \" \"4374\"2 \" \" \" ",
-    "suffix"=>" \" Munfordville 301/2 \" \"122Add ",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[5]/td[2]"},
-   {"id"=>22783,
-    "document_id"=>1655,
-    "verbatim"=>" Q. M. Genl, ",
-    "user_id"=>1,
-    "entity_id"=>234,
-    "hypothesis_annotation_id"=>"-FEgUpMaEemxWz_D8XJGrQ",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>"Passenger Transpn$851Pr circular",
-    "suffix"=>"dated Novr 14/62 851 @ 3 ¢25$876",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/table[1]/tbody[1]/tr[7]/td[2]"},
-   {"id"=>22782, "document_id"=>1655, "verbatim"=>"Govenor ", "user_id"=>1, "entity_id"=>98, "hypothesis_annotation_id"=>"_WfWxpMaEemxXcuT8NJ16w", "hypothesis_user"=>"mdevelvis@hypothes.is", "prefix"=>"rvice — Under the Orders of the ", "suffix"=>"of the State of KentuckyJohn W. ", "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[5]"},
-   {"id"=>22781,
-    "document_id"=>1655,
-    "verbatim"=>"John W. Finnell\n",
-    "user_id"=>1,
-    "entity_id"=>228,
-    "hypothesis_annotation_id"=>"AFCZ4JMbEemzz1u3V4XVRw",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>"Govenor of the State of Kentucky",
-    "suffix"=>"Adjt Genl Ken, Vols.I certify th",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
-   {"id"=>22780,
-    "document_id"=>1655,
-    "verbatim"=>"Adjt Genl Ken",
-    "user_id"=>1,
-    "entity_id"=>388,
-    "hypothesis_annotation_id"=>"B2ydRpMbEemz0DOBXTjw-w",
-    "hypothesis_user"=>"mdevelvis@hypothes.is",
-    "prefix"=>"tate of KentuckyJohn W. Finnell\n",
-    "suffix"=>", Vols.I certify that the above ",
-    "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]/span[1]"},
-   {"id"=>22779, "document_id"=>1655, "verbatim"=>"Frankfort Ky", "user_id"=>1, "entity_id"=>308, "hypothesis_annotation_id"=>"DC-l7pMbEemnJ-tY-owzzw", "hypothesis_user"=>"mdevelvis@hypothes.is", "prefix"=>"e public service.[ ]Received at ", "suffix"=>", the 18 of April, 1863. of Jno ", "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[9]"},
-    {"id"=>22778,
-  "document_id"=>1655,
-  "verbatim"=>"Chas R Griffith",
+  "disambiguator"=>"Jefferson County, Kentucky, resident",
+  "birth_date"=>"c1813",
+  "death_date"=>""},
+ {"id"=>12324,
+  "name"=>"[Unknown] Schofield",
+  "entity_type"=>"person",
+  "user_id"=>33,
+  "ref_id"=>nil,
+  "gender"=>"female",
+  "disambiguator"=>"Louisville, Kentucky, resident",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>1161,
+  "name"=>"Jefferson County Jail",
+  "entity_type"=>"organization",
+  "user_id"=>8,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Jail for Louisville ",
+  "birth_date"=>"1846",
+  "death_date"=>"1905"},
+ {"id"=>59,
+  "name"=>"Jefferson Circuit Court",
+  "entity_type"=>"organization",
   "user_id"=>1,
-  "entity_id"=>10757,
-  "hypothesis_annotation_id"=>"ED8KCJMbEemcX2vJLtHajA",
-  "hypothesis_user"=>"mdevelvis@hypothes.is",
-  "prefix"=>" the above account.\n(DUPLICATE.)",
-  "suffix"=>"Treasr NO. 12.No. 162 ABSTRACT B",
-  "start_container"=>"/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[10]/span[1]"}]
+  "ref_id"=>"O001000",
+  "gender"=>"male",
+  "disambiguator"=>"org - 7th judicial district",
+  "birth_date"=>"1850",
+  "death_date"=>""},
+ {"id"=>44,
+  "name"=>"Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>1,
+  "ref_id"=>"P001800",
+  "gender"=>"male",
+  "disambiguator"=>"Place. State with capital at Frankfort",
+  "birth_date"=>"",
+  "death_date"=>""}]
+
+
+KYR00010040300 = <<EOF
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0001-004-0300"> 
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title level="a" type="main">David Dills et al. to Thomas E. Bramlette</title>
+    <title level="a" type="parallel">CWG4419</title>
+    <respStmt>
+     <resp n="transcriber">Transcribed by:</resp>
+     <name>Anthony P Curtis</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_1">Single Proof by:</resp>
+     <name>Whitney R Smith</name>
+    </respStmt>
+    <respStmt>
+     <resp n="encoding">Markup by:</resp>
+     <name>Matthew C Hulbert</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_2">Double Proof by:</resp>
+     <name>CWGK Staff</name>
+    </respStmt>
+   </titleStmt>
+   <publicationStmt>
+    <publisher>Kentucky Historical Society</publisher>
+    <pubPlace>Frankfort, Kentucky</pubPlace>
+    <availability>
+     <p>This image and transcription is publicly accessible. The image appears courtesy of the repository named in the Source Description. The transcription and annotation were undertaken by Kentucky Historical Society staff, volunteers, and interns. If referencing this document title, accession number, and permanent URL.</p>
+    </availability>
+   </publicationStmt>
+   <seriesStmt>
+    <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+    <respStmt>
+     <resp>Project Director</resp>
+     <name>Patrick A. Lewis</name>
+    </respStmt>
+   </seriesStmt>
+   <sourceDesc>
+    <msDesc>
+    <msIdentifier>
+      <country>UNITED STATES</country>
+      <region>KY</region>
+      <settlement>Frankfort</settlement>
+      <repository>Kentucky Department for Libraries and Archives</repository>
+      <collection>Office of the Governor, Thomas E. Bramlette: Governor's official correspondence file, petitions for pardons, remissions, and respites 1863-1867</collection>
+      <idno>BR8-474</idno>
+     </msIdentifier>
+    </msDesc>
+   </sourceDesc>
+  </fileDesc>
+  <profileDesc>
+   <creation>
+    <placeName>Cynthiana, Harrison County, Kentucky</placeName>
+    <date when="1863-11-04">4 November 1863</date>
+   </creation>
+   <textClass>
+    <keywords>
+     <term type="genre">Petition</term>
+    </keywords>
+   </textClass>
+  </profileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p>Cynthiana Ky
+<lb/><date when="1863-11-04">Novr 4<hi rend="underline"><hi rend="sup">th</hi></hi> 1863</date>
+<lb/>To His Excellency
+<lb/>Govenor Tho<hi rend="underline"><hi rend="sup">s</hi></hi> E. Bramlette,</p>
+<p>We the undersigned would most respectfully state that at the <date when="--05">May Term</date> of the Harrison Circuit Court an indictment was found by the Grand Jury of said Court against one Guy Bryant for selling liquor to a miner by the name of Alonzo Lyter, The proof shows conclusively that at the time the liquor was sold to said Lyter that his (Lyters) Guardian &amp; Step Father was present &amp; drank with him, thereby giving tacit consent to his drinking the Spirits, but the Jury under the Law, &amp; instructions of the Court were found to find said Bryant guilty of the charge in the indictment &amp; fined him fifty Dollar, <hi rend="str">the least amount fixed by the Statute</hi>, &amp; the Jury whose names are hereto signed together with other citizens who Know the circumstances &amp; were present at the trial, would hereby most respectfully recommend Mr Bryant to the clemency of the Executive.
+<lb/>over<pb/></p>
+<p><milestone unit="column" n="2"/><cb n="1"/>David Dills Foreman
+<lb/>Wm Hutcheron
+<lb/>J B Hickman
+<lb/>J H Debrulan
+<lb/>F. Cummins
+<lb/>C. G. Land
+<lb/>R J Levi
+<lb/>R S Holmes
+<lb/>george <unclear>dumis</unclear>
+<lb/>Wm Hinkson
+<lb/>B, F. Dills
+<lb/>Wm G Courtney
+<lb/>Jury on this case</p>
+<p>J, B, McClintock SHC
+<lb/>F A Rankin Step Father &amp; Guardian of the Boy that Bought the ^whiskey^
+<lb/>T. J. Terry
+<lb/>T. W. Hedges
+<lb/>Alonzo Lyter
+<lb/>M. L. Broadwell P,J,H,C
+<lb/>David A Groves
+<lb/>T. R, Rankin
+<lb/>Jno T. M<hi rend="sup">c</hi>Clintock Dep Clk</p>
+<p><cb n="2"/>I certify that the statement of the <unclear/> in the within petition is Substantially correct</p>
+<p>R B Carpenter
+<lb/>Comth atty</p>
+<p>G, W, Berry Capt &amp; Pro Mar 6<hi rend="sup"> -- </hi>/Destrict Ky<milestone unit="column" n="1"/></p>
+<p>Harrison Cir Ct
+<lb/>vs
+<lb/>Guy Bryant
+<lb/>Tipling
+<lb/>&#36;50
+<lb/>Remitted
+<lb/><date when="1863-11-10">10<hi rend="sup">th</hi> Nov/63</date></p>
+  </body>
+ </text>
+</TEI>
+EOF
+
+KYR00010040300_V2 = <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0001-004-0300"> 
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title level="a" type="main">David Dills et al. to Thomas E. Bramlette</title>
+    <title level="a" type="parallel">CWG4419</title>
+    <respStmt>
+     <resp n="transcriber">Transcribed by:</resp>
+     <name>Anthony P Curtis</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_1">Single Proof by:</resp>
+     <name>Whitney R Smith</name>
+    </respStmt>
+    <respStmt>
+     <resp n="encoding">Markup by:</resp>
+     <name>Matthew C Hulbert</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_2">Double Proof by:</resp>
+     <name>CWGK Staff</name>
+    </respStmt><respStmt>
+<resp n="reviewed">Fact checked by</resp>
+<name>Sarah Haywood</name>
+</respStmt>
+<respStmt>
+<resp n="needs_review">Annotated by</resp>
+<name>Carl Creason</name>
+</respStmt>
+
+   </titleStmt>
+   <publicationStmt>
+    <publisher>Kentucky Historical Society</publisher>
+    <pubPlace>Frankfort, Kentucky</pubPlace>
+    <availability>
+     <p>This image and transcription is publicly accessible. The image appears courtesy of the repository named in the Source Description. The transcription and annotation were undertaken by Kentucky Historical Society staff, volunteers, and interns. If referencing this document title, accession number, and permanent URL.</p>
+    </availability>
+   </publicationStmt>
+   <seriesStmt>
+    <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+    <respStmt>
+     <resp>Project Director</resp>
+     <name>Patrick A. Lewis</name>
+    </respStmt>
+   </seriesStmt>
+   <sourceDesc>
+    <msDesc>
+    <msIdentifier>
+      <country>UNITED STATES</country>
+      <region>KY</region>
+      <settlement>Frankfort</settlement>
+      <repository>Kentucky Department for Libraries and Archives</repository>
+      <collection>Office of the Governor, Thomas E. Bramlette: Governor's official correspondence file, petitions for pardons, remissions, and respites 1863-1867</collection>
+      <idno>BR8-474</idno>
+     </msIdentifier>
+    </msDesc>
+   </sourceDesc>
+  </fileDesc>
+  <profileDesc>
+   <creation>
+    <placeName>Cynthiana, Harrison County, Kentucky</placeName>
+    <date when="1863-11-04">4 November 1863</date>
+   </creation>
+   <textClass>
+    <keywords>
+     <term type="genre">Petition</term>
+    </keywords>
+   </textClass>
+  </profileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p><placeName ref="cwgk:P00005772">Cynthiana</placeName> <placeName ref="cwgk:P001800">Ky</placeName>
+<lb/><date when="1863-11-04">Novr 4<hi rend="underline"><hi rend="sup">th</hi></hi> 1863</date>
+<lb/>To His Excellency
+<lb/>Govenor <persName ref="cwgk:N001000">Tho<hi rend="underline"><hi rend="sup">s</hi></hi> E. Bramlette</persName>,</p>
+<p>We the undersigned would most respectfully state that at the <date when="--05">May Term</date> of the <orgName ref="cwgk:O00000405">Harrison Circuit Court</orgName> an indictment was found by the Grand Jury of said Court against one <persName ref="cwgk:N00012170">Guy Bryant</persName> for selling liquor to a miner by the name of <persName ref="cwgk:N00012171">Alonzo Lyter</persName>, The proof shows conclusively that at the time the liquor was sold to said Lyter that his (Lyters) Guardian &amp; Step Father was present &amp; drank with him, thereby giving tacit consent to his drinking the Spirits, but the Jury under the Law, &amp; instructions of the Court were found to find said Bryant guilty of the charge in the indictment &amp; fined him fifty Dollar, <hi rend="str">the least amount fixed by the Statute</hi>, &amp; the Jury whose names are hereto signed together with other citizens who Know the circumstances &amp; were present at the trial, would hereby most respectfully recommend Mr Bryant to the clemency of the Executive.
+<lb/>over<pb/></p>
+<p><milestone unit="column" n="2"/><cb n="1"/><persName ref="cwgk:N00012173">David Dills Foreman</persName>
+<lb/><persName ref="cwgk:N00012174">Wm Hutcheron</persName>
+<lb/><persName ref="cwgk:N00012176">J B Hickman</persName>
+<lb/><persName ref="cwgk:N00012177">J H Debrulan</persName>
+<lb/><persName ref="cwgk:N00012178">F. Cummins</persName>
+<lb/><persName ref="cwgk:N00011410">C. G. Land</persName>
+<lb/><persName ref="cwgk:N00012179">R J Levi</persName>
+<lb/><persName ref="cwgk:N00012181">R S Holmes</persName>
+<lb/>george <unclear>dumis</unclear>
+<lb/><persName ref="cwgk:N00012182">Wm Hinkson</persName>
+<lb/><persName ref="cwgk:N00012183">B, F. Dills</persName>
+<lb/><persName ref="cwgk:N00012184">Wm G Courtney</persName>
+<lb/>Jury on this case</p>
+<p>J, B, McClintock SHC
+<lb/><lb/><persName ref="cwgk:N00012191">T. J. Terry</persName>
+<lb/>T. W. Hedges
+<lb/>Alonzo Lyter
+<lb/><persName ref="cwgk:N00005522">M. L. Broadwell</persName> P,J,H,C
+<lb/><lb/><lb/></p>
+<p><cb n="2"/>I certify that the statement of the <unclear/> in the within petition is Substantially correct</p>
+<p><persName ref="cwgk:N00005226">R B Carpenter</persName>
+<lb/>Comth atty</p>
+<p><persName ref="cwgk:N00012185">G, W, Berry</persName> Capt &amp; Pro Mar 6<hi rend="sup"> -- </hi>/Destrict Ky<milestone unit="column" n="1"/></p>
+<p>Harrison Cir Ct
+<lb/>vs
+<lb/>Guy Bryant
+<lb/>Tipling
+<lb/>$50
+<lb/>Remitted
+<lb/><date when="1863-11-10">10<hi rend="sup">th</hi> Nov/63</date></p>
+  </body>
+ </text>
+</TEI>
+EOF
+
+KYR00010040300_ENTITIES = 
+[{"id"=>12182,
+  "name"=>"William A. Hinkson",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"1815-04-05",
+  "death_date"=>"1886-09-20"},
+ {"id"=>12183,
+  "name"=>"Benjamin F. Dills",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1822",
+  "death_date"=>"1877-06-29"},
+ {"id"=>12184,
+  "name"=>"William G. Courtney",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farm hand",
+  "birth_date"=>"c1844",
+  "death_date"=>""},
+ {"id"=>12185,
+  "name"=>"George W. Berry",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1803",
+  "death_date"=>""},
+ {"id"=>5226,
+  "name"=>"Richard B. Carpenter, Jr.",
+  "entity_type"=>"person",
+  "user_id"=>12,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Covington, Kentucky, commonwealth's attorney",
+  "birth_date"=>"c1824",
+  "death_date"=>""},
+ {"id"=>12186,
+  "name"=>"Thomas W. Hedges",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, physician ",
+  "birth_date"=>"c1826",
+  "death_date"=>""},
+  {"id"=>11408,
+    "name"=>"Joseph B. McClintock ",
+    "entity_type"=>"person",
+    "user_id"=>26,
+    "ref_id"=>nil,
+    "gender"=>"male",
+    "disambiguator"=>"Harrison County, Kentucky, sheriff and farmer",
+    "birth_date"=>"1834-06-23",
+    "death_date"=>"1891-10-23"},
+   {"id"=>12187,
+    "name"=>"Thomas R. Rankin",
+    "entity_type"=>"person",
+    "user_id"=>31,
+    "ref_id"=>nil,
+    "gender"=>"male",
+    "disambiguator"=>"Harrison County, Ky, hotel keeper",
+    "birth_date"=>"1819-06-02",
+    "death_date"=>"1874-06-18"},
+   {"id"=>12188,
+    "name"=>"John James McClintock",
+    "entity_type"=>"person",
+    "user_id"=>31,
+    "ref_id"=>nil,
+    "gender"=>"male",
+    "disambiguator"=>"Harrison County, Ky, farmer and clerk",
+    "birth_date"=>"1826",
+    "death_date"=>"1892"},
+   {"id"=>5522,
+    "name"=>"Marquis Lafayette Broadwell",
+    "entity_type"=>"person",
+    "user_id"=>12,
+    "ref_id"=>nil,
+    "gender"=>"male",
+    "disambiguator"=>"Cynthiana, Ky, judge",
+    "birth_date"=>"1829-02-22",
+    "death_date"=>"1870-07-04"},
+   {"id"=>12189,
+    "name"=>"David A. Grimes",
+    "entity_type"=>"person",
+    "user_id"=>31,
+    "ref_id"=>nil,
+    "gender"=>"male",
+    "disambiguator"=>"Harrison County, Ky, farmer",
+    "birth_date"=>"c1820",
+    "death_date"=>""},
+   {"id"=>12190,
+    "name"=>"George Ennis",
+    "entity_type"=>"person",
+    "user_id"=>31,
+    "ref_id"=>nil,
+    "gender"=>"male",
+    "disambiguator"=>"Harrison County, Ky, resident",
+    "birth_date"=>"c1846",
+    "death_date"=>""},
+{"id"=>12191,
+  "name"=>"Thomas J. Terry",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1811",
+  "death_date"=>""},
+ {"id"=>5772,
+  "name"=>"Cynthiana, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"place",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>44,
+  "name"=>"Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>1,
+  "ref_id"=>"P001800",
+  "gender"=>"male",
+  "disambiguator"=>"Place. State with capital at Frankfort",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>94,
+  "name"=>"Thomas Elliott Bramlette",
+  "entity_type"=>"person",
+  "user_id"=>1,
+  "ref_id"=>"N001000",
+  "gender"=>"male",
+  "disambiguator"=>"Kentucky governor",
+  "birth_date"=>"1817-01-03",
+  "death_date"=>"1875-01-12"},
+ {"id"=>405,
+  "name"=>"Harrison Circuit Court",
+  "entity_type"=>"organization",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"org",
+  "birth_date"=>"unknown",
+  "death_date"=>"unknown"},
+ {"id"=>12170,
+  "name"=>"Guy Bryant",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1820",
+  "death_date"=>""},
+{"id"=>12171,
+  "name"=>"Alonzo D. Lyter",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmhand and farmer",
+  "birth_date"=>"1842",
+  "death_date"=>"1910"},
+ {"id"=>12172,
+  "name"=>"Thomas A. Rankin",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County farmer",
+  "birth_date"=>"c1809",
+  "death_date"=>""},
+ {"id"=>12173,
+  "name"=>"David Dills",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, laborer",
+  "birth_date"=>"c1826",
+  "death_date"=>""},
+ {"id"=>12174,
+  "name"=>"William Hutcherson",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1790",
+  "death_date"=>""},
+ {"id"=>12176,
+  "name"=>"Jesse B. Hickman",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1811",
+  "death_date"=>"1878"},
+ {"id"=>12177,
+  "name"=>"James H. Debrular",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1803",
+  "death_date"=>""},
+ {"id"=>12178,
+  "name"=>"Fleming Cummins",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"1817-11-09",
+  "death_date"=>"1890-09-30"},
+ {"id"=>11410,
+  "name"=>"Charles Green Land",
+  "entity_type"=>"person",
+  "user_id"=>26,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Cynthiana, Kentucky, mayor and clerk.",
+  "birth_date"=>"1818",
+  "death_date"=>""},
+ {"id"=>12179,
+  "name"=>"Richard J. Levi",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"1840-01-01",
+  "death_date"=>"1915-02-25"},
+ {"id"=>12181,
+  "name"=>"Robert S. Holmes",
+  "entity_type"=>"person",
+  "user_id"=>31,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrison County, Ky, farmer",
+  "birth_date"=>"c1820",
+  "death_date"=>""}]
+
+
+  KYR00010040300_ANNOTATIONS =  [{"id"=>26871,
+  "document_id"=>1850,
+  "verbatim"=>"Wm Hinkson",
+  "user_id"=>1,
+  "entity_id"=>12182,
+  "hypothesis_annotation_id"=>"0pTVVkjnEeqoE2u12x6YvQ",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"J Levi\nR S Holmes\ngeorge [dumis]",
+  "suffix"=>"\nB, F. Dills\nWm G Courtney\nJury ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26870,
+  "document_id"=>1850,
+  "verbatim"=>"B, F. Dills",
+  "user_id"=>1,
+  "entity_id"=>12183,
+  "hypothesis_annotation_id"=>"1Yu9ukjnEeqycNPhvCSsOw",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"Holmes\ngeorge [dumis]Wm Hinkson\n",
+  "suffix"=>"\nWm G Courtney\nJury on this case",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26869,
+  "document_id"=>1850,
+  "verbatim"=>"Wm G Courtney",
+  "user_id"=>1,
+  "entity_id"=>12184,
+  "hypothesis_annotation_id"=>"2SMawkjnEeqggysrhyWaQw",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"e [dumis]Wm Hinkson\nB, F. Dills\n",
+  "suffix"=>"\nJury on this caseJ, B, McClinto",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26867,
+  "document_id"=>1850,
+  "verbatim"=>"G, W, Berry",
+  "user_id"=>1,
+  "entity_id"=>12185,
+  "hypothesis_annotation_id"=>"6WygBkjnEeqfmUOuP0xJbg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>" correctR B Carpenter\nComth atty",
+  "suffix"=>" Capt & Pro Mar 6 — /Destrict Ky",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[2]/p[2]"},
+ {"id"=>26868,
+  "document_id"=>1850,
+  "verbatim"=>"R B Carpenter",
+  "user_id"=>1,
+  "entity_id"=>5226,
+  "hypothesis_annotation_id"=>"4cRJEkjnEeq8ojfC8EBJug",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"etition is Substantially correct",
+  "suffix"=>"\nComth attyG, W, Berry Capt & Pr",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[2]/p[1]"},
+ {"id"=>26862,
+  "document_id"=>1850,
+  "verbatim"=>"T. W. Hedges",
+  "user_id"=>1,
+  "entity_id"=>12186,
+  "hypothesis_annotation_id"=>"Va1AkEjoEeqnxEuspEXE8w",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"ought the ^whiskey^\nT. J. Terry\n",
+  "suffix"=>"\nAlonzo Lyter\nM. L. Broadwell P,",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26865,
+  "document_id"=>1850,
+  "verbatim"=>"J, B, McClintock",
+  "user_id"=>1,
+  "entity_id"=>11408,
+  "hypothesis_annotation_id"=>"9AkA9EjnEeq9k1f5YbXrCg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"\nWm G Courtney\nJury on this case",
+  "suffix"=>" SHC\nF A Rankin Step Father & Gu",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26859,
+  "document_id"=>1850,
+  "verbatim"=>"T. R, Rankin",
+  "user_id"=>1,
+  "entity_id"=>12187,
+  "hypothesis_annotation_id"=>"ZTbvykjoEeqQB1-JH-1aRw",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"roadwell P,J,H,C\nDavid A Groves\n",
+  "suffix"=>"\nJno T. McClintock Dep ClkI cert",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26858,
+  "document_id"=>1850,
+  "verbatim"=>"Jno T. McClintock",
+  "user_id"=>1,
+  "entity_id"=>12188,
+  "hypothesis_annotation_id"=>"aFMudkjoEeq8f1dlVb2Z1Q",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"H,C\nDavid A Groves\nT. R, Rankin\n",
+  "suffix"=>" Dep ClkI certify that the state",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26861,
+  "document_id"=>1850,
+  "verbatim"=>"M. L. Broadwell",
+  "user_id"=>1,
+  "entity_id"=>5522,
+  "hypothesis_annotation_id"=>"XrJFgkjoEeqvBacKxLXymg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"Terry\nT. W. Hedges\nAlonzo Lyter\n",
+  "suffix"=>" P,J,H,C\nDavid A Groves\nT. R, Ra",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26860,
+  "document_id"=>1850,
+  "verbatim"=>"David A Groves",
+  "user_id"=>1,
+  "entity_id"=>12189,
+  "hypothesis_annotation_id"=>"YoD-JEjoEeqQBtc7WHbxOA",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"o Lyter\nM. L. Broadwell P,J,H,C\n",
+  "suffix"=>"\nT. R, Rankin\nJno T. McClintock ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26872,
+  "document_id"=>1850,
+  "verbatim"=>"george [dumis]",
+  "user_id"=>1,
+  "entity_id"=>12190,
+  "hypothesis_annotation_id"=>"z8sANEjnEeqrBD-pIhjQRQ",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"\nC. G. Land\nR J Levi\nR S Holmes\n",
+  "suffix"=>"Wm Hinkson\nB, F. Dills\nWm G Cour",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26863,
+  "document_id"=>1850,
+  "verbatim"=>"T. J. Terry",
+  "user_id"=>1,
+  "entity_id"=>12191,
+  "hypothesis_annotation_id"=>"UX5GhkjoEeqF5-d97-QYzQ",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"e Boy that Bought the ^whiskey^\n",
+  "suffix"=>"\nT. W. Hedges\nAlonzo Lyter\nM. L.",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26886,
+  "document_id"=>1850,
+  "verbatim"=>"Cynthiana",
+  "user_id"=>1,
+  "entity_id"=>5772,
+  "hypothesis_annotation_id"=>"gFjIGkjnEeqvA7vaHrpV0g",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"load XML\n      \n    \n    \n\n\n\n\n  ",
+  "suffix"=>" Ky\nNovr 4th 1863To His Excellen",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>26885,
+  "document_id"=>1850,
+  "verbatim"=>"Ky",
+  "user_id"=>1,
+  "entity_id"=>44,
+  "hypothesis_annotation_id"=>"hJffiEjnEeqIYbOPVwnkiw",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"     \n    \n    \n\n\n\n\n  Cynthiana ",
+  "suffix"=>"\nNovr 4th 1863To His Excellency\n",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>26884,
+  "document_id"=>1850,
+  "verbatim"=>"Thos E. Bramlette",
+  "user_id"=>1,
+  "entity_id"=>94,
+  "hypothesis_annotation_id"=>"iSCBBEjnEeqQtH-gzr6iHg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"h 1863To His Excellency\nGovenor ",
+  "suffix"=>",We the undersigned would most r",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>26883,
+  "document_id"=>1850,
+  "verbatim"=>"Harrison Circuit Court",
+  "user_id"=>1,
+  "entity_id"=>405,
+  "hypothesis_annotation_id"=>"jzXJPEjnEeqrA4cF4il9tA",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"ate that at the May Term of the ",
+  "suffix"=>" an indictment was found by the ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>26882,
+  "document_id"=>1850,
+  "verbatim"=>"Guy Bryant",
+  "user_id"=>1,
+  "entity_id"=>12170,
+  "hypothesis_annotation_id"=>"lO8iEEjnEeqDvlOykvp8ZQ",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>" Jury of said Court against one ",
+  "suffix"=>" for selling liquor to a miner b",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>26881,
+  "document_id"=>1850,
+  "verbatim"=>"Alonzo Lyter",
+  "user_id"=>1,
+  "entity_id"=>12171,
+  "hypothesis_annotation_id"=>"mb_UVkjnEeqRqTOPoaTCTg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"iquor to a miner by the name of ",
+  "suffix"=>", The proof shows conclusively t",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>26864,
+  "document_id"=>1850,
+  "verbatim"=>"F A Rankin",
+  "user_id"=>1,
+  "entity_id"=>12172,
+  "hypothesis_annotation_id"=>"TD6iEEjoEeq5yTs4nF6Okg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"n this caseJ, B, McClintock SHC\n",
+  "suffix"=>" Step Father & Guardian of the B",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]/p[1]"},
+ {"id"=>26880,
+  "document_id"=>1850,
+  "verbatim"=>"David Dills Foreman",
+  "user_id"=>1,
+  "entity_id"=>12173,
+  "hypothesis_annotation_id"=>"tCKKoEjnEeqNI3d94UHIxg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"clemency of the Executive.\nover ",
+  "suffix"=>"\nWm Hutcheron\nJ B Hickman\nJ H De",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26879,
+  "document_id"=>1850,
+  "verbatim"=>"Wm Hutcheron",
+  "user_id"=>1,
+  "entity_id"=>12174,
+  "hypothesis_annotation_id"=>"t6VnTEjnEeqr3jvEYTnq6A",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"utive.\nover David Dills Foreman\n",
+  "suffix"=>"\nJ B Hickman\nJ H Debrulan\nF. Cum",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26878,
+  "document_id"=>1850,
+  "verbatim"=>"J B Hickman",
+  "user_id"=>1,
+  "entity_id"=>12176,
+  "hypothesis_annotation_id"=>"u6KN1EjnEeqzLZue1IJCxQ",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"avid Dills Foreman\nWm Hutcheron\n",
+  "suffix"=>"\nJ H Debrulan\nF. Cummins\nC. G. L",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26877,
+  "document_id"=>1850,
+  "verbatim"=>"J H Debrulan",
+  "user_id"=>1,
+  "entity_id"=>12177,
+  "hypothesis_annotation_id"=>"v_ynZkjnEeqRqocBrXXJHg",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"oreman\nWm Hutcheron\nJ B Hickman\n",
+  "suffix"=>"\nF. Cummins\nC. G. Land\nR J Levi\n",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26876,
+  "document_id"=>1850,
+  "verbatim"=>"F. Cummins",
+  "user_id"=>1,
+  "entity_id"=>12178,
+  "hypothesis_annotation_id"=>"w1jilEjnEeqpriPoeLfXmA",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"cheron\nJ B Hickman\nJ H Debrulan\n",
+  "suffix"=>"\nC. G. Land\nR J Levi\nR S Holmes\n",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26875,
+  "document_id"=>1850,
+  "verbatim"=>"C. G. Land",
+  "user_id"=>1,
+  "entity_id"=>11410,
+  "hypothesis_annotation_id"=>"xoAOtkjnEeqgr9u5vLV4YA",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"Hickman\nJ H Debrulan\nF. Cummins\n",
+  "suffix"=>"\nR J Levi\nR S Holmes\ngeorge [dum",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26874,
+  "document_id"=>1850,
+  "verbatim"=>"R J Levi",
+  "user_id"=>1,
+  "entity_id"=>12179,
+  "hypothesis_annotation_id"=>"yWWmIkjnEeqiM184URj-iQ",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>" Debrulan\nF. Cummins\nC. G. Land\n",
+  "suffix"=>"\nR S Holmes\ngeorge [dumis]Wm Hin",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"},
+ {"id"=>26873,
+  "document_id"=>1850,
+  "verbatim"=>"R S Holmes",
+  "user_id"=>1,
+  "entity_id"=>12181,
+  "hypothesis_annotation_id"=>"zLRopEjnEeqJcWO9W4FlZw",
+  "hypothesis_user"=>"carlcreasoncwgk@hypothes.is",
+  "prefix"=>"\nF. Cummins\nC. G. Land\nR J Levi\n",
+  "suffix"=>"\ngeorge [dumis]Wm Hinkson\nB, F. ",
+  "start_container"=>"/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/div[1]"}]
