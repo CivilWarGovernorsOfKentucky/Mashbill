@@ -115,4 +115,27 @@ class Annotation < ActiveRecord::Base
     
     @hypothesis_hash
   end
+
+
+  #####################################################
+  # The CWGK TEI->Omeka conversion adds square
+  # brackets to the HTML when it sees an 
+  # `unclear` tag in XML.  These must be stripped.
+  #####################################################
+  def verbatim
+    self[:verbatim].gsub('[','').gsub(']','')
+  end
+
+  def prefix
+    if self[:prefix]
+      self[:prefix].gsub('[','').gsub(']','')
+    end
+  end
+
+  def suffix
+    if self[:suffix]
+      self[:suffix].gsub('[','').gsub(']','')
+    end
+  end
+
 end

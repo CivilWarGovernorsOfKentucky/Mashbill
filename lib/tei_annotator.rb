@@ -203,7 +203,7 @@ class TeiAnnotator
 
   def split_node(node, text, doc)
     if node.text?
-      md = node.text.match(/(.*?)#{text}(.*)/m)
+      md = node.text.match(/(.*?)#{Regexp.escape(text)}(.*)/m)
       left_string = md[1]
       right_string = md[2]
       left_node =  Nokogiri::XML::Text.new(left_string + text, doc)
@@ -212,7 +212,7 @@ class TeiAnnotator
       left_node = copy_empty_node(node,doc)
       right_node = copy_empty_node(node,doc)
       inner_xml = node.inner_html # ?? 
-      left_string, right_string = clean_split_string(inner_xml.split(/#{text}/m),text)
+      left_string, right_string = clean_split_string(inner_xml.split(/#{Regexp.escape(text)}/m),text)
       left_string = "" unless left_string
       right_string = "" unless right_string
       left_node.inner_html = left_string + text
@@ -257,8 +257,9 @@ class TeiAnnotator
         entity_node = Nokogiri::XML::Node.new(tei_element(entity), doc)
         entity_node['ref'] = entity.xml_id if entity.ref_id 
 
-        paragraph.children.each do |node|
 
+        paragraph.children.each do |node|
+#          binding.pry if entity.id = 12189
           if state == :prefix
             if prefix == node.text
               # the prefix is the node
@@ -271,16 +272,17 @@ class TeiAnnotator
               if next_node && !next_node.text.blank?
                 state = :element
               end
-            elsif prefix.match /^#{node.text}/m
-              # the prefix contains the entire node
+            elsif prefix.match /^#{Regexp.escape(node.text)}/m
+            # the prefix contains the entire node
               # add the node to the replacement element
               replacement.add_child(node)
               # adjust the prefix
-              prefix.sub!(/^#{node.text}/m, '')
+              prefix.sub!(/^#{Regexp.escape(node.text)}/m, '')
               # we remain in the prefix state
-            elsif node.text.match /^#{prefix}/m
+            elsif node.text.match /^#{Regexp.escape(prefix)}/m
+
               # this node must be split into the prefix and the remainder
-              md = /(#{prefix})(.*)/m.match node.text
+              md = /(#{Regexp.escape(prefix)})(.*)/m.match node.text
               node_prefix = md[1]
               node_remainder = md[2]
 
@@ -327,10 +329,12 @@ class TeiAnnotator
 
                 state = :element
               end
+            else
+              print "UNEXPECTED STATE!"
             end
           elsif state == :element
             # does the node contain all of the verbatim, or just a portion? 
-            md = /#{verbatim}(.*)/m.match node.text
+            md = /#{Regexp.escape(verbatim)}(.*)/m.match node.text
             if md
               # the node contains all the verbatim
               lhs, rhs = split_node(node, verbatim, doc)
@@ -348,7 +352,7 @@ class TeiAnnotator
                 replacement.add_child(rhs)
 
                 # modify the suffix
-                suffix.sub!(/^#{node_suffix}/m, '')
+                suffix.sub!(/^#{Regexp.escape(node_suffix)}/m, '')
               end
             elsif
               # the node only contains the first part of the verbatim
@@ -357,7 +361,7 @@ class TeiAnnotator
               dup_node = new_node(node, node.text, doc)
               entity_node.add_child(dup_node)
               replacement.add_child(entity_node) unless entity_node.parent
-              verbatim.sub!(/^#{node.text}/m, '')
+              verbatim.sub!(/^#{Regexp.escape(node.text)}/m, '')
             end
 
           else # state == :suffix
