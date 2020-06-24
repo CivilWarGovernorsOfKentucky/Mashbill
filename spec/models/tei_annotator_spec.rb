@@ -197,9 +197,389 @@ RSpec.describe TeiAnnotator, type: :model do
       marked_up = '<p>U. S. Com<hi rend="underline"><hi rend="sup">s</hi></hi> office at Paducah'
       para.to_xml.should match /^#{marked_up}/      
     end
+  end
+
+  context "real world KYR-0004-101-0014" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00041010014)
+      @document = Document.new(:cwgk_id => 'KYR0004-101-0014')
+      KYR00041010014_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00041010014_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00041010014)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+    it "should not strip attributes" do
+      @annotations.each_with_index do |annotation,i|
+        @annotator.apply_annotation(@doc, annotation)
+        para(3).to_xml.split("\n").first.should match(/underline/m)
+      end
+
+    end
+
+    context "Frankfort" do
+      before(:each) do
+        @annotator.apply_annotation(@doc, @annotations[0])
+        @annotator.apply_annotation(@doc, @annotations[1])
+        @annotation= @annotations[2]
+        @entity = @annotation.entity
+      end
+
+      it "should replace correctly" do
+        verbatim = @annotation.verbatim
+        @annotator.search_and_replace(@doc, para, verbatim, @entity)
+        marked_up = "<p>Headquarters <orgName ref=\"cwgk:O00000870\">Kentucky Volunteers</orgName>,\n<lb/>Adjutant=General\'s Office,\n<lb/><placeName ref=\"cwgk:P00000308\">Frankfort</placeName>, <date when=\"1865-04-05\">April 5<hi rend=\"sup\">:</hi> 1865</date>.\n<lb/>General Orders\n<lb/>N<hi rend=\"sup\">o.</hi> 9.</p>"
+        marked_up.should eq para.to_xml      
+      end
+    end
+
+    context "Maj W. H. Hays" do
+      before(:each) do
+        0.upto(9) { |i| @annotator.apply_annotation(@doc, @annotations[i])}
+        @annotation= @annotations[10]
+        @entity = @annotation.entity
+      end
+
+      it "should replace correctly" do
+        verbatim = @annotation.verbatim
+        @annotator.search_and_replace(@doc, para(3), verbatim, @entity)
+        marked_up = "<p><persName ref=\"cwgk:N00009430\"><hi rend=\"underline\">Maj. C. W. Quiggens\n</hi></persName><persName ref=\"cwgk:N00001581\"><hi rend=\"underline\"><lb/>Maj W. H. Hays</hi></persName><hi rend=\"underline\">\n</hi><persName ref=\"cwgk:N00009339\"><hi rend=\"underline\"><lb/>Lieut W. E. Cox</hi></persName> <hi rend=\"underline\">Judge Advocate</hi></p>"
+        marked_up.should eq para(3).to_xml      
+      end
+    end
+
+    context "Lieut W. E. Cox" do
+      before(:each) do
+        0.upto(8) { |i| @annotator.apply_annotation(@doc, @annotations[i])}
+        @annotation= @annotations[9]
+        @entity = @annotation.entity
+      end
+
+      it "should replace correctly" do
+        verbatim = @annotation.verbatim
+        @annotator.search_and_replace(@doc, para(3), verbatim, @entity)
+        marked_up = "<p><persName ref=\"cwgk:N00009430\"><hi rend=\"underline\">Maj. C. W. Quiggens\n</hi></persName><hi rend=\"underline\"><lb/>Maj W. H. Hays\n</hi><persName ref=\"cwgk:N00009339\"><hi rend=\"underline\"><lb/>Lieut W. E. Cox</hi></persName> <hi rend=\"underline\">Judge Advocate</hi></p>"
+        marked_up.should eq para(3).to_xml      
+      end
+    end
+
+    context "Maj. C. W. Quiggens" do
+      before(:each) do
+        0.upto(7) { |i| @annotator.apply_annotation(@doc, @annotations[i])}
+        @annotation= @annotations[8]
+        @entity = @annotation.entity
+      end
+
+      it "should replace correctly" do
+        verbatim = @annotation.verbatim
+        @annotator.search_and_replace(@doc, para(3), verbatim, @entity)
+        marked_up = "<p><persName ref=\"cwgk:N00009430\"><hi rend=\"underline\">Maj. C. W. Quiggens\n</hi></persName><hi rend=\"underline\"><lb/>Maj W. H. Hays\n<lb/>Lieut W. E. Cox</hi> <hi rend=\"underline\">Judge Advocate</hi></p>"
+        marked_up.should eq para(3).to_xml      
+      end
+    end
+
+
+    context "Governor" do
+      before(:each) do
+        0.upto(4) { |i| @annotator.apply_annotation(@doc, @annotations[i])}
+        @annotation= @annotations[5]
+        @entity = @annotation.entity
+      end
+
+      it "should replace correctly" do
+        verbatim = @annotation.verbatim
+        @annotator.search_and_replace(@doc, para(7), verbatim, @entity)
+        marked_up = "<p>By order of the <persName ref=\"cwgk:N001000\">Governor</persName>\n<lb/>D, W, Lindsey\n<lb/>Adj' Gen<hi rend=\"sup\">l</hi> Ky</p>"
+        marked_up.should eq para(7).to_xml      
+      end
+    end
+
+    context "Adjutant=General's Office" do
+      before(:each) do
+        @annotation= @annotations[3]
+      end
+
+      it "should find a target" do
+        element = @annotator.target_element(@doc, @annotation)
+        unless element
+          element = @annotator.fallback_element(@doc, @annotation)
+          unless element
+            element = @annotator.last_fallback_element(@doc, @annotation)
+          end
+        end
+        element.should_not eq(nil)
+      end
+
+      it "should replace" do
+        verbatim = "not a match"
+        @annotator.search_and_replace(@doc, para, verbatim, @entity)
+        marked_up = "<p>Headquarters Kentucky Volunteers,\n<lb/>Adjutant=General\'s Office,\n<lb/>Frankfort, <date when=\"1865-04-05\">April 5<hi rend=\"sup\">:</hi> 1865</date>.\n<lb/>General Orders\n<lb/>N<hi rend=\"sup\">o.</hi> 9.</p>"
+        marked_up.should eq para.to_xml      
+      end
+    end
 
   end
 
+
+  context "real world KYR-0001-006-0066" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010060066)
+      @document = Document.new(:cwgk_id => 'KYR0001-006-0066')
+      KYR00010060066_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00010060066_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010060066)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        after_xml = @doc.to_xml
+        after_xml.should_not eq(before_xml)
+      end
+    end
+
+  end
   
+  context "real world KYR-0002-222-0021" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00022220021)
+      @document = Document.new(:cwgk_id => 'KYR0002-222-0021')
+      KYR00022220021_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00022220021_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00022220021)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.search('body').first.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        after_xml = @doc.search('body').first.to_xml
+        after_xml.should_not eq(before_xml)
+      end
+    end
+
+    context "Ky Vols" do
+      before(:each) do
+        0.upto(2) { |i| @annotator.apply_annotation(@doc, @annotations[i])}
+        @annotation= @annotations[3]
+        @entity = @annotation.entity
+      end
+
+      it "should replace the correct element" do
+        doc_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, @annotation)
+        marked_up = "<p>Approved\n<lb/>By order of the <persName ref=\"cwgk:N001004\">Governor</persName>\n<lb/><persName ref=\"cwgk:N00000228\">Jno W Finnell</persName>\n<lb/>Adjt Genl <orgName ref=\"cwgk:O00000870\">Ky Vols</orgName></p>"
+        @doc.to_xml.should match marked_up
+      end
+    end
+
+
+
+  end
+
+
+  context "real world KYR-0001-004-0300" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010040300)
+      @document = Document.new(:cwgk_id => 'KYR0001-004-0300')
+      KYR00010040300_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00010040300_ANNOTATIONS.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010040300)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        after_xml = @doc.to_xml
+        after_xml.should_not eq(before_xml)
+      end
+    end
+
+    it "should not duplicate tags when repeated" do
+      @doc = Nokogiri::XML(KYR00010040300_V2)
+      @annotations[0..10].each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        after_xml = @doc.to_xml
+        after_xml.should eq(before_xml)
+      end
+    end
+
+  end
+  
+  context "real world KYR-0001-004-0310" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010040310)
+      @document = Document.new(:cwgk_id => 'KYR0001-004-0310')
+      KYR00010040310_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00010040310_ANNOTATIONS.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010040310)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        after_xml = @doc.to_xml
+        after_xml.should_not eq(before_xml)
+      end
+    end
+  end
+
+
+  context "real world KYR-0001-004-0079" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010040079)
+      @document = Document.new(:cwgk_id => 'KYR0001-004-0079')
+      KYR00010040079_ENTITIES.each {|e| Entity.create!(e)}
+      @annotations = KYR00010040079_ANNOTATIONS.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010040310)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+  end
+
+
 end
 
