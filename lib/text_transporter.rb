@@ -8,7 +8,7 @@ class TextTransporter
   
   def save(document_id, text, user)
     File.write(document_path(document_id), text)
-    GitTalker.new.commit_and_push_file(document_path(document_id), user)
+#    GitTalker.new.commit_and_push_file(document_path(document_id), user)
   end
 
 
@@ -30,7 +30,7 @@ class TextTransporter
   
   def save_entity(ref_id, text, user)
     File.write(bio_path(ref_id), text)
-    GitTalker.new.commit_and_push_file(bio_path(ref_id), user)
+#    GitTalker.new.commit_and_push_file(bio_path(ref_id), user)
     
   end
   
