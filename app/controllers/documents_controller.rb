@@ -12,6 +12,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @tei = TextTransporter.new.fetch(@document.cwgk_id)
   end
 
   # GET /documents/new
