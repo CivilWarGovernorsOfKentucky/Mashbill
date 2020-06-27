@@ -23,6 +23,20 @@
 
 
 Contents:
+
+<div id="TEI">
+  TEI goes here
+</div>
+<script>
+  var CETEIcean = new CETEI();
+  var teiUrl = "https://raw.githubusercontent.com/CivilWarGovernorsOfKentucky/Documents/master/xml/KYR-0001-002-0007.xml";
+  CETEIcean.getHTML5(teiUrl, function(data) {
+    document.getElementById("TEI").innerHTML = "";
+    document.getElementById("TEI").appendChild(data);
+    CETEIcean.addStyle(document, data);})
+</script>
+
 <pre>
   <%= @tei %>
 </pre>
+
