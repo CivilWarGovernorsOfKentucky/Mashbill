@@ -34,8 +34,7 @@ Contents:
 </div>
 <script>
   var CETEIcean = new CETEI();
-  var teiUrl = "https://raw.githubusercontent.com/CivilWarGovernorsOfKentucky/Documents/master/xml/KYR-0001-004-0441.xml";
-  CETEIcean.getHTML5(teiUrl, function(data) {
+  CETEIcean.makeHTML5(`<%= raw(@tei) %>`, function(data) {
     document.getElementById("TEI").innerHTML = "";
     document.getElementById("TEI").appendChild(data);
     CETEIcean.addStyle(document, data);})
