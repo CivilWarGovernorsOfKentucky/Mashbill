@@ -1,7 +1,7 @@
 class Annotation < ActiveRecord::Base
   belongs_to :document
   belongs_to :user
-  belongs_to :entity
+  belongs_to :entity, optional: true
 
   def self.ingest_new_annotations
   	#  hit the hypothesis API for all group annotations ordered by most recent first
@@ -33,7 +33,6 @@ class Annotation < ActiveRecord::Base
       annotation_record.start_container = container_selection["startContainer"]
 
       # set document_id to find or create the document from hash
-      
       old_selection = selector.detect { |e| e["value"] != nil }
       if old_selection
         document_id = old_selection["value"]
@@ -46,7 +45,7 @@ class Annotation < ActiveRecord::Base
       new_doc = find_or_create_document(document_id, document_title)
       annotation_record.document_id = new_doc.id
       annotation_record.user_id = 1
-      annotation_record.save
+      annotation_record.save!
     end
   	#  else done
   end
@@ -63,7 +62,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def self.request_annotations(page)
-    url = 'https://hypothes.is/api/search?group=v2oPAZgK&limit=200&offset=' + (page * 200).to_s
+    url = 'https://hypothes.is/api/search?group=b1pbK9Jz&limit=200&offset=' + (page * 200).to_s
     begin
       response = RestClient::Request.execute(method: :get, url: url,
                             timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})

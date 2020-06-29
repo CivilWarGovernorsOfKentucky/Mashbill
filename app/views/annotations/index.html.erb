@@ -1,10 +1,23 @@
+<div class="row">
+
 <h4> <%= @annotations.first.document.title.chomp(" · Civil War Governors of Kentucky: Early Access") %></h4>
 <p id="notice"><%= notice %></p>
 
+</div>
+<div class="row">
+
+<div class="col-sm-7">
 <p>
   <strong>CWGK ID:</strong>
   <%= link_to(@annotations.first.document.cwgk_id, "http://discovery.civilwargovernors.org/document/" + @annotations.first.document.cwgk_id, :target => "_blank") %>
 </p>
+
+
+
+<%= render :partial => 'documents/ceteicean' %>
+</div>
+<div class="col-sm-5">
+
 
 <% unidentified_annotations = @annotations.select { |annotation| annotation.entity.blank? } %>
 <% identified_annotations = @annotations.select { |annotation| annotation.entity.present? } %>
@@ -102,6 +115,8 @@ All annotations identified
   <div id="deeds">
     <%= render "deeds/deeds" %>
   </div>
+</div>
+
 </div>
 
 

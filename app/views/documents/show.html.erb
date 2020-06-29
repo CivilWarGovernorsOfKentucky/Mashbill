@@ -29,15 +29,5 @@
 
 Contents:
 
-<div id="TEI">
-  TEI goes here
-</div>
-<script>
-  var CETEIcean = new CETEI();
-  CETEIcean.makeHTML5(`<%= raw(@tei) %>`, function(data) {
-    document.getElementById("TEI").innerHTML = "";
-    document.getElementById("TEI").appendChild(data);
-    CETEIcean.addStyle(document, data);})
-</script>
-
+<%= render :partial => 'documents/ceteicean' %>
 

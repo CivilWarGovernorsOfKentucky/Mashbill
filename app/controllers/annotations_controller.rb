@@ -1,3 +1,4 @@
+require 'text_transporter'
 class AnnotationsController < ApplicationController
   before_action :set_annotation, only: [:show, :edit, :update, :destroy]
 
@@ -14,6 +15,7 @@ class AnnotationsController < ApplicationController
 
   def bycwgkid
     document = Document.where(:cwgk_id => params[:cwgk_id]).first
+    @tei = TextTransporter.new.fetch(document.cwgk_id)
     @annotations = Annotation.where(:document_id => document.id)
     @relationships = []
     #document.entities.each do |entity|
