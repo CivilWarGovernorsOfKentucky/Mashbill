@@ -649,6 +649,20 @@ tei-hi[rend="caps"] {
 tei-hi[rend="italic"] {
   font-style: italic;
 }
+tei-hi[rend="str"] {
+  text-decoration: line-through;
+}
+tei-hi[rend="sup"] {
+  top: -0.5em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+tei-hi[rend="underline"] {
+  text-decoration: underline;
+}
+
 tei-hi {
   /* GLS: do we want to bold this or change the background color? */
 }

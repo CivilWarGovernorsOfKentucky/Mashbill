@@ -25,6 +25,8 @@
 <%= link_to 'Back', documents_path %>
 
 
+<h4>Compare with <a href="http://discovery.civilwargovernors.org/document/KYR-0001-004-0441">Annnotated Version</a></h4>
+
 Contents:
 
 <div id="TEI">
@@ -32,14 +34,11 @@ Contents:
 </div>
 <script>
   var CETEIcean = new CETEI();
-  var teiUrl = "https://raw.githubusercontent.com/CivilWarGovernorsOfKentucky/Documents/master/xml/KYR-0001-002-0007.xml";
+  var teiUrl = "https://raw.githubusercontent.com/CivilWarGovernorsOfKentucky/Documents/master/xml/KYR-0001-004-0441.xml";
   CETEIcean.getHTML5(teiUrl, function(data) {
     document.getElementById("TEI").innerHTML = "";
     document.getElementById("TEI").appendChild(data);
     CETEIcean.addStyle(document, data);})
 </script>
 
-<pre>
-  <%= @tei %>
-</pre>
 
