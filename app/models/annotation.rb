@@ -3,6 +3,10 @@ class Annotation < ActiveRecord::Base
   belongs_to :user
   belongs_to :entity, optional: true
 
+  def ceteicean?
+    self.start_container.match /tei-tei/
+  end
+
   def self.ingest_new_annotations
   	#  hit the hypothesis API for all group annotations ordered by most recent first
   	#  for each annotation
