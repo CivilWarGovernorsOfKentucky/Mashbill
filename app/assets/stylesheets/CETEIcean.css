@@ -1095,6 +1095,7 @@ tei-opener {
 }
 tei-org {
   /* Empty Rule Set */
+  color: #1982D1;
 }
 tei-orgName {
   /* Empty Rule Set */
@@ -1165,6 +1166,7 @@ tei-performance {
 }
 tei-persName {
   /* Empty Rule Set */
+  color: #1982D1;
 }
 tei-person {
   display: block;
@@ -1187,6 +1189,7 @@ tei-place {
 }
 tei-placeName {
   /* Empty Rule Set */
+  color: #1982D1;
 }
 tei-population {
   /* dunno with this one */
