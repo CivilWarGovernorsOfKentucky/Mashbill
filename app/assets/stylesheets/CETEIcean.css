@@ -659,6 +659,13 @@ tei-hi[rend="sup"] {
   position: relative;
   vertical-align: baseline;
 }
+tei-hi[rend="sub"] {
+  top: +0.5em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
 tei-hi[rend="underline"] {
   text-decoration: underline;
 }
