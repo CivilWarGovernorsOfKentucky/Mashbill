@@ -15,7 +15,7 @@ class AnnotationsController < ApplicationController
 
   def bycwgkid
     @document = Document.where(:cwgk_id => params[:cwgk_id]).first
-    @tei = TextTransporter.new.fetch(@document.cwgk_id)
+    @tei = TextTransporter.new.fetch(@document.cwgk_id).gsub("\ufeff", '')
     @annotations = Annotation.where(:document_id => @document.id)
     @relationships = []
     #document.entities.each do |entity|
