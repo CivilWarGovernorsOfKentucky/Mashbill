@@ -503,10 +503,10 @@ tei-g {
 tei-gap {
   /* GLS: Depending upon how we handle gap and lacuna, we may want to enclose in [] */
 }
-tei-gap[data-tei-reason='lost']:before {
-  content:'[';
+tei-gap:before {
+  content:'[ ';
 }
-tei-gap[data-tei-reason='lost']:after {
+tei-gap:after {
   content: attr(data-content) ']';
 }
 tei-gap[data-tei-reason='illegible']:after {
@@ -654,6 +654,13 @@ tei-hi[rend="str"] {
 }
 tei-hi[rend="sup"] {
   top: -0.5em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+tei-hi[rend="sub"] {
+  top: +0.5em;
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -1732,6 +1739,12 @@ tei-typeDesc {
 /* u */
 tei-u:before {
   content: "-";
+}
+tei-unclear:before {
+  content:'[...';
+}
+tei-unclear:after {
+  content: attr(data-content) ']';
 }
 tei-unicodeName {
   /* Empty Rule Set */

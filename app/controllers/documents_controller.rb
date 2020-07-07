@@ -106,7 +106,8 @@ class DocumentsController < ApplicationController
   end
 
   def search
-    @documents = Document.basic_search(cwgk_id: params["q"])
+#    @documents = Document.basic_search(cwgk_id: params["q"])
+    @documents = Document.search_or_create(params["q"])
   end
 
   def search_by_name
