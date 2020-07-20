@@ -93,13 +93,13 @@ class Entity < ActiveRecord::Base
   end
   
   def build_tei
-    ApplicationController.new.render_to_string({:file =>     tei_template,
-                                                :layout => false,
-                                                :locals => { :entity => self }} )
+    ApplicationController.new.render_to_string({:template => tei_template,
+                                                :layout   => false,
+                                                :locals   => { :entity => self }} )
   end
   
   def tei_template
-    File.join(Rails.root, 'app', 'views', 'entities', "#{self.entity_type}_bio.xml.erb")
+    File.join('entities', "#{self.entity_type}_bio.html.erb")
   end
 
 end
