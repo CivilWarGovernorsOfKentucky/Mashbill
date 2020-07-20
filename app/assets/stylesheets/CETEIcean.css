@@ -554,6 +554,7 @@ tei-geogFeat {
 }
 tei-geogName {
   /* Empty Rule Set */
+  color: #1982D1;
 }
 tei-gi {
   font-family: Courier,monospace;
@@ -1128,6 +1129,7 @@ tei-org {
 }
 tei-orgName {
   /* Empty Rule Set */
+  color: #1982D1;
 }
 tei-origDate {
   /* Empty Rule Set */
