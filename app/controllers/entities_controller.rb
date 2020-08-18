@@ -64,8 +64,12 @@ class EntitiesController < ApplicationController
   def update
     respond_to do |format|
       if @entity.update(entity_params)
-        record_deed(Deed::ENTITY_EDIT)
-        update_tei
+        if params[:commit] == 'Save'
+          record_deed(Deed::ENTITY_EDIT)
+        else
+          record_deed(Deed::ENTITY_PUBLISH)
+          update_tei
+        end
         format.html { redirect_to @entity, notice: 'Entity was successfully updated.' }
         format.json { render :show, status: :ok, location: @entity }
       else
