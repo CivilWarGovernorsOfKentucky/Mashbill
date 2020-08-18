@@ -78,23 +78,32 @@ class TeiAnnotator
   def apply_annotation(doc, annotation)
     old_doc = doc.dup
     # attempt based on selector
-    element = target_element(doc, annotation)
-    if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
-      # the element was modified!
+    if annotation.ceteicean?
+      element = ceteicean_element(doc, annotation)
+      if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
+        p 'hooray!'
+      else
+        log_error("Could not find element at ceTEIcean selector", annotation)
+      end
     else
-      log_error("Could not find element at selector; attempting fallback", annotation)
-      element = fallback_element(doc, annotation)
-
+      element = target_element(doc, annotation)
       if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
         # the element was modified!
       else
-        log_error("Cound not find fallback element in document", annotation)
-        element = last_fallback_element(doc, annotation)
+        log_error("Could not find element at selector; attempting fallback", annotation)
+        element = fallback_element(doc, annotation)
+
         if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
           # the element was modified!
         else
-          log_error("Cound not find last fallback element in document", annotation)
-          return
+          log_error("Cound not find fallback element in document", annotation)
+          element = last_fallback_element(doc, annotation)
+          if element && element_contains_context?(element, annotation) && annotate_element(doc,element,annotation)
+            # the element was modified!
+          else
+            log_error("Cound not find last fallback element in document", annotation)
+            return
+          end
         end
       end
     end
@@ -408,6 +417,15 @@ class TeiAnnotator
   def target_element(doc, annotation)
     element_type,index = target_element_and_index(annotation.start_container) # selectors start with 1    
     doc.search("text/body/#{element_type}")[index]
+  end
+
+
+  def ceteicean_to_path(selector)
+    selector.sub(/.*tei-tei\[.\]\/tei-text\[.\]\/tei-body\[.\]/, 'TEI/text/body').gsub('tei-','')
+  end
+
+  def ceteicean_element(doc, annotation)
+    doc.search(ceteicean_to_path(annotation.start_container)).first
   end
   
   def target_element_and_index(locator)

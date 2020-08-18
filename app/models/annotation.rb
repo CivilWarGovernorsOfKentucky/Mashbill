@@ -1,7 +1,11 @@
 class Annotation < ActiveRecord::Base
   belongs_to :document
   belongs_to :user
-  belongs_to :entity
+  belongs_to :entity, optional: true
+
+  def ceteicean?
+    self.start_container.match /tei-tei/
+  end
 
   def self.ingest_new_annotations
   	#  hit the hypothesis API for all group annotations ordered by most recent first
@@ -33,7 +37,6 @@ class Annotation < ActiveRecord::Base
       annotation_record.start_container = container_selection["startContainer"]
 
       # set document_id to find or create the document from hash
-      
       old_selection = selector.detect { |e| e["value"] != nil }
       if old_selection
         document_id = old_selection["value"]
@@ -46,7 +49,7 @@ class Annotation < ActiveRecord::Base
       new_doc = find_or_create_document(document_id, document_title)
       annotation_record.document_id = new_doc.id
       annotation_record.user_id = 1
-      annotation_record.save
+      annotation_record.save!
     end
   	#  else done
   end

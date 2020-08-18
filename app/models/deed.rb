@@ -13,9 +13,9 @@ class Deed < ActiveRecord::Base
   RELATIONSHIP_DELETE = 'relationship_delete'
 
   belongs_to :user
-  belongs_to :document
-  belongs_to :entity
-  belongs_to :relationship
+  belongs_to :document, optional: true
+  belongs_to :entity, optional: true
+  belongs_to :relationship, optional: true
 
   validates_inclusion_of :deed_type, :in => [ DOC_COMPLETED, NEEDS_REVIEW, REVIEWED, ENTITY_DELETE, ENTITY_CREATE, ENTITY_EDIT, RELATIONSHIP_DELETE, RELATIONSHIP_CREATE, RELATIONSHIP_EDIT ]
 

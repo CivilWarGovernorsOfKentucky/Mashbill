@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag    'CETEIcean' %>
+
+
 <h4><%= @document.cwgk_id %>:  <%= @document.title.chomp(" · Civil War Governors of Kentucky: Early Access") %></h4>
 
 <p>
@@ -20,3 +23,11 @@
 
 <%= link_to 'Edit', edit_document_path(@document) %> |
 <%= link_to 'Back', documents_path %>
+
+
+<h4>Compare with <a href="http://discovery.civilwargovernors.org/document/KYR-0001-004-0441">Annnotated Version</a></h4>
+
+Contents:
+
+<%= render :partial => 'documents/ceteicean' %>
+

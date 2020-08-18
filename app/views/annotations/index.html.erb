@@ -1,10 +1,23 @@
-<h4> <%= @annotations.first.document.title.chomp(" · Civil War Governors of Kentucky: Early Access") %></h4>
+<div class="row">
+
+<h4> <%= @document.title %></h4>
 <p id="notice"><%= notice %></p>
 
+</div>
+<div class="row">
+
+<div class="col-sm-7">
 <p>
   <strong>CWGK ID:</strong>
-  <%= link_to(@annotations.first.document.cwgk_id, "http://discovery.civilwargovernors.org/document/" + @annotations.first.document.cwgk_id, :target => "_blank") %>
+  <%= link_to(@document.cwgk_id, "http://discovery.civilwargovernors.org/document/" + @document.cwgk_id, :target => "_blank") %>
 </p>
+
+
+
+<%= render :partial => 'documents/ceteicean' %>
+</div>
+<div class="col-sm-5">
+
 
 <% unidentified_annotations = @annotations.select { |annotation| annotation.entity.blank? } %>
 <% identified_annotations = @annotations.select { |annotation| annotation.entity.present? } %>
@@ -62,11 +75,11 @@ All annotations identified
 </table>
 </div>
 
-<% unless @annotations.first.document.entities.blank? %>
+<% unless @document.entities.blank? %>
 <h5>People, Places, and Organizations</h5>
 <table>
   <tbody>
-    <% @annotations.first.document.entities.each do |entity| %>
+    <% @document.entities.each do |entity| %>
       <tr>
         <td><%= link_to entity.name, entity %></td>
       </tr>
@@ -82,17 +95,17 @@ All annotations identified
 
 <br>
 <p>
-<% unless @annotations.first.document.entities.blank? %>
+<% unless @document.entities.blank? %>
 <%= link_to 'Next --> Create Relationships', define_relationships_path %>
-<% unless @annotations.first.document.needs_review? %>
-<%= button_to "Document Needs Review", needs_review_path(@annotations.first.document) %>
+<% unless @document.needs_review? %>
+<%= button_to "Document Needs Review", needs_review_path(@document) %>
 <% else %>
-<%= button_to "Document Reviewed", reviewed_path(@annotations.first.document) %>
+<%= button_to "Document Reviewed", reviewed_path(@document) %>
 <% end %>
-<% unless @annotations.first.document.completed? %>
-<%= button_to "Mark Document Complete", mark_complete_path(@annotations.first.document) %>
+<% unless @document.completed? %>
+<%= button_to "Mark Document Complete", mark_complete_path(@document) %>
 <% else %>
-<%= button_to "Update Document", mark_complete_path(@annotations.first.document) %>
+<%= button_to "Update Document", mark_complete_path(@document) %>
 <% end %>
 </p>
 <% end %>
@@ -102,6 +115,8 @@ All annotations identified
   <div id="deeds">
     <%= render "deeds/deeds" %>
   </div>
+</div>
+
 </div>
 
 

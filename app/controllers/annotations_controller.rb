@@ -1,3 +1,4 @@
+require 'text_transporter'
 class AnnotationsController < ApplicationController
   before_action :set_annotation, only: [:show, :edit, :update, :destroy]
 
@@ -13,14 +14,15 @@ class AnnotationsController < ApplicationController
   end
 
   def bycwgkid
-    document = Document.where(:cwgk_id => params[:cwgk_id]).first
-    @annotations = Annotation.where(:document_id => document.id)
+    @document = Document.where(:cwgk_id => params[:cwgk_id]).first
+    @tei = Nokogiri::XML(TextTransporter.new.fetch(@document.cwgk_id).gsub("\ufeff", '')).to_xml
+    @annotations = Annotation.where(:document_id => @document.id)
     @relationships = []
     #document.entities.each do |entity|
       #binding.pry
       #@relationships + entity.relationships
     #end
-    @deeds=document.deeds
+    @deeds=@document.deeds
 
     render :template => 'annotations/index' 
   end

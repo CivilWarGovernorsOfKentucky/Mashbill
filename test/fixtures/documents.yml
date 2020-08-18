@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  cwgk_id: KYR-0001-002-0004
-  created_at: 2016-08-28 12:46:56.000000000 Z
-  updated_at: 2016-08-28 12:46:56.000000000 Z
-  title: 'William E. Baker to Thomas E. Bramlette'

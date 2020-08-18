@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require d3
+//= require CETEI
 //= require_tree .
