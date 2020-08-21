@@ -45,7 +45,9 @@ class EntitiesController < ApplicationController
           annotation.save
         end
         record_deed(Deed::ENTITY_CREATE)
-        update_tei
+        if params[:commit] != 'Save'
+          update_tei
+        end
         if annotation 
           format.html { redirect_to(bycwgkid_path(annotation.document.cwgk_id), notice: 'Entity was successfully created.') }
         else
