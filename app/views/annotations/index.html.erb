@@ -43,6 +43,22 @@ All annotations identified
         <td><%= link_to 'Identify', identify_annotation_path(annotation), :tabindex => index+1 %></td>
         <td><%= link_to 'Delete', annotation, method: :delete, data: { confirm: 'This deletes the ENTIRE ANNOTATION.  You should click "Identify" if all you want to do is re-associate the annotation to the entity.  Are you sure you want to do this?' }, :tabindex => index+1 %></td>
       </tr>
+      <tr class="about">
+        <td colspan="4">
+          <small>
+            <% if annotation.ceteicean? %>
+              <span>
+                Created in Mashbill by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
+              </span>
+            <% else %>
+              <span>
+                Created in Discovery by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
+              </span>
+            <% end %>
+          </small>
+        </td>
+      </tr>
+
     <% end %>
   </tbody>
 </table>
@@ -57,7 +73,7 @@ All annotations identified
   <thead>
     <tr>
       <th>Verbatim</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -69,6 +85,21 @@ All annotations identified
         <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
         <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
         <td><%= link_to 'Delete', annotation, method: :delete, data: { confirm: 'This deletes the ENTIRE ANNOTATION.  You should click "Identify" if all you want to do is re-associate the annotation to a different entity.  Are you sure you want to do this?' } %></td>
+      </tr>
+      <tr class="about">
+        <td colspan="4">
+          <small>
+            <% if annotation.ceteicean? %>
+              <span>
+                Created in Mashbill by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
+              </span>
+            <% else %>
+              <span>
+                Created in Discovery by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
+              </span>
+            <% end %>
+          </small>
+        </td>
       </tr>
     <% end %>
   </tbody>
