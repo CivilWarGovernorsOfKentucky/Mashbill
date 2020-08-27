@@ -1,17 +1,481 @@
 
 # Generating these:
 # TEI from files
-# From console
+# # From console
 # raw_attributes = document.entities.map { |e| e.attributes }
 # raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
 # raw_attributes
-## Cut and paste this into entities constant
+# # Cut and paste this into entities constant
 # raw_attributes = document.entities.map { |e| e.attributes }
 # raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
 # raw_attributes = document.applicable_annotations.map { |e| e.attributes }
 # raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
 # raw_attributes
-## Cut and paste this into annotations constant
+# ## Cut and paste this into annotations constant
+KYR00040330009 = <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0004-033-0009"> 
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title level="a" type="main">Provisional Government of the State of Kentucky, Journal</title>
+    <title level="a" type="parallel">CWG16307</title>
+    <respStmt>
+     <resp n="transcriber">Transcribed by:</resp>
+     <name>Matthew C Hulbert</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_1">Single Proof by:</resp>
+     <name>##</name>
+    </respStmt>
+    <respStmt>
+     <resp n="encoding">Markup by:</resp>
+     <name>##</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_2">Double Proof by:</resp>
+     <name>CWGK Staff</name>
+    </respStmt><respStmt>
+<resp n="reviewed">Fact checked by</resp>
+<name>Sarah Haywood</name>
+</respStmt>
+<respStmt>
+<resp n="needs_review">Annotated by</resp>
+<name>Melissa DeVelvis</name>
+</respStmt>
+
+   </titleStmt>
+   <publicationStmt>
+    <publisher>Kentucky Historical Society</publisher>
+    <pubPlace>Frankfort, Kentucky</pubPlace>
+    <availability>
+     <p>This image and transcription is publicly accessible. The image appears courtesy of the repository named in the Source Description. The transcription and annotation were undertaken by Kentucky Historical Society staff, volunteers, and interns. If referencing this document title, accession number, and permanent URL.</p>
+    </availability>
+   </publicationStmt>
+   <seriesStmt>
+    <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+    <respStmt>
+     <resp>Project Director</resp>
+     <name>Patrick A. Lewis</name>
+    </respStmt>
+   </seriesStmt>
+   <sourceDesc>
+    <msDesc>
+    <msIdentifier>
+      <country>UNITED STATES</country>
+      <region>KY</region>
+      <settlement>Louisville</settlement>
+      <repository>Filson Historical Society</repository>
+      <collection>Kentucky Confederate Provisional Government Journal</collection>
+      <idno>p. 17-19</idno>
+     </msIdentifier>
+    </msDesc>
+   </sourceDesc>
+  </fileDesc>
+  <profileDesc>
+   <creation>
+    <placeName>Bowling Green, Warren County, Kentucky</placeName>
+    <date when="1861-11-26">26 November 1861</date>
+   </creation>
+   <textClass>
+    <keywords>
+     <term type="genre">Journal</term>
+    </keywords>
+   </textClass>
+  </profileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p><note place="header">17</note></p>
+<p>Council Chamber
+<lb/><placeName ref="cwgk:P00000560">Bowling Green Ky</placeName><lb/>Tuesday <date when="1861-11-26">November 26.<hi rend="sup">th</hi> 1861</date></p>
+<p>The <orgName ref="cwgk:O00011019">Council</orgName> met pursuant to adjournment -- </p>
+<p>Hon<hi rend="sup">l</hi>.<persName ref="cwgk:N00000832"> W. B. Machen</persName> President in the Chair<figure type="hr"/></p>
+<p>A. Frank Brown Clerk of the Council elect, <hi rend="str">and</hi> having been duly qualified as required by law entered upon the discharge of the duties of said office.<figure type="hr"/></p>
+<p>A communication from G. Malcom was received and read and on motion it was refered to the committee on Military affairs<figure type="hr"/></p>
+<p>The Committees to whom was refered a bill to fix the salaries of certain Officers- reported the same-</p>
+<p>By Mr Crockett -- 
+<lb/>"An act to fix the salaries of certain Officers"
+<lb/>Which was read the first time- and ordered to be read a second time</p>
+<p>The rules of the Council Constitutional provision and second and third readings having been dispensed with-</p>
+<p>The question then being upon the passage of the bill, and being taken was decided in the affirmative- and so the bill passed</p>
+<p><hi rend="underline">Ordered</hi> That the title be as reported.<figure type="hr"/></p>
+<p>Mr. H. W. Bruce from the Committee on the Judiciary reported a bill to amend the Execution and distribution laws- which bill reads as follows -- Towit -- </p>
+<p>An Act to amend the Execution and distribution laws of Kentucky -- </p>
+<p>Be it enacted by the Council of the Provisional Government of the State of Kentucky That every citizen of said Commonwealth shall be entitled to hold as exempt from sale for any debt whatever except taxes, one slave and if said exempted slave be a female, the mother of infant children, the property also of the owners of said<pb/>
+<lb/><note place="header">18</note>
+<lb/>female slave, said infant children, during their infancy shall in like manner be exempt from sale. <hi rend="underline">Provided</hi> however that in the event of the death of the owner of any such exempted slave or slaves, the same shall descend as real Estate-"</p>
+<p>Which was read the first time-</p>
+<p>On motion the rules of the Council constitutional provision and second reading was dispensed with.</p>
+<p>Mr Crockett moved the following amendment. Towit:-</p>
+<p>"Amend by striking out the words "during their infancy" in the twelfth line and insert "until they attain the age of twelve years"
+<lb/>Said amendment was accepted-</p>
+<p>On motion of M<hi rend="sup">r</hi>. Thompson said bill and amendment was re-committed to the committe<hi rend="str">n</hi>e reporting the same.<figure type="hr"/></p>
+<p>Mr H. W. Bruce moved the following resolution Towit:</p>
+<p>"Resolved That that the Council now proceed to the election of a person to fill the office of Sergeant at arms, Door Keeper and Page whose duty it shall be to provide fuel for the Council chamber to Keep the same properly warmed and clean and to attend generally to the duties pertaining to said offices-<figure type="hr"/></p>
+<p>In pursuance of said resolution the council then proceeded to the election of sergeant at arms, door Keeper and page which resulted in the election of J. B. Thompson Jr.<figure type="hr"/></p>
+<p>Mr H. W. Bruce moved the following resolution Towit:
+<lb/>"Resolved That the Treasurer T. L. Burnett be and he is hereby authorized to purchase the necessary books and stationary for the use of this Council"
+<lb/>Which was adopted.<figure type="hr"/></p>
+<p>A message from the Governor was received and read as follows Towit:</p>
+<p>Bowling Green Ky
+<lb/><date when="1861-11-26">Novr. 26.<hi rend="sup">th</hi> 1861</date></p>
+<p>W. B. Machen Esq
+<lb/>President of the Council of Kentucky
+<lb/>Sir</p>
+<p>I hereby nominate Robert M<hi rend="sup">c</hi>Kee for the Office of Secretary of State</p>
+<p>Very Respectfully
+<lb/>Your Ob<hi rend="sup">t</hi> Serv<hi rend="sup">t.</hi>
+<lb/>George W. Johnson<pb/>
+<lb/><note place="header">19</note></p>
+<p>The council on motion went into executive Session<figure type="hr"/></p>
+<p>On motion the nomination by the Governor of R. M<hi rend="sup">c</hi>Kee for Secretary of State was unanimously confirmed.<figure type="hr"/></p>
+<p>On motion the Council then adjourned to meet again at 2 O'Clock P. M.</p>
+<p>Attest A Frank Brown<figure type="hr"/></p>
+<p><hi rend="underline">Evening Session</hi></p>
+<p>The Council met pursuant to adjournment- Hon<hi rend="sup">l</hi>. W. B. Machen President in the Chair.<figure type="hr"/></p>
+<p>Mr Crockett moved the following resolution-
+<lb/>Resolved- That his Excellency the Governor of the Provisional Government be and he is hereby requested and instructed to require all the collecting officers of the State revenue in the State of Kentucky to pay all the revenue collected or uncollected in their respective Counties for the year <date when="1861">1861</date> or any previous year under existing revenue laws into the Treasury of this government and the Governor will communicate in writing to the Council the result of this requisition -- 
+<lb/>Which was adopted<figure type="hr"/></p>
+<p>Mr. Thompson from the Committee on Military Affairs presented the following report:</p>
+<p>The Committee on Military affairs to whom was refered the communication of Rob<hi rend="sup">t</hi> M<hi rend="sup">c</hi>Kee -- Report That upon deliberation they have concluded that the request of said M<hi rend="sup">c</hi>Kee should be granted, and that he be authorized to raise a regiment the same to be Officered and subject to all laws that may hereby be enacted relative to the army and militia of Kentucky</p>
+<p>P. B. Thompson Chr<hi rend="sup">mn</hi></p>
+<p>And thereupon Mr Thompson moved the following resolution
+<lb/>Resolved That Robert M<hi rend="sup">c</hi>Kee be authorized to raise a regiment to be Officered and subject to all laws that may hereafter be enacted relative to the Army and militia of Kentucky- Said Regiment when raised to serve for twelve months unless sooner discharged
+<lb/>Which was adopted<figure type="hr"/></p>
+<p>And then the Council adjourned until tomorrow at 10 O'Clock A. M.</p>
+<p>Attest
+<lb/>A. Frank Brown Clerk</p>
+  </body>
+ </text>
+</TEI>
+EOF
+
+KYR00040330009_ENTITY_ATTRIBUTES = [{"id"=>853,
+  "name"=>"Philip Burton Thompson, Sr.",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"KY prov govt, attorney ",
+  "birth_date"=>"1821-01-08",
+  "death_date"=>"1908-11-28"},
+ {"id"=>838,
+  "name"=>"Theodore Legrand Burnett",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>
+   "Spencer County, KY, representative (Confederate), attorney and soldier",
+  "birth_date"=>"1829-11-14",
+  "death_date"=>"1917-10-30"},
+ {"id"=>11014,
+  "name"=>"Robert McKee",
+  "entity_type"=>"person",
+  "user_id"=>26,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Louisville, KY, journalist and prov govt sec of state",
+  "birth_date"=>"c1831",
+  "death_date"=>"1909-06-11"},
+ {"id"=>96,
+  "name"=>"George Washington Johnson",
+  "entity_type"=>"person",
+  "user_id"=>1,
+  "ref_id"=>"N001002",
+  "gender"=>"male",
+  "disambiguator"=>"Provisional Governor of Kentucky",
+  "birth_date"=>"1811-05-27",
+  "death_date"=>"1862-04-08"},
+ {"id"=>11226,
+  "name"=>"John Burton Thompson Jr.",
+  "entity_type"=>"person",
+  "user_id"=>26,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Harrodsburg, Kentucky, Provis Govt page",
+  "birth_date"=>"c1845",
+  "death_date"=>""},
+ {"id"=>560,
+  "name"=>"Bowling Green, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>10,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Seat of Warren County, Kentucky.",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>11019,
+  "name"=>"Provisional Council",
+  "entity_type"=>"organization",
+  "user_id"=>26,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Legislative Body of Provisional Government",
+  "birth_date"=>"1861-11-18",
+  "death_date"=>"1865"},
+ {"id"=>832,
+  "name"=>"Willis Benson Machen",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>
+   "Lyon County, KY, attorney, farmer, iron manufacturer, and politician (KY & Confederate)",
+  "birth_date"=>"1810-04-10",
+  "death_date"=>"1893-09-29"},
+ {"id"=>1858,
+  "name"=>"A. Frank Brown",
+  "entity_type"=>"person",
+  "user_id"=>5,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Bourbon County, KY, attorney and clerk of prov govt ",
+  "birth_date"=>"c1826",
+  "death_date"=>""},
+ {"id"=>11064,
+  "name"=>"G. Malcolm",
+  "entity_type"=>"person",
+  "user_id"=>24,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Jefferson County, prov govt",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>833,
+  "name"=>"John Watkins Crockett, Jr.",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>
+   "Jessamine County, KY, attorney and representative (Confederate)",
+  "birth_date"=>"1818-05-17",
+  "death_date"=>"1874-06-20"},
+ {"id"=>843,
+  "name"=>"Horatio Washington Bruce",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Jefferson County, KY, Representative (Confederate)",
+  "birth_date"=>"1830-02-22",
+  "death_date"=>"1903-01-22"},
+ {"id"=>83,
+  "name"=>"Commonwealth of Kentucky",
+  "entity_type"=>"organization",
+  "user_id"=>1,
+  "ref_id"=>"O001025",
+  "gender"=>"male",
+  "disambiguator"=>"state government org",
+  "birth_date"=>"1792",
+  "death_date"=>""},
+ {"id"=>3448,
+  "name"=>"Provisional Government of Kentucky",
+  "entity_type"=>"organization",
+  "user_id"=>2,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Rebel govt of KY",
+  "birth_date"=>"1861-11-18",
+  "death_date"=>"1865"},
+ {"id"=>11358,
+  "name"=>"Committee on the Judiciary",
+  "entity_type"=>"organization",
+  "user_id"=>26,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Provisional Government of Kentucky",
+  "birth_date"=>"1861-11-25",
+  "death_date"=>"1865"},
+ {"id"=>11355,
+  "name"=>"Committee on Military Affairs",
+  "entity_type"=>"organization",
+  "user_id"=>26,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Prov Govt of Ky",
+  "birth_date"=>"1861-11-25",
+  "death_date"=>"1865"}]
+
+
+KYR00040330009_ANNOTATIONS = [{"id"=>24421,
+  "document_id"=>1753,
+  "verbatim"=>"Mr. Thompson",
+  "user_id"=>1,
+  "entity_id"=>853,
+  "hypothesis_annotation_id"=>"yToV7vU_EemjkMdNWhVEcQ",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"dment was accepted-On motion of ",
+  "suffix"=>" said bill and amendment was re-",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[23]"},
+ {"id"=>24419,
+  "document_id"=>1753,
+  "verbatim"=>" T. L. Burnett",
+  "user_id"=>1,
+  "entity_id"=>838,
+  "hypothesis_annotation_id"=>"1vFOFPU_EemMiHf405bBSA",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"it:\n" + "\"Resolved That the Treasurer",
+  "suffix"=>" be and he is hereby authorized ",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[30]"},
+ {"id"=>24418,
+  "document_id"=>1753,
+  "verbatim"=>"Robert McKee",
+  "user_id"=>1,
+  "entity_id"=>11014,
+  "hypothesis_annotation_id"=>"3Q7YevU_Eemh7Q-DeTAbgA",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"f Kentucky\n" + "SirI hereby nominate ",
+  "suffix"=>" for the Office of Secretary of ",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[35]"},
+ {"id"=>24417,
+  "document_id"=>1753,
+  "verbatim"=>"George W. Johnson",
+  "user_id"=>1,
+  "entity_id"=>96,
+  "hypothesis_annotation_id"=>"4FXPjvU_EemntC9S4TatjA",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"ery Respectfully\n" + "Your Obt Servt.",
+  "suffix"=>" < 19 >The council on motion wen",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[36]"},
+ {"id"=>24420,
+  "document_id"=>1753,
+  "verbatim"=>" J. B. Thompson Jr.",
+  "user_id"=>1,
+  "entity_id"=>11226,
+  "hypothesis_annotation_id"=>"0VuRWPU_EemDXk_NbFRueg",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"hich resulted in the election of",
+  "suffix"=>"Mr H. W. Bruce moved the followi",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[28]"},
+ {"id"=>24430,
+  "document_id"=>1753,
+  "verbatim"=>"Bowling Green Ky",
+  "user_id"=>1,
+  "entity_id"=>560,
+  "hypothesis_annotation_id"=>"mDFEXvU_EemGf-cexmsbbQ",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"   \n" + "\n" + "\n" + "\n" + "\n" + "  < 17 >Council Chamber\n",
+  "suffix"=>"\n" + "Tuesday November 26.th 1861The ",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>24429,
+  "document_id"=>1753,
+  "verbatim"=>"Council",
+  "user_id"=>1,
+  "entity_id"=>11019,
+  "hypothesis_annotation_id"=>"msJ56vU_EempERO3JarAjA",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"\n" + "Tuesday November 26.th 1861The ",
+  "suffix"=>" met pursuant to adjournment — H",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[3]"},
+ {"id"=>24428,
+  "document_id"=>1753,
+  "verbatim"=>" W. B. Machen",
+  "user_id"=>1,
+  "entity_id"=>832,
+  "hypothesis_annotation_id"=>"nXZZSvU_EemHCQswnu4v0w",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>" pursuant to adjournment — Honl.",
+  "suffix"=>" President in the ChairA. Frank ",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[4]"},
+ {"id"=>24427,
+  "document_id"=>1753,
+  "verbatim"=>"A. Frank Brown",
+  "user_id"=>1,
+  "entity_id"=>1858,
+  "hypothesis_annotation_id"=>"oLagYPU_EemYK1P_wZvHBw",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"B. Machen President in the Chair",
+  "suffix"=>" Clerk of the Council elect, and",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[6]"},
+ {"id"=>24426,
+  "document_id"=>1753,
+  "verbatim"=>"G. Malcom",
+  "user_id"=>1,
+  "entity_id"=>11064,
+  "hypothesis_annotation_id"=>"pBw01vU_EemhSYuv3u1yJg",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"aid office.A communication from ",
+  "suffix"=>" was received and read and on mo",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[8]"},
+ {"id"=>24425,
+  "document_id"=>1753,
+  "verbatim"=>" Mr Crockett",
+  "user_id"=>1,
+  "entity_id"=>833,
+  "hypothesis_annotation_id"=>"qmcKtPU_EemDw6e1YMZixw",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"n Officers- reported the same-By",
+  "suffix"=>" — \n" + "\"An act to fix the salaries ",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[11]"},
+ {"id"=>24424,
+  "document_id"=>1753,
+  "verbatim"=>"H. W. Bruce",
+  "user_id"=>1,
+  "entity_id"=>843,
+  "hypothesis_annotation_id"=>"snRc_PU_EemOhKcv1cCOnw",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"at the title be as reported.Mr. ",
+  "suffix"=>" from the Committee on the Judic",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[16]"},
+ {"id"=>24423,
+  "document_id"=>1753,
+  "verbatim"=>"Kentucky",
+  "user_id"=>1,
+  "entity_id"=>83,
+  "hypothesis_annotation_id"=>"tfmXDPU_EemNsSvT5CdbvA",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"cution and distribution laws of ",
+  "suffix"=>" — Be it enacted by the Council ",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[17]"},
+ {"id"=>24422,
+  "document_id"=>1753,
+  "verbatim"=>"Provisional Government ",
+  "user_id"=>1,
+  "entity_id"=>3448,
+  "hypothesis_annotation_id"=>"uPM-kPU_EemDXQs16Ia3dA",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"t enacted by the Council of the ",
+  "suffix"=>"of the State of Kentucky That ev",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[18]"},
+ {"id"=>24675,
+  "document_id"=>1753,
+  "verbatim"=>"Committee on the Judiciary",
+  "user_id"=>1,
+  "entity_id"=>11358,
+  "hypothesis_annotation_id"=>"PnqhbPtDEemPNE_X_pG4Vg",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"ported.Mr. H. W. Bruce from the ",
+  "suffix"=>" reported a bill to amend the Ex",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[16]"},
+ {"id"=>24676,
+  "document_id"=>1753,
+  "verbatim"=>"committee on Military affairs",
+  "user_id"=>1,
+  "entity_id"=>11355,
+  "hypothesis_annotation_id"=>"NyAXsvtDEemrB_s4gKXK9Q",
+  "hypothesis_user"=>"mdevelvis@hypothes.is",
+  "prefix"=>"on motion it was refered to the ",
+  "suffix"=>"The Committees to whom was refer",
+  "start_container"=>
+   "/div[2]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[8]"}]
 
 
 

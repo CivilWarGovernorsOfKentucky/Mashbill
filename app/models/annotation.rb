@@ -1,6 +1,6 @@
 class Annotation < ActiveRecord::Base
-  belongs_to :document
-  belongs_to :user
+  belongs_to :document, optional: true
+  belongs_to :user, optional: true
   belongs_to :entity, optional: true
 
   def ceteicean?

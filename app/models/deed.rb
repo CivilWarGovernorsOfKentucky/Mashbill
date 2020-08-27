@@ -13,7 +13,7 @@ class Deed < ActiveRecord::Base
   RELATIONSHIP_CREATE = 'relationship_create'
   RELATIONSHIP_DELETE = 'relationship_delete'
 
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :document, optional: true
   belongs_to :entity, optional: true
   belongs_to :relationship, optional: true

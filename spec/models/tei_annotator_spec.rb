@@ -4,10 +4,11 @@ require 'text_transporter'
 require 'sample_tei'
 
 RSpec.describe TeiAnnotator, type: :model do
+
   before(:each) do
+    @user = User.create(email: 'devnull@example.org', password: 'password')
     @text_transporter = double('TextTransporter')
     allow(@text_transporter).to receive(:fetch).and_return(KYR00010030072)
-    @user = double('User')
     @annotator = TeiAnnotator.new(@text_transporter)
   end
   
@@ -110,21 +111,25 @@ RSpec.describe TeiAnnotator, type: :model do
   context "document record" do
     before(:each) do
       @document = Document.new(:cwgk_id => 'KYR0001-003-0072')
+      @document.save!  
+
+      @user = User.first
       
       annotation1 = Annotation.new(:verbatim => 'Dr Capes', :start_container => "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[4]")
       entity1 = Entity.new(:entity_type => Entity::Type::PERSON, :ref_id => 'capes_id', :id => 123, :name => "Capes")
+      entity1.user = @user
       entity1.save!
-      annotation1.entity = entity1 
+      annotation1.entity = entity1
       annotation1.save!
       @document.annotations << annotation1
       
       annotation2 = Annotation.new(:verbatim => 'City', :start_container => "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[4]")
       entity2 = Entity.create(:entity_type => Entity::Type::PLACE, :ref_id => 'louisville_id', :id => 1234, :name => "Louisville" )
+      entity2.user = @user
       entity2.save!
       annotation2.entity = entity2 
       annotation2.save!
       @document.annotations << annotation2    
-      
       @document.save!  
     end
 
@@ -202,18 +207,23 @@ RSpec.describe TeiAnnotator, type: :model do
   context "real world KYR-0004-101-0014" do
 
     before(:each) do
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
       @doc = Nokogiri::XML(KYR00041010014)
       @document = Document.new(:cwgk_id => 'KYR0004-101-0014')
-      KYR00041010014_ENTITIES.each {|e| Entity.create!(e)}
+      KYR00041010014_ENTITIES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
       @annotations = KYR00041010014_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
-      @annotations.each { |a| @document.annotations << a }
+      @annotations.each { |a| a.user=@user; @document.annotations << a }
       @document.save!
       @annotations.each {|a| a.save!}
 
 
       @text_transporter = double('TextTransporter')
       allow(@text_transporter).to receive(:fetch).and_return(KYR00041010014)
-      @user = double('User')
+#      @user = double('User')
       @annotator = TeiAnnotator.new(@text_transporter)
 
     end
@@ -348,7 +358,12 @@ RSpec.describe TeiAnnotator, type: :model do
     before(:each) do
       @doc = Nokogiri::XML(KYR00010060066)
       @document = Document.new(:cwgk_id => 'KYR0001-006-0066')
-      KYR00010060066_ENTITIES.each {|e| Entity.create!(e)}
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
+      KYR00010060066_ENTITIES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
       @annotations = KYR00010060066_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
       @annotations.each { |a| @document.annotations << a }
       @document.save!
@@ -357,7 +372,7 @@ RSpec.describe TeiAnnotator, type: :model do
 
       @text_transporter = double('TextTransporter')
       allow(@text_transporter).to receive(:fetch).and_return(KYR00010060066)
-      @user = double('User')
+      # @user = double('User')
       @annotator = TeiAnnotator.new(@text_transporter)
 
     end
@@ -392,7 +407,12 @@ RSpec.describe TeiAnnotator, type: :model do
     before(:each) do
       @doc = Nokogiri::XML(KYR00022220021)
       @document = Document.new(:cwgk_id => 'KYR0002-222-0021')
-      KYR00022220021_ENTITIES.each {|e| Entity.create!(e)}
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
+      KYR00022220021_ENTITIES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
       @annotations = KYR00022220021_ANNOTATIONS_ATTRIBUTES.map{|h| Annotation.new(h)}
       @annotations.each { |a| @document.annotations << a }
       @document.save!
@@ -401,7 +421,7 @@ RSpec.describe TeiAnnotator, type: :model do
 
       @text_transporter = double('TextTransporter')
       allow(@text_transporter).to receive(:fetch).and_return(KYR00022220021)
-      @user = double('User')
+      # @user = double('User')
       @annotator = TeiAnnotator.new(@text_transporter)
 
     end
@@ -454,7 +474,12 @@ RSpec.describe TeiAnnotator, type: :model do
     before(:each) do
       @doc = Nokogiri::XML(KYR00010040300)
       @document = Document.new(:cwgk_id => 'KYR0001-004-0300')
-      KYR00010040300_ENTITIES.each {|e| Entity.create!(e)}
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
+      KYR00010040300_ENTITIES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
       @annotations = KYR00010040300_ANNOTATIONS.map{|h| Annotation.new(h)}
       @annotations.each { |a| @document.annotations << a }
       @document.save!
@@ -508,7 +533,12 @@ RSpec.describe TeiAnnotator, type: :model do
     before(:each) do
       @doc = Nokogiri::XML(KYR00010040310)
       @document = Document.new(:cwgk_id => 'KYR0001-004-0310')
-      KYR00010040310_ENTITIES.each {|e| Entity.create!(e)}
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
+      KYR00010040310_ENTITIES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
       @annotations = KYR00010040310_ANNOTATIONS.map{|h| Annotation.new(h)}
       @annotations.each { |a| @document.annotations << a }
       @document.save!
@@ -546,13 +576,70 @@ RSpec.describe TeiAnnotator, type: :model do
     end
   end
 
+  context "real world KYR-0004-033-0009" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00040330009)
+      @document = Document.new(:cwgk_id => 'KYR0004-033-0009')
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
+      KYR00040330009_ENTITY_ATTRIBUTES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
+      @annotations = KYR00040330009_ANNOTATIONS.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010040310)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation) unless i==5
+        unless i == 5 || i == 6 || i == 7
+          after_xml = @doc.to_xml
+          after_xml.should_not eq(before_xml)
+        end
+      end
+    end
+  end
+
+
+
 
   context "real world KYR-0001-004-0079" do
 
     before(:each) do
       @doc = Nokogiri::XML(KYR00010040079)
       @document = Document.new(:cwgk_id => 'KYR0001-004-0079')
-      KYR00010040079_ENTITIES.each {|e| Entity.create!(e)}
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
+      KYR00010040079_ENTITIES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
       @annotations = KYR00010040079_ANNOTATIONS.map{|h| Annotation.new(h)}
       @annotations.each { |a| @document.annotations << a }
       @document.save!
