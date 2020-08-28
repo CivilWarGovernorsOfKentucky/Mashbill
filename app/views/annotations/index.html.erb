@@ -38,27 +38,31 @@ All annotations identified
   <tbody>
     <% unidentified_annotations.each_with_index do |annotation, index| %>
       <tr>
-        <td><%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> </td>
+        <td>
+          <div>
+            <%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> 
+          </div>
+          <div>
+            <small>
+              <i>
+                <% if annotation.ceteicean? %>
+                  <span>
+                    Mashbill | <%= annotation.hypothesis_user.sub('@hypothes.is','') %> | <%= annotation.hypothesis_date %>
+                  </span>
+                <% else %>
+                  <span>
+                    Discovery | <%= annotation.hypothesis_user.sub('@hypothes.is','') %> | <%= annotation.hypothesis_date %>
+                  </span>
+                <% end %>
+              </i>
+            </small>
+          </div>
+
+        </td>
         <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
         <td><%= link_to 'Identify', identify_annotation_path(annotation), :tabindex => index+1 %></td>
         <td><%= link_to 'Delete', annotation, method: :delete, data: { confirm: 'This deletes the ENTIRE ANNOTATION.  You should click "Identify" if all you want to do is re-associate the annotation to the entity.  Are you sure you want to do this?' }, :tabindex => index+1 %></td>
       </tr>
-      <tr class="about">
-        <td colspan="4">
-          <small>
-            <% if annotation.ceteicean? %>
-              <span>
-                Created in Mashbill by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
-              </span>
-            <% else %>
-              <span>
-                Created in Discovery by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
-              </span>
-            <% end %>
-          </small>
-        </td>
-      </tr>
-
     <% end %>
   </tbody>
 </table>
@@ -81,25 +85,29 @@ All annotations identified
   <tbody>
     <% identified_annotations.each do |annotation| %>
       <tr>
-        <td><%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> </td>
+        <td>
+          <div>
+            <%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %>
+          </div>
+          <div>
+            <small>
+              <i>
+                <% if annotation.ceteicean? %>
+                  <span>
+                    Mashbill | <%= annotation.hypothesis_user.sub('@hypothes.is','') %> | <%= annotation.hypothesis_date %>
+                  </span>
+                <% else %>
+                  <span>
+                    Discovery | <%= annotation.hypothesis_user.sub('@hypothes.is','') %> | <%= annotation.hypothesis_date %>
+                  </span>
+                <% end %>
+              </i>
+            </small>
+          </div> 
+        </td>
         <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
         <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
         <td><%= link_to 'Delete', annotation, method: :delete, data: { confirm: 'This deletes the ENTIRE ANNOTATION.  You should click "Identify" if all you want to do is re-associate the annotation to a different entity.  Are you sure you want to do this?' } %></td>
-      </tr>
-      <tr class="about">
-        <td colspan="4">
-          <small>
-            <% if annotation.ceteicean? %>
-              <span>
-                Created in Mashbill by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
-              </span>
-            <% else %>
-              <span>
-                Created in Discovery by <%= annotation.hypothesis_user %> on <%= annotation.hypothesis_date %>
-              </span>
-            <% end %>
-          </small>
-        </td>
       </tr>
     <% end %>
   </tbody>
