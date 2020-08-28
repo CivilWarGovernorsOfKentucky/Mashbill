@@ -10,6 +10,7 @@
 <p>
   <strong>CWGK ID:</strong>
   <%= link_to(@document.cwgk_id, "http://discovery.civilwargovernors.org/document/" + @document.cwgk_id, :target => "_blank") %>
+  <%= link_to('(GitHub)', "https://github.com/CivilWarGovernorsOfKentucky/Documents/blob/master/xml/" + @document.cwgk_id + '.xml', :target => "_blank") %>
 </p>
 
 
