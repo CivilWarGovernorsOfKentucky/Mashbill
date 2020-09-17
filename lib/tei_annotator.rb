@@ -115,50 +115,81 @@ class TeiAnnotator
   end
 
   def element_contains_context?(element, annotation)
-    md = /(.*?)#{annotation.verbatim}(.*)/m.match element.text
-    if md
-      # this element contains the annotation's target text
-      # but does it contain the correct context?
-      element_prefix = md[1].gsub(/\W/m, '').gsub(/\s+/m, '').downcase
-      element_suffix = md[2].gsub(/\W/m, '').gsub(/\s+/m, '').downcase
-
-      # the verbatim could have started the element
-      if !element_prefix.blank? && annotation.prefix
-        annotation_prefix = annotation.prefix.gsub(/\W/m, '').gsub(/\s+/m, '').downcase
-        # annotation prefixes span multiple elements, so the most likely case is
-        # that of an annotation prefix that contains the element prefix only
-        if element_prefix.length < annotation_prefix.length
-          if !annotation_prefix.match(/#{Regexp.escape(element_prefix)}$/m)
-            # the element prefix was not at the end of the annotation prefix
-            return false
-          end
-        else
-          # the annotation prefix was shorter than the element prefix -- this must 
-          # be a long paragraph!
-          if !element_prefix.match(/#{Regexp.escape(annotation_prefix)}$/m)
-            # the element prefix does not end with the annotation prefix
-            return false
-          end
-        end
-      end
-
-      # the verbatim could have ended the element
-      if !element_suffix.blank? && annotation.suffix
-        annotation_suffix = annotation.suffix.gsub(/\W/m, '').gsub(/\s+/m, '').downcase
-        if element_suffix.length < annotation_suffix.length
-          if !annotation_suffix.match(/^#{Regexp.escape(element_suffix)}/m)
-            return false
-          end
-        else
-          if !element_suffix.match(/^#{Regexp.escape(annotation_suffix)}/m)
-            # the element prefix does not end with the annotation prefix
-            return false
-          end
-        end
-      end
+    segments = (element.text+' ').split(/#{Regexp.escape(annotation.verbatim)}/)
+#    binding.pry if annotation.verbatim == 'Patrick Meyer'
+    if segments.count == 1 
+      return false # this element doesn't have the verbatim text
     else
-      # this element doesn't even have the annotation text
-      return false 
+      end_index = segments.count - 2
+      good_so_far = false
+      0.upto(end_index) do |start_index|
+
+        last_segment = (start_index == end_index)
+        segment_text = segments[start_index..(end_index+1)].join(annotation.verbatim)
+
+        md = /(.*?)#{Regexp.escape(annotation.verbatim)}(.*)/m.match segment_text
+        if md
+          # this element contains the annotation's target text      
+
+          # but does it contain the correct context?
+          element_prefix = md[1].gsub(/\W/m, '').gsub(/\s+/m, '').downcase
+          element_suffix = md[2].gsub(/\W/m, '').gsub(/\s+/m, '').downcase
+
+          # the verbatim could have started the element
+          if !element_prefix.blank? && annotation.prefix
+            annotation_prefix = annotation.prefix.gsub(/\W/m, '').gsub(/\s+/m, '').downcase
+            # annotation prefixes span multiple elements, so the most likely case is
+            # that of an annotation prefix that contains the element prefix only
+            if element_prefix.length < annotation_prefix.length
+              if !annotation_prefix.match(/#{Regexp.escape(element_prefix)}$/m)
+                # the element prefix was not at the end of the annotation prefix
+                good_so_far = false
+                return false if last_segment
+              else
+                good_so_far = true
+              end
+            else
+              # the annotation prefix was shorter than the element prefix -- this must 
+              # be a long paragraph!
+              if !element_prefix.match(/#{Regexp.escape(annotation_prefix)}$/m)
+                # the element prefix does not end with the annotation prefix
+                good_so_far = false
+                return false if last_segment
+              else
+                good_so_far = true
+              end
+            end
+          end
+
+          # the verbatim could have ended the element
+          if !element_suffix.blank? && annotation.suffix
+            annotation_suffix = annotation.suffix.gsub(/\W/m, '').gsub(/\s+/m, '').downcase
+            if element_suffix.length < annotation_suffix.length
+              if !annotation_suffix.match(/^#{Regexp.escape(element_suffix)}/m)
+                good_so_far = false
+                return false if last_segment
+              else
+                good_so_far = true if good_so_far
+              end
+            else
+              if !element_suffix.match(/^#{Regexp.escape(annotation_suffix)}/m)
+                # the element prefix does not end with the annotation prefix
+                good_so_far = false
+                return false if last_segment
+              else
+                good_so_far = true if good_so_far
+              end
+            end
+          end
+
+          # we got to this point without short circuiting, but is this a good element?
+          if good_so_far
+            return true
+          end
+
+        end
+        # loop to the next segment
+      end
     end
 
     # the element contains as much of the context as possible to verify
@@ -254,7 +285,7 @@ class TeiAnnotator
       return true
     else
       # do this the long way
-      md = /(.*?)#{verbatim}(.*)/m.match paragraph.text
+      md = /(.*?)#{Regexp.escape(verbatim)}(.*)/m.match paragraph.text
       if md
         prefix = md[1]
         suffix = md[2]

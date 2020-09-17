@@ -668,5 +668,61 @@ RSpec.describe TeiAnnotator, type: :model do
   end
 
 
+  context "real world KYR-0001-020-1467" do
+
+    before(:each) do
+      @doc = Nokogiri::XML(KYR00010201467)
+      @document = Document.new(:cwgk_id => 'KYR0001-020-1467')
+      @user = User.first || User.create(email: 'devnull@example.org', password: 'password')
+      KYR00010201467_ENTITY_ATTRIBUTES.each do |e| 
+        entity = Entity.new(e)
+        entity.user = @user
+        entity.save!
+      end
+      @annotations = KYR00010201467_ANNOTATIONS.map{|h| Annotation.new(h)}
+      @annotations.each { |a| @document.annotations << a }
+      @document.save!
+      @annotations.each {|a| a.save!}
+
+
+      @text_transporter = double('TextTransporter')
+      allow(@text_transporter).to receive(:fetch).and_return(KYR00010201467)
+      @user = double('User')
+      @annotator = TeiAnnotator.new(@text_transporter)
+
+    end
+
+    def para(index=0, locator='text/body/p')
+      @doc.search(locator)[index]
+    end
+
+    it "should not corrupt the text" do
+      @annotations.each_with_index do |annotation,i|
+        before_text = @doc.text
+        @annotator.apply_annotation(@doc, annotation)
+        after_text = @doc.text
+        after_text.should eq(before_text)
+      end
+    end
+
+    it "should actually change the mark-up" do
+      @annotations.each_with_index do |annotation,i|
+        before_xml = @doc.to_xml
+        @annotator.apply_annotation(@doc, annotation)
+        excludes = [
+          0, # "W. T. Simmons" has commas in the text
+          9, # "P. U. Major" has commas in the text
+          20, # "Grant Circuit Court" is "Grant Cir. ct" or "Grant Circuit sourt" in the text
+          14, # "O. D. McManama" is "O. D," with a comma in the text
+          17 #"J. H. Webb" has commas in the text
+        ]
+        after_xml = @doc.to_xml
+        after_xml.should_not eq(before_xml) unless excludes.include? i
+      end
+    end
+
+
+  end
+
 end
 

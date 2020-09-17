@@ -1,7 +1,7 @@
 
 # Generating these:
 # TEI from files
-# # From console
+# From console
 # raw_attributes = document.entities.map { |e| e.attributes }
 # raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
 # raw_attributes
@@ -12,6 +12,570 @@
 # raw_attributes.each { |e| ["bibliography", "biography", "lat", "long", "created_at", "updated_at", "hypothesis_date"].each { |a| e.delete(a) } }
 # raw_attributes
 # ## Cut and paste this into annotations constant
+
+
+
+KYR00010201467 = <<EOF
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0001-020-1467"> 
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title level="a" type="main">Elijah F. Nuttall et al. to Beriah Magoffin</title>
+    <title level="a" type="parallel">CWG10935</title>
+    <respStmt>
+     <resp n="transcriber">Transcribed by:</resp>
+     <name>Amanda Boczar</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_1">Single Proof by:</resp>
+     <name>Patrick A Lewis</name>
+    </respStmt>
+    <respStmt>
+     <resp n="encoding">Markup by:</resp>
+     <name>Whitney R Smith</name>
+    </respStmt>
+    <respStmt>
+     <resp n="proof_2">Double Proof by:</resp>
+     <name>CWGK Staff</name>
+    </respStmt>
+   </titleStmt>
+   <publicationStmt>
+    <publisher>Kentucky Historical Society</publisher>
+    <pubPlace>Frankfort, Kentucky</pubPlace>
+    <availability>
+     <p>This image and transcription is publicly accessible. The image appears courtesy of the repository named in the Source Description. The transcription and annotation were undertaken by Kentucky Historical Society staff, volunteers, and interns. If referencing this document title, accession number, and permanent URL.</p>
+    </availability>
+   </publicationStmt>
+   <seriesStmt>
+    <title level="s" type="main">Civil War Governors of Kentucky Digital Documentary Edition</title>
+    <respStmt>
+     <resp>Project Director</resp>
+     <name>Patrick A. Lewis</name>
+    </respStmt>
+   </seriesStmt>
+   <sourceDesc>
+    <msDesc>
+    <msIdentifier>
+      <country>UNITED STATES</country>
+      <region>KY</region>
+      <settlement>Frankfort</settlement>
+      <repository>Kentucky Department for Libraries and Archives</repository>
+      <collection>Office of the Governor, Beriah Magoffin: Governor's Official Correspondence File, Petitions for Pardons and Remissions, 1859-1862</collection>
+      <idno>MG22-45</idno>
+     </msIdentifier>
+    </msDesc>
+   </sourceDesc>
+  </fileDesc>
+  <profileDesc>
+   <creation>
+    <date when="1861-10-29">29 October 1861</date>
+   </creation>
+   <textClass>
+    <keywords>
+     <term type="genre">Petition</term>
+    </keywords>
+   </textClass>
+  </profileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p>To His Excellency B MaGoffin Governor of Kentucky Your Petitioners would respectfully represent that at the <hi rend="str">October</hi> <date when="1861-05">May Term of the Grant Circuit sourt 1861</date>. one Patrick Bannon was fined fifty Dollars for carrying concealed weapons: we think the assessment of s<hi rend="sup">d</hi> fine a great hardship upon Mr. Bannon He is a very quiet and Gentlemanly citizens, Sober &amp; discreet it is the first <hi rend="str">i</hi>offence of which he has even been charged in our county It will meet the universal approbation of the citizen of Grant should your Excellency remit so much of said fine as lies in your power to do.
+<lb/><date when="1861-10-29">Oct 29<hi rend="underline"><hi rend="sup">th</hi></hi> 18,61</date>.</p>
+<p>E F Nuttall
+<lb/>J, H, Webb
+<lb/>O. D, M<hi rend="underline"><hi rend="sup">c</hi></hi>Manama
+<lb/>W Smith clk G c c<hi rend="sup">t</hi>
+<lb/><hi rend="underline">J. O'Hara Jr</hi>
+<lb/>M Burnett
+<lb/>J. M. Callin
+<lb/>W, T, Simmons
+<lb/>T. M. Coombs
+<lb/>Squire Lucas s g C
+<lb/>E H Smith
+<lb/>O. P. Hogan
+<lb/>J. W. Collins
+<lb/>Robt H O'Hara
+<lb/>John A Turner
+<lb/><hi rend="underline">P, U, Major</hi> <hi rend="underline">Com'th Atty</hi>
+<lb/>A Kendall<pb/></p>
+<p>Grant Cir. ct</p>
+<p>Remitted
+<lb/>B. M</p>
+<p>&#36;50. &#125; Weapons
+<lb/>P. Bannen</p>
+<p>Iss<hi rend="sup">d</hi> <date when="1861-11-02">Nov. 2 1861</date></p>
+  </body>
+ </text>
+</TEI>
+EOF
+
+KYR00010201467_ENTITY_ATTRIBUTES = [{"id"=>2602,
+  "name"=>"Winston T. Simmons",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, attorney",
+  "birth_date"=>"1823-09-22",
+  "death_date"=>"1888"},
+ {"id"=>9175,
+  "name"=>"Elias Hubbard Smith",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, attorney",
+  "birth_date"=>"c1828",
+  "death_date"=>""},
+ {"id"=>9176,
+  "name"=>"Robert H. O'Hara",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Williamstown, KY, clerk and infantry private CSA",
+  "birth_date"=>"c1841",
+  "death_date"=>""},
+ {"id"=>2596,
+  "name"=>"Squire Lucas",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, sheriff",
+  "birth_date"=>"1810",
+  "death_date"=>"1873"},
+ {"id"=>9178,
+  "name"=>"Alfred Kendall",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, farmer",
+  "birth_date"=>"c1811",
+  "death_date"=>"c1876"},
+ {"id"=>3491,
+  "name"=>"Thomas M. Coombs ",
+  "entity_type"=>"person",
+  "user_id"=>11,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>
+   "Grant County, Kentucky, deputy sheriff, clerk, cavalry captain (CSA)",
+  "birth_date"=>"c1839",
+  "death_date"=>""},
+ {"id"=>1164,
+  "name"=>"Joseph M. Collins",
+  "entity_type"=>"person",
+  "user_id"=>8,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, Attorney/Merchant",
+  "birth_date"=>"1832-06-29",
+  "death_date"=>"1895-02-14"},
+ {"id"=>9193,
+  "name"=>"James W. Collins",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, landlord",
+  "birth_date"=>"1814-11-11",
+  "death_date"=>"1871-12-15"},
+ {"id"=>9198,
+  "name"=>"Overton P. Hogan",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, farmer",
+  "birth_date"=>"1808-05-29",
+  "death_date"=>"1885-10-05"},
+ {"id"=>1172,
+  "name"=>"Patrick Upshire Major",
+  "entity_type"=>"person",
+  "user_id"=>8,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Frankfort, Kentucky, attorney and commonwealth's attorney",
+  "birth_date"=>"1822",
+  "death_date"=>"1903-07-03"},
+ {"id"=>9202,
+  "name"=>"John A. Turner",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, farmer and merchant",
+  "birth_date"=>"c1819",
+  "death_date"=>"c1890"},
+ {"id"=>5169,
+  "name"=>"Mathew Burnett",
+  "entity_type"=>"person",
+  "user_id"=>12,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Judge of Grant County Court",
+  "birth_date"=>"1797-01-01",
+  "death_date"=>"1870-11-26"},
+ {"id"=>938,
+  "name"=>"Grant County, Kentucky",
+  "entity_type"=>"place",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"place - county in northern KY",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>3209,
+  "name"=>"Elijah Frank Nuttall",
+  "entity_type"=>"person",
+  "user_id"=>11,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>
+   "Henry County, Kentucky, attorney and judge of the Eighth Judicial District",
+  "birth_date"=>"c1801",
+  "death_date"=>"c1864"},
+ {"id"=>2678,
+  "name"=>"Obediah Dickerson McManama",
+  "entity_type"=>"person",
+  "user_id"=>9,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, prosecuting attorney",
+  "birth_date"=>"1836-03-02",
+  "death_date"=>"1889"},
+ {"id"=>3495,
+  "name"=>"William Smith",
+  "entity_type"=>"person",
+  "user_id"=>11,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, Kentucky, circuit ct clerk",
+  "birth_date"=>"c1815",
+  "death_date"=>""},
+ {"id"=>6449,
+  "name"=>"James O'Hara, Jr.",
+  "entity_type"=>"person",
+  "user_id"=>8,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Kenton County",
+  "birth_date"=>"1825-05-06",
+  "death_date"=>"1900-08-21"},
+ {"id"=>9177,
+  "name"=>"John Henry Webb",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Grant County, KY, farmer and soldier",
+  "birth_date"=>"1826-06-19",
+  "death_date"=>"1913-02-13"},
+ {"id"=>258,
+  "name"=>"Beriah Magoffin",
+  "entity_type"=>"person",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"governor of Kentucky",
+  "birth_date"=>"1815-04-18",
+  "death_date"=>"1885-02-28"},
+ {"id"=>83,
+  "name"=>"Commonwealth of Kentucky",
+  "entity_type"=>"organization",
+  "user_id"=>1,
+  "ref_id"=>"O001025",
+  "gender"=>"male",
+  "disambiguator"=>"state government org",
+  "birth_date"=>"1792",
+  "death_date"=>""},
+ {"id"=>384,
+  "name"=>"Grant Circuit Court",
+  "entity_type"=>"organization",
+  "user_id"=>4,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"org - 8th judicial district - located in Williamstown",
+  "birth_date"=>"",
+  "death_date"=>""},
+ {"id"=>9160,
+  "name"=>"Patrick Bannon",
+  "entity_type"=>"person",
+  "user_id"=>20,
+  "ref_id"=>nil,
+  "gender"=>"male",
+  "disambiguator"=>"Williamstown, KY, blacksmith",
+  "birth_date"=>"1829",
+  "death_date"=>"1898"}]
+
+KYR00010201467_ANNOTATIONS = [{"id"=>16268,
+  "document_id"=>1227,
+  "verbatim"=>"W. T. Simmons",
+  "user_id"=>1,
+  "entity_id"=>2602,
+  "hypothesis_annotation_id"=>"b04glnDXEeehHYuUN1szQA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"O'Hara JrM Burnett\n" + "J. M. Callin\n",
+  "suffix"=>"\n" + "T. M. Coombs\n" + "Squire Lucas s g c",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16265,
+  "document_id"=>1227,
+  "verbatim"=>"E H Smith",
+  "user_id"=>1,
+  "entity_id"=>9175,
+  "hypothesis_annotation_id"=>"evuyKHDXEeecOJeeikhpng",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"T. M. Coombs\n" + "Squire Lucas s g c\n",
+  "suffix"=>"\n" + "O. P. Hogan\n" + "J. W. Collins\n" + "Robt ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16262,
+  "document_id"=>1227,
+  "verbatim"=>"Robt H O'Hara",
+  "user_id"=>1,
+  "entity_id"=>9176,
+  "hypothesis_annotation_id"=>"iMHc1HDXEee1gcsa50Ycyg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"Smith\n" + "O. P. Hogan\n" + "J. W. Collins\n",
+  "suffix"=>"\n" + "John A Turner\n" + "P. U. MajorCom'th",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16266,
+  "document_id"=>1227,
+  "verbatim"=>"Squire Lucas",
+  "user_id"=>1,
+  "entity_id"=>2596,
+  "hypothesis_annotation_id"=>"d3E4lHDXEeezKhtxEqRvzA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"llin\n" + "W. T. Simmons\n" + "T. M. Coombs\n",
+  "suffix"=>" s g c\n" + "E H Smith\n" + "O. P. Hogan\n" + "J. ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16259,
+  "document_id"=>1227,
+  "verbatim"=>"A Kendall",
+  "user_id"=>1,
+  "entity_id"=>9178,
+  "hypothesis_annotation_id"=>"k7kW3nDXEeeKezfIuIsOeA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>" A Turner\n" + "P. U. MajorCom'th Atty",
+  "suffix"=>" Grant Cir. Ct\n" + "Remitted \n" + "B. M.$5",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16267,
+  "document_id"=>1227,
+  "verbatim"=>"T. M. Coombs",
+  "user_id"=>1,
+  "entity_id"=>3491,
+  "hypothesis_annotation_id"=>"cy8q1HDXEeecN1-H0fb1BA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"nett\n" + "J. M. Callin\n" + "W. T. Simmons\n",
+  "suffix"=>"\n" + "Squire Lucas s g c\n" + "E H Smith\n" + "O.",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16269,
+  "document_id"=>1227,
+  "verbatim"=>"J. M. Callin",
+  "user_id"=>1,
+  "entity_id"=>1164,
+  "hypothesis_annotation_id"=>"arahFnDXEeezKes9xIB9Ig",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"Clk G c ctJ. O'Hara JrM Burnett\n",
+  "suffix"=>"\n" + "W. T. Simmons\n" + "T. M. Coombs\n" + "Squi",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16263,
+  "document_id"=>1227,
+  "verbatim"=>"J. W. Collins",
+  "user_id"=>1,
+  "entity_id"=>9193,
+  "hypothesis_annotation_id"=>"gq37hHDXEeeEg2uCLdZs0w",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"cas s g c\n" + "E H Smith\n" + "O. P. Hogan\n",
+  "suffix"=>"\n" + "Robt H O'Hara\n" + "John A Turner\n" + "P. ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16264,
+  "document_id"=>1227,
+  "verbatim"=>"O. P. Hogan",
+  "user_id"=>1,
+  "entity_id"=>9198,
+  "hypothesis_annotation_id"=>"fy3_uHDXEee4HI8RliiD8g",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"bs\n" + "Squire Lucas s g c\n" + "E H Smith\n",
+  "suffix"=>"\n" + "J. W. Collins\n" + "Robt H O'Hara\n" + "Joh",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16260,
+  "document_id"=>1227,
+  "verbatim"=>"P. U. Major",
+  "user_id"=>1,
+  "entity_id"=>1172,
+  "hypothesis_annotation_id"=>"kFHitHDXEeeKeisFVtei3A",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"ins\n" + "Robt H O'Hara\n" + "John A Turner\n",
+  "suffix"=>"Com'th AttyA Kendall Grant Cir. ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[3]"},
+ {"id"=>16261,
+  "document_id"=>1227,
+  "verbatim"=>"John A Turner",
+  "user_id"=>1,
+  "entity_id"=>9202,
+  "hypothesis_annotation_id"=>"jH0rnnDXEeeup3Oii4C7Yg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"gan\n" + "J. W. Collins\n" + "Robt H O'Hara\n",
+  "suffix"=>"\n" + "P. U. MajorCom'th AttyA Kendall",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16270,
+  "document_id"=>1227,
+  "verbatim"=>"M Burnett",
+  "user_id"=>1,
+  "entity_id"=>5169,
+  "hypothesis_annotation_id"=>"ZKj-mnDXEeeklStucZiySQ",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"a\n" + "W Smith Clk G c ctJ. O'Hara Jr",
+  "suffix"=>"\n" + "J. M. Callin\n" + "W. T. Simmons\n" + "T. M",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16276,
+  "document_id"=>1227,
+  "verbatim"=>"Grant",
+  "user_id"=>1,
+  "entity_id"=>938,
+  "hypothesis_annotation_id"=>"Tv3MJHDXEeecWe9u6vhxmw",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"l approbation of the citizen of ",
+  "suffix"=>" should your Excellency remit so",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>16275,
+  "document_id"=>1227,
+  "verbatim"=>"E F Nuttall",
+  "user_id"=>1,
+  "entity_id"=>3209,
+  "hypothesis_annotation_id"=>"U6cX7nDXEeeX8tN1MbCe9g",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"your power to do. Oct 29th 1861.",
+  "suffix"=>"\n" + "J. H. Webb\n" + "O. D. McManama\n" + "W Smi",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16273,
+  "document_id"=>1227,
+  "verbatim"=>"O. D. McManama",
+  "user_id"=>1,
+  "entity_id"=>2678,
+  "hypothesis_annotation_id"=>"WXknrHDXEeeupp9oEbA-WQ",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"9th 1861.E F Nuttall\n" + "J. H. Webb\n",
+  "suffix"=>"\n" + "W Smith Clk G c ctJ. O'Hara JrM",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16272,
+  "document_id"=>1227,
+  "verbatim"=>"W Smith",
+  "user_id"=>1,
+  "entity_id"=>3495,
+  "hypothesis_annotation_id"=>"XY5u4nDXEeegWqPSFFM2OA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"ttall\n" + "J. H. Webb\n" + "O. D. McManama\n",
+  "suffix"=>" Clk G c ctJ. O'Hara JrM Burnett",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16271,
+  "document_id"=>1227,
+  "verbatim"=>"J. O'Hara Jr",
+  "user_id"=>1,
+  "entity_id"=>6449,
+  "hypothesis_annotation_id"=>"YTeyknDXEeeEgtuPV3NU4A",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>". D. McManama\n" + "W Smith Clk G c ct",
+  "suffix"=>"M Burnett\n" + "J. M. Callin\n" + "W. T. Sim",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]/span[2]"},
+ {"id"=>16274,
+  "document_id"=>1227,
+  "verbatim"=>"J. H. Webb",
+  "user_id"=>1,
+  "entity_id"=>9177,
+  "hypothesis_annotation_id"=>"VmSiRHDXEeeNzYsLYLGmfw",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"o do. Oct 29th 1861.E F Nuttall\n",
+  "suffix"=>"\n" + "O. D. McManama\n" + "W Smith Clk G c ",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[2]"},
+ {"id"=>16280,
+  "document_id"=>1227,
+  "verbatim"=>"His Excellency B MaGoffin",
+  "user_id"=>1,
+  "entity_id"=>258,
+  "hypothesis_annotation_id"=>"OfH40nDXEeehHMOGBECTuA",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>
+   "    \n" +
+   "    \n" +
+   "    \n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "\n" +
+   "  To ",
+  "suffix"=>" Governor of Kentucky Your Petit",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>16279,
+  "document_id"=>1227,
+  "verbatim"=>"Kentucky",
+  "user_id"=>1,
+  "entity_id"=>83,
+  "hypothesis_annotation_id"=>"PVerDHDXEeeklMdkZX_faw",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"cellency B MaGoffin Governor of ",
+  "suffix"=>" Your Petitioners would respectf",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"},
+ {"id"=>16278,
+  "document_id"=>1227,
+  "verbatim"=>"Grant Circuit Court",
+  "user_id"=>1,
+  "entity_id"=>384,
+  "hypothesis_annotation_id"=>"Qc5gNnDXEee4738JiNtfhg",
+  "hypothesis_user"=>"hannahodaniel@hypothes.is",
+  "prefix"=>"t at the OctoberMay Term of the ",
+  "suffix"=>" 1861. one Patrick Bannen was fi",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]/date[1]"},
+ {"id"=>18769,
+  "document_id"=>1227,
+  "verbatim"=>"Patrick Bannon",
+  "user_id"=>1,
+  "entity_id"=>9160,
+  "hypothesis_annotation_id"=>"g3kuCLCHEeiogK8IwK0hiA",
+  "hypothesis_user"=>"LucasSomers@hypothes.is",
+  "prefix"=>"e Grant Circuit sourt 1861. one ",
+  "suffix"=>" was fined fifty Dollars for car",
+  "start_container"=>
+   "/div[1]/div[2]/aside[1]/div[1]/tei[1]/div[1]/text[1]/p[1]"}]
+
+
+
+
+
+
+
 KYR00040330009 = <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="KYR-0004-033-0009"> 
