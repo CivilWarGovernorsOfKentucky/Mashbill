@@ -41,7 +41,7 @@ All annotations identified
       <tr>
         <td>
           <div>
-            <%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> 
+            <%= annotation.prefix.gsub("\n", "<br />").sub(/.*XML/,'').html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %> 
           </div>
           <div>
             <small>
@@ -88,7 +88,7 @@ All annotations identified
       <tr>
         <td>
           <div>
-            <%= annotation.prefix.gsub("\n", "<br />").html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %>
+            <%= annotation.prefix.gsub("\n", "<br />").sub(/.*XML/,'').html_safe + " " + link_to(annotation.verbatim, "https://hyp.is/" + annotation.hypothesis_annotation_id,  :target => "_blank") + " " + annotation.suffix.gsub("\n", "<br />").html_safe %>
           </div>
           <div>
             <small>
