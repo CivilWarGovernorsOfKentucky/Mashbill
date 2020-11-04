@@ -107,7 +107,7 @@ class DocumentsController < ApplicationController
 
   def search
 #    @documents = Document.basic_search(cwgk_id: params["q"])
-    @documents = Document.search_or_create(params["q"])
+    @documents = Document.search_or_create(params["q"]).sort { |a,b| a.cwgk_id <=> b.cwgk_id }
   end
 
   def search_by_name
