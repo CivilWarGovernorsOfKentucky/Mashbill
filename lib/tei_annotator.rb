@@ -116,16 +116,16 @@ class TeiAnnotator
 
   def element_contains_context?(element, annotation)
     segments = (element.text+' ').split(/#{Regexp.escape(annotation.verbatim)}/)
-#    binding.pry if annotation.verbatim == 'Patrick Meyer'
     if segments.count == 1 
       return false # this element doesn't have the verbatim text
     else
-      end_index = segments.count - 2
+      end_index = segments.count - 1
       good_so_far = false
-      0.upto(end_index) do |start_index|
 
-        last_segment = (start_index == end_index)
-        segment_text = segments[start_index..(end_index+1)].join(annotation.verbatim)
+      0.upto(end_index-1) do |start_index|
+
+        last_segment = (start_index+1 == end_index)
+        segment_text = segments[start_index..end_index].join(annotation.verbatim)
 
         md = /(.*?)#{Regexp.escape(annotation.verbatim)}(.*)/m.match segment_text
         if md
