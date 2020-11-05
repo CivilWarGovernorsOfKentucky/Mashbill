@@ -1,3 +1,4 @@
+require 'text_transporter'
 class Entity < ActiveRecord::Base
   belongs_to :user
   has_many :annotations
@@ -83,6 +84,12 @@ class Entity < ActiveRecord::Base
     # build_tei_from_template
     # save tei file
   end
+
+  def published?
+    transporter = TextTransporter.new
+    transporter.entity_file_exists?(self.ref_id)
+  end
+
 
   def cleanup_entity
     relationships = self.left_relationships.to_a + self.right_relationships.to_a

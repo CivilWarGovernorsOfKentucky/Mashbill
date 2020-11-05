@@ -106,7 +106,11 @@ All annotations identified
             </small>
           </div> 
         </td>
-        <td><%= link_to annotation.entity.name, edit_entity_path(annotation.entity) if annotation.entity %></td>         
+        <td>
+          <% if annotation.entity %>
+            <%= link_to annotation.entity.name, edit_entity_path(annotation.entity) %>
+          <% end %>  
+        </td>         
         <td><%= link_to 'Identify', identify_annotation_path(annotation) %></td>
         <td><%= link_to 'Delete', annotation, method: :delete, data: { confirm: 'This deletes the ENTIRE ANNOTATION.  You should click "Identify" if all you want to do is re-associate the annotation to a different entity.  Are you sure you want to do this?' } %></td>
       </tr>
@@ -121,7 +125,12 @@ All annotations identified
   <tbody>
     <% @document.entities.each do |entity| %>
       <tr>
-        <td><%= link_to entity.name, entity %></td>
+        <td>
+          <% unless entity.published? %>
+              <span title="This entity has not been published.">*</span>
+          <% end %>
+          <%= link_to entity.name, entity %>  
+        </td>
       </tr>
     <% end %>
   </tbody>

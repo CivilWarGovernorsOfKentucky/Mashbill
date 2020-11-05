@@ -12,7 +12,8 @@ class Document < ActiveRecord::Base
 
   def self.search_or_create(cwgk_id)
   	documents = Document.basic_search(cwgk_id: cwgk_id).to_a
-  	if documents.empty?
+
+  	if documents.empty? || !documents.detect { |doc| doc.cwgk_id == cwgk_id }
  			# Look on the filesystem for a matching document
  			text = TextTransporter.new.fetch(cwgk_id)
  			# Read the title
@@ -23,7 +24,7 @@ class Document < ActiveRecord::Base
  			# append it to @documents
  			documents << doc
   	end
-  	documents
+  	documents.sort { |a,b| a.cwgk_id <=> b.cwgk_id }
   end
 
   

@@ -30,8 +30,11 @@ class TextTransporter
   
   def save_entity(ref_id, text, user)
     File.write(bio_path(ref_id), text)
-    GitTalker.new.commit_and_push_file(bio_path(ref_id), user)
-    
+    GitTalker.new.commit_and_push_file(bio_path(ref_id), user)   
+  end
+
+  def entity_file_exists?(ref_id)
+    File.exists?(bio_path(ref_id))
   end
   
 end
