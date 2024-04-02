@@ -30,6 +30,7 @@ class Annotation < ActiveRecord::Base
       exact_selection = selector.detect { |e| e["exact"] != nil }
       container_selection = selector.detect { |e| e["startContainer"] != nil }
       #binding.pry if exact_selection.nil?
+      #binding.pry if container_selection.nil?
       next unless exact_selection
       annotation_record.verbatim = exact_selection["exact"]
       annotation_record.prefix = exact_selection["prefix"]
@@ -66,15 +67,21 @@ class Annotation < ActiveRecord::Base
   end
 
   def self.request_annotations(page)
-    url = 'https://hypothes.is/api/search?group=v2oPAZgK&limit=200&offset=' + (page * 200).to_s
+    #url = 'https://hypothes.is/api/search?group=v2oPAZgK&limit=200&offset=' + (page * 200).to_s
+    url = 'https://hypothes.is/api/search?groupie=v2oPAZgK&limit=200&offset=' + (page * 200).to_s
+
     begin
       response = RestClient::Request.execute(method: :get, url: url,
-                            timeout: 10, headers: {:Authorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
+                            timeout: 10, headers: {:WMAuthorization => 'Bearer 6879-29fcc6c2d9d966889c7edd63ad14310a'})
     rescue => e
-      logger.error "ERROR executed hypothesis api query " + url + " and received the following exception: " + e.response
+      if e.response
+        logger.error "ERROR executed hypothesis api query " + url + " and received the following exception: " + e.response
+      elsif e.message
+        logger.error "ERROR executed hypothesis api query " + url + " and received the following exception: " + e.message
+      end
     end
     if response
-      jason_hash = JSON.parse(response)
+      jason_hash = JSON.parse(response.body)
       jason_hash["rows"]  # this is an array of hashes
     else 
       jason_hash={}
@@ -85,7 +92,7 @@ class Annotation < ActiveRecord::Base
     recent_annotations = []
     all_annotations = []
     page = 0
-    while true
+    while page*200 < 10000
       all_annotations = request_annotations(page)
       if all_annotations.empty? then return recent_annotations end
       all_annotations.each do |hyp_annotation|
@@ -97,6 +104,7 @@ class Annotation < ActiveRecord::Base
       end
       page = page + 1
     end
+    recent_annotations
   end
   
   def cwgk_id
